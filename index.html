@@ -24,7 +24,7 @@ body{
     radial-gradient(ellipse at 20% 0%,rgba(201,168,76,.06) 0%,transparent 50%),
     radial-gradient(ellipse at 80% 100%,rgba(233,69,96,.04) 0%,transparent 50%);
 }
-.header{text-align:center;padding:2rem 1rem 1.2rem;border-bottom:1px solid var(--border);
+.header{text-align:center;padding:2rem 1rem 2.5rem;border-bottom:1px solid var(--border);
   background:linear-gradient(180deg,rgba(201,168,76,.08) 0%,transparent 100%); position:relative;}
 .lang-selector{position:absolute;top:1rem;right:1rem;padding:0.3rem 0.5rem;background:var(--bg2);color:var(--gold);border:1px solid var(--gold-dim);border-radius:4px;font-family:'Cinzel',serif;font-size:0.8rem;outline:none;cursor:pointer;}
 .lang-selector:focus{border-color:var(--gold);box-shadow:0 0 8px var(--glow);}
@@ -226,20 +226,40 @@ body{
 .match-prev-badge.full{background:rgba(201,168,76,.2);color:var(--gold)}
 .match-prev-badge.partial{background:rgba(74,111,165,.15);color:var(--blue)}
 
-/* ── Recipe Group Collapsible ── */
-.recipe-group-title{cursor:pointer;user-select:none}
-.recipe-group-title::before{content:'▼';font-size:.7rem;margin-right:.4rem;transition:transform .2s ease;display:inline-block}
-.recipe-group-title.collapsed::before{transform:rotate(-90deg)}
-.recipe-group-content{overflow:hidden;transition:max-height .3s ease}
-.recipe-group-title.collapsed+.recipe-group-content{display:none}
-
 /* ── Item Icons on RW Cards ── */
 .rw-card{display:flex;flex-direction:row}
-.rw-card-icon{width:56px;height:56px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--border);display:flex;align-items:center;justify-content:center;padding:.4rem}
-.rw-card-icon img{width:100%;height:100%;object-fit:contain;image-rendering:auto}
-.rw-card-icon-placeholder{font-size:2rem;color:var(--text3);opacity:.3}
+.rw-card-icon{width:56px;min-height:56px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--border);display:flex;align-items:center;justify-content:center;padding:.4rem;font-size:1.8rem;color:var(--text3);opacity:.35;flex-wrap:wrap;gap:2px}
+.rw-icon-rune{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-weight:900;font-size:.6rem;color:var(--bg);flex-shrink:0}
+.rw-icon-rune.low{background:linear-gradient(135deg,#b0b0b0,#e0e0e0)}
+.rw-icon-rune.mid{background:linear-gradient(135deg,#c9a84c,#f0d890)}
+.rw-icon-rune.high{background:linear-gradient(135deg,#d4763a,#ff9a56)}
+.rw-icon-rune-overlay{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-weight:900;font-size:.5rem;color:var(--bg);flex-shrink:0;border:1px solid rgba(0,0,0,.3)}
+.rw-icon-rune-overlay.low{background:linear-gradient(135deg,#b0b0b0,#e0e0e0)}
+.rw-icon-rune-overlay.mid{background:linear-gradient(135deg,#c9a84c,#f0d890)}
+.rw-icon-rune-overlay.high{background:linear-gradient(135deg,#d4763a,#ff9a56)}
 .rw-card-content{flex:1;min-width:0}
 .rw-card-head{flex-wrap:wrap}
+
+/* ── Recipe Sidebar Layout ── */
+.recipe-layout{display:flex;gap:1.5rem;align-items:flex-start}
+.recipe-sidebar{width:200px;display:flex;flex-direction:column;gap:0.3rem;flex-shrink:0}
+.recipe-cat-btn{text-align:left;padding:0.6rem 1rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);color:var(--text2);cursor:pointer;font-size:0.85rem;transition:var(--transition)}
+.recipe-cat-btn:hover{border-color:var(--gold-dim);color:var(--text)}
+.recipe-cat-btn.active{background:rgba(201,168,76,.15);border-color:var(--gold);color:var(--gold)}
+.recipe-content{flex:1;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1rem}
+.recipe-card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:.6rem}
+.recipe-card{padding:.7rem .9rem;border:1px solid var(--border);border-radius:var(--radius);background:var(--surface);transition:var(--transition)}
+.recipe-card:hover{border-color:var(--gold-dim);box-shadow:0 2px 12px rgba(0,0,0,.3)}
+.rc-name{font-weight:600;color:var(--text);font-size:.85rem;margin-bottom:.3rem}
+.rc-formula{font-size:.8rem;color:var(--gold);padding:.4rem .6rem;background:rgba(201,168,76,.06);border-radius:4px;margin-bottom:.3rem;border-left:3px solid var(--gold-dim)}
+.rc-result{font-size:.78rem;color:var(--green)}
+.rc-notes{font-size:.72rem;color:var(--text3);margin-top:.2rem;font-style:italic}
+.craft-table{width:100%;border-collapse:collapse;font-size:.78rem;margin-top:.4rem}
+.craft-table th{text-align:left;padding:.4rem .5rem;color:var(--gold);font-weight:600;border-bottom:1px solid var(--border)}
+.craft-table td{padding:.35rem .5rem;border-bottom:1px solid rgba(42,42,90,.5);color:var(--text2)}
+.craft-table tr:hover td{background:rgba(201,168,76,.03)}
+.recipe-crafting-section{margin-top:1.5rem}
+.recipe-crafting-title{font-family:'Cinzel',serif;font-size:1rem;color:var(--gold);margin:.8rem 0 .6rem;padding-bottom:.4rem;border-bottom:1px solid var(--border)}
 
 /* ── Base Item Icons ── */
 .base-item-icon{width:28px;height:28px;vertical-align:middle;margin-right:.4rem;image-rendering:auto}
@@ -257,12 +277,17 @@ body{
   <h1>D2R Formula Guide</h1>
   <div class="sub" id="ui-subtitle">暗黑破坏神2：重制版 — 合成公式助手</div>
   <span class="version">v3.1 Reign of the Warlock</span>
+  <div class="global-search" id="globalSearchWrap" style="display:none;position:absolute;bottom:-48px;left:50%;transform:translateX(-50%);width:90%;max-width:500px;z-index:200">
+    <input type="text" id="globalSearchInput" placeholder="全局搜索 / Global Search…" style="width:100%;padding:.5rem 1rem;border:1px solid var(--gold);border-radius:var(--radius);background:var(--bg2);color:var(--text);font-size:.9rem;font-family:inherit;outline:none;box-shadow:0 4px 20px rgba(0,0,0,.5)">
+    <div id="globalSearchResults" style="position:absolute;top:100%;left:0;right:0;background:var(--bg2);border:1px solid var(--gold);border-radius:var(--radius);margin-top:4px;max-height:400px;overflow-y:auto;box-shadow:0 8px 24px rgba(0,0,0,.6);display:none;z-index:201"></div>
+  </div>
 </div>
 <nav class="tab-nav">
   <button class="tab-btn active" data-tab="materials" id="tab-materials">🔮 选择材料</button>
   <button class="tab-btn" data-tab="runewords" id="tab-runewords">⚔️ 符文之语</button>
   <button class="tab-btn" data-tab="recipes" id="tab-recipes">📜 合成公式</button>
   <button class="tab-btn" data-tab="baseitems" id="tab-baseitems">🛡️ 底材百科</button>
+  <button class="tab-btn" id="globalSearchBtn" style="margin-left:auto;padding:.5rem .8rem">🔍</button>
 </nav>
 <div id="tooltip"></div>
 <div class="selected-bar" id="selectedBar">
@@ -290,7 +315,10 @@ body{
 </div>
 
 <div class="tab-panel" id="panel-recipes">
-  <div id="recipesContainer"></div>
+  <div class="recipe-layout">
+    <div class="recipe-sidebar" id="recipeSidebar"></div>
+    <div class="recipe-content" id="recipeContent"></div>
+  </div>
 </div>
 
 <div class="tab-panel" id="panel-baseitems">
@@ -432,17 +460,55 @@ function buildRuneIconUrl(runeName) {
   return `https://diablo2.io/styles/zulu/theme/images/icons/${slug}2x.png`;
 }
 
-function buildItemIconUrl(itemName) {
+// Runeword to base item icon mapping (using d2data item codes)
+const RW_ICONS = {
+  "Ancient's Pledge": "pa0", "Beast": "axf", "Black": "9qr", "Bone": "upa", "Bramble": "upa",
+  "Brand": "am9", "Breath of the Dying": "wc7", "Call to Arms": "9vo", "Chains of Honor": "uld",
+  "Chaos": "ktr", "Crescent Moon": "9la", "Death": "ws8", "Delirium": "uh9", "Destruction": "p9b",
+  "Doom": "hax", "Dragon": " rsp", "Dream": "uuc", "Duress": "xrg", "Edge": "am6",
+  "Enigma": "utu", "Enlightenment": "zmb", "Eternity": "9mt", "Exile": "pa9", "Faith": "am7",
+  "Famine": "9la", "Fortitude": "dth", "Fury": "9qr", "Gloom": "xrl", "Grief": "7sm",
+  "Hand of Justice": "wm9", "Harmony": "am5", "Heart of the Oak": "9cs", "Holy Thunder": "9sc",
+  "Honor": "9vo", "Ice": "am8", "Infinity": "wam", "Insight": "wm8", "King's Grace": "9ws",
+  "Kingslayer": "ws9", "Last Wish": "ws8", "Lawbringer": "9ws", "Leaf": "wst", "Lionheart": "xui",
+  "Lore": "ci2", "Malice": "9mt", "Melody": "am4", "Memory": "wst", "Myth": "xrg",
+  "Nadir": "ci3", "Oath": "7ws", "Obedience": "wam", "Passion": "9vo", "Peace": "xrg",
+  "Phoenix": " rsp", "Pride": "wam", "Principle": "xrg", "Prudence": "xrs", "Radiance": "uh9",
+  "Rain": "upa", "Rhyme": "pa5", "Rift": "wsc", "Sanctuary": "pa6", "Silence": "9vo",
+  "Smoke": "xul", "Spirit": "pa2", "Splendor": "pa8", "Stealth": "xul", "Steel": "9sm",
+  "Stone": "xth", "Strength": "7mt", "Treachery": "xth", "Venom": "9vo", "Voice of Reason": "9sm",
+  "Wealth": "xul", "White": "wzb", "Wind": "9mt", "Wrath": "am9", "Zephyr": "am6",
+  "Flickering Flame": "uh9", "Obsession": "wst", "Pattern": "ktr", "Plague": "9qr",
+  "Unbending Will": "7sm", "Wisdom": "ci2", "Mist": "am7", "Bulwark": "uh9", "Cure": "uh9",
+  "Ground": "uh9", "Hearth": "uh9", "Temper": "uh9", "Hustle": "zth", "Metamorphosis": "ci2",
+  "Mosaic": "ktr", "Authority": "xrg", "Coven": "ci2", "Void": "dgr", "Vigilance": "pa8",
+  "Ritual": "dgr", "Hysteria": "xrg", "Mania": "9vo"
+};
+
+function buildItemIconUrl(itemName, baseType) {
+  // For runewords, use the mapped base item code
+  if (RW_ICONS[itemName]) {
+    return `https://diablo2.io/styles/zulu/theme/images/items/${RW_ICONS[itemName]}_ticon.png`;
+  }
+  // For base items, use name to build slug
   const slug = itemName.replace(/\s+/g, '').toLowerCase();
   return `https://diablo2.io/styles/zulu/theme/images/items/${slug}_ticon.png`;
 }
 
 // ──── HOVER DATA ────
-// Runeword stats (hardcoded from d2data T1Code mapping)
+// Runeword stats with multilingual support
 const RW_STATS = {
-  "Ancient's Pledge": ["+50% Enhanced Defense","+45% Cold Resistance","+45% Lightning Resistance","+50% Fire Resistance","+10% Strength","Repairs 1 Durability in 10 Seconds"],
-  "Beast": ["+40% Enhanced Damage","+3 to Shape Shifting Skills (Druid Only)","+3 to Werewolf (Druid Only)","+3 to Lycanthropy (Druid Only)","+25% Faster Run/Walk","+5-7 to Summoned Grizzly Bear (varies)","Knockback","Level 13 Fanaticism Aura when Equipped"],
-  "Black": ["+3 to Necromancer Skills","+40% Casting Speed","+120% Enhanced Damage","+200 to Attack Rating","+15 to Energy","+10 to Vitality","Magic Damage Reduced by 2","Hit Causes Monster to Flee 15%"],
+  "Ancient's Pledge": {
+    sc: ["+50% 增强防御","+45% 冰冷抗性","+45% 闪电抗性","+50% 火焰抗性","+10% 力量","每10秒修复1点耐久度"],
+    tc: ["+50% 增強防禦","+45% 冰冷抗性","+45% 閃電抗性","+50% 火焰抗性","+10% 力量","每10秒修復1點耐久度"],
+    en: ["+50% Enhanced Defense","+45% Cold Resistance","+45% Lightning Resistance","+50% Fire Resistance","+10% Strength","Repairs 1 Durability in 10 Seconds"]
+  },
+  "Beast": {
+    sc: ["+40% 增强伤害","+3 变形技能（德鲁伊）","+3 狼人（德鲁伊）","+3 变狼术（德鲁伊）","+25% 快速跑步/行走","+5-7 召唤灰熊（变量）","击退","装备时等级13狂热光环"],
+    tc: ["+40% 增強傷害","+3 變形技能（德魯伊）","+3 狼人（德魯伊）","+3 變狼術（德魯伊）","+25% 快速跑步/行走","+5-7 召喚灰熊（變量）","擊退","裝備時等級13狂熱光環"],
+    en: ["+40% Enhanced Damage","+3 to Shape Shifting Skills (Druid Only)","+3 to Werewolf (Druid Only)","+3 to Lycanthropy (Druid Only)","+25% Faster Run/Walk","+5-7 to Summoned Grizzly Bear (varies)","Knockback","Level 13 Fanaticism Aura when Equipped"]
+  },
+    "Black": ["+3 to Necromancer Skills","+40% Casting Speed","+120% Enhanced Damage","+200 to Attack Rating","+15 to Energy","+10 to Vitality","Magic Damage Reduced by 2","Hit Causes Monster to Flee 15%"],
   "Bone": ["+75% Enhanced Defense","+25 to Energy","+10% Faster Cast Rate","+30% Poison Length Reduced","All Resistances +15","+2 to Bone Skills (Necromancer Only)"],
   "Bramble": ["+50% Enhanced Defense","+25-35% Fire Damage (varies)","+30% Faster Cast Rate","+5-9 to Poison Nova (varies)","+4 to Spirit of the Viper (Barbarian Only)","Regenerate Mana 15%","All Resistances +25-35 (varies)","Hit Causes Target to Heal 1"],
   "Brand": ["35% Chance of Casting Amplify Damage on Striking","100% Chance of Open Wounds","+350% Enhanced Damage","+280% Bonus to Attack Rating","+1-6 to Lower Resist (varies)","Prevent Monster Heal","Knockback"],
@@ -614,15 +680,18 @@ function renderMatchPreview(){
       return `<span class="${have ? 'match-prev-rune-owned' : 'match-prev-rune-missing'}">${r}</span>`;
     }).join('');
 
-    const iconUrl = buildItemIconUrl(n_en);
-    const iconHtml = `<img src="${iconUrl}" alt="${n_en}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" style="width:100%;height:100%;object-fit:contain">
-      <div class="match-prev-icon-placeholder" style="display:none">⚔️</div>`;
+    // Show first 3 runes as icon
+    const runesIconHtml = rw.runes.slice(0, 3).map(r => {
+      const tierClass = RUNES.find(rn => rn.name_en === r);
+      const tierClassName = tierClass ? tier(tierClass.id) : 'low';
+      return `<div class="rw-icon-rune ${tierClassName}" style="width:28px;height:28px;font-size:.7rem">${r}</div>`;
+    }).join('');
 
     return `<div class="match-prev-card ${isFull ? 'full' : ''}"
       onmouseenter="showTooltip(buildRwTooltip('${n_en.replace(/'/g, "\\'")}'), event)"
       onmousemove="positionTooltip(event)"
       onmouseleave="hideTooltip()">
-      <div class="match-prev-icon">${iconHtml}</div>
+      <div class="match-prev-icon" style="flex-wrap:wrap;gap:2px">${runesIconHtml}</div>
       <div class="match-prev-info">
         <div class="match-prev-name">${n_en}</div>
         <div class="match-prev-runes">${runesStr}</div>
@@ -633,11 +702,17 @@ function renderMatchPreview(){
 }
 
 function buildRwTooltip(name) {
-  const stats = RW_STATS[name] || [];
+  const rwData = RW_STATS[name];
+  let stats = [];
+  if (Array.isArray(rwData)) {
+    stats = rwData;
+  } else if (rwData && typeof rwData === 'object') {
+    stats = rwData[currentLang] || rwData.en || [];
+  }
   const n_loc = getPropName({name_en: name, name_sc: name, name_tc: name}, 'name');
-  let html = `<div class="tt-title">${name}</div>`;
+  let html = `<div class="tt-title">${n_loc}</div>`;
   stats.forEach(s => {
-    const cls = s.startsWith('+') ? 'blue' : (s.includes(' Aura') || s.includes('Resistance') ? 'gold' : '');
+    const cls = s.startsWith('+') ? 'blue' : (s.includes(' Aura') || s.includes('Resistance') || s.includes('抗性') || s.includes('光環') ? 'gold' : '');
     html += `<div class="tt-stat ${cls}">${s}</div>`;
   });
   return html;
@@ -698,13 +773,20 @@ function renderRW(){
     const baseZh = (bases || rw.base_types || []).join(' / ');
     const pct=Math.round(m.pct*100);
 
-    // Item icon
-    const iconUrl = buildItemIconUrl(n_en);
-    const iconHtml = `<img src="${iconUrl}" alt="${n_en}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" style="width:100%;height:100%;object-fit:contain">
-      <div class="rw-card-icon-placeholder" style="display:none">⚔️</div>`;
+    // Show base item icon with runes overlay
+    const iconCode = RW_ICONS[n_en] || 'inv';
+    const iconUrl = `https://diablo2.io/styles/zulu/theme/images/items/${iconCode}_ticon.png`;
+    const runesOverlayHtml = rw.runes.slice(0, 4).map(r => {
+      const tierClass = RUNES.find(rn => rn.name_en === r);
+      const tierClassName = tierClass ? tier(tierClass.id) : 'low';
+      return `<div class="rw-icon-rune-overlay ${tierClassName}">${r}</div>`;
+    }).join('');
+
+    const iconHtml = `<img src="${iconUrl}" alt="${n_en}" style="width:100%;height:100%;object-fit:contain;position:absolute;top:0;left:0;z-index:1" onerror="this.style.display='none'">
+      <div style="position:relative;z-index:2;display:flex;flex-wrap:wrap;gap:1px;justify-content:center;align-items:center;width:100%;height:100%">${runesOverlayHtml}</div>`;
 
     return`<div class="rw-card ${cls}">
-<div class="rw-card-icon" onmouseenter="showTooltip(buildRwTooltip('${n_en.replace(/'/g, "\\'")}'), event)" onmousemove="positionTooltip(event)" onmouseleave="hideTooltip()">${iconHtml}</div>
+<div class="rw-card-icon" style="position:relative;overflow:hidden" onmouseenter="showTooltip(buildRwTooltip('${n_en.replace(/'/g, "\\'")}'), event)" onmousemove="positionTooltip(event)" onmouseleave="hideTooltip()">${iconHtml}</div>
 <div class="rw-card-content">
 <div class="rw-card-head"><div><span class="rw-name">${n_en}</span><span class="rw-loc">${n_loc!==n_en?n_loc:''}</span></div>
 <span class="rw-badge ${rw.category}">${CATS[rw.category]||rw.patch}</span></div>
@@ -725,55 +807,106 @@ function renderFilters(){
 function setF(f){activeFilter=f;renderFilters();renderRW()}
 
 // ──── RECIPES ────
-function renderRecipes(){
-  const c=document.getElementById('recipesContainer');
-  if(!Object.keys(RECIPES).length) return;
-  let h='';
-  const cats=[
-    ['rune_upgrade','🔼'],['socketing','🔲'],['upgrade_equipment','⬆️'],
-    ['special','✨'],['gem_upgrade','💎'],['potion','🧪']
-  ];
-  cats.forEach(([key,ico])=>{
-    const cat=RECIPES[key];if(!cat)return;
-    const cDesc = getPropName(cat, 'description') || cat.description;
-    h+=`<div class="recipe-group"><div class="recipe-group-title" onclick="toggleRecipeGroup(this)">${ico} ${cDesc} <span class="count-badge">${cat.recipes.length}</span></div>
-<div class="recipe-group-content">`;
-    cat.recipes.forEach(r=>{
+// ──── RECIPE CATEGORIES ────
+const RECIPE_CATS = [
+  { key: 'rune_upgrade', icon: '🔼', i18n_key: 'cat_rune_upgrade' },
+  { key: 'socketing', icon: '🔲', i18n_key: 'cat_socketing' },
+  { key: 'upgrade_equipment', icon: '⬆️', i18n_key: 'cat_upgrade_equipment' },
+  { key: 'crafting', icon: '🔶', i18n_key: 'cat_crafting' },
+  { key: 'special', icon: '✨', i18n_key: 'cat_special' },
+  { key: 'gem_upgrade', icon: '💎', i18n_key: 'cat_gem' },
+  { key: 'potion', icon: '🧪', i18n_key: 'cat_potion' }
+];
+
+const RECIPE_CAT_NAMES = {
+  sc: { rune_upgrade: '符文升级', socketing: '打孔', upgrade_equipment: '装备升级', crafting: '合成橙装', special: '特殊', gem_upgrade: '宝石', potion: '药水' },
+  tc: { rune_upgrade: '符文升級', socketing: '打孔', upgrade_equipment: '裝備升級', crafting: '合成橙裝', special: '特殊', gem_upgrade: '寶石', potion: '藥水' },
+  en: { rune_upgrade: 'Rune Upgrade', socketing: 'Socketing', upgrade_equipment: 'Upgrade', crafting: 'Crafting', special: 'Special', gem_upgrade: 'Gems', potion: 'Potions' }
+};
+
+function getRecipeCatName(key) {
+  return RECIPE_CAT_NAMES[currentLang]?.[key] || key;
+}
+
+function renderRecipeSidebar() {
+  const sidebar = document.getElementById('recipeSidebar');
+  if (!sidebar) return;
+  if (!Object.keys(RECIPES).length) return;
+
+  sidebar.innerHTML = RECIPE_CATS.map(cat => {
+    const data = RECIPES[cat.key];
+    if (!data) return '';
+    const count = data.recipes?.length || data.types?.length || 0;
+    const isActive = activeRecipeCat === cat.key;
+    return `<button class="base-cat-btn ${isActive ? 'active' : ''}" onclick="setActiveRecipeCat('${cat.key}')">${cat.icon} ${getRecipeCatName(cat.key)} <span class="count-badge">${count}</span></button>`;
+  }).join('');
+}
+
+function setActiveRecipeCat(cat) {
+  activeRecipeCat = cat;
+  renderRecipeSidebar();
+  renderRecipeContent();
+}
+
+function renderRecipeContent() {
+  const content = document.getElementById('recipeContent');
+  if (!content) return;
+
+  if (!activeRecipeCat || !RECIPES[activeRecipeCat]) {
+    content.innerHTML = `<div class="empty-state"><div class="icon">📜</div><p>${getText('no_match')}</p></div>`;
+    return;
+  }
+
+  const data = RECIPES[activeRecipeCat];
+  let html = '';
+
+  if (activeRecipeCat === 'crafting') {
+    // Crafting has special layout with rules and types
+    html += `<div class="rw-list" style="grid-template-columns:repeat(auto-fill,minmax(300px,1fr))">`;
+    // Rules card
+    html += `<div class="rw-card"><div class="rw-card-head"><div><span class="rw-name">${getText('rule')}</span></div></div>
+<div class="rw-card-body"><div class="rc-notes">${(currentLang==='tc'?data.rules_tc:data.rules).join(' · ')}</div></div></div>`;
+
+    data.types.forEach(t => {
+      const tType = getPropName(t, 'type');
+      const gStats = getPropName(t, 'guaranteed_stats') || t.guaranteed_stats;
+      html += `<div class="rw-card">
+<div class="rw-card-head"><div><span class="rw-name">${tType} — ${t.gem}</span></div></div>
+<div class="rw-card-body">
+<div class="rc-notes" style="margin-bottom:.4rem">${getText('guar_stats')}: ${gStats}</div>
+<table class="craft-table"><tr><th>${getText('slot')}</th><th>${getText('req_rune')}</th></tr>
+${Object.entries(t.slots).map(([s,r])=>`<tr><td>${s}</td><td style="color:var(--gold)">${r}</td></tr>`).join('')}
+</table></div></div>`;
+    });
+    html += '</div>';
+  } else {
+    // Regular recipe categories
+    const items = data.recipes || [];
+    html += `<div class="rw-list" style="grid-template-columns:repeat(auto-fill,minmax(300px,1fr))">`;
+    items.forEach(r => {
       const rName = getPropName(r, 'name');
       const rForm = getPropName(r, 'formula') || r.formula;
       const rRes = getPropName(r, 'result') || r.result;
       const rNotes = getPropName(r, 'notes') || r.notes;
-      h+=`<div class="recipe-card"><div class="rc-name">${rName}</div>
+      html += `<div class="rw-card">
+<div class="rw-card-head"><div><span class="rw-name">${rName}</span></div></div>
+<div class="rw-card-body">
 <div class="rc-formula">${rForm}</div>
 ${rRes?`<div class="rc-result">→ ${rRes}</div>`:''}
-${rNotes?`<div class="rc-notes">💡 ${rNotes}</div>`:''}</div>`;
+${rNotes?`<div class="rc-notes">💡 ${rNotes}</div>`:''}</div></div>`;
     });
-    h+=`</div></div>`;
-  });
-
-  const craft=RECIPES.crafting;
-  if(craft){
-    const dDesc = getPropName(craft, 'description');
-    h+=`<div class="recipe-group"><div class="recipe-group-title" onclick="toggleRecipeGroup(this)">🔶 ${dDesc} <span class="count-badge">${craft.types.length}</span></div>
-<div class="recipe-group-content">
-<div class="recipe-card"><div class="rc-name">${getText('rule')}</div>
-<div class="rc-notes">${(currentLang==='tc'?craft.rules_tc:craft.rules).join(' · ')}</div></div>`;
-    craft.types.forEach(t=>{
-      const tType = getPropName(t, 'type');
-      const gStats = getPropName(t, 'guaranteed_stats') || t.guaranteed_stats;
-      h+=`<div class="recipe-card"><div class="rc-name">${tType} (${t.type}) — ${t.gem}</div>
-<div class="rc-notes" style="margin-bottom:.4rem">${getText('guar_stats')}: ${gStats}</div>
-<table class="craft-table"><tr><th>${getText('slot')}</th><th>${getText('req_rune')}</th></tr>
-${Object.entries(t.slots).map(([s,r])=>`<tr><td>${s}</td><td style="color:var(--gold)">${r}</td></tr>`).join('')}
-</table></div>`;
-    });
-    h+=`</div></div>`;
+    html += '</div>';
   }
-  c.innerHTML=h;
+
+  content.innerHTML = html;
 }
 
-function toggleRecipeGroup(el){
-  el.classList.toggle('collapsed');
+function renderRecipes() {
+  if (!activeRecipeCat) {
+    activeRecipeCat = 'rune_upgrade';
+  }
+  renderRecipeSidebar();
+  renderRecipeContent();
 }
 
 // ──── BASE ITEMS ────
@@ -933,6 +1066,135 @@ langSel.addEventListener('change', (e)=>{
   localizeUI();
   refresh();
 });
+
+// ──── GLOBAL SEARCH ────
+let globalSearchVisible = false;
+const globalSearchBtn = document.getElementById('globalSearchBtn');
+const globalSearchWrap = document.getElementById('globalSearchWrap');
+const globalSearchInput = document.getElementById('globalSearchInput');
+const globalSearchResults = document.getElementById('globalSearchResults');
+
+globalSearchBtn.addEventListener('click', () => {
+  globalSearchVisible = !globalSearchVisible;
+  globalSearchWrap.style.display = globalSearchVisible ? 'block' : 'none';
+  if (globalSearchVisible) {
+    globalSearchInput.focus();
+  } else {
+    globalSearchInput.value = '';
+    globalSearchResults.style.display = 'none';
+  }
+});
+
+globalSearchInput.addEventListener('input', (e) => {
+  const q = e.target.value.trim().toLowerCase();
+  if (!q) {
+    globalSearchResults.style.display = 'none';
+    return;
+  }
+  performGlobalSearch(q);
+});
+
+function performGlobalSearch(q) {
+  const results = [];
+  const tabs = [];
+
+  // Search runes
+  RUNES.forEach(r => {
+    if (r.name_en.toLowerCase().includes(q) || getPropName(r, 'name').includes(q)) {
+      results.push({ type: 'rune', name: r.name_en, match: getPropName(r, 'name'), tab: 'materials' });
+    }
+  });
+
+  // Search runewords
+  RUNEWORDS.forEach(rw => {
+    const n_en = rw.name_en || rw.name;
+    const n_loc = getPropName(rw, 'name');
+    if (n_en.toLowerCase().includes(q) || n_loc.includes(q)) {
+      results.push({ type: 'runeword', name: n_en, match: n_loc, tab: 'runewords' });
+    }
+  });
+
+  // Search recipes
+  Object.keys(RECIPES).forEach(catKey => {
+    const cat = RECIPES[catKey];
+    if (cat.recipes) {
+      cat.recipes.forEach(r => {
+        const n = getPropName(r, 'name');
+        if (n.includes(q) || getPropName(r, 'formula').includes(q)) {
+          results.push({ type: 'recipe', name: n, match: getPropName(r, 'formula'), tab: 'recipes', cat: getPropName(cat, 'description') });
+        }
+      });
+    }
+    if (cat.types) {
+      cat.types.forEach(t => {
+        const n = getPropName(t, 'type');
+        if (n.includes(q)) {
+          results.push({ type: 'crafting', name: n, match: cat.description, tab: 'recipes', cat: getPropName(cat, 'description') });
+        }
+      });
+    }
+  });
+
+  // Search base items
+  Object.keys(BASE_ITEMS).forEach(cat => {
+    (BASE_ITEMS[cat] || []).forEach(item => {
+      const n = getPropName(item, 'name');
+      if (n.includes(q) || item.name_en.toLowerCase().includes(q)) {
+        results.push({ type: 'baseitem', name: n, match: item.name_en, tab: 'baseitems', cat: cat });
+      }
+    });
+  });
+
+  renderGlobalSearchResults(results.slice(0, 20));
+}
+
+function renderGlobalSearchResults(results) {
+  if (results.length === 0) {
+    globalSearchResults.innerHTML = `<div style="padding:1rem;color:var(--text3);text-align:center">${getText('no_match')}</div>`;
+    globalSearchResults.style.display = 'block';
+    return;
+  }
+  globalSearchResults.innerHTML = results.map(r => {
+    const icon = r.type === 'rune' ? '🔮' : r.type === 'runeword' ? '⚔️' : r.type === 'recipe' ? '📜' : '🛡️';
+    return `<div class="gs-result" style="padding:.6rem 1rem;cursor:pointer;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.5rem" onclick="goToGlobalResult('${r.tab}', '${r.cat || ''}')">
+      <span style="font-size:1.2rem">${icon}</span>
+      <div style="flex:1;min-width:0">
+        <div style="font-size:.85rem;color:var(--text);font-weight:500">${r.name}</div>
+        <div style="font-size:.72rem;color:var(--text2)">${r.match}</div>
+      </div>
+      <span style="font-size:.65rem;color:var(--text3)">${r.tab === 'materials' ? '符文' : r.tab === 'runewords' ? '符文之语' : r.tab === 'recipes' ? '公式' : '底材'}</span>
+    </div>`;
+  }).join('');
+  globalSearchResults.style.display = 'block';
+}
+
+function goToGlobalResult(tab, cat) {
+  switchTab(tab);
+  if (tab === 'recipes' && cat) {
+    setTimeout(() => setActiveRecipeCat(cat), 100);
+  }
+  if (tab === 'baseitems' && cat) {
+    setTimeout(() => setBaseCat(cat), 100);
+  }
+  globalSearchInput.value = '';
+  globalSearchResults.style.display = 'none';
+  globalSearchVisible = false;
+  globalSearchWrap.style.display = 'none';
+}
+
+function switchTab(tabId) {
+  document.querySelectorAll('.tab-btn').forEach(x => x.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(x => x.classList.remove('active'));
+  document.getElementById('tab-' + tabId).classList.add('active');
+  document.getElementById('panel-' + tabId).classList.add('active');
+}
+
+// Fix: setActiveRecipeCat should exist
+let activeRecipeCat = '';
+function setActiveRecipeCat(cat) {
+  activeRecipeCat = cat;
+  renderRecipes();
+}
 
 // ──── REFRESH ALL ────
 function refresh(){
