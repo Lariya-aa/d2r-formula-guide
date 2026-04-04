@@ -460,43 +460,124 @@ function hideTooltip() {
 
 function buildRuneIconUrl(runeName) {
   const slug = runeName.toLowerCase();
-  return `https://diablo2.io/styles/zulu/theme/images/icons/${slug}2x.png`;
+  return `data/assets/items/misc/${slug}_rune.jpg`;
 }
 
-// Runeword to base item icon mapping (using d2data item codes)
-const RW_ICONS = {
-  "Ancient's Pledge": "pa0", "Beast": "axf", "Black": "9qr", "Bone": "upa", "Bramble": "upa",
-  "Brand": "am9", "Breath of the Dying": "wc7", "Call to Arms": "9vo", "Chains of Honor": "uld",
-  "Chaos": "ktr", "Crescent Moon": "9la", "Death": "ws8", "Delirium": "uh9", "Destruction": "p9b",
-  "Doom": "hax", "Dragon": " rsp", "Dream": "uuc", "Duress": "xrg", "Edge": "am6",
-  "Enigma": "utu", "Enlightenment": "zmb", "Eternity": "9mt", "Exile": "pa9", "Faith": "am7",
-  "Famine": "9la", "Fortitude": "dth", "Fury": "9qr", "Gloom": "xrl", "Grief": "7sm",
-  "Hand of Justice": "wm9", "Harmony": "am5", "Heart of the Oak": "9cs", "Holy Thunder": "9sc",
-  "Honor": "9vo", "Ice": "am8", "Infinity": "wam", "Insight": "wm8", "King's Grace": "9ws",
-  "Kingslayer": "ws9", "Last Wish": "ws8", "Lawbringer": "9ws", "Leaf": "wst", "Lionheart": "xui",
-  "Lore": "ci2", "Malice": "9mt", "Melody": "am4", "Memory": "wst", "Myth": "xrg",
-  "Nadir": "ci3", "Oath": "7ws", "Obedience": "wam", "Passion": "9vo", "Peace": "xrg",
-  "Phoenix": " rsp", "Pride": "wam", "Principle": "xrg", "Prudence": "xrs", "Radiance": "uh9",
-  "Rain": "upa", "Rhyme": "pa5", "Rift": "wsc", "Sanctuary": "pa6", "Silence": "9vo",
-  "Smoke": "xul", "Spirit": "pa2", "Splendor": "pa8", "Stealth": "xul", "Steel": "9sm",
-  "Stone": "xth", "Strength": "7mt", "Treachery": "xth", "Venom": "9vo", "Voice of Reason": "9sm",
-  "Wealth": "xul", "White": "wzb", "Wind": "9mt", "Wrath": "am9", "Zephyr": "am6",
-  "Flickering Flame": "uh9", "Obsession": "wst", "Pattern": "ktr", "Plague": "9qr",
-  "Unbending Will": "7sm", "Wisdom": "ci2", "Mist": "am7", "Bulwark": "uh9", "Cure": "uh9",
-  "Ground": "uh9", "Hearth": "uh9", "Temper": "uh9", "Hustle": "zth", "Metamorphosis": "ci2",
-  "Mosaic": "ktr", "Authority": "xrg", "Coven": "ci2", "Void": "dgr", "Vigilance": "pa8",
-  "Ritual": "dgr", "Hysteria": "xrg", "Mania": "9vo"
+// Runeword to d2r.world base item icon mapping
+const RW_ICONS_D2R = {
+  "Ancient's Pledge": "buckler.jpg",
+  "Beast": "axe.jpg",
+  "Black": "club.jpg",
+  "Bone": "ghost_armor.jpg",
+  "Bramble": "leather_armor.jpg",
+  "Brand": "spider_bow.jpg",
+  "Breath of the Dying": "phase_blade.jpg",
+  "Call to Arms": "crystal_sword.jpg",
+  "Chains of Honor": "chain_mail.jpg",
+  "Chaos": "claws.jpg",
+  "Crescent Moon": "double_axe.jpg",
+  "Death": "great_sword.jpg",
+  "Delirium": "helm.jpg",
+  "Destruction": "halberd.jpg",
+  "Doom": "great_axe.jpg",
+  "Dragon": "kite_shield.jpg",
+  "Dream": "helm.jpg",
+  "Duress": "breast_plate.jpg",
+  "Edge": "hunter's_bow.jpg",
+  "Enigma": "leather_armor.jpg",
+  "Enlightenment": "mage_plate.jpg",
+  "Eternity": "long_sword.jpg",
+  "Exile": "shield.jpg",
+  "Faith": "long_war_bow.jpg",
+  "Famine": "battle_axe.jpg",
+  "Fortitude": "great_helm.jpg",
+  "Fury": "flanged_mace.jpg",
+  "Gloom": "ghost_armor.jpg",
+  "Grief": "blade.jpg",
+  "Hand of Justice": "crystal_sword.jpg",
+  "Harmony": "hunter's_bow.jpg",
+  "Heart of the Oak": "reinforced_mace.jpg",
+  "Holy Thunder": "mighty_scepter.jpg",
+  "Honor": "long_sword.jpg",
+  "Ice": "spider_bow.jpg",
+  "Infinity": "trident.jpg",
+  "Insight": "ritual_staff.jpg",
+  "King's Grace": "long_sword.jpg",
+  "Kingslayer": "great_sword.jpg",
+  "Last Wish": "phase_blade.jpg",
+  "Lawbringer": "mace.jpg",
+  "Leaf": "oak.jpg",
+  "Lionheart": "chain_mail.jpg",
+  "Lore": "skull_cap.jpg",
+  "Malice": "dagger.jpg",
+  "Melody": "long_war_bow.jpg",
+  "Memory": "ritual_staff.jpg",
+  "Myth": "scalemail.jpg",
+  "Nadir": "helm.jpg",
+  "Oath": "ancient_sword.jpg",
+  "Obedience": "poleaxe.jpg",
+  "Passion": "flanged_mace.jpg",
+  "Peace": "hardened_leather_armor.jpg",
+  "Phoenix": "kite_shield.jpg",
+  "Pride": "trident.jpg",
+  "Principle": "plate_mail.jpg",
+  "Prudence": "breast_plate.jpg",
+  "Radiance": "crown.jpg",
+  "Rain": "light_plates.jpg",
+  "Rhyme": "buckler.jpg",
+  "Rift": "halberd.jpg",
+  "Sanctuary": "small_shield.jpg",
+  "Silence": "phase_blade.jpg",
+  "Smoke": "ghost_armor.jpg",
+  "Spirit": "long_sword.jpg",
+  "Splendor": "buckler.jpg",
+  "Stealth": "leather_armor.jpg",
+  "Steel": "short_sword.jpg",
+  "Stone": "stone_armor.jpg",
+  "Strength": "maul.jpg",
+  "Treachery": "hardened_leather_armor.jpg",
+  "Venom": "dagger.jpg",
+  "Voice of Reason": "mace.jpg",
+  "Wealth": "chain_mail.jpg",
+  "White": "bone_wand.jpg",
+  "Wind": "dagger.jpg",
+  "Wrath": "hunter's_bow.jpg",
+  "Zephyr": "long_bow.jpg",
+  "Flickering Flame": "skull_cap.jpg",
+  "Obsession": "ritual_staff.jpg",
+  "Pattern": "claws.jpg",
+  "Plague": "dagger.jpg",
+  "Unbending Will": "long_sword.jpg",
+  "Wisdom": "circlet.jpg",
+  "Bulwark": "helm.jpg",
+  "Cure": "helm.jpg",
+  "Ground": "great_helm.jpg",
+  "Hearth": "helm.jpg",
+  "Temper": "crown.jpg",
+  "Hustle": "long_sword.jpg",
+  "Metamorphosis": "crown.jpg",
+  "Mosaic": "claws.jpg",
+  "Authority": "breast_plate.jpg",
+  "Coven": "skull_cap.jpg",
+  "Void": "dagger.jpg",
+  "Vigilance": "buckler.jpg",
+  "Ritual": "dagger.jpg",
+  "Hysteria": "leather_armor.jpg",
+  "Mania": "long_sword.jpg"
 };
 
 function buildItemIconUrl(itemName, baseType) {
-  // For runewords, use the mapped base item code
-  if (RW_ICONS[itemName]) {
-    return `https://diablo2.io/styles/zulu/theme/images/items/${RW_ICONS[itemName]}_ticon.png`;
+  // For runewords, use the mapped d2r.world filename
+  if (RW_ICONS_D2R[itemName]) {
+    return `data/assets/items/base/${RW_ICONS_D2R[itemName]}`;
   }
   // For base items, use name to build slug
   const slug = itemName.replace(/\s+/g, '').toLowerCase();
-  return `https://diablo2.io/styles/zulu/theme/images/items/${slug}_ticon.png`;
+  return `data/assets/items/base/${slug}.jpg`;
 }
+
+// Legacy mapping kept for reference (d2data codes)
+// const RW_ICONS = { ... };
 
 // ──── HOVER DATA ────
 // Runeword stats with multilingual support
@@ -1169,8 +1250,8 @@ function renderRW(){
     const pct=Math.round(m.pct*100);
 
     // Show base item icon with runes overlay
-    const iconCode = RW_ICONS[n_en] || 'inv';
-    const iconUrl = `https://diablo2.io/styles/zulu/theme/images/items/${iconCode}_ticon.png`;
+    const iconCode = RW_ICONS_D2R[n_en] || 'inv';
+    const iconUrl = `data/assets/items/base/${iconCode}`;
     const runesOverlayHtml = rw.runes.slice(0, 4).map(r => {
       const tierClass = RUNES.find(rn => rn.name_en === r);
       const tierClassName = tierClass ? tier(tierClass.id) : 'low';
@@ -1358,8 +1439,8 @@ function renderBaseItems(){
     const defense = item.defense || '-';
     const damage = item.damage || '-';
 
-    const iconSlug = item.name_en.replace(/\s+/g, '').toLowerCase();
-    const iconUrl = `https://diablo2.io/styles/zulu/theme/images/items/${iconSlug}_ticon.png`;
+    const iconSlug = item.name_en.replace(/\s+/g, '_').toLowerCase();
+    const iconUrl = `data/assets/items/base/${iconSlug}.jpg`;
     const iconHtml = `<div class="base-item-icon-wrap"><img src="${iconUrl}" alt="${item.name_en}" class="base-item-icon" onerror="this.style.display='none'"></div>`;
 
     const rwList = getBaseRunewords(activeBaseCat).slice(0, 5);

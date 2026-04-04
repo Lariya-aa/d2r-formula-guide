@@ -1,2 +1,3 @@
 # Gitignore for D2R WebUI Project
 web-ui/
+data/assets/
