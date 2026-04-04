@@ -57,7 +57,7 @@ body{
 .rune-chip.selected{border-color:var(--gold);
   background:linear-gradient(135deg,rgba(201,168,76,.2),rgba(201,168,76,.05));box-shadow:0 0 16px var(--glow)}
 .rune-icon{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-  font-family:'Cinzel',serif;font-weight:900;font-size:.75rem;color:var(--bg)}
+  font-family:'Cinzel',serif;font-weight:900;font-size:.75rem;color:var(--bg);overflow:hidden}
 .rune-icon.low{background:linear-gradient(135deg,#b0b0b0,#e0e0e0)}
 .rune-icon.mid{background:linear-gradient(135deg,#c9a84c,#f0d890)}
 .rune-icon.high{background:linear-gradient(135deg,#d4763a,#ff9a56)}
@@ -69,12 +69,12 @@ body{
 .rune-chip.selected .rune-count{opacity:1;transform:scale(1)}
 
 .selected-bar{position:sticky;top:48px;z-index:90;background:var(--bg2);border-bottom:1px solid var(--border);
-  padding:.6rem 1rem;display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;min-height:44px;backdrop-filter:blur(12px)}
+  padding:.6rem 1rem;display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;min-height:56px;backdrop-filter:blur(12px)}
 .selected-bar .label{color:var(--text2);font-size:.8rem;white-space:nowrap}
 .selected-bar .chips{display:flex;gap:.3rem;flex-wrap:wrap;flex:1}
 .mini-chip{padding:2px 8px;border-radius:12px;font-size:.72rem;font-weight:500;
   background:rgba(201,168,76,.15);border:1px solid var(--gold-dim);color:var(--gold);cursor:pointer;
-  transition:var(--transition)}
+  transition:var(--transition);display:inline-flex;align-items:center;gap:4px}
 .mini-chip:hover{background:rgba(233,69,96,.2);border-color:var(--red);color:var(--red)}
 .clear-btn{padding:3px 10px;border-radius:var(--radius);border:1px solid var(--red);
   background:transparent;color:var(--red);font-size:.75rem;cursor:pointer;
@@ -229,14 +229,14 @@ body{
 /* ── Item Icons on RW Cards ── */
 .rw-card{display:flex;flex-direction:row}
 .rw-card-icon{width:56px;min-height:56px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--border);display:flex;align-items:center;justify-content:center;padding:.4rem;font-size:1.8rem;color:var(--text3);flex-wrap:wrap;gap:2px;position:relative}
-.rw-icon-rune{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-weight:900;font-size:.6rem;color:var(--bg);flex-shrink:0}
-.rw-icon-rune.low{background:linear-gradient(135deg,#b0b0b0,#e0e0e0)}
-.rw-icon-rune.mid{background:linear-gradient(135deg,#c9a84c,#f0d890)}
-.rw-icon-rune.high{background:linear-gradient(135deg,#d4763a,#ff9a56)}
-.rw-icon-rune-overlay{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-weight:900;font-size:.5rem;color:var(--bg);flex-shrink:0;border:1px solid rgba(0,0,0,.3)}
-.rw-icon-rune-overlay.low{background:linear-gradient(135deg,#b0b0b0,#e0e0e0)}
-.rw-icon-rune-overlay.mid{background:linear-gradient(135deg,#c9a84c,#f0d890)}
-.rw-icon-rune-overlay.high{background:linear-gradient(135deg,#d4763a,#ff9a56)}
+.rw-icon-rune{width:22px;height:22px;border-radius:3px;display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-weight:900;font-size:.6rem;color:var(--bg);flex-shrink:0;padding:1px;background:rgba(0,0,0,.4)}
+.rw-icon-rune.low{border:1px solid #b0b0b0}
+.rw-icon-rune.mid{border:1px solid #c9a84c}
+.rw-icon-rune.high{border:1px solid #d4763a}
+.rw-icon-rune-overlay{width:18px;height:18px;border-radius:3px;display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-weight:900;font-size:.5rem;color:var(--bg);flex-shrink:0;padding:1px;background:rgba(0,0,0,.4)}
+.rw-icon-rune-overlay.low{border:1px solid #b0b0b0}
+.rw-icon-rune-overlay.mid{border:1px solid #c9a84c}
+.rw-icon-rune-overlay.high{border:1px solid #d4763a}
 .rw-card-content{flex:1;min-width:0}
 .rw-card-head{flex-wrap:wrap}
 
@@ -1091,9 +1091,10 @@ function renderRunes(){
   g.innerHTML=RUNES.map(r=>{
     const c=inv[r.name_en]||0;
     const dispName = getPropName(r, 'name');
+    const runeIconUrl = buildRuneIconUrl(r.name_en);
     return`<div class="rune-chip${c?' selected':''}" oncontextmenu="decRune(event,'${r.name_en}')" onclick="addRune('${r.name_en}')">
 <div class="rune-count">${c}</div>
-<div class="rune-icon ${tier(r.id)}">${r.id}</div>
+<div class="rune-icon ${tier(r.id)}"><img src="${runeIconUrl}" alt="${r.name_en}" style="width:32px;height:32px;object-fit:contain;border-radius:4px;" onerror="this.style.display='none'"></div>
 <div class="rune-name">${r.name_en}</div>
 <div class="rune-zh">${dispName}</div></div>`;
   }).join('');
@@ -1112,7 +1113,7 @@ function updateBar(){
     cb.style.display='none';return;
   }
   cb.style.display='block';
-  chips.innerHTML=e.map(([n,c])=>`<span class="mini-chip" onclick="decRune(event,'${n}')">${n}${c>1?' ×'+c:''}</span>`).join('');
+  chips.innerHTML=e.map(([n,c])=>`<span class="mini-chip" onclick="decRune(event,'${n}')"><img src="${buildRuneIconUrl(n)}" alt="${n}" style="width:20px;height:20px;vertical-align:middle;margin-right:4px;">${n}${c>1?' ×'+c:''}</span>`).join('');
 }
 document.getElementById('clearBtn').onclick=()=>{Object.keys(inv).forEach(k=>delete inv[k]);refresh()};
 
@@ -1160,7 +1161,8 @@ function renderMatchPreview(){
     const runesIconHtml = rw.runes.slice(0, 3).map(r => {
       const tierClass = RUNES.find(rn => rn.name_en === r);
       const tierClassName = tierClass ? tier(tierClass.id) : 'low';
-      return `<div class="rw-icon-rune ${tierClassName}" style="width:28px;height:28px;font-size:.7rem">${r}</div>`;
+      const runeIconUrl = buildRuneIconUrl(r);
+      return `<img src="${runeIconUrl}" alt="${r}" class="rw-icon-rune ${tierClassName}" style="width:28px;height:28px;object-fit:contain;" onerror="this.style.display='none'">`;
     }).join('');
 
     return `<div class="match-prev-card ${isFull ? 'full' : ''}"
@@ -1255,7 +1257,8 @@ function renderRW(){
     const runesOverlayHtml = rw.runes.slice(0, 4).map(r => {
       const tierClass = RUNES.find(rn => rn.name_en === r);
       const tierClassName = tierClass ? tier(tierClass.id) : 'low';
-      return `<div class="rw-icon-rune-overlay ${tierClassName}">${r}</div>`;
+      const runeIconUrl = buildRuneIconUrl(r);
+      return `<img src="${runeIconUrl}" alt="${r}" class="rw-icon-rune-overlay ${tierClassName}" style="width:18px;height:18px;object-fit:contain;border-radius:2px;" onerror="this.style.display='none'">`;
     }).join('');
 
     const iconHtml = `<img src="${iconUrl}" alt="${n_en}" style="width:100%;height:100%;object-fit:contain;position:absolute;top:0;left:0;z-index:1;opacity:.35" onerror="this.style.display='none'">
