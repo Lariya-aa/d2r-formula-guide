@@ -50,6 +50,10 @@ body{
 .section-title{font-family:'Cinzel',serif;font-size:1.1rem;color:var(--gold);
   margin:1.2rem 0 .6rem;padding-bottom:.4rem;border-bottom:1px solid var(--border);letter-spacing:1px}
 .rune-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:.5rem}
+.materials-layout{display:flex;gap:1.5rem;align-items:flex-start}
+.materials-left{flex:0 0 320px}
+.materials-right{flex:1;min-width:0}
+.subsection-title{font-family:'Cinzel',serif;font-size:.95rem;color:var(--gold);margin:.8rem 0 .4rem;letter-spacing:1px}
 .rune-chip{position:relative;display:flex;flex-direction:column;align-items:center;gap:.25rem;
   padding:.6rem .3rem;border:1px solid var(--border);border-radius:var(--radius);cursor:pointer;
   background:var(--surface);transition:var(--transition);user-select:none}
@@ -298,11 +302,16 @@ body{
 
 <div class="tab-panel active" id="panel-materials">
   <h2 class="section-title" id="ui-rune-title">⬥ 符文 Runes — 左键添加 · 右键减少</h2>
-  <div id="matchPreview">
-    <h3 id="ui-match-title">实时合成预览</h3>
-    <div class="match-prev-grid" id="matchPrevGrid"></div>
+  <div class="materials-layout">
+    <div class="materials-left">
+      <h3 class="subsection-title">符文列表</h3>
+      <div class="rune-grid" id="runeGrid"></div>
+    </div>
+    <div class="materials-right" id="matchPreview">
+      <h3 class="subsection-title" id="ui-match-title">可合成符文之语</h3>
+      <div class="match-prev-grid" id="matchPrevGrid"></div>
+    </div>
   </div>
-  <div class="rune-grid" id="runeGrid"></div>
 </div>
 
 <div class="tab-panel" id="panel-runewords">
@@ -1088,7 +1097,9 @@ const RW_STATS = {
 function renderRunes(){
   const g=document.getElementById('runeGrid');
   if(!RUNES.length) return;
-  g.innerHTML=RUNES.map(r=>{
+  // Sort runes by level ascending
+  const sortedRunes = [...RUNES].sort((a, b) => (a.level || 0) - (b.level || 0));
+  g.innerHTML=sortedRunes.map(r=>{
     const c=inv[r.name_en]||0;
     const dispName = getPropName(r, 'name');
     const runeIconUrl = buildRuneIconUrl(r.name_en);
@@ -1096,7 +1107,7 @@ function renderRunes(){
 <div class="rune-count">${c}</div>
 <div class="rune-icon ${tier(r.id)}"><img src="${runeIconUrl}" alt="${r.name_en}" style="width:32px;height:32px;object-fit:contain;border-radius:4px;" onerror="this.style.display='none'"></div>
 <div class="rune-name">${r.name_en}</div>
-<div class="rune-zh">${dispName}</div></div>`;
+<div class="rune-zh">Lv.${r.level} ${dispName}</div></div>`;
   }).join('');
 }
 
