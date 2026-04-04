@@ -354,7 +354,8 @@ const I18N = {
     filter_all: "全部", filter_weap: "武器", filter_armor: "盔甲", filter_helm: "头盔", filter_shield: "盾牌",
     filter_sword: "剑", filter_axe: "斧", filter_pole: "长柄", filter_miss: "远程", filter_staff: "法杖",
     filter_mace: "钉头锤", filter_dag: "匕首", filter_katar: "拳刃", filter_scep: "权杖", filter_ham: "锤",
-    match_preview: "实时合成预览", match_full: "完整匹配", match_partial: "部分匹配", match_bases: "适用底材"
+    match_preview: "实时合成预览", match_full: "完整匹配", match_partial: "部分匹配", match_bases: "适用底材",
+    stat_defense: "防御", stat_damage: "伤害", stat_level_req: "等级需求", stat_strength: "力量", stat_dexterity: "敏捷", stat_max_sockets: "最大孔数"
   },
   tc: {
     subtitle: "暗黑破壞神 II：獄火重生 — 合成公式助手",
@@ -367,7 +368,8 @@ const I18N = {
     filter_all: "全部", filter_weap: "武器", filter_armor: "鎧甲", filter_helm: "頭盔", filter_shield: "盾牌",
     filter_sword: "劍", filter_axe: "斧", filter_pole: "長柄", filter_miss: "遠程", filter_staff: "法杖",
     filter_mace: "釘頭錘", filter_dag: "匕首", filter_katar: "拳刃", filter_scep: "權杖", filter_ham: "錘",
-    match_preview: "即時合成預覽", match_full: "完整匹配", match_partial: "部分匹配", match_bases: "適用底材"
+    match_preview: "即時合成預覽", match_full: "完整匹配", match_partial: "部分匹配", match_bases: "適用底材",
+    stat_defense: "防禦", stat_damage: "傷害", stat_level_req: "等級需求", stat_strength: "力量", stat_dexterity: "敏捷", stat_max_sockets: "最大孔數"
   },
   en: {
     subtitle: "Diablo II: Resurrected — Formula Guide",
@@ -380,7 +382,8 @@ const I18N = {
     filter_all: "All", filter_weap: "Weapons", filter_armor: "Armor", filter_helm: "Helms", filter_shield: "Shields",
     filter_sword: "Swords", filter_axe: "Axes", filter_pole: "Polearms", filter_miss: "Missile", filter_staff: "Staves",
     filter_mace: "Maces", filter_dag: "Daggers", filter_katar: "Katars", filter_scep: "Scepters", filter_ham: "Hammers",
-    match_preview: "Real-time Match Preview", match_full: "Full Match", match_partial: "Partial Match", match_bases: "Bases"
+    match_preview: "Real-time Match Preview", match_full: "Full Match", match_partial: "Partial Match", match_bases: "Bases",
+    stat_defense: "Defense", stat_damage: "Damage", stat_level_req: "Level Req", stat_strength: "Strength", stat_dexterity: "Dexterity", stat_max_sockets: "Max Sockets"
   }
 };
 
@@ -1363,12 +1366,12 @@ function renderBaseItems(){
     const tooltipHtml = `
       <div class="tt-title">${nLoc}</div>
       <div class="tt-stat blue">${getTierLoc(item.tier)}</div>
-      ${item.defense ? `<div class="tt-stat">Defense: ${defense}</div>` : ''}
-      ${item.damage ? `<div class="tt-stat">Damage: ${damage}</div>` : ''}
-      <div class="tt-stat">Level Req: ${reqLvl}</div>
-      <div class="tt-stat">Strength: ${reqStr}</div>
-      ${reqDex !== '-' ? `<div class="tt-stat">Dexterity: ${reqDex}</div>` : ''}
-      <div class="tt-stat gold">Max Sockets: ${item.max_sockets || 0}</div>
+      ${item.defense ? `<div class="tt-stat">${getText('stat_defense')}: ${defense}</div>` : ''}
+      ${item.damage ? `<div class="tt-stat">${getText('stat_damage')}: ${damage}</div>` : ''}
+      <div class="tt-stat">${getText('stat_level_req')}: ${reqLvl}</div>
+      <div class="tt-stat">${getText('stat_strength')}: ${reqStr}</div>
+      ${reqDex !== '-' ? `<div class="tt-stat">${getText('stat_dexterity')}: ${reqDex}</div>` : ''}
+      <div class="tt-stat gold">${getText('stat_max_sockets')}: ${item.max_sockets || 0}</div>
       <div class="tt-meta">${getText('match_bases')}: ${rwList.join(', ')}${rwList.length >= 5 ? '...' : ''}</div>
     `;
 
@@ -1422,14 +1425,14 @@ function renderBaseItemTooltip(item, category) {
   const rwList = getBaseRunewords(category);
   let html = `<div class="tt-title">${nLoc}</div>`;
   html += `<div class="tt-stat blue">${getTierLoc(item.tier)}</div>`;
-  if (item.defense) html += `<div class="tt-stat">Defense: ${defense}</div>`;
-  if (item.damage) html += `<div class="tt-stat">Damage: ${damage}</div>`;
-  html += `<div class="tt-stat">Level Req: ${reqLvl}</div>`;
-  html += `<div class="tt-stat">Strength: ${reqStr}</div>`;
-  if (reqDex !== '-') html += `<div class="tt-stat">Dexterity: ${reqDex}</div>`;
-  html += `<div class="tt-stat gold">Max Sockets: ${item.max_sockets || 0}</div>`;
+  if (item.defense) html += `<div class="tt-stat">${getText('stat_defense')}: ${defense}</div>`;
+  if (item.damage) html += `<div class="tt-stat">${getText('stat_damage')}: ${damage}</div>`;
+  html += `<div class="tt-stat">${getText('stat_level_req')}: ${reqLvl}</div>`;
+  html += `<div class="tt-stat">${getText('stat_strength')}: ${reqStr}</div>`;
+  if (reqDex !== '-') html += `<div class="tt-stat">${getText('stat_dexterity')}: ${reqDex}</div>`;
+  html += `<div class="tt-stat gold">${getText('stat_max_sockets')}: ${item.max_sockets || 0}</div>`;
   if (rwList.length > 0) {
-    html += `<div class="tt-meta">Recommended Runewords: ${rwList.slice(0, 6).join(', ')}${rwList.length > 6 ? '...' : ''}</div>`;
+    html += `<div class="tt-meta">${getText('match_bases')}: ${rwList.slice(0, 6).join(', ')}${rwList.length > 6 ? '...' : ''}</div>`;
   }
   return html;
 }
