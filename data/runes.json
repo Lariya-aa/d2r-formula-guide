@@ -1,0 +1,233 @@
+[
+  {
+    "id": 1,
+    "name_en": "El",
+    "name_sc": "艾尔",
+    "name_tc": "艾爾",
+    "level": 11
+  },
+  {
+    "id": 2,
+    "name_en": "Eld",
+    "name_sc": "艾德",
+    "name_tc": "艾德",
+    "level": 11
+  },
+  {
+    "id": 3,
+    "name_en": "Tir",
+    "name_sc": "提尔",
+    "name_tc": "特爾",
+    "level": 13
+  },
+  {
+    "id": 4,
+    "name_en": "Nef",
+    "name_sc": "奈夫",
+    "name_tc": "那夫",
+    "level": 13
+  },
+  {
+    "id": 5,
+    "name_en": "Eth",
+    "name_sc": "艾斯",
+    "name_tc": "艾斯",
+    "level": 15
+  },
+  {
+    "id": 6,
+    "name_en": "Ith",
+    "name_sc": "伊司",
+    "name_tc": "伊司",
+    "level": 15
+  },
+  {
+    "id": 7,
+    "name_en": "Tal",
+    "name_sc": "塔尔",
+    "name_tc": "塔爾",
+    "level": 17
+  },
+  {
+    "id": 8,
+    "name_en": "Ral",
+    "name_sc": "拉尔",
+    "name_tc": "拉爾",
+    "level": 19
+  },
+  {
+    "id": 9,
+    "name_en": "Ort",
+    "name_sc": "欧特",
+    "name_tc": "歐特",
+    "level": 21
+  },
+  {
+    "id": 10,
+    "name_en": "Thul",
+    "name_sc": "图尔",
+    "name_tc": "索爾",
+    "level": 23
+  },
+  {
+    "id": 11,
+    "name_en": "Amn",
+    "name_sc": "安姆",
+    "name_tc": "安姆",
+    "level": 25
+  },
+  {
+    "id": 12,
+    "name_en": "Sol",
+    "name_sc": "索尔",
+    "name_tc": "索爾",
+    "level": 27
+  },
+  {
+    "id": 13,
+    "name_en": "Shael",
+    "name_sc": "沙伊",
+    "name_tc": "夏",
+    "level": 29
+  },
+  {
+    "id": 14,
+    "name_en": "Dol",
+    "name_sc": "多尔",
+    "name_tc": "多爾",
+    "level": 31
+  },
+  {
+    "id": 15,
+    "name_en": "Hel",
+    "name_sc": "海尔",
+    "name_tc": "海爾",
+    "level": 0
+  },
+  {
+    "id": 16,
+    "name_en": "Io",
+    "name_sc": "艾欧",
+    "name_tc": "埃歐",
+    "level": 35
+  },
+  {
+    "id": 17,
+    "name_en": "Lum",
+    "name_sc": "拉姆",
+    "name_tc": "盧姆",
+    "level": 37
+  },
+  {
+    "id": 18,
+    "name_en": "Ko",
+    "name_sc": "科",
+    "name_tc": "寇",
+    "level": 39
+  },
+  {
+    "id": 19,
+    "name_en": "Fal",
+    "name_sc": "法尔",
+    "name_tc": "法爾",
+    "level": 41
+  },
+  {
+    "id": 20,
+    "name_en": "Lem",
+    "name_sc": "雷姆",
+    "name_tc": "藍姆",
+    "level": 43
+  },
+  {
+    "id": 21,
+    "name_en": "Pul",
+    "name_sc": "普尔",
+    "name_tc": "普爾",
+    "level": 45
+  },
+  {
+    "id": 22,
+    "name_en": "Um",
+    "name_sc": "乌姆",
+    "name_tc": "烏姆",
+    "level": 47
+  },
+  {
+    "id": 23,
+    "name_en": "Mal",
+    "name_sc": "马尔",
+    "name_tc": "馬爾",
+    "level": 49
+  },
+  {
+    "id": 24,
+    "name_en": "Ist",
+    "name_sc": "伊斯特",
+    "name_tc": "伊司",
+    "level": 51
+  },
+  {
+    "id": 25,
+    "name_en": "Gul",
+    "name_sc": "古尔",
+    "name_tc": "古爾",
+    "level": 53
+  },
+  {
+    "id": 26,
+    "name_en": "Vex",
+    "name_sc": "维克斯",
+    "name_tc": "伐克斯",
+    "level": 55
+  },
+  {
+    "id": 27,
+    "name_en": "Ohm",
+    "name_sc": "奥姆",
+    "name_tc": "歐姆",
+    "level": 57
+  },
+  {
+    "id": 28,
+    "name_en": "Lo",
+    "name_sc": "洛",
+    "name_tc": "羅",
+    "level": 59
+  },
+  {
+    "id": 29,
+    "name_en": "Sur",
+    "name_sc": "瑟",
+    "name_tc": "瑟",
+    "level": 61
+  },
+  {
+    "id": 30,
+    "name_en": "Ber",
+    "name_sc": "贝尔",
+    "name_tc": "貝",
+    "level": 63
+  },
+  {
+    "id": 31,
+    "name_en": "Jah",
+    "name_sc": "贾",
+    "name_tc": "喬",
+    "level": 65
+  },
+  {
+    "id": 32,
+    "name_en": "Cham",
+    "name_sc": "查姆",
+    "name_tc": "查姆",
+    "level": 67
+  },
+  {
+    "id": 33,
+    "name_en": "Zod",
+    "name_sc": "佐德",
+    "name_tc": "薩德",
+    "level": 69
+  }
+]

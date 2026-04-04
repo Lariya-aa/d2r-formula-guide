@@ -1,0 +1,508 @@
+{
+  "rune_upgrade": {
+    "description": "符文升级公式",
+    "description_en": "Rune Upgrade Recipes",
+    "description_zh_tw": "符文升級公式",
+    "recipes": [
+      {
+        "id": 1,
+        "name_zh_tw": "低級符文升級 (El → Thul)",
+        "name": "Low Rune Upgrade (El to Thul)",
+        "formula": "3个相同符文",
+        "formula_en": "3x Same Rune",
+        "formula_zh_tw": "3個相同符文",
+        "result": "下一级符文",
+        "result_en": "Next tier rune",
+        "result_zh_tw": "下一級符文",
+        "notes": "El(#1) 到 Thul(#10), 3合1直接升级",
+        "name_sc": "低级符文升级 (El → Thul)",
+        "name_tc": "低級符文升級 (El → Thul)",
+        "formula_tc": "3个相同符文",
+        "result_tc": "下一级符文",
+        "notes_tc": "El(#1) 到 Thul(#10), 3合1直接升級"
+      },
+      {
+        "id": 2,
+        "name_zh_tw": "中級符文升級 (Amn → Thul區間)",
+        "name": "Mid Rune Upgrade",
+        "formula": "3个相同符文 + 1个碎裂宝石",
+        "formula_en": "3x Same Rune + 1 Chipped Gem",
+        "formula_zh_tw": "3個相同符文 + 1個碎裂寶石",
+        "result": "下一级符文",
+        "result_en": "Next tier rune",
+        "result_zh_tw": "下一級符文",
+        "notes": "Amn(#11)+: 3 Amn + 碎裂紫宝石 = Sol",
+        "name_sc": "中级符文升级 (Amn → Thul区间)",
+        "name_tc": "中級符文升級 (Amn → Thul区间)",
+        "formula_tc": "3个相同符文 + 1个碎裂寶石",
+        "result_tc": "下一级符文",
+        "notes_tc": "Amn(#11)+: 3 Amn + 碎裂紫宝石 = Sol"
+      },
+      {
+        "id": 3,
+        "name_zh_tw": "高級符文升級 (普通難度)",
+        "name": "High Rune Upgrade (Normal)",
+        "formula": "3个相同符文 + 对应宝石",
+        "formula_en": "3x Same Rune + Specific Gem",
+        "formula_zh_tw": "3個相同符文 + 對應寶石",
+        "result": "下一级符文",
+        "result_en": "Next tier rune",
+        "result_zh_tw": "下一級符文",
+        "notes": "宝石等级随符文等级提高: 碎裂→裂开→普通→无瑕→完美",
+        "name_sc": "高级符文升级 (普通难度)",
+        "name_tc": "高級符文升級 (普通难度)",
+        "formula_tc": "3个相同符文 + 对应宝石",
+        "result_tc": "下一级符文",
+        "notes_tc": "宝石等级随符文等级提高: 碎裂→裂开→普通→无瑕→完美"
+      },
+      {
+        "id": 4,
+        "name_zh_tw": "最高級符文升級 (Pul以上)",
+        "name": "Top Rune Upgrade (Pul+)",
+        "formula": "2个相同符文 + 对应完美宝石",
+        "formula_en": "2x Same Rune + Perfect Gem",
+        "formula_zh_tw": "2個相同符文 + 對應完美寶石",
+        "result": "下一级符文",
+        "result_en": "Next tier rune",
+        "result_zh_tw": "下一級符文",
+        "notes": "Pul及以上只需2个, 例: 2 Ber + 无瑕蓝宝石 = Jah",
+        "name_sc": "最高级符文升级 (Pul以上)",
+        "name_tc": "最高級符文升級 (Pul以上)",
+        "formula_tc": "2个相同符文 + 对应完美寶石",
+        "result_tc": "下一级符文",
+        "notes_tc": "Pul及以上只需2个, 例: 2 Ber + 无瑕蓝宝石 = Jah"
+      }
+    ],
+    "description_tc": "符文升級公式"
+  },
+  "socketing": {
+    "description": "打孔公式",
+    "description_en": "Socketing Recipes",
+    "description_zh_tw": "打孔公式",
+    "recipes": [
+      {
+        "id": 10,
+        "name_zh_tw": "普通武器打孔",
+        "name": "Socket Normal Weapon",
+        "formula": "Ral + Amn + 完美紫宝石 + 普通武器",
+        "formula_en": "Ral + Amn + Perfect Amethyst + Normal Weapon",
+        "formula_zh_tw": "Ral + Amn + 完美紫寶石 + 普通武器",
+        "result": "带随机孔数的武器",
+        "result_en": "Weapon with random sockets",
+        "result_zh_tw": "帶隨機孔數的武器",
+        "name_sc": "普通武器打孔",
+        "name_tc": "普通武器打孔",
+        "formula_tc": "Ral + Amn + 完美紫宝石 + 普通武器",
+        "result_tc": "带随机孔数的武器"
+      },
+      {
+        "id": 11,
+        "name_zh_tw": "普通盔甲打孔",
+        "name": "Socket Normal Armor",
+        "formula": "Tal + Thul + 完美黄宝石 + 普通盔甲",
+        "formula_en": "Tal + Thul + Perfect Topaz + Normal Armor",
+        "formula_zh_tw": "Tal + Thul + 完美黃寶石 + 普通盔甲",
+        "result": "带随机孔数的盔甲",
+        "result_en": "Armor with random sockets",
+        "result_zh_tw": "帶隨機孔數的盔甲",
+        "name_sc": "普通盔甲打孔",
+        "name_tc": "普通鎧甲打孔",
+        "formula_tc": "Tal + Thul + 完美黄宝石 + 普通鎧甲",
+        "result_tc": "带随机孔数的鎧甲"
+      },
+      {
+        "id": 12,
+        "name_zh_tw": "普通頭盔打孔",
+        "name": "Socket Normal Helm",
+        "formula": "Ral + Thul + 完美蓝宝石 + 普通头盔",
+        "formula_en": "Ral + Thul + Perfect Sapphire + Normal Helm",
+        "formula_zh_tw": "Ral + Thul + 完美藍寶石 + 普通頭盔",
+        "result": "带随机孔数的头盔",
+        "result_en": "Helm with random sockets",
+        "result_zh_tw": "帶隨機孔數的頭盔",
+        "name_sc": "普通头盔打孔",
+        "name_tc": "普通頭盔打孔",
+        "formula_tc": "Ral + Thul + 完美蓝宝石 + 普通頭盔",
+        "result_tc": "带随机孔数的頭盔"
+      },
+      {
+        "id": 13,
+        "name_zh_tw": "普通盾打孔",
+        "name": "Socket Normal Shield",
+        "formula": "Tal + Amn + 完美红宝石 + 普通盾牌",
+        "formula_en": "Tal + Amn + Perfect Ruby + Normal Shield",
+        "formula_zh_tw": "Tal + Amn + 完美紅寶石 + 普通盾牌",
+        "result": "带随机孔数的盾牌",
+        "result_en": "Shield with random sockets",
+        "result_zh_tw": "帶隨機孔數的盾牌",
+        "name_sc": "普通盾打孔",
+        "name_tc": "普通盾打孔",
+        "formula_tc": "Tal + Amn + 完美红宝石 + 普通盾牌",
+        "result_tc": "带随机孔数的盾牌"
+      },
+      {
+        "id": 14,
+        "name_zh_tw": "清除鑲嵌物",
+        "name": "Remove Socketed Items",
+        "formula": "Hel + 回城卷轴 + 带孔装备",
+        "formula_en": "Hel + Town Portal Scroll + Socketed Item",
+        "formula_zh_tw": "Hel + 回城卷軸 + 帶孔裝備",
+        "result": "清除装备内的宝石/符文/珠宝 (原镶嵌物被销毁)",
+        "result_en": "Remove gems/runes/jewels (items destroyed)",
+        "result_zh_tw": "清除裝備內的寶石/符文/珠寶 (原鑲嵌物被銷毀)",
+        "name_sc": "清除镶嵌物",
+        "name_tc": "清除镶嵌物",
+        "formula_tc": "Hel + 回城卷轴 + 带孔装备",
+        "result_tc": "清除装备内的宝石/符文/珠寶 (原镶嵌物被销毁)"
+      }
+    ],
+    "description_tc": "打孔公式"
+  },
+  "upgrade_equipment": {
+    "description": "装备升级公式",
+    "description_en": "Equipment Upgrade Recipes",
+    "description_zh_tw": "裝備升級公式",
+    "recipes": [
+      {
+        "id": 20,
+        "name_zh_tw": "暗金武器 普通→擴展",
+        "name": "Unique Weapon Normal → Exceptional",
+        "formula": "Ral + Sol + 完美绿宝石 + 暗金武器",
+        "formula_en": "Ral + Sol + Perfect Emerald + Unique Normal Weapon",
+        "formula_zh_tw": "Ral + Sol + 完美綠寶石 + 暗金武器",
+        "name_sc": "暗金武器 普通→扩展",
+        "name_tc": "暗金武器 普通→扩展",
+        "formula_tc": "Ral + Sol + 完美绿宝石 + 暗金武器"
+      },
+      {
+        "id": 21,
+        "name_zh_tw": "暗金武器 擴展→精華",
+        "name": "Unique Weapon Exceptional → Elite",
+        "formula": "Lum + Pul + 完美绿宝石 + 暗金武器",
+        "formula_en": "Lum + Pul + Perfect Emerald + Unique Exceptional Weapon",
+        "formula_zh_tw": "Lum + Pul + 完美綠寶石 + 暗金武器",
+        "name_sc": "暗金武器 扩展→精华",
+        "name_tc": "暗金武器 扩展→精华",
+        "formula_tc": "Lum + Pul + 完美绿宝石 + 暗金武器"
+      },
+      {
+        "id": 22,
+        "name_zh_tw": "暗金防具 普通→擴展",
+        "name": "Unique Armor Normal → Exceptional",
+        "formula": "Tal + Shael + 完美白宝石 + 暗金防具",
+        "formula_en": "Tal + Shael + Perfect Diamond + Unique Normal Armor",
+        "formula_zh_tw": "Tal + Shael + 完美白寶石 + 暗金防具",
+        "name_sc": "暗金防具 普通→扩展",
+        "name_tc": "暗金防具 普通→扩展",
+        "formula_tc": "Tal + Shael + 完美白宝石 + 暗金防具"
+      },
+      {
+        "id": 23,
+        "name_zh_tw": "暗金防具 擴展→精華",
+        "name": "Unique Armor Exceptional → Elite",
+        "formula": "Ko + Lem + 完美白宝石 + 暗金防具",
+        "formula_en": "Ko + Lem + Perfect Diamond + Unique Exceptional Armor",
+        "formula_zh_tw": "Ko + Lem + 完美白寶石 + 暗金防具",
+        "name_sc": "暗金防具 扩展→精华",
+        "name_tc": "暗金防具 扩展→精华",
+        "formula_tc": "Ko + Lem + 完美白宝石 + 暗金防具"
+      },
+      {
+        "id": 24,
+        "name_zh_tw": "稀有武器升級",
+        "name": "Rare Weapon Upgrade",
+        "formula": "Ort + Amn + 完美蓝宝石 + 稀有武器",
+        "formula_en": "Ort + Amn + Perfect Sapphire + Rare Weapon",
+        "formula_zh_tw": "Ort + Amn + 完美藍寶石 + 稀有武器",
+        "name_sc": "稀有武器升级",
+        "name_tc": "稀有武器升級",
+        "formula_tc": "Ort + Amn + 完美蓝宝石 + 稀有武器"
+      },
+      {
+        "id": 25,
+        "name_zh_tw": "稀有防具升級",
+        "name": "Rare Armor Upgrade",
+        "formula": "Ral + Thul + 完美紫宝石 + 稀有防具",
+        "formula_en": "Ral + Thul + Perfect Amethyst + Rare Armor",
+        "formula_zh_tw": "Ral + Thul + 完美紫寶石 + 稀有防具",
+        "name_sc": "稀有防具升级",
+        "name_tc": "稀有防具升級",
+        "formula_tc": "Ral + Thul + 完美紫宝石 + 稀有防具"
+      }
+    ],
+    "description_tc": "裝備升級公式"
+  },
+  "crafting": {
+    "description": "特殊合成 (橙色装备)",
+    "description_en": "Crafting Recipes (Orange Items)",
+    "description_zh_tw": "特殊合成 (橙色裝備)",
+    "types": [
+      {
+        "type": "Blood",
+        "type_zh_tw": "鮮血",
+        "gem": "Perfect Ruby / 完美红宝石",
+        "gem_zh_tw": "完美紅寶石",
+        "guaranteed_stats": "吸血, +生命, 回复生命",
+        "guaranteed_stats_zh_tw": "吸血, +生命, 回覆生命",
+        "slots": {
+          "Weapon": "Ort (斧类底材)",
+          "Helm": "Ral",
+          "Body Armor": "Tal",
+          "Shield": "Ith",
+          "Gloves": "Hel",
+          "Boots": "Eth",
+          "Belt": "Tal",
+          "Amulet": "Amn",
+          "Ring": "Sol"
+        },
+        "type_sc": "鲜血",
+        "type_tc": "鲜血",
+        "guaranteed_stats_tc": "吸血, +生命, 回复生命"
+      },
+      {
+        "type": "Caster",
+        "type_zh_tw": "施法者",
+        "gem": "Perfect Amethyst / 完美紫宝石",
+        "gem_zh_tw": "完美紫寶石",
+        "guaranteed_stats": "法力回复, +法力, 快速施法",
+        "guaranteed_stats_zh_tw": "法力回覆, +法力, 快速施法",
+        "slots": {
+          "Weapon": "Tir",
+          "Helm": "Nef",
+          "Body Armor": "Tal",
+          "Shield": "Eth",
+          "Gloves": "Ort",
+          "Boots": "Thul",
+          "Belt": "Tal",
+          "Amulet": "Ral",
+          "Ring": "Amn"
+        },
+        "type_sc": "施法者",
+        "type_tc": "施法者",
+        "guaranteed_stats_tc": "法力回复, +法力, 快速施法"
+      },
+      {
+        "type": "Safety",
+        "type_zh_tw": "安全",
+        "gem": "Perfect Emerald / 完美绿宝石",
+        "gem_zh_tw": "完美綠寶石",
+        "guaranteed_stats": "伤害减免, 魔法伤害减免, 抗性",
+        "guaranteed_stats_zh_tw": "傷害減免, 魔法傷害減免, 抗性",
+        "slots": {
+          "Weapon": "Sol",
+          "Helm": "Ith",
+          "Body Armor": "Eth",
+          "Shield": "Nef",
+          "Gloves": "Ort",
+          "Boots": "Ral",
+          "Belt": "Tal",
+          "Amulet": "Thul",
+          "Ring": "Amn"
+        },
+        "type_sc": "安全",
+        "type_tc": "安全",
+        "guaranteed_stats_tc": "伤害减免, 魔法伤害减免, 抗性"
+      },
+      {
+        "type": "Hit Power",
+        "type_zh_tw": "打擊力量",
+        "gem": "Perfect Sapphire / 完美蓝宝石",
+        "gem_zh_tw": "完美藍寶石",
+        "guaranteed_stats": "被击中时释放冰风暴, 攻击者受到伤害, 击退怪物",
+        "guaranteed_stats_zh_tw": "被擊中時釋放冰風暴, 攻擊者受到傷害, 擊退怪物",
+        "slots": {
+          "Weapon": "Tir (钝器底材)",
+          "Helm": "Ith",
+          "Body Armor": "Lem",
+          "Shield": "Ith",
+          "Gloves": "Ort",
+          "Boots": "Ral",
+          "Belt": "Tal",
+          "Amulet": "Thul",
+          "Ring": "Amn"
+        },
+        "type_sc": "打击力量",
+        "type_tc": "打击力量",
+        "guaranteed_stats_tc": "被击中时释放冰风暴, 攻击者受到伤害, 击退怪物"
+      }
+    ],
+    "rules": [
+      "底材必须是蓝色(魔法)物品",
+      "每次合成还需要1颗任意珠宝",
+      "合成公式 = 魔法底材 + 对应符文 + 对应完美宝石 + 任意珠宝",
+      "产出橙色品质装备带1-4条随机词缀"
+    ],
+    "rules_zh_tw": [
+      "底材必須是藍色(魔法)物品",
+      "每次合成還需要1顆任意珠寶",
+      "合成公式 = 魔法底材 + 對應符文 + 對應完美寶石 + 任意珠寶",
+      "產出橙色品質裝備帶1-4條隨機詞綴"
+    ],
+    "description_tc": "特殊合成 (橙色装备)",
+    "rules_tc": [
+      "底材必须是蓝色(魔法)物品",
+      "每次合成还需要1颗任意珠寶",
+      "合成公式 = 魔法底材 + 对应符文 + 对应完美寶石 + 任意珠寶",
+      "产出橙色品质装备带1-4条随机词缀"
+    ]
+  },
+  "special": {
+    "description": "特殊配方",
+    "description_en": "Special Recipes",
+    "description_zh_tw": "特殊配方",
+    "recipes": [
+      {
+        "id": 50,
+        "name_zh_tw": "開啟奶牛關",
+        "name": "Open Secret Cow Level",
+        "formula": "维特之腿 + 回城书 (Tome of Town Portal)",
+        "formula_en": "Wirt's Leg + Tome of Town Portal",
+        "formula_zh_tw": "維特之腿 + 回城書 (Tome of Town Portal)",
+        "notes": "必须在萝格营地使用, 且已击败当前难度最终BOSS",
+        "notes_zh_tw": "必須在蘿格營地使用, 且已擊敗當前難度最終BOSS",
+        "name_sc": "开启奶牛关",
+        "name_tc": "开启奶牛关",
+        "formula_tc": "维特之腿 + 回城书 (Tome of Town Portal)",
+        "notes_tc": "必须在萝格营地使用, 且已击败当前难度最终BOSS"
+      },
+      {
+        "id": 51,
+        "name_zh_tw": "3戒指合項鏈",
+        "name": "3 Rings = 1 Amulet",
+        "formula": "3个魔法戒指",
+        "formula_en": "3x Magic Rings",
+        "formula_zh_tw": "3個魔法戒指",
+        "result": "1个随机魔法项链",
+        "result_en": "1 Random Magic Amulet",
+        "result_zh_tw": "1個隨機魔法項鏈",
+        "name_sc": "3戒指合项链",
+        "name_tc": "3戒指合項鍊",
+        "formula_tc": "3个魔法戒指",
+        "result_tc": "1个随机魔法項鍊"
+      },
+      {
+        "id": 52,
+        "name_zh_tw": "3項鏈合戒指",
+        "name": "3 Amulets = 1 Ring",
+        "formula": "3个魔法项链",
+        "formula_en": "3x Magic Amulets",
+        "formula_zh_tw": "3個魔法項鏈",
+        "result": "1个随机魔法戒指",
+        "result_en": "1 Random Magic Ring",
+        "result_zh_tw": "1個隨機魔法戒指",
+        "name_sc": "3项链合戒指",
+        "name_tc": "3項鍊合戒指",
+        "formula_tc": "3个魔法項鍊",
+        "result_tc": "1个随机魔法戒指"
+      },
+      {
+        "id": 53,
+        "name_zh_tw": "Token of Absolution (重置技能/屬性)",
+        "name": "Token of Absolution",
+        "formula": "扭曲精华 + 痛苦精华 + 苦难精华 + 恐惧精华",
+        "formula_en": "Twisted Essence + Charged Essence + Burning Essence + Festering Essence",
+        "formula_zh_tw": "扭曲精華 + 痛苦精華 + 苦難精華 + 恐懼精華",
+        "notes": "各精华从各Act Boss掉落 (地狱难度)",
+        "notes_zh_tw": "各精華從各Act Boss掉落 (地獄難度)",
+        "name_sc": "Token of Absolution (重置技能/属性)",
+        "name_tc": "Token of Absolution (重置技能/属性)",
+        "formula_tc": "扭曲精华 + 痛苦精华 + 苦难精华 + 恐惧精华",
+        "notes_tc": "各精华从各Act Boss掉落 (地狱难度)"
+      },
+      {
+        "id": 54,
+        "name_zh_tw": "超級崔斯特姆 (Uber Tristram)",
+        "name": "Uber Tristram Portal",
+        "formula": "步骤1: 恐怖之钥 + 憎恨之钥 + 毁灭之钥 → 三个小传送门; 步骤2: 击杀BOSS获得墨菲斯托之脑+迪亚波罗之角+巴尔之眼; 步骤3: 三样物品合成 → 超级崔斯特姆传送门",
+        "formula_en": "Key of Terror + Key of Hate + Key of Destruction → Mini Uber portals → Collect organs → Uber Tristram",
+        "formula_zh_tw": "步驟1: 恐怖之鑰 + 憎恨之鑰 + 毀滅之鑰 → 三個小傳送門; 步驟2: 擊殺BOSS獲得墨菲斯托之腦+迪亞波羅之角+巴爾之眼; 步驟3: 三樣物品合成 → 超級崔斯特姆傳送門",
+        "notes": "仅限地狱难度",
+        "notes_zh_tw": "僅限地獄難度",
+        "name_sc": "超级崔斯特姆 (Uber Tristram)",
+        "name_tc": "超级崔斯特姆 (Uber Tristram)",
+        "formula_tc": "步骤1: 恐怖之钥 + 憎恨之钥 + 毁灭之钥 → 三个小传送门; 步骤2: 击杀BOSS获得墨菲斯托之脑+迪亚波罗之角+巴尔之眼; 步骤3: 三样物品合成 → 超级崔斯特姆传送门",
+        "notes_tc": "仅限地狱难度"
+      }
+    ],
+    "description_tc": "特殊配方"
+  },
+  "gem_upgrade": {
+    "description": "宝石升级",
+    "description_en": "Gem Upgrade Recipes",
+    "description_zh_tw": "寶石升級",
+    "recipes": [
+      {
+        "id": 60,
+        "name_zh_tw": "寶石升級",
+        "name": "Gem Upgrade",
+        "formula": "3个同种同级宝石",
+        "formula_en": "3x Same Type & Grade Gem",
+        "formula_zh_tw": "3個同種同級寶石",
+        "result": "1个同种更高级宝石",
+        "result_en": "1x Same Type Higher Grade Gem",
+        "result_zh_tw": "1個同種更高級寶石",
+        "notes": "碎裂→裂开→普通→无瑕→完美",
+        "notes_zh_tw": "碎裂→裂開→普通→無瑕→完美",
+        "name_sc": "宝石升级",
+        "name_tc": "寶石升級",
+        "formula_tc": "3个同种同级宝石",
+        "result_tc": "1个同种更高级宝石",
+        "notes_tc": "碎裂→裂开→普通→无瑕→完美"
+      },
+      {
+        "id": 61,
+        "name_zh_tw": "骷髅升級",
+        "name": "Skull Upgrade",
+        "formula": "3个同级骷髅",
+        "formula_en": "3x Same Grade Skull",
+        "formula_zh_tw": "3個同級骷髅",
+        "result": "1个更高级骷髅",
+        "result_en": "1x Higher Grade Skull",
+        "result_zh_tw": "1個更高級骷髅",
+        "name_sc": "骷髅升级",
+        "name_tc": "骷髅升級",
+        "formula_tc": "3个同级骷髅",
+        "result_tc": "1个更高级骷髅"
+      }
+    ],
+    "description_tc": "寶石升級"
+  },
+  "potion": {
+    "description": "药水合成",
+    "description_en": "Potion Recipes",
+    "description_zh_tw": "藥水合成",
+    "recipes": [
+      {
+        "id": 70,
+        "name_zh_tw": "3回城卷軸合全恢復藥水",
+        "name": "Full Rejuvenation Potion",
+        "formula": "3个回复药水 (任意组合)",
+        "formula_en": "3x Rejuvenation Potions",
+        "formula_zh_tw": "3個回覆藥水 (任意組合)",
+        "result": "1个全恢复药水",
+        "result_en": "1x Full Rejuvenation Potion",
+        "result_zh_tw": "1個全恢復藥水",
+        "name_sc": "3回城卷轴合全恢复药水",
+        "name_tc": "3回城卷轴合全恢复药水",
+        "formula_tc": "3个回复药水 (任意组合)",
+        "result_tc": "1个全恢复药水"
+      },
+      {
+        "id": 71,
+        "name_zh_tw": "製作回覆藥水",
+        "name": "Rejuvenation Potion",
+        "formula": "3个超级生命药水 + 3个超级法力药水 + 1颗普通宝石",
+        "formula_en": "3x Super HP Pot + 3x Super MP Pot + 1 Normal Gem",
+        "formula_zh_tw": "3個超級生命藥水 + 3個超級法力藥水 + 1顆普通寶石",
+        "result": "1个全恢复药水",
+        "result_en": "1x Full Rejuvenation Potion",
+        "result_zh_tw": "1個全恢復藥水",
+        "name_sc": "制作回复药水",
+        "name_tc": "制作回复药水",
+        "formula_tc": "3个超级生命药水 + 3个超级法力药水 + 1颗普通宝石",
+        "result_tc": "1个全恢复药水"
+      }
+    ],
+    "description_tc": "藥水合成"
+  }
+}

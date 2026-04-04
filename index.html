@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>D2R Formula Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d0d1a;--bg2:#13132b;--surface:#1a1a3e;--card:#1e1e4a;
+  --gold:#c9a84c;--gold-dim:#8a7030;--red:#e94560;--blue:#4a6fa5;
+  --green:#3a9d5e;--purple:#7b5ea7;--orange:#d4763a;
+  --text:#e8e6e3;--text2:#9a98a0;--text3:#5a586a;
+  --border:#2a2a5a;--glow:rgba(201,168,76,.25);
+  --radius:8px;--transition:.25s cubic-bezier(.4,0,.2,1);
+}
+html{font-size:14px;scroll-behavior:smooth}
+body{
+  font-family:'Noto Sans SC', 'Noto Sans TC', system-ui,sans-serif;
+  background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;
+  background-image:
+    radial-gradient(ellipse at 20% 0%,rgba(201,168,76,.06) 0%,transparent 50%),
+    radial-gradient(ellipse at 80% 100%,rgba(233,69,96,.04) 0%,transparent 50%);
+}
+.header{text-align:center;padding:2rem 1rem 1.2rem;border-bottom:1px solid var(--border);
+  background:linear-gradient(180deg,rgba(201,168,76,.08) 0%,transparent 100%); position:relative;}
+.lang-selector{position:absolute;top:1rem;right:1rem;padding:0.3rem 0.5rem;background:var(--bg2);color:var(--gold);border:1px solid var(--gold-dim);border-radius:4px;font-family:'Cinzel',serif;font-size:0.8rem;outline:none;cursor:pointer;}
+.lang-selector:focus{border-color:var(--gold);box-shadow:0 0 8px var(--glow);}
+.header h1{font-family:'Cinzel',serif;font-size:2rem;font-weight:900;
+  background:linear-gradient(135deg,#c9a84c 0%,#f0d890 40%,#c9a84c 60%,#8a7030 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:2px}
+.header .sub{color:var(--text2);font-size:.85rem;margin-top:.3rem}
+.header .version{display:inline-block;margin-top:.4rem;padding:2px 10px;
+  border:1px solid var(--red);border-radius:20px;color:var(--red);font-size:.7rem;font-weight:700}
+
+.tab-nav{display:flex;justify-content:center;gap:.5rem;padding:.8rem 1rem;
+  border-bottom:1px solid var(--border);background:var(--bg2);position:sticky;top:0;z-index:100;backdrop-filter:blur(12px); flex-wrap:wrap;}
+.tab-btn{padding:.5rem 1.2rem;border:1px solid var(--border);border-radius:var(--radius);
+  background:transparent;color:var(--text2);cursor:pointer;font-size:.85rem;
+  font-family:inherit;font-weight:500;transition:var(--transition)}
+.tab-btn:hover{border-color:var(--gold-dim);color:var(--text)}
+.tab-btn.active{background:linear-gradient(135deg,rgba(201,168,76,.15),rgba(201,168,76,.05));
+  border-color:var(--gold);color:var(--gold);box-shadow:0 0 20px rgba(201,168,76,.15)}
+.tab-panel{display:none;padding:1.2rem;max-width:1200px;margin:0 auto}
+.tab-panel.active{display:block;animation:fadeUp .35s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+.section-title{font-family:'Cinzel',serif;font-size:1.1rem;color:var(--gold);
+  margin:1.2rem 0 .6rem;padding-bottom:.4rem;border-bottom:1px solid var(--border);letter-spacing:1px}
+.rune-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:.5rem}
+.rune-chip{position:relative;display:flex;flex-direction:column;align-items:center;gap:.25rem;
+  padding:.6rem .3rem;border:1px solid var(--border);border-radius:var(--radius);cursor:pointer;
+  background:var(--surface);transition:var(--transition);user-select:none}
+.rune-chip:hover{border-color:var(--gold-dim);transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,.4)}
+.rune-chip.selected{border-color:var(--gold);
+  background:linear-gradient(135deg,rgba(201,168,76,.2),rgba(201,168,76,.05));box-shadow:0 0 16px var(--glow)}
+.rune-icon{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-family:'Cinzel',serif;font-weight:900;font-size:.75rem;color:var(--bg)}
+.rune-icon.low{background:linear-gradient(135deg,#b0b0b0,#e0e0e0)}
+.rune-icon.mid{background:linear-gradient(135deg,#c9a84c,#f0d890)}
+.rune-icon.high{background:linear-gradient(135deg,#d4763a,#ff9a56)}
+.rune-chip .rune-name{font-size:.78rem;color:var(--text);font-weight:500}
+.rune-chip .rune-zh{font-size:.65rem;color:var(--text2)}
+.rune-count{position:absolute;top:-6px;right:-6px;width:22px;height:22px;border-radius:50%;
+  background:var(--red);color:#fff;font-size:.7rem;display:flex;align-items:center;justify-content:center;
+  font-weight:700;box-shadow:0 2px 8px rgba(233,69,96,.5);opacity:0;transform:scale(0);transition:var(--transition)}
+.rune-chip.selected .rune-count{opacity:1;transform:scale(1)}
+
+.selected-bar{position:sticky;top:48px;z-index:90;background:var(--bg2);border-bottom:1px solid var(--border);
+  padding:.6rem 1rem;display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;min-height:44px;backdrop-filter:blur(12px)}
+.selected-bar .label{color:var(--text2);font-size:.8rem;white-space:nowrap}
+.selected-bar .chips{display:flex;gap:.3rem;flex-wrap:wrap;flex:1}
+.mini-chip{padding:2px 8px;border-radius:12px;font-size:.72rem;font-weight:500;
+  background:rgba(201,168,76,.15);border:1px solid var(--gold-dim);color:var(--gold);cursor:pointer;
+  transition:var(--transition)}
+.mini-chip:hover{background:rgba(233,69,96,.2);border-color:var(--red);color:var(--red)}
+.clear-btn{padding:3px 10px;border-radius:var(--radius);border:1px solid var(--red);
+  background:transparent;color:var(--red);font-size:.75rem;cursor:pointer;
+  transition:var(--transition);font-family:inherit}
+.clear-btn:hover{background:var(--red);color:#fff}
+
+.results-header{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1rem}
+.results-count{color:var(--text2);font-size:.85rem}
+.results-count em{color:var(--gold);font-style:normal;font-weight:700}
+.search-box{display:flex;align-items:center;gap:.5rem;flex:1;max-width:360px}
+.search-box input{flex:1;padding:.45rem .8rem;border:1px solid var(--border);border-radius:var(--radius);
+  background:var(--surface);color:var(--text);font-size:.85rem;outline:none;
+  font-family:inherit;transition:var(--transition)}
+.search-box input:focus{border-color:var(--gold);box-shadow:0 0 12px var(--glow)}
+.search-box input::placeholder{color:var(--text3)}
+.filter-row{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1rem}
+.filter-chip{padding:.3rem .7rem;border:1px solid var(--border);border-radius:20px;
+  background:transparent;color:var(--text2);font-size:.75rem;cursor:pointer;
+  transition:var(--transition);font-family:inherit}
+.filter-chip:hover{border-color:var(--gold-dim)}
+.filter-chip.active{background:rgba(201,168,76,.15);border-color:var(--gold);color:var(--gold)}
+
+.rw-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:.8rem}
+.rw-card{border:1px solid var(--border);border-radius:var(--radius);background:var(--card);
+  overflow:hidden;transition:var(--transition)}
+.rw-card:hover{border-color:var(--gold-dim);box-shadow:0 4px 24px rgba(0,0,0,.4);transform:translateY(-2px)}
+.rw-card.matched{border-color:var(--gold)!important;box-shadow:0 0 20px var(--glow)!important}
+.rw-card.partial{border-color:var(--blue);box-shadow:0 0 12px rgba(74,111,165,.2)}
+.rw-card-head{padding:.7rem .9rem;display:flex;align-items:center;justify-content:space-between;
+  border-bottom:1px solid var(--border);background:linear-gradient(90deg,rgba(201,168,76,.06),transparent)}
+.rw-name{font-family:'Cinzel',serif;font-weight:700;font-size:.95rem;color:var(--gold)}
+.rw-loc{color:var(--text2);font-size:.8rem;margin-left:.4rem}
+.rw-badge{padding:2px 8px;border-radius:12px;font-size:.65rem;font-weight:700}
+.rw-badge.classic{background:rgba(107,123,141,.2);color:#6b7b8d;border:1px solid #6b7b8d}
+.rw-badge.patch_2_4{background:rgba(78,205,196,.1);color:#4ecdc4;border:1px solid #4ecdc4}
+.rw-badge.patch_2_6{background:rgba(69,183,209,.1);color:#45b7d1;border:1px solid #45b7d1}
+.rw-badge.reign_of_warlock{background:rgba(233,69,96,.1);color:#e94560;border:1px solid #e94560}
+.rw-card-body{padding:.7rem .9rem}
+.rw-runes{display:flex;gap:.3rem;flex-wrap:wrap;margin-bottom:.5rem}
+.rw-rune{padding:3px 8px;border-radius:4px;font-size:.75rem;font-weight:600;
+  background:rgba(201,168,76,.12);color:var(--gold);border:1px solid var(--gold-dim)}
+.rw-rune.owned{background:rgba(58,157,94,.2);color:var(--green);border-color:var(--green)}
+.rw-rune.missing{background:rgba(233,69,96,.1);color:var(--red);border-color:rgba(233,69,96,.3);opacity:.6}
+.rw-meta{display:flex;gap:.8rem;flex-wrap:wrap;font-size:.75rem;color:var(--text2)}
+.rw-meta span{display:flex;align-items:center;gap:.2rem}
+.match-bar{height:3px;background:var(--border);border-radius:2px;margin-top:.5rem;overflow:hidden}
+.match-bar-fill{height:100%;border-radius:2px;transition:width .4s ease}
+.match-bar-fill.full{background:linear-gradient(90deg,var(--gold),#f0d890)}
+.match-bar-fill.partial-f{background:linear-gradient(90deg,var(--blue),#6b9fd4)}
+
+.recipe-group{margin-bottom:1.5rem}
+.recipe-group-title{font-family:'Cinzel',serif;font-size:1rem;color:var(--gold);
+  margin-bottom:.6rem;display:flex;align-items:center;gap:.5rem}
+.count-badge{padding:1px 7px;border-radius:10px;font-size:.65rem;
+  background:rgba(201,168,76,.15);color:var(--gold-dim);font-family:inherit}
+.recipe-card{padding:.7rem .9rem;border:1px solid var(--border);border-radius:var(--radius);
+  background:var(--card);margin-bottom:.5rem;transition:var(--transition)}
+.recipe-card:hover{border-color:var(--gold-dim);box-shadow:0 2px 12px rgba(0,0,0,.3)}
+.rc-name{font-weight:600;color:var(--text);font-size:.85rem;margin-bottom:.3rem}
+.rc-formula{font-size:.8rem;color:var(--gold);padding:.4rem .6rem;
+  background:rgba(201,168,76,.06);border-radius:4px;margin-bottom:.3rem;border-left:3px solid var(--gold-dim)}
+.rc-result{font-size:.78rem;color:var(--green)}
+.rc-notes{font-size:.72rem;color:var(--text3);margin-top:.2rem;font-style:italic}
+.craft-table{width:100%;border-collapse:collapse;font-size:.78rem;margin-top:.4rem}
+.craft-table th{text-align:left;padding:.4rem .5rem;color:var(--gold);font-weight:600;
+  border-bottom:1px solid var(--border)}
+.craft-table td{padding:.35rem .5rem;border-bottom:1px solid rgba(42,42,90,.5);color:var(--text2)}
+.craft-table tr:hover td{background:rgba(201,168,76,.03)}
+.empty-state{text-align:center;padding:3rem 1rem;color:var(--text3)}
+.empty-state .icon{font-size:3rem;margin-bottom:.8rem;opacity:.4}
+
+.base-layout{display:flex;gap:1.5rem;align-items:flex-start}
+.base-sidebar{width:200px;display:flex;flex-direction:column;gap:0.3rem;flex-shrink:0}
+.base-cat-btn{text-align:left;padding:0.6rem 1rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);color:var(--text2);cursor:pointer;font-size:0.85rem;transition:var(--transition)}
+.base-cat-btn:hover{border-color:var(--gold-dim);color:var(--text)}
+.base-cat-btn.active{background:rgba(201,168,76,.15);border-color:var(--gold);color:var(--gold)}
+.base-content{flex:1;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;overflow-x:auto}
+.base-table{width:100%;border-collapse:collapse;font-size:0.85rem;text-align:left}
+.base-table th{padding:0.6rem;color:var(--gold);border-bottom:1px solid var(--border);white-space:nowrap}
+.base-table td{padding:0.6rem;border-bottom:1px solid rgba(42,42,90,.5);color:var(--text)}
+.base-table tr:hover td{background:rgba(201,168,76,.05)}
+.tier-Normal{color:#9a98a0}
+.tier-Exceptional{color:#4a6fa5}
+.tier-Elite{color:#c9a84c}
+
+@media(max-width:768px){
+  .base-layout{flex-direction:column}
+  .base-sidebar{width:100%;flex-direction:row;overflow-x:auto;padding-bottom:0.5rem}
+  .base-cat-btn{white-space:nowrap}
+}
+@media(max-width:640px){
+  .rune-grid{grid-template-columns:repeat(auto-fill,minmax(72px,1fr))}
+  .rw-list{grid-template-columns:1fr}
+  .tab-nav{gap:.3rem}.tab-btn{padding:.4rem .7rem;font-size:.78rem}
+  .header h1{font-size:1.4rem}
+}
+::-webkit-scrollbar{width:6px;height:6px;}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--gold-dim)}
+</style>
+</head>
+<body>
+<div class="header">
+  <select class="lang-selector" id="langSelect">
+    <option value="sc">简体中文</option>
+    <option value="tc">繁體中文</option>
+    <option value="en">English</option>
+  </select>
+  <h1>D2R Formula Guide</h1>
+  <div class="sub" id="ui-subtitle">暗黑破坏神2：重制版 — 合成公式助手</div>
+  <span class="version">v3.1 Reign of the Warlock</span>
+</div>
+<nav class="tab-nav">
+  <button class="tab-btn active" data-tab="materials" id="tab-materials">🔮 选择材料</button>
+  <button class="tab-btn" data-tab="runewords" id="tab-runewords">⚔️ 符文之语</button>
+  <button class="tab-btn" data-tab="recipes" id="tab-recipes">📜 合成公式</button>
+  <button class="tab-btn" data-tab="baseitems" id="tab-baseitems">🛡️ 底材百科</button>
+</nav>
+<div class="selected-bar" id="selectedBar">
+  <span class="label" id="ui-selected-runes">已选符文:</span>
+  <div class="chips" id="selectedChips"><span style="color:var(--text3);font-size:.78rem" id="ui-empty-bag">点击下方符文添加到背包…</span></div>
+  <button class="clear-btn" id="clearBtn" style="display:none" id="ui-clear-all">清空全部</button>
+</div>
+
+<div class="tab-panel active" id="panel-materials">
+  <h2 class="section-title" id="ui-rune-title">⬥ 符文 Runes — 左键添加 · 右键减少</h2>
+  <div class="rune-grid" id="runeGrid"></div>
+</div>
+
+<div class="tab-panel" id="panel-runewords">
+  <div class="results-header">
+    <div class="results-count" id="resultsCount"></div>
+    <div class="search-box"><input type="text" id="searchInput" placeholder="搜索名称 / Search…"></div>
+  </div>
+  <div class="filter-row" id="filterRow"></div>
+  <div class="rw-list" id="rwList"></div>
+</div>
+
+<div class="tab-panel" id="panel-recipes">
+  <div id="recipesContainer"></div>
+</div>
+
+<div class="tab-panel" id="panel-baseitems">
+  <div class="base-layout">
+    <div class="base-sidebar" id="baseSidebar"></div>
+    <div class="base-content">
+      <table class="base-table">
+        <thead>
+          <tr id="baseTableHeader">
+            <th>名称</th>
+            <th>类型</th>
+            <th>最大孔数</th>
+            <th>力量需求</th>
+          </tr>
+        </thead>
+        <tbody id="baseTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+// ──── I18N ────
+const I18N = {
+  sc: {
+    subtitle: "暗黑破坏神2：重制版 — 合成公式助手",
+    tab_materials: "🔮 选择材料", tab_runewords: "⚔️ 符文之语", tab_recipes: "📜 合成公式", tab_baseitems: "🛡️ 底材百科",
+    selected_runes: "已选符文:", empty_bag: "点击下方符文添加到背包…", clear_all: "清空全部",
+    rune_title: "⬥ 符文 Runes — 左键添加 · 右键减少", search_ph: "搜索名称 / Search…",
+    all: "全部", total_rw: "共 {0} 条符文之语", full_match: " · {0} 可完整合成",
+    sockets: "{0}孔", req_lv: "Lv.{0}", req_str: "力量", cat_name: "名称", cat_tier: "类型", cat_max_sock: "最大孔数",
+    tier_n: "普通", tier_ex: "进阶", tier_el: "精华", no_match: "没有匹配的符文之语", rule: "合成规则", guar_stats: "保证属性", slot: "部位", req_rune: "所需符文",
+    filter_all: "全部", filter_weap: "武器", filter_armor: "盔甲", filter_helm: "头盔", filter_shield: "盾牌",
+    filter_sword: "剑", filter_axe: "斧", filter_pole: "长柄", filter_miss: "远程", filter_staff: "法杖",
+    filter_mace: "钉头锤", filter_dag: "匕首", filter_katar: "拳刃", filter_scep: "权杖", filter_ham: "锤"
+  },
+  tc: {
+    subtitle: "暗黑破壞神 II：獄火重生 — 合成公式助手",
+    tab_materials: "🔮 選擇材料", tab_runewords: "⚔️ 符文之語", tab_recipes: "📜 合成公式", tab_baseitems: "🛡️ 底材百科",
+    selected_runes: "已選符文:", empty_bag: "點擊下方符文添加到背包…", clear_all: "清空全部",
+    rune_title: "⬥ 符文 Runes — 左鍵添加 · 右鍵減少", search_ph: "搜索名稱 / Search…",
+    all: "全部", total_rw: "共 {0} 條符文之語", full_match: " · {0} 可完整合成",
+    sockets: "{0}孔", req_lv: "Lv.{0}", req_str: "力量", cat_name: "名稱", cat_tier: "類型", cat_max_sock: "最大孔數",
+    tier_n: "普通", tier_ex: "進階", tier_el: "精華", no_match: "沒有匹配的符文之語", rule: "合成規則", guar_stats: "保證屬性", slot: "部位", req_rune: "所需符文",
+    filter_all: "全部", filter_weap: "武器", filter_armor: "鎧甲", filter_helm: "頭盔", filter_shield: "盾牌",
+    filter_sword: "劍", filter_axe: "斧", filter_pole: "長柄", filter_miss: "遠程", filter_staff: "法杖",
+    filter_mace: "釘頭錘", filter_dag: "匕首", filter_katar: "拳刃", filter_scep: "權杖", filter_ham: "錘"
+  },
+  en: {
+    subtitle: "Diablo II: Resurrected — Formula Guide",
+    tab_materials: "🔮 Materials", tab_runewords: "⚔️ Runewords", tab_recipes: "📜 Cube Recipes", tab_baseitems: "🛡️ Item Bases",
+    selected_runes: "Selected:", empty_bag: "Click runes below to add...", clear_all: "Clear All",
+    rune_title: "⬥ Runes — Left Click to Add · Right Click to Remove", search_ph: "Search Name...",
+    all: "All", total_rw: "{0} Runewords", full_match: " · {0} Fully Matched",
+    sockets: "{0} Sockets", req_lv: "Lv.{0}", req_str: "Str", cat_name: "Name", cat_tier: "Tier", cat_max_sock: "Max Sockets",
+    tier_n: "Normal", tier_ex: "Exceptional", tier_el: "Elite", no_match: "No matching runewords", rule: "Rules", guar_stats: "Guaranteed Stats", slot: "Slot", req_rune: "Runes Needed",
+    filter_all: "All", filter_weap: "Weapons", filter_armor: "Armor", filter_helm: "Helms", filter_shield: "Shields",
+    filter_sword: "Swords", filter_axe: "Axes", filter_pole: "Polearms", filter_miss: "Missile", filter_staff: "Staves",
+    filter_mace: "Maces", filter_dag: "Daggers", filter_katar: "Katars", filter_scep: "Scepters", filter_ham: "Hammers"
+  }
+};
+
+const BZH = {
+  "全部": "filter_all", "Weapons":"filter_weap", "Body Armor":"filter_armor", "Helms":"filter_helm", "Shields":"filter_shield",
+  "Swords":"filter_sword", "Axes":"filter_axe", "Polearms":"filter_pole", "Missile Weapons":"filter_miss", "Staves":"filter_staff",
+  "Maces":"filter_mace", "Daggers":"filter_dag", "Katars":"filter_katar", "Scepters":"filter_scep", "Hammers":"filter_ham"
+};
+const FILTERS = Object.keys(BZH);
+
+// ──── STATE ────
+let RUNES=[], RUNEWORDS=[], RECIPES={}, BASE_ITEMS={};
+const inv={};
+let activeFilter="全部", searchQ="", currentLang="sc", activeBaseCat="Armor";
+const CATS={classic:"Classic",patch_2_4:"2.4",patch_2_6:"2.6",reign_of_warlock:"RotW"};
+
+function getText(key) { return I18N[currentLang][key] || key; }
+function getPropName(obj, propBase) {
+  if(currentLang === 'en') return obj[`${propBase}_en`] || obj[propBase] || obj[`${propBase}_sc`];
+  if(currentLang === 'tc') return obj[`${propBase}_tc`] || obj[`${propBase}_sc`] || obj[propBase];
+  return obj[`${propBase}_sc`] || obj[propBase] || obj[`${propBase}_en`];
+}
+
+// ──── LOCALIZE UI ────
+function localizeUI() {
+  document.getElementById('ui-subtitle').innerText = getText('subtitle');
+  document.getElementById('tab-materials').innerText = getText('tab_materials');
+  document.getElementById('tab-runewords').innerText = getText('tab_runewords');
+  document.getElementById('tab-recipes').innerText = getText('tab_recipes');
+  document.getElementById('tab-baseitems').innerText = getText('tab_baseitems');
+  document.getElementById('ui-selected-runes').innerText = getText('selected_runes');
+  document.getElementById('clearBtn').innerText = getText('clear_all');
+  document.getElementById('ui-rune-title').innerText = getText('rune_title');
+  document.getElementById('searchInput').placeholder = getText('search_ph');
+  
+  document.getElementById('baseTableHeader').innerHTML = `
+    <th>${getText('cat_name')}</th>
+    <th>${getText('cat_tier')}</th>
+    <th>${getText('cat_max_sock')}</th>
+    <th>${getText('req_str')}</th>
+  `;
+}
+
+// ──── TIER ────
+function tier(id){return id<=10?"low":id<=20?"mid":"high"}
+
+// ──── RENDER RUNES ────
+function renderRunes(){
+  const g=document.getElementById('runeGrid');
+  if(!RUNES.length) return;
+  g.innerHTML=RUNES.map(r=>{
+    const c=inv[r.name_en]||0;
+    const dispName = getPropName(r, 'name');
+    return`<div class="rune-chip${c?' selected':''}" oncontextmenu="decRune(event,'${r.name_en}')" onclick="addRune('${r.name_en}')">
+<div class="rune-count">${c}</div>
+<div class="rune-icon ${tier(r.id)}">${r.id}</div>
+<div class="rune-name">${r.name_en}</div>
+<div class="rune-zh">${dispName}</div></div>`;
+  }).join('');
+}
+
+function addRune(n){inv[n]=(inv[n]||0)+1;refresh()}
+function decRune(e,n){e.preventDefault();if(inv[n]>0){inv[n]--;if(!inv[n])delete inv[n]}refresh()}
+
+// ──── SELECTED BAR ────
+function updateBar(){
+  const chips=document.getElementById('selectedChips');
+  const cb=document.getElementById('clearBtn');
+  const e=Object.entries(inv).filter(([,v])=>v>0);
+  if(!e.length){
+    chips.innerHTML=`<span style="color:var(--text3);font-size:.78rem">${getText('empty_bag')}</span>`;
+    cb.style.display='none';return;
+  }
+  cb.style.display='block';
+  chips.innerHTML=e.map(([n,c])=>`<span class="mini-chip" onclick="decRune(event,'${n}')">${n}${c>1?' ×'+c:''}</span>`).join('');
+}
+document.getElementById('clearBtn').onclick=()=>{Object.keys(inv).forEach(k=>delete inv[k]);refresh()};
+
+// ──── RENDER RUNEWORDS ────
+function calcM(rw){
+  const need={};
+  rw.runes.forEach(r=>need[r]=(need[r]||0)+1);
+  let total=rw.runes.length,owned=0;
+  for(const[r,c]of Object.entries(need)) owned+=Math.min(inv[r]||0,c);
+  return{total,owned,pct:total?owned/total:0,need};
+}
+
+function renderRW(){
+  const list=document.getElementById('rwList');
+  const cntEl=document.getElementById('resultsCount');
+  const q=searchQ.toLowerCase().trim();
+  const hasInv=Object.values(inv).some(v=>v>0);
+
+  if(!RUNEWORDS.length) return;
+
+  let items=RUNEWORDS.filter(rw=>{
+    const n_en = (rw.name_en || rw.name || "").toLowerCase();
+    const n_loc = getPropName(rw, 'name');
+    if(q && !n_en.includes(q) && !n_loc.includes(q)) return false;
+    if(activeFilter!=="全部"){
+      const bt = rw.base_types || [];
+      if(!bt.some(t=>t===activeFilter||t.includes(activeFilter))) return false;
+    }
+    return true;
+  }).map(rw=>({...rw,m:calcM(rw)}));
+
+  if(hasInv) items.sort((a,b)=>b.m.pct!==a.m.pct?b.m.pct-a.m.pct:b.level_req-a.level_req);
+
+  const full=items.filter(i=>i.m.pct===1).length;
+  let cntStr = getText('total_rw').replace('{0}', `<em>${items.length}</em>`);
+  if(hasInv) cntStr += getText('full_match').replace('{0}', `<em>${full}</em>`);
+  cntEl.innerHTML=cntStr;
+
+  if(!items.length){list.innerHTML=`<div class="empty-state"><div class="icon">🔍</div><p>${getText('no_match')}</p></div>`;return}
+
+  list.innerHTML=items.map(rw=>{
+    const m=rw.m;
+    const cls=m.pct===1?'matched':m.pct>0?'partial':'';
+    const used={};
+    const runesH=rw.runes.map(r=>{
+      used[r]=(used[r]||0)+1;
+      const have=(inv[r]||0)>=used[r];
+      const c=hasInv?(have?'owned':'missing'):'';
+      return`<span class="rw-rune ${c}">${r}</span>`;
+    }).join('');
+    
+    // Loc logic
+    const n_en = rw.name_en || rw.name;
+    const n_loc = getPropName(rw, 'name');
+    const bases = currentLang === 'en' ? rw.base_types : (currentLang==='tc'?rw.base_types_tc:rw.base_types_sc);
+    const baseZh = (bases || rw.base_types || []).join(' / ');
+    const pct=Math.round(m.pct*100);
+    
+    return`<div class="rw-card ${cls}">
+<div class="rw-card-head"><div><span class="rw-name">${n_en}</span><span class="rw-loc">${n_loc!==n_en?n_loc:''}</span></div>
+<span class="rw-badge ${rw.category}">${CATS[rw.category]||rw.patch}</span></div>
+<div class="rw-card-body"><div class="rw-runes">${runesH}</div>
+<div class="rw-meta"><span>🔲 ${getText('sockets').replace('{0}',rw.sockets)}</span><span>📦 ${baseZh}</span><span>⭐ ${getText('req_lv').replace('{0}',rw.level_req)}</span>
+${hasInv?`<span>✅ ${m.owned}/${m.total}</span>`:''}</div>
+${hasInv?`<div class="match-bar"><div class="match-bar-fill ${m.pct===1?'full':'partial-f'}" style="width:${pct}%"></div></div>`:''}</div></div>`;
+  }).join('');
+}
+
+// ──── FILTERS ────
+function renderFilters(){
+  document.getElementById('filterRow').innerHTML=FILTERS.map(f=>{
+    const disp = getText(BZH[f]);
+    return `<button class="filter-chip${f===activeFilter?' active':''}" onclick="setF('${f}')">${disp}</button>`
+  }).join('');
+}
+function setF(f){activeFilter=f;renderFilters();renderRW()}
+
+// ──── RECIPES ────
+function renderRecipes(){
+  const c=document.getElementById('recipesContainer');
+  if(!Object.keys(RECIPES).length) return;
+  let h='';
+  const cats=[
+    ['rune_upgrade','🔼'],['socketing','🔲'],['upgrade_equipment','⬆️'],
+    ['special','✨'],['gem_upgrade','💎'],['potion','🧪']
+  ];
+  cats.forEach(([key,ico])=>{
+    const cat=RECIPES[key];if(!cat)return;
+    const cDesc = getPropName(cat, 'description') || cat.description;
+    h+=`<div class="recipe-group"><div class="recipe-group-title">${ico} ${cDesc} <span class="count-badge">${cat.recipes.length}</span></div>`;
+    cat.recipes.forEach(r=>{
+      const rName = getPropName(r, 'name');
+      const rForm = getPropName(r, 'formula') || r.formula;
+      const rRes = getPropName(r, 'result') || r.result;
+      const rNotes = getPropName(r, 'notes') || r.notes;
+      h+=`<div class="recipe-card"><div class="rc-name">${rName}</div>
+<div class="rc-formula">${rForm}</div>
+${rRes?`<div class="rc-result">→ ${rRes}</div>`:''}
+${rNotes?`<div class="rc-notes">💡 ${rNotes}</div>`:''}</div>`;
+    });
+    h+=`</div>`;
+  });
+  
+  const craft=RECIPES.crafting;
+  if(craft){
+    const dDesc = getPropName(craft, 'description');
+    h+=`<div class="recipe-group"><div class="recipe-group-title">🔶 ${dDesc}</div>
+<div class="recipe-card"><div class="rc-name">${getText('rule')}</div>
+<div class="rc-notes">${(currentLang==='tc'?craft.rules_tc:craft.rules).join(' · ')}</div></div>`;
+    craft.types.forEach(t=>{
+      const tType = getPropName(t, 'type');
+      const gStats = getPropName(t, 'guaranteed_stats') || t.guaranteed_stats;
+      h+=`<div class="recipe-card"><div class="rc-name">${tType} (${t.type}) — ${t.gem}</div>
+<div class="rc-notes" style="margin-bottom:.4rem">${getText('guar_stats')}: ${gStats}</div>
+<table class="craft-table"><tr><th>${getText('slot')}</th><th>${getText('req_rune')}</th></tr>
+${Object.entries(t.slots).map(([s,r])=>`<tr><td>${s}</td><td style="color:var(--gold)">${r}</td></tr>`).join('')}
+</table></div>`;
+    });
+    h+=`</div>`;
+  }
+  c.innerHTML=h;
+}
+
+// ──── BASE ITEMS ────
+function renderBaseCategories(){
+  const s = document.getElementById('baseSidebar');
+  if(!Object.keys(BASE_ITEMS).length) return;
+  let cats = Object.keys(BASE_ITEMS);
+  if(!cats.includes(activeBaseCat)) activeBaseCat = cats[0];
+  s.innerHTML = cats.map(c=>`<button class="base-cat-btn ${c===activeBaseCat?'active':''}" onclick="setBaseCat('${c}')">${c}</button>`).join('');
+  renderBaseItems();
+}
+
+function setBaseCat(c){ activeBaseCat=c; renderBaseCategories(); }
+
+function getTierLoc(t) {
+  if(t==='Normal') return getText('tier_n');
+  if(t==='Exceptional') return getText('tier_ex');
+  if(t==='Elite') return getText('tier_el');
+  return t;
+}
+
+function renderBaseItems(){
+  const tb = document.getElementById('baseTableBody');
+  if(!Object.keys(BASE_ITEMS).length) return;
+  const items = BASE_ITEMS[activeBaseCat] || [];
+  tb.innerHTML = items.map(item=>{
+    const nLoc = getPropName(item, 'name');
+    const tierClass = `tier-${item.tier}`;
+    const reqStr = item.str_req ? item.str_req : '-';
+    return `<tr>
+      <td>${nLoc}<br><span style="font-size:0.75rem;color:var(--text3)">${item.name_en}</span></td>
+      <td class="${tierClass}">${getTierLoc(item.tier)}</td>
+      <td style="color:var(--gold);font-weight:bold">${item.max_sockets||'-'}</td>
+      <td>${reqStr}</td>
+    </tr>`;
+  }).join('');
+}
+
+
+// ──── TABS ────
+document.querySelectorAll('.tab-btn').forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll('.tab-btn').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    document.getElementById('panel-'+b.dataset.tab).classList.add('active');
+  };
+});
+
+// ──── SEARCH ────
+document.getElementById('searchInput').oninput=e=>{searchQ=e.target.value;renderRW()};
+
+// ──── LANGUAGE SELECTION ────
+const langSel = document.getElementById('langSelect');
+const savedLang = localStorage.getItem('d2r_lang');
+if(savedLang) { currentLang = savedLang; langSel.value = savedLang; }
+langSel.addEventListener('change', (e)=>{
+  currentLang = e.target.value;
+  localStorage.setItem('d2r_lang', currentLang);
+  localizeUI();
+  refresh();
+});
+
+// ──── REFRESH ALL ────
+function refresh(){
+  renderFilters();
+  renderRunes();
+  updateBar();
+  renderRW();
+  renderRecipes();
+  renderBaseCategories();
+}
+
+// ──── LOAD DATA & BOOT ────
+async function boot(){
+  localizeUI();
+  try{
+    const[rwRes, rcRes, rRes, biRes]=await Promise.all([
+      fetch('data/runewords.json'), fetch('data/cube_recipes.json'),
+      fetch('data/runes.json'), fetch('data/base_items.json')
+    ]);
+    RUNEWORDS = await rwRes.json();
+    RECIPES = await rcRes.json();
+    RUNES = await rRes.json();
+    BASE_ITEMS = await biRes.json();
+  }catch(e){
+    console.warn('Fetch failed, check if running via HTTP server:',e);
+  }
+  refresh();
+}
+boot();
+</script>
+</body>
+</html>

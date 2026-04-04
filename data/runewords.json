@@ -1,0 +1,3112 @@
+[
+  {
+    "id": 1,
+    "name": "Ancient's Pledge",
+    "name_zh_tw": "遠古之誓",
+    "runes": [
+      "Ral",
+      "Ort",
+      "Tal"
+    ],
+    "sockets": 3,
+    "base_types": [
+      "Shields"
+    ],
+    "base_types_zh_tw": [
+      "盾牌"
+    ],
+    "level_req": 21,
+    "patch": "1.00",
+    "category": "classic",
+    "name_sc": "远古之誓",
+    "name_en": "Ancient's Pledge",
+    "name_tc": "遠古之誓",
+    "base_types_sc": [
+      "盾牌"
+    ],
+    "base_types_tc": [
+      "盾牌"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Beast",
+    "name_zh_tw": "野獸",
+    "runes": [
+      "Ber",
+      "Tir",
+      "Um",
+      "Mal",
+      "Lum"
+    ],
+    "sockets": 5,
+    "base_types": [
+      "Axes",
+      "Scepters",
+      "Hammers"
+    ],
+    "base_types_zh_tw": [
+      "斧",
+      "權杖",
+      "錘"
+    ],
+    "level_req": 63,
+    "patch": "1.10",
+    "category": "classic",
+    "name_sc": "野兽",
+    "name_en": "Beast",
+    "name_tc": "野獸",
+    "base_types_sc": [
+      "斧",
+      "权杖",
+      "锤"
+    ],
+    "base_types_tc": [
+      "斧",
+      "權杖",
+      "錘"
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Black",
+    "name_zh_tw": "黑色",
+    "runes": [
+      "Thul",
+      "Io",
+      "Nef"
+    ],
+    "sockets": 3,
+    "base_types": [
+      "Clubs",
+      "Hammers",
+      "Maces"
+    ],
+    "base_types_zh_tw": [
+      "棍棒",
+      "錘",
+      "釘頭錘"
+    ],
+    "level_req": 35,
+    "patch": "1.00",
+    "category": "classic",
+    "name_sc": "黑色",
+    "name_en": "Black",
+    "name_tc": "黑色",
+    "base_types_sc": [
+      "棍棒",
+      "锤",
+      "钉头锤"
+    ],
+    "base_types_tc": [
+      "棍棒",
+      "錘",
+      "釘頭錘"
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Bone",
+    "name_zh_tw": "白骨",
+    "runes": [
+      "Sol",
+      "Um",
+      "Um"
+    ],
+    "sockets": 3,
+    "base_types": [
+      "Body Armor"
+    ],
+    "base_types_zh_tw": [
+      "盔甲"
+    ],
+    "level_req": 47,
+    "patch": "1.11",
+    "category": "classic",
+    "name_sc": "白骨",
+    "name_en": "Bone",
+    "name_tc": "骨骸",
+    "base_types_sc": [
+      "盔甲"
+    ],
+    "base_types_tc": [
+      "鎧甲"
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Bramble",
+    "name_zh_tw": "荊棘",
+    "runes": [
+      "Ral",
+      "Ohm",
+      "Sur",
+      "Eth"
+    ],
+    "sockets": 4,
+    "base_types": [
+      "Body Armor"
+    ],
+    "base_types_zh_tw": [
+      "盔甲"
+    ],
+    "level_req": 61,
+    "patch": "1.10",
+    "category": "classic",
+    "name_sc": "荆棘",
+    "name_en": "Bramble",
+    "name_tc": "棘刺",
+    "base_types_sc": [
+      "盔甲"
+    ],
+    "base_types_tc": [
+      "鎧甲"
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Brand",
+    "name_zh_tw": "烙印",
+    "runes": [
+      "Jah",
+      "Lo",
+      "Mal",
+      "Gul"
+    ],
+    "sockets": 4,
+    "base_types": [
+      "Missile Weapons"
+    ],
+    "base_types_zh_tw": [
+      "遠程武器"
+    ],
+    "level_req": 65,
+    "patch": "1.10",
+    "category": "classic",
+    "name_sc": "烙印",
+    "name_en": "Brand",
+    "name_tc": "烙印",
+    "base_types_sc": [
+      "远程武器"
+    ],
+    "base_types_tc": [
+      "远程武器"
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Breath of the Dying",
+    "name_zh_tw": "死亡氣息",
+    "runes": [
+      "Vex",
+      "Hel",
+      "El",
+      "Eld",
+      "Zod",
+      "Eth"
+    ],
+    "sockets": 6,
+    "base_types": [
+      "Weapons"
+    ],
+    "base_types_zh_tw": [
+      "武器"
+    ],
+    "level_req": 69,
+    "patch": "1.10",
+    "category": "classic",
+    "name_sc": "死亡气息",
+    "name_en": "Breath of the Dying",
+    "name_tc": "死亡呼吸",
+    "base_types_sc": [
+      "武器"
+    ],
+    "base_types_tc": [
+      "武器"
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Call to Arms",
+    "name_zh_tw": "武裝召喚",
+    "runes": [
+      "Amn",
+      "Ral",
+      "Mal",
+      "Ist",
+      "Ohm"
+    ],
+    "sockets": 5,
+    "base_types": [
+      "Weapons"
+    ],
+    "base_types_zh_tw": [
+      "武器"
+    ],
+    "level_req": 57,
+    "patch": "1.10",
+    "category": "classic",
+    "name_sc": "武装召唤",
+    "name_en": "Call to Arms",
+    "name_tc": "戰爭召喚",
+    "base_types_sc": [
+      "武器"
+    ],
+    "base_types_tc": [
+      "武器"
+    ]
+  },
+  {
+    "id": 9,
+    "name": "Chains of Honor",
+    "name_zh_tw": "榮耀之鏈",
+    "runes": [
+      "Dol",
+      "Um",
+      "Ber",
+      "Ist"
+    ],
+    "sockets": 4,
+    "base_types": [
+      "Body Armor"
+    ],
+    "base_types_zh_tw": [
+      "盔甲"
+    ],
+    "level_req": 63,
+    "patch": "1.10",
+    "category": "classic",
+    "name_sc": "荣耀之链",
+    "name_en": "Chains of Honor",
+    "name_tc": "榮耀之鍊",
+    "base_types_sc": [
+      "盔甲"
+    ],
+    "base_types_tc": [
+      "鎧甲"
+    ]
+  },
+  {
+    "id": 10,
+    "name": "Chaos",
+    "name_zh_tw": "混沌",
+    "runes": [
+      "Fal",
+      "Ohm",
+      "Um"
+    ],
+    "sockets": 3,
+    "base_types": [
+      "Katars"
+    ],
+    "base_types_zh_tw": [
+      "拳刃"
+    ],
+    "level_req": 57,
+    "patch": "1.10",
+    "category": "classic",
+    "name_sc": "混沌",
+    "name_en": "Chaos",
+    "name_tc": "渾沌",
+    "base_types_sc": [
+      "拳刃"
+    ],
+    "base_types_tc": [
+      "拳刃"
+    ]
+  },
+  {
+    "id": 11,
+    "name": "Crescent Moon",
+    "name_zh_tw": "新月",
+    "runes": [
+      "Shael",
+      "Um",
+      "Tir"
+    ],
+    "sockets": 3,
+    "base_types": [
+      "Axes",
+      "Swords",
+      "Polearms"
+    ],
+    "base_types_zh_tw": [
+      "斧",
+      "劍",
+      "長柄武器"
+    ],
+    "level_req": 47,
+    "patch": "1.10",
+    "category": "classic",
+    "name_sc": "新月",
+    "name_en": "Crescent Moon",
+    "name_tc": "新月",
+    "base_types_sc": [
+      "斧",
+      "剑",
+      "长柄武器"
+    ],
+    "base_types_tc": [
+      "斧",
+      "劍",
+      "长柄武器"
+    ]
+  },
+  {
+    "id": 12,
+    "name": "Death",
+    "name_zh_tw": "死亡",
+    "runes": [
+      "Hel",
+      "El",
+      "Vex",
+      "Ort",
+      "Gul"
+    ],
+    "sockets": 5,
+    "base_types": [
+      "Swords",
+      "Axes"
+    ],
+    "base_types_zh_tw": [
+      "劍",
+      "斧"
+    ],
+    "level_req": 55,
+    "patch": "1.10",
+    "category": "classic",
+    "name_sc": "死亡",
+    "name_en": "Death",
+    "name_tc": "死亡",
+    "base_types_sc": [
+      "剑",
+      "斧"
+    ],
+    "base_types_tc": [
+      "劍",
+      "斧"
+    ]
+  },
+  {
+    "id": 13,
+    "name": "Delirium",
+    "name_zh_tw": "精神錯亂",
+    "runes": [
+      "Lem",
+      "Ist",
+      "Io"
+    ],
+    "sockets": 3,
+    "base_types": [
+      "Helms"
+    ],
+    "base_types_zh_tw": [
+      "頭盔"
+    ],
+    "level_req": 51,
+    "patch": "1.10",
+    "category": "classic",
+    "name_sc": "精神错乱",
+    "name_en": "Delirium",
+    "name_tc": "迪勒瑞姆",
+    "base_types_sc": [
+      "头盔"
+    ],
+    "base_types_tc": [
+      "頭盔"
+    ]
+  },
+  {
+    "id": 14,
+    "name": "Destruction",
+    "name_zh_tw": "毀滅",
+    "runes": [
+      "Vex",
+      "Lo",
+      "Ber",
+      "Jah",
+      "Ko"
+    ],
+    "sockets": 5,
+    "base_types": [
+      "Polearms",
+      "Swords"
+    ],
+    "base_types_zh_tw": [
+      "長柄武器",
+      "劍"
+    ],
+    "level_req": 65,
+    "patch": "1.10",
+    "category": "classic",
+    "name_sc": "毁灭",
+    "name_en": "Destruction",
+    "name_tc": "毀滅",
+    "base_types_sc": [
+      "长柄武器",
+      "剑"
+    ],
+    "base_types_tc": [
+      "长柄武器",
+      "劍"
+    ]
+  },
+  {
+    "id": 15,
+    "name": "Doom",
+    "name_zh_tw": "末日",
+    "runes": [
+      "Hel",
+      "Ohm",
+      "Um",
+      "Lo",
+      "Cham"
+    ],
+    "sockets": 5,
+    "base_types": [
+      "Axes",
+      "Polearms",
+      "Hammers"
+    ],
+    "base_types_zh_tw": [
+      "斧",
+      "長柄武器",
+      "錘"
+    ],
+    "level_req": 67,
+    "patch": "1.10",
+    "category": "classic",
+    "name_sc": "末日",
+    "name_en": "Doom",
+    "name_tc": "末日",
+    "base_types_sc": [
+      "斧",
+      "长柄武器",
+      "锤"
+    ],
+    "base_types_tc": [
+      "斧",
+      "长柄武器",
+      "錘"
+    ]
+  },
+  {
+    "id": 16,
+    "name": "Dragon",
+    "name_zh_tw": "龍",
+    "runes": [
+      "Sur",
+      "Lo",
+      "Sol"
+    ],
+    "sockets": 3,
+    "base_types": [
+      "Shields",
+      "Body Armor"
+    ],
+    "base_types_zh_tw": [
+      "盾牌",
+      "盔甲"
+    ],
+    "level_req": 61,
+    "patch": "1.10",
+    "category": "classic",
+    "name_sc": "龙",
+    "name_en": "Dragon",
+    "name_tc": "龍",
+    "base_types_sc": [
+      "盾牌",
+      "盔甲"
+    ],
+    "base_types_tc": [
+      "盾牌",
+      "鎧甲"
+    ]
+  },
+  {
+    "id": 17,
+    "name": "Dream",
+    "name_zh_tw": "夢境",
+    "runes": [
+      "Io",
+      "Jah",
+      "Pul"
+    ],
+    "sockets": 3,
+    "base_types": [
+      "Helms",
+      "Shields"
+    ],
+    "base_types_zh_tw": [
+      "頭盔",
+      "盾牌"
+    ],
+    "level_req": 65,
+    "patch": "1.10",
+    "category": "classic",
+    "name_sc": "梦境",
+    "name_en": "Dream",
+    "name_tc": "夢境",
+    "base_types_sc": [
+      "头盔",
+      "盾牌"
+    ],
+    "base_types_tc": [
+      "頭盔",
+      "盾牌"
+    ]
+  },
+  {
+    "id": 18,
+    "name": "Duress",
+    "name_zh_tw": "強制",
+    "runes": [
+      "Shael",
+      "Um",
+      "Thul"
+    ],
+    "sockets": 3,
+    "base_types": [
+      "Body Armor"
+    ],
+    "base_types_zh_tw": [
+      "盔甲"
+    ],
+    "level_req": 47,
+    "patch": "1.10",
+    "category": "classic",
+    "name_sc": "强制",
+    "name_en": "Duress",
+    "name_tc": "强制",
+    "base_types_sc": [
+      "盔甲"
+    ],
+    "base_types_tc": [
+      "鎧甲"
+    ]
+  },
+  {
+    "id": 19,
+    "name": "Edge",
+    "name_zh_tw": "鋒刃",
+    "runes": [
+      "Tir",
+      "Tal",
+      "Amn"
+    ],
+    "sockets": 3,
+    "base_types": [
+      "Missile Weapons"
+    ],
+    "base_types_zh_tw": [
+      "遠程武器"
+    ],
+    "level_req": 25,
+    "patch": "1.10",
+    "category": "classic",
+    "name_sc": "锋刃",
+    "name_en": "Edge",
+    "name_tc": "邊緣",
+    "base_types_sc": [
+      "远程武器"
+    ],
+    "base_types_tc": [
+      "远程武器"
+    ]
+  },
+  {
+    "id": 20,
+    "name": "Enigma",
+    "name_zh_tw": "謎團",
+    "runes": [
+      "Jah",
+      "Ith",
+      "Ber"
+    ],
+    "sockets": 3,
+    "base_types": [
+      "Body Armor"
+    ],
+    "base_types_zh_tw": [
+      "盔甲"
+    ],
+    "level_req": 65,
+    "patch": "1.10",
+    "category": "classic",
+    "name_sc": "谜团",
+    "name_en": "Enigma",
+    "name_tc": "謎團",
+    "base_types_sc": [
+      "盔甲"
+    ],
+    "base_types_tc": [
+      "鎧甲"
+    ]
+  },
+  {
+    "id": 21,
+    "name": "Enlightenment",
+    "name_zh_tw": "啟蒙",
+    "runes": [
+      "Pul",
+      "Ral",
+      "Sol"
+    ],
+    "sockets": 3,
+    "base_types": [
+      "Body Armor"
+    ],
+    "base_types_zh_tw": [
+      "盔甲"
+    ],
+    "level_req": 45,
+    "patch": "1.11",
+    "category": "classic",
+    "name_sc": "启蒙",
+    "name_en": "Enlightenment",
+    "name_tc": "啟蒙",
+    "base_types_sc": [
+      "盔甲"
+    ],
+    "base_types_tc": [
+      "鎧甲"
+    ]
+  },
+  {
+    "id": 22,
+    "name": "Eternity",
+    "name_zh_tw": "永恆",
+    "runes": [
+      "Amn",
+      "Ber",
+      "Ist",
+      "Sol",
+      "Sur"
+    ],
+    "sockets": 5,
+    "base_types": [
+      "Melee Weapons"
+    ],
+    "base_types_zh_tw": [
+      "近戰武器"
+    ],
+    "level_req": 63,
+    "patch": "1.10",
+    "category": "classic",
+    "name_sc": "永恒",
+    "name_en": "Eternity",
+    "name_tc": "永恆",
+    "base_types_sc": [
+      "近战武器"
+    ],
+    "base_types_tc": [
+      "近戰武器"
+    ]
+  },
+  {
+    "id": 23,
+    "name": "Exile",
+    "name_zh_tw": "放逐",
+    "runes": [
+      "Vex",
+      "Ohm",
+      "Ist",
+      "Dol"
+    ],
+    "sockets": 4,
+    "base_types": [
+      "Paladin Shields"
+    ],
+    "base_types_zh_tw": [
+      "聖騎士盾"
+    ],
+    "level_req": 57,
+    "patch": "1.10",
+    "category": "classic",
+    "name_sc": "放逐",
+    "name_en": "Exile",
+    "name_tc": "流亡",
+    "base_types_sc": [
+      "圣骑士盾"
+    ],
+    "base_types_tc": [
+      "圣骑士盾"
+    ]
+  },
+  {
+    "id": 24,
+    "name": "Faith",
+    "name_zh_tw": "信仰",
+    "runes": [
+      "Ohm",
+      "Jah",
+      "Lem",
+      "Eld"
+    ],
+    "sockets": 4,
+    "base_types": [
+      "Missile Weapons"
+    ],
+    "base_types_zh_tw": [
+      "遠程武器"
+    ],
+    "level_req": 65,
+    "patch": "1.10",
+    "category": "classic",
+    "name_sc": "信仰",
+    "name_en": "Faith",
+    "name_tc": "信仰",
+    "base_types_sc": [
+      "远程武器"
+    ],
+    "base_types_tc": [
+      "远程武器"
+    ]
+  },
+  {
+    "id": 25,
+    "name": "Famine",
+    "name_zh_tw": "饑荒",
+    "runes": [
+      "Fal",
+      "Ohm",
+      "Ort",
+      "Jah"
+    ],
+    "sockets": 4,
+    "base_types": [
+      "Axes",
+      "Hammers"
+    ],
+    "base_types_zh_tw": [
+      "斧",
+      "錘"
+    ],
+    "level_req": 65,
+    "patch": "1.10",
+    "category": "classic",
+    "name_sc": "饥荒",
+    "name_en": "Famine",
+    "name_tc": "饑荒",
+    "base_types_sc": [
+      "斧",
+      "锤"
+    ],
+    "base_types_tc": [
+      "斧",
+      "錘"
+    ]
+  },
+  {
+    "id": 26,
+    "name": "Fortitude",
+    "name_zh_tw": "剛毅",
+    "runes": [
+      "El",
+      "Sol",
+      "Dol",
+      "Lo"
+    ],
+    "sockets": 4,
+    "base_types": [
+      "Weapons",
+      "Body Armor"
+    ],
+    "base_types_zh_tw": [
+      "武器",
+      "盔甲"
+    ],
+    "level_req": 59,
+    "patch": "1.10",
+    "category": "classic",
+    "name_sc": "刚毅",
+    "name_en": "Fortitude",
+    "name_tc": "剛毅",
+    "base_types_sc": [
+      "武器",
+      "盔甲"
+    ],
+    "base_types_tc": [
+      "武器",
+      "鎧甲"
+    ]
+  },
+  {
+    "id": 27,
+    "name": "Fury",
+    "name_zh_tw": "狂怒",
+    "runes": [
+      "Jah",
+      "Gul",
+      "Eth"
+    ],
+    "sockets": 3,
+    "base_types": [
+      "Melee Weapons"
+    ],
+    "base_types_zh_tw": [
+      "近戰武器"
+    ],
+    "level_req": 65,
+    "patch": "1.00",
+    "category": "classic",
+    "name_sc": "狂怒",
+    "name_en": "Fury",
+    "name_tc": "狂怒",
+    "base_types_sc": [
+      "近战武器"
+    ],
+    "base_types_tc": [
+      "近戰武器"
+    ]
+  },
+  {
+    "id": 28,
+    "name": "Gloom",
+    "name_zh_tw": "幽暗",
+    "runes": [
+      "Fal",
+      "Um",
+      "Pul"
+    ],
+    "sockets": 3,
+    "base_types": [
+      "Body Armor"
+    ],
+    "base_types_zh_tw": [
+      "盔甲"
+    ],
+    "level_req": 47,
+    "patch": "1.10",
+    "category": "classic",
+    "name_sc": "幽暗",
+    "name_en": "Gloom",
+    "name_tc": "幽暗",
+    "base_types_sc": [
+      "盔甲"
+    ],
+    "base_types_tc": [
+      "鎧甲"
+    ]
+  },
+  {
+    "id": 29,
+    "name": "Grief",
+    "name_zh_tw": "悲傷",
+    "runes": [
+      "Eth",
+      "Tir",
+      "Lo",
+      "Mal",
+      "Ral"
+    ],
+    "sockets": 5,
+    "base_types": [
+      "Swords",
+      "Axes"
+    ],
+    "base_types_zh_tw": [
+      "劍",
+      "斧"
+    ],
+    "level_req": 59,
+    "patch": "1.10",
+    "category": "classic",
+    "name_sc": "悲伤",
+    "name_en": "Grief",
+    "name_tc": "悔恨",
+    "base_types_sc": [
+      "剑",
+      "斧"
+    ],
+    "base_types_tc": [
+      "劍",
+      "斧"
+    ]
+  },
+  {
+    "id": 30,
+    "name": "Hand of Justice",
+    "name_zh_tw": "正義之手",
+    "runes": [
+      "Sur",
+      "Cham",
+      "Amn",
+      "Lo"
+    ],
+    "sockets": 4,
+    "base_types": [
+      "Weapons"
+    ],
+    "base_types_zh_tw": [
+      "武器"
+    ],
+    "level_req": 67,
+    "patch": "1.10",
+    "category": "classic",
+    "name_sc": "正义之手",
+    "name_en": "Hand of Justice",
+    "name_tc": "正義之手",
+    "base_types_sc": [
+      "武器"
+    ],
+    "base_types_tc": [
+      "武器"
+    ]
+  },
+  {
+    "id": 31,
+    "name": "Harmony",
+    "name_zh_tw": "和平",
+    "runes": [
+      "Tir",
+      "Ith",
+      "Sol",
+      "Ko"
+    ],
+    "sockets": 4,
+    "base_types": [
+      "Missile Weapons"
+    ],
+    "base_types_zh_tw": [
+      "遠程武器"
+    ],
+    "level_req": 39,
+    "patch": "1.10",
+    "category": "classic",
+    "name_sc": "和平",
+    "name_en": "Harmony",
+    "name_tc": "和諧",
+    "base_types_sc": [
+      "远程武器"
+    ],
+    "base_types_tc": [
+      "远程武器"
+    ]
+  },
+  {
+    "id": 32,
+    "name": "Heart of the Oak",
+    "name_zh_tw": "橡樹之心",
+    "runes": [
+      "Ko",
+      "Vex",
+      "Pul",
+      "Thul"
+    ],
+    "sockets": 4,
+    "base_types": [
+      "Maces",
+      "Staves"
+    ],
+    "base_types_zh_tw": [
+      "釘頭錘",
+      "法杖"
+    ],
+    "level_req": 55,
+    "patch": "1.10",
+    "category": "classic",
+    "name_sc": "橡树之心",
+    "name_en": "Heart of the Oak",
+    "name_tc": "橡樹之心",
+    "base_types_sc": [
+      "钉头锤",
+      "法杖"
+    ],
+    "base_types_tc": [
+      "釘頭錘",
+      "法杖"
+    ]
+  },
+  {
+    "id": 33,
+    "name": "Holy Thunder",
+    "name_zh_tw": "神聖雷霆",
+    "runes": [
+      "Eth",
+      "Ral",
+      "Ort",
+      "Tal"
+    ],
+    "sockets": 4,
+    "base_types": [
+      "Scepters"
+    ],
+    "base_types_zh_tw": [
+      "權杖"
+    ],
+    "level_req": 21,
+    "patch": "1.00",
+    "category": "classic",
+    "name_sc": "神圣雷霆",
+    "name_en": "Holy Thunder",
+    "name_tc": "神聖雷擊",
+    "base_types_sc": [
+      "权杖"
+    ],
+    "base_types_tc": [
+      "權杖"
+    ]
+  },
+  {
+    "id": 34,
+    "name": "Honor",
+    "name_zh_tw": "榮耀",
+    "runes": [
+      "Amn",
+      "El",
+      "Ith",
+      "Tir",
+      "Sol"
+    ],
+    "sockets": 5,
+    "base_types": [
+      "Melee Weapons"
+    ],
+    "base_types_zh_tw": [
+      "近戰武器"
+    ],
+    "level_req": 27,
+    "patch": "1.00",
+    "category": "classic",
+    "name_sc": "荣耀",
+    "name_en": "Honor",
+    "name_tc": "榮耀",
+    "base_types_sc": [
+      "近战武器"
+    ],
+    "base_types_tc": [
+      "近戰武器"
+    ]
+  },
+  {
+    "id": 35,
+    "name": "Ice",
+    "name_zh_tw": "冰",
+    "runes": [
+      "Amn",
+      "Shael",
+      "Jah",
+      "Lo"
+    ],
+    "sockets": 4,
+    "base_types": [
+      "Missile Weapons"
+    ],
+    "base_types_zh_tw": [
+      "遠程武器"
+    ],
+    "level_req": 65,
+    "patch": "1.10",
+    "category": "classic",
+    "name_sc": "冰",
+    "name_en": "Ice",
+    "name_tc": "冰強",
+    "base_types_sc": [
+      "远程武器"
+    ],
+    "base_types_tc": [
+      "远程武器"
+    ]
+  },
+  {
+    "id": 36,
+    "name": "Infinity",
+    "name_zh_tw": "無限",
+    "runes": [
+      "Ber",
+      "Mal",
+      "Ber",
+      "Ist"
+    ],
+    "sockets": 4,
+    "base_types": [
+      "Polearms",
+      "Spears"
+    ],
+    "base_types_zh_tw": [
+      "長柄武器",
+      "矛"
+    ],
+    "level_req": 63,
+    "patch": "1.10",
+    "category": "classic",
+    "name_sc": "无限",
+    "name_en": "Infinity",
+    "name_tc": "無限",
+    "base_types_sc": [
+      "长柄武器",
+      "矛"
+    ],
+    "base_types_tc": [
+      "长柄武器",
+      "矛"
+    ]
+  },
+  {
+    "id": 37,
+    "name": "Insight",
+    "name_zh_tw": "洞察",
+    "runes": [
+      "Ral",
+      "Tir",
+      "Tal",
+      "Sol"
+    ],
+    "sockets": 4,
+    "base_types": [
+      "Polearms",
+      "Staves",
+      "Missile Weapons"
+    ],
+    "base_types_zh_tw": [
+      "長柄武器",
+      "法杖",
+      "遠程武器"
+    ],
+    "level_req": 27,
+    "patch": "1.10",
+    "category": "classic",
+    "name_sc": "洞察",
+    "name_en": "Insight",
+    "name_tc": "眼光",
+    "base_types_sc": [
+      "长柄武器",
+      "法杖",
+      "远程武器"
+    ],
+    "base_types_tc": [
+      "长柄武器",
+      "法杖",
+      "远程武器"
+    ]
+  },
+  {
+    "id": 38,
+    "name": "King's Grace",
+    "name_zh_tw": "國王的恩典",
+    "runes": [
+      "Amn",
+      "Ral",
+      "Thul"
+    ],
+    "sockets": 3,
+    "base_types": [
+      "Swords",
+      "Scepters"
+    ],
+    "base_types_zh_tw": [
+      "劍",
+      "權杖"
+    ],
+    "level_req": 25,
+    "patch": "1.00",
+    "category": "classic",
+    "name_sc": "国王的恩典",
+    "name_en": "King's Grace",
+    "name_tc": "國王之慈悲",
+    "base_types_sc": [
+      "剑",
+      "权杖"
+    ],
+    "base_types_tc": [
+      "劍",
+      "權杖"
+    ]
+  },
+  {
+    "id": 39,
+    "name": "Kingslayer",
+    "name_zh_tw": "弒君者",
+    "runes": [
+      "Mal",
+      "Um",
+      "Gul",
+      "Fal"
+    ],
+    "sockets": 4,
+    "base_types": [
+      "Swords",
+      "Axes"
+    ],
+    "base_types_zh_tw": [
+      "劍",
+      "斧"
+    ],
+    "level_req": 53,
+    "patch": "1.10",
+    "category": "classic",
+    "name_sc": "弑君者",
+    "name_en": "Kingslayer",
+    "name_tc": "弒君者",
+    "base_types_sc": [
+      "剑",
+      "斧"
+    ],
+    "base_types_tc": [
+      "劍",
+      "斧"
+    ]
+  },
+  {
+    "id": 40,
+    "name": "Last Wish",
+    "name_zh_tw": "最後的願望",
+    "runes": [
+      "Jah",
+      "Mal",
+      "Jah",
+      "Sur",
+      "Jah",
+      "Ber"
+    ],
+    "sockets": 6,
+    "base_types": [
+      "Swords",
+      "Hammers",
+      "Axes"
+    ],
+    "base_types_zh_tw": [
+      "劍",
+      "錘",
+      "斧"
+    ],
+    "level_req": 65,
+    "patch": "1.10",
+    "category": "classic",
+    "name_sc": "最后的愿望",
+    "name_en": "Last Wish",
+    "name_tc": "最後的願望",
+    "base_types_sc": [
+      "剑",
+      "锤",
+      "斧"
+    ],
+    "base_types_tc": [
+      "劍",
+      "錘",
+      "斧"
+    ]
+  },
+  {
+    "id": 41,
+    "name": "Lawbringer",
+    "name_zh_tw": "執法者",
+    "runes": [
+      "Amn",
+      "Lem",
+      "Ko"
+    ],
+    "sockets": 3,
+    "base_types": [
+      "Swords",
+      "Hammers",
+      "Scepters"
+    ],
+    "base_types_zh_tw": [
+      "劍",
+      "錘",
+      "權杖"
+    ],
+    "level_req": 43,
+    "patch": "1.10",
+    "category": "classic",
+    "name_sc": "执法者",
+    "name_en": "Lawbringer",
+    "name_tc": "執法者",
+    "base_types_sc": [
+      "剑",
+      "锤",
+      "权杖"
+    ],
+    "base_types_tc": [
+      "劍",
+      "錘",
+      "權杖"
+    ]
+  },
+  {
+    "id": 42,
+    "name": "Leaf",
+    "name_zh_tw": "葉子",
+    "runes": [
+      "Tir",
+      "Ral"
+    ],
+    "sockets": 2,
+    "base_types": [
+      "Staves"
+    ],
+    "base_types_zh_tw": [
+      "法杖"
+    ],
+    "level_req": 19,
+    "patch": "1.00",
+    "category": "classic",
+    "name_sc": "叶子",
+    "name_en": "Leaf",
+    "name_tc": "葉子",
+    "base_types_sc": [
+      "法杖"
+    ],
+    "base_types_tc": [
+      "法杖"
+    ]
+  },
+  {
+    "id": 43,
+    "name": "Lionheart",
+    "name_zh_tw": "獅心",
+    "runes": [
+      "Hel",
+      "Lum",
+      "Fal"
+    ],
+    "sockets": 3,
+    "base_types": [
+      "Body Armor"
+    ],
+    "base_types_zh_tw": [
+      "盔甲"
+    ],
+    "level_req": 41,
+    "patch": "1.00",
+    "category": "classic",
+    "name_sc": "狮心",
+    "name_en": "Lionheart",
+    "name_tc": "獅子心",
+    "base_types_sc": [
+      "盔甲"
+    ],
+    "base_types_tc": [
+      "鎧甲"
+    ]
+  },
+  {
+    "id": 44,
+    "name": "Lore",
+    "name_zh_tw": "學識",
+    "runes": [
+      "Ort",
+      "Sol"
+    ],
+    "sockets": 2,
+    "base_types": [
+      "Helms"
+    ],
+    "base_types_zh_tw": [
+      "頭盔"
+    ],
+    "level_req": 27,
+    "patch": "1.00",
+    "category": "classic",
+    "name_sc": "学识",
+    "name_en": "Lore",
+    "name_tc": "學識",
+    "base_types_sc": [
+      "头盔"
+    ],
+    "base_types_tc": [
+      "頭盔"
+    ]
+  },
+  {
+    "id": 45,
+    "name": "Malice",
+    "name_zh_tw": "惡意",
+    "runes": [
+      "Ith",
+      "El",
+      "Eth"
+    ],
+    "sockets": 3,
+    "base_types": [
+      "Melee Weapons"
+    ],
+    "base_types_zh_tw": [
+      "近戰武器"
+    ],
+    "level_req": 15,
+    "patch": "1.00",
+    "category": "classic",
+    "name_sc": "恶意",
+    "name_en": "Malice",
+    "name_tc": "惡意",
+    "base_types_sc": [
+      "近战武器"
+    ],
+    "base_types_tc": [
+      "近戰武器"
+    ]
+  },
+  {
+    "id": 46,
+    "name": "Melody",
+    "name_zh_tw": "旋律",
+    "runes": [
+      "Shael",
+      "Ko",
+      "Nef"
+    ],
+    "sockets": 3,
+    "base_types": [
+      "Missile Weapons"
+    ],
+    "base_types_zh_tw": [
+      "遠程武器"
+    ],
+    "level_req": 39,
+    "patch": "1.00",
+    "category": "classic",
+    "name_sc": "旋律",
+    "name_en": "Melody",
+    "name_tc": "旋律",
+    "base_types_sc": [
+      "远程武器"
+    ],
+    "base_types_tc": [
+      "远程武器"
+    ]
+  },
+  {
+    "id": 47,
+    "name": "Memory",
+    "name_zh_tw": "記憶",
+    "runes": [
+      "Lum",
+      "Io",
+      "Sol",
+      "Eth"
+    ],
+    "sockets": 4,
+    "base_types": [
+      "Staves"
+    ],
+    "base_types_zh_tw": [
+      "法杖"
+    ],
+    "level_req": 37,
+    "patch": "1.00",
+    "category": "classic",
+    "name_sc": "记忆",
+    "name_en": "Memory",
+    "name_tc": "記憶",
+    "base_types_sc": [
+      "法杖"
+    ],
+    "base_types_tc": [
+      "法杖"
+    ]
+  },
+  {
+    "id": 48,
+    "name": "Myth",
+    "name_zh_tw": "神話",
+    "runes": [
+      "Hel",
+      "Amn",
+      "Nef"
+    ],
+    "sockets": 3,
+    "base_types": [
+      "Body Armor"
+    ],
+    "base_types_zh_tw": [
+      "盔甲"
+    ],
+    "level_req": 25,
+    "patch": "1.11",
+    "category": "classic",
+    "name_sc": "神话",
+    "name_en": "Myth",
+    "name_tc": "神話",
+    "base_types_sc": [
+      "盔甲"
+    ],
+    "base_types_tc": [
+      "鎧甲"
+    ]
+  },
+  {
+    "id": 49,
+    "name": "Nadir",
+    "name_zh_tw": "最低點",
+    "runes": [
+      "Nef",
+      "Tir"
+    ],
+    "sockets": 2,
+    "base_types": [
+      "Helms"
+    ],
+    "base_types_zh_tw": [
+      "頭盔"
+    ],
+    "level_req": 13,
+    "patch": "1.00",
+    "category": "classic",
+    "name_sc": "最低点",
+    "name_en": "Nadir",
+    "name_tc": "最低點",
+    "base_types_sc": [
+      "头盔"
+    ],
+    "base_types_tc": [
+      "頭盔"
+    ]
+  },
+  {
+    "id": 50,
+    "name": "Oath",
+    "name_zh_tw": "誓言",
+    "runes": [
+      "Shael",
+      "Pul",
+      "Mal",
+      "Lum"
+    ],
+    "sockets": 4,
+    "base_types": [
+      "Swords",
+      "Axes",
+      "Maces"
+    ],
+    "base_types_zh_tw": [
+      "劍",
+      "斧",
+      "釘頭錘"
+    ],
+    "level_req": 49,
+    "patch": "1.10",
+    "category": "classic",
+    "name_sc": "誓言",
+    "name_en": "Oath",
+    "name_tc": "誓言",
+    "base_types_sc": [
+      "剑",
+      "斧",
+      "钉头锤"
+    ],
+    "base_types_tc": [
+      "劍",
+      "斧",
+      "釘頭錘"
+    ]
+  },
+  {
+    "id": 51,
+    "name": "Obedience",
+    "name_zh_tw": "服從",
+    "runes": [
+      "Hel",
+      "Ko",
+      "Thul",
+      "Eth",
+      "Fal"
+    ],
+    "sockets": 5,
+    "base_types": [
+      "Polearms",
+      "Spears"
+    ],
+    "base_types_zh_tw": [
+      "長柄武器",
+      "矛"
+    ],
+    "level_req": 41,
+    "patch": "1.10",
+    "category": "classic",
+    "name_sc": "服从",
+    "name_en": "Obedience",
+    "name_tc": "遵從",
+    "base_types_sc": [
+      "长柄武器",
+      "矛"
+    ],
+    "base_types_tc": [
+      "长柄武器",
+      "矛"
+    ]
+  },
+  {
+    "id": 52,
+    "name": "Passion",
+    "name_zh_tw": "熱情",
+    "runes": [
+      "Dol",
+      "Ort",
+      "Eld",
+      "Lem"
+    ],
+    "sockets": 4,
+    "base_types": [
+      "Weapons"
+    ],
+    "base_types_zh_tw": [
+      "武器"
+    ],
+    "level_req": 43,
+    "patch": "1.10",
+    "category": "classic",
+    "name_sc": "热情",
+    "name_en": "Passion",
+    "name_tc": "熱情",
+    "base_types_sc": [
+      "武器"
+    ],
+    "base_types_tc": [
+      "武器"
+    ]
+  },
+  {
+    "id": 53,
+    "name": "Peace",
+    "name_zh_tw": "和平",
+    "runes": [
+      "Shael",
+      "Thul",
+      "Amn"
+    ],
+    "sockets": 3,
+    "base_types": [
+      "Body Armor"
+    ],
+    "base_types_zh_tw": [
+      "盔甲"
+    ],
+    "level_req": 29,
+    "patch": "1.11",
+    "category": "classic",
+    "name_sc": "和平",
+    "name_en": "Peace",
+    "name_tc": "和平",
+    "base_types_sc": [
+      "盔甲"
+    ],
+    "base_types_tc": [
+      "鎧甲"
+    ]
+  },
+  {
+    "id": 54,
+    "name": "Phoenix",
+    "name_zh_tw": "鳳凰",
+    "runes": [
+      "Vex",
+      "Vex",
+      "Lo",
+      "Jah"
+    ],
+    "sockets": 4,
+    "base_types": [
+      "Weapons",
+      "Shields"
+    ],
+    "base_types_zh_tw": [
+      "武器",
+      "盾牌"
+    ],
+    "level_req": 65,
+    "patch": "1.10",
+    "category": "classic",
+    "name_sc": "凤凰",
+    "name_en": "Phoenix",
+    "name_tc": "鳳凰",
+    "base_types_sc": [
+      "武器",
+      "盾牌"
+    ],
+    "base_types_tc": [
+      "武器",
+      "盾牌"
+    ]
+  },
+  {
+    "id": 55,
+    "name": "Pride",
+    "name_zh_tw": "驕傲",
+    "runes": [
+      "Cham",
+      "Sur",
+      "Io",
+      "Lo"
+    ],
+    "sockets": 4,
+    "base_types": [
+      "Polearms",
+      "Spears"
+    ],
+    "base_types_zh_tw": [
+      "長柄武器",
+      "矛"
+    ],
+    "level_req": 67,
+    "patch": "1.10",
+    "category": "classic",
+    "name_sc": "骄傲",
+    "name_en": "Pride",
+    "name_tc": "骄傲",
+    "base_types_sc": [
+      "长柄武器",
+      "矛"
+    ],
+    "base_types_tc": [
+      "长柄武器",
+      "矛"
+    ]
+  },
+  {
+    "id": 56,
+    "name": "Principle",
+    "name_zh_tw": "原則",
+    "runes": [
+      "Ral",
+      "Gul",
+      "Eld"
+    ],
+    "sockets": 3,
+    "base_types": [
+      "Body Armor"
+    ],
+    "base_types_zh_tw": [
+      "盔甲"
+    ],
+    "level_req": 53,
+    "patch": "1.11",
+    "category": "classic",
+    "name_sc": "原则",
+    "name_en": "Principle",
+    "name_tc": "原則",
+    "base_types_sc": [
+      "盔甲"
+    ],
+    "base_types_tc": [
+      "鎧甲"
+    ]
+  },
+  {
+    "id": 57,
+    "name": "Prudence",
+    "name_zh_tw": "謹慎",
+    "runes": [
+      "Mal",
+      "Tir"
+    ],
+    "sockets": 2,
+    "base_types": [
+      "Body Armor"
+    ],
+    "base_types_zh_tw": [
+      "盔甲"
+    ],
+    "level_req": 49,
+    "patch": "1.10",
+    "category": "classic",
+    "name_sc": "谨慎",
+    "name_en": "Prudence",
+    "name_tc": "謹慎",
+    "base_types_sc": [
+      "盔甲"
+    ],
+    "base_types_tc": [
+      "鎧甲"
+    ]
+  },
+  {
+    "id": 58,
+    "name": "Radiance",
+    "name_zh_tw": "光輝",
+    "runes": [
+      "Nef",
+      "Sol",
+      "Ith"
+    ],
+    "sockets": 3,
+    "base_types": [
+      "Helms"
+    ],
+    "base_types_zh_tw": [
+      "頭盔"
+    ],
+    "level_req": 27,
+    "patch": "1.00",
+    "category": "classic",
+    "name_sc": "光辉",
+    "name_en": "Radiance",
+    "name_tc": "光輝",
+    "base_types_sc": [
+      "头盔"
+    ],
+    "base_types_tc": [
+      "頭盔"
+    ]
+  },
+  {
+    "id": 59,
+    "name": "Rain",
+    "name_zh_tw": "雨",
+    "runes": [
+      "Ort",
+      "Mal",
+      "Ith"
+    ],
+    "sockets": 3,
+    "base_types": [
+      "Body Armor"
+    ],
+    "base_types_zh_tw": [
+      "盔甲"
+    ],
+    "level_req": 49,
+    "patch": "1.11",
+    "category": "classic",
+    "name_sc": "雨",
+    "name_en": "Rain",
+    "name_tc": "雨",
+    "base_types_sc": [
+      "盔甲"
+    ],
+    "base_types_tc": [
+      "鎧甲"
+    ]
+  },
+  {
+    "id": 60,
+    "name": "Rhyme",
+    "name_zh_tw": "韻律",
+    "runes": [
+      "Shael",
+      "Eth"
+    ],
+    "sockets": 2,
+    "base_types": [
+      "Shields"
+    ],
+    "base_types_zh_tw": [
+      "盾牌"
+    ],
+    "level_req": 29,
+    "patch": "1.00",
+    "category": "classic",
+    "name_sc": "韵律",
+    "name_en": "Rhyme",
+    "name_tc": "韵律",
+    "base_types_sc": [
+      "盾牌"
+    ],
+    "base_types_tc": [
+      "盾牌"
+    ]
+  },
+  {
+    "id": 61,
+    "name": "Rift",
+    "name_zh_tw": "裂縫",
+    "runes": [
+      "Hel",
+      "Ko",
+      "Lem",
+      "Gul"
+    ],
+    "sockets": 4,
+    "base_types": [
+      "Polearms",
+      "Scepters"
+    ],
+    "base_types_zh_tw": [
+      "長柄武器",
+      "權杖"
+    ],
+    "level_req": 53,
+    "patch": "1.10",
+    "category": "classic",
+    "name_sc": "裂缝",
+    "name_en": "Rift",
+    "name_tc": "裂縫",
+    "base_types_sc": [
+      "长柄武器",
+      "权杖"
+    ],
+    "base_types_tc": [
+      "长柄武器",
+      "權杖"
+    ]
+  },
+  {
+    "id": 62,
+    "name": "Sanctuary",
+    "name_zh_tw": "庇護所",
+    "runes": [
+      "Ko",
+      "Ko",
+      "Mal"
+    ],
+    "sockets": 3,
+    "base_types": [
+      "Shields"
+    ],
+    "base_types_zh_tw": [
+      "盾牌"
+    ],
+    "level_req": 49,
+    "patch": "1.10",
+    "category": "classic",
+    "name_sc": "庇护所",
+    "name_en": "Sanctuary",
+    "name_tc": "聖域",
+    "base_types_sc": [
+      "盾牌"
+    ],
+    "base_types_tc": [
+      "盾牌"
+    ]
+  },
+  {
+    "id": 63,
+    "name": "Silence",
+    "name_zh_tw": "沉默",
+    "runes": [
+      "Dol",
+      "Eld",
+      "Hel",
+      "Ist",
+      "Tir",
+      "Vex"
+    ],
+    "sockets": 6,
+    "base_types": [
+      "Weapons"
+    ],
+    "base_types_zh_tw": [
+      "武器"
+    ],
+    "level_req": 55,
+    "patch": "1.00",
+    "category": "classic",
+    "name_sc": "沉默",
+    "name_en": "Silence",
+    "name_tc": "沈默",
+    "base_types_sc": [
+      "武器"
+    ],
+    "base_types_tc": [
+      "武器"
+    ]
+  },
+  {
+    "id": 64,
+    "name": "Smoke",
+    "name_zh_tw": "煙霧",
+    "runes": [
+      "Nef",
+      "Lum"
+    ],
+    "sockets": 2,
+    "base_types": [
+      "Body Armor"
+    ],
+    "base_types_zh_tw": [
+      "盔甲"
+    ],
+    "level_req": 37,
+    "patch": "1.00",
+    "category": "classic",
+    "name_sc": "烟雾",
+    "name_en": "Smoke",
+    "name_tc": "煙霧",
+    "base_types_sc": [
+      "盔甲"
+    ],
+    "base_types_tc": [
+      "鎧甲"
+    ]
+  },
+  {
+    "id": 65,
+    "name": "Spirit",
+    "name_zh_tw": "精神",
+    "runes": [
+      "Tal",
+      "Thul",
+      "Ort",
+      "Amn"
+    ],
+    "sockets": 4,
+    "base_types": [
+      "Swords",
+      "Shields"
+    ],
+    "base_types_zh_tw": [
+      "劍",
+      "盾牌"
+    ],
+    "level_req": 25,
+    "patch": "1.10",
+    "category": "classic",
+    "name_sc": "精神",
+    "name_en": "Spirit",
+    "name_tc": "精神",
+    "base_types_sc": [
+      "剑",
+      "盾牌"
+    ],
+    "base_types_tc": [
+      "劍",
+      "盾牌"
+    ]
+  },
+  {
+    "id": 66,
+    "name": "Splendor",
+    "name_zh_tw": "輝煌",
+    "runes": [
+      "Eth",
+      "Lum"
+    ],
+    "sockets": 2,
+    "base_types": [
+      "Shields"
+    ],
+    "base_types_zh_tw": [
+      "盾牌"
+    ],
+    "level_req": 37,
+    "patch": "1.10",
+    "category": "classic",
+    "name_sc": "辉煌",
+    "name_en": "Splendor",
+    "name_tc": "燦爛",
+    "base_types_sc": [
+      "盾牌"
+    ],
+    "base_types_tc": [
+      "盾牌"
+    ]
+  },
+  {
+    "id": 67,
+    "name": "Stealth",
+    "name_zh_tw": "隱身",
+    "runes": [
+      "Tal",
+      "Eth"
+    ],
+    "sockets": 2,
+    "base_types": [
+      "Body Armor"
+    ],
+    "base_types_zh_tw": [
+      "盔甲"
+    ],
+    "level_req": 17,
+    "patch": "1.00",
+    "category": "classic",
+    "name_sc": "隐身",
+    "name_en": "Stealth",
+    "name_tc": "隱密",
+    "base_types_sc": [
+      "盔甲"
+    ],
+    "base_types_tc": [
+      "鎧甲"
+    ]
+  },
+  {
+    "id": 68,
+    "name": "Steel",
+    "name_zh_tw": "鋼鐵",
+    "runes": [
+      "Tir",
+      "El"
+    ],
+    "sockets": 2,
+    "base_types": [
+      "Swords",
+      "Axes",
+      "Maces"
+    ],
+    "base_types_zh_tw": [
+      "劍",
+      "斧",
+      "釘頭錘"
+    ],
+    "level_req": 13,
+    "patch": "1.00",
+    "category": "classic",
+    "name_sc": "钢铁",
+    "name_en": "Steel",
+    "name_tc": "鋼鐵",
+    "base_types_sc": [
+      "剑",
+      "斧",
+      "钉头锤"
+    ],
+    "base_types_tc": [
+      "劍",
+      "斧",
+      "釘頭錘"
+    ]
+  },
+  {
+    "id": 69,
+    "name": "Stone",
+    "name_zh_tw": "石頭",
+    "runes": [
+      "Shael",
+      "Um",
+      "Pul",
+      "Lum"
+    ],
+    "sockets": 4,
+    "base_types": [
+      "Body Armor"
+    ],
+    "base_types_zh_tw": [
+      "盔甲"
+    ],
+    "level_req": 47,
+    "patch": "1.10",
+    "category": "classic",
+    "name_sc": "石头",
+    "name_en": "Stone",
+    "name_tc": "石塊",
+    "base_types_sc": [
+      "盔甲"
+    ],
+    "base_types_tc": [
+      "鎧甲"
+    ]
+  },
+  {
+    "id": 70,
+    "name": "Strength",
+    "name_zh_tw": "力量",
+    "runes": [
+      "Amn",
+      "Tir"
+    ],
+    "sockets": 2,
+    "base_types": [
+      "Melee Weapons"
+    ],
+    "base_types_zh_tw": [
+      "近戰武器"
+    ],
+    "level_req": 25,
+    "patch": "1.00",
+    "category": "classic",
+    "name_sc": "力量",
+    "name_en": "Strength",
+    "name_tc": "力量",
+    "base_types_sc": [
+      "近战武器"
+    ],
+    "base_types_tc": [
+      "近戰武器"
+    ]
+  },
+  {
+    "id": 71,
+    "name": "Treachery",
+    "name_zh_tw": "背叛",
+    "runes": [
+      "Shael",
+      "Thul",
+      "Lem"
+    ],
+    "sockets": 3,
+    "base_types": [
+      "Body Armor"
+    ],
+    "base_types_zh_tw": [
+      "盔甲"
+    ],
+    "level_req": 43,
+    "patch": "1.11",
+    "category": "classic",
+    "name_sc": "背叛",
+    "name_en": "Treachery",
+    "name_tc": "背信",
+    "base_types_sc": [
+      "盔甲"
+    ],
+    "base_types_tc": [
+      "鎧甲"
+    ]
+  },
+  {
+    "id": 72,
+    "name": "Venom",
+    "name_zh_tw": "毒液",
+    "runes": [
+      "Tal",
+      "Dol",
+      "Mal"
+    ],
+    "sockets": 3,
+    "base_types": [
+      "Weapons"
+    ],
+    "base_types_zh_tw": [
+      "武器"
+    ],
+    "level_req": 49,
+    "patch": "1.00",
+    "category": "classic",
+    "name_sc": "毒液",
+    "name_en": "Venom",
+    "name_tc": "毒液",
+    "base_types_sc": [
+      "武器"
+    ],
+    "base_types_tc": [
+      "武器"
+    ]
+  },
+  {
+    "id": 73,
+    "name": "Voice of Reason",
+    "name_zh_tw": "理性之聲",
+    "runes": [
+      "Lem",
+      "Ko",
+      "El",
+      "Eld"
+    ],
+    "sockets": 4,
+    "base_types": [
+      "Swords",
+      "Maces"
+    ],
+    "base_types_zh_tw": [
+      "劍",
+      "釘頭錘"
+    ],
+    "level_req": 43,
+    "patch": "1.10",
+    "category": "classic",
+    "name_sc": "理性之声",
+    "name_en": "Voice of Reason",
+    "name_tc": "理性之聲",
+    "base_types_sc": [
+      "剑",
+      "钉头锤"
+    ],
+    "base_types_tc": [
+      "劍",
+      "釘頭錘"
+    ]
+  },
+  {
+    "id": 74,
+    "name": "Wealth",
+    "name_zh_tw": "財富",
+    "runes": [
+      "Lem",
+      "Ko",
+      "Tir"
+    ],
+    "sockets": 3,
+    "base_types": [
+      "Body Armor"
+    ],
+    "base_types_zh_tw": [
+      "盔甲"
+    ],
+    "level_req": 43,
+    "patch": "1.00",
+    "category": "classic",
+    "name_sc": "财富",
+    "name_en": "Wealth",
+    "name_tc": "財富",
+    "base_types_sc": [
+      "盔甲"
+    ],
+    "base_types_tc": [
+      "鎧甲"
+    ]
+  },
+  {
+    "id": 75,
+    "name": "White",
+    "name_zh_tw": "白色",
+    "runes": [
+      "Dol",
+      "Io"
+    ],
+    "sockets": 2,
+    "base_types": [
+      "Wands"
+    ],
+    "base_types_zh_tw": [
+      "魔杖"
+    ],
+    "level_req": 35,
+    "patch": "1.00",
+    "category": "classic",
+    "name_sc": "白色",
+    "name_en": "White",
+    "name_tc": "白色",
+    "base_types_sc": [
+      "魔杖"
+    ],
+    "base_types_tc": [
+      "魔杖"
+    ]
+  },
+  {
+    "id": 76,
+    "name": "Wind",
+    "name_zh_tw": "風",
+    "runes": [
+      "Sur",
+      "El"
+    ],
+    "sockets": 2,
+    "base_types": [
+      "Melee Weapons"
+    ],
+    "base_types_zh_tw": [
+      "近戰武器"
+    ],
+    "level_req": 61,
+    "patch": "1.10",
+    "category": "classic",
+    "name_sc": "风",
+    "name_en": "Wind",
+    "name_tc": "風",
+    "base_types_sc": [
+      "近战武器"
+    ],
+    "base_types_tc": [
+      "近戰武器"
+    ]
+  },
+  {
+    "id": 77,
+    "name": "Wrath",
+    "name_zh_tw": "憤怒",
+    "runes": [
+      "Pul",
+      "Lum",
+      "Ber",
+      "Mal"
+    ],
+    "sockets": 4,
+    "base_types": [
+      "Missile Weapons"
+    ],
+    "base_types_zh_tw": [
+      "遠程武器"
+    ],
+    "level_req": 63,
+    "patch": "1.10",
+    "category": "classic",
+    "name_sc": "愤怒",
+    "name_en": "Wrath",
+    "name_tc": "憤怒",
+    "base_types_sc": [
+      "远程武器"
+    ],
+    "base_types_tc": [
+      "远程武器"
+    ]
+  },
+  {
+    "id": 78,
+    "name": "Zephyr",
+    "name_zh_tw": "微風",
+    "runes": [
+      "Ort",
+      "Eth"
+    ],
+    "sockets": 2,
+    "base_types": [
+      "Missile Weapons"
+    ],
+    "base_types_zh_tw": [
+      "遠程武器"
+    ],
+    "level_req": 21,
+    "patch": "1.00",
+    "category": "classic",
+    "name_sc": "微风",
+    "name_en": "Zephyr",
+    "name_tc": "微風",
+    "base_types_sc": [
+      "远程武器"
+    ],
+    "base_types_tc": [
+      "远程武器"
+    ]
+  },
+  {
+    "id": 79,
+    "name": "Flickering Flame",
+    "name_zh_tw": "閃爍之焰",
+    "runes": [
+      "Nef",
+      "Pul",
+      "Vex"
+    ],
+    "sockets": 3,
+    "base_types": [
+      "Helms"
+    ],
+    "base_types_zh_tw": [
+      "頭盔"
+    ],
+    "level_req": 55,
+    "patch": "2.4",
+    "category": "patch_2_4",
+    "name_sc": "闪烁之焰",
+    "name_en": "Flickering Flame",
+    "name_tc": "搖曳之焰",
+    "base_types_sc": [
+      "头盔"
+    ],
+    "base_types_tc": [
+      "頭盔"
+    ]
+  },
+  {
+    "id": 80,
+    "name": "Obsession",
+    "name_zh_tw": "執念",
+    "runes": [
+      "Zod",
+      "Ist",
+      "Lem",
+      "Lum",
+      "Io",
+      "Nef"
+    ],
+    "sockets": 6,
+    "base_types": [
+      "Staves"
+    ],
+    "base_types_zh_tw": [
+      "法杖"
+    ],
+    "level_req": 69,
+    "patch": "2.4",
+    "category": "patch_2_4",
+    "name_sc": "执念",
+    "name_en": "Obsession",
+    "name_tc": "执念",
+    "base_types_sc": [
+      "法杖"
+    ],
+    "base_types_tc": [
+      "法杖"
+    ]
+  },
+  {
+    "id": 81,
+    "name": "Pattern",
+    "name_zh_tw": "花紋",
+    "runes": [
+      "Tal",
+      "Ort",
+      "Thul"
+    ],
+    "sockets": 3,
+    "base_types": [
+      "Katars"
+    ],
+    "base_types_zh_tw": [
+      "拳刃"
+    ],
+    "level_req": 23,
+    "patch": "2.4",
+    "category": "patch_2_4",
+    "name_sc": "花纹",
+    "name_en": "Pattern",
+    "name_tc": "圖案",
+    "base_types_sc": [
+      "拳刃"
+    ],
+    "base_types_tc": [
+      "拳刃"
+    ]
+  },
+  {
+    "id": 82,
+    "name": "Plague",
+    "name_zh_tw": "瘟疫",
+    "runes": [
+      "Cham",
+      "Shael",
+      "Um"
+    ],
+    "sockets": 3,
+    "base_types": [
+      "Swords",
+      "Katars",
+      "Daggers"
+    ],
+    "base_types_zh_tw": [
+      "劍",
+      "拳刃",
+      "匕首"
+    ],
+    "level_req": 67,
+    "patch": "2.4",
+    "category": "patch_2_4",
+    "name_sc": "瘟疫",
+    "name_en": "Plague",
+    "name_tc": "瘟疫",
+    "base_types_sc": [
+      "剑",
+      "拳刃",
+      "匕首"
+    ],
+    "base_types_tc": [
+      "劍",
+      "拳刃",
+      "匕首"
+    ]
+  },
+  {
+    "id": 83,
+    "name": "Unbending Will",
+    "name_zh_tw": "不屈意志",
+    "runes": [
+      "Fal",
+      "Io",
+      "Ith",
+      "Eld",
+      "El",
+      "Hel"
+    ],
+    "sockets": 6,
+    "base_types": [
+      "Swords"
+    ],
+    "base_types_zh_tw": [
+      "劍"
+    ],
+    "level_req": 41,
+    "patch": "2.4",
+    "category": "patch_2_4",
+    "name_sc": "不屈意志",
+    "name_en": "Unbending Will",
+    "name_tc": "不屈意志",
+    "base_types_sc": [
+      "剑"
+    ],
+    "base_types_tc": [
+      "劍"
+    ]
+  },
+  {
+    "id": 84,
+    "name": "Wisdom",
+    "name_zh_tw": "智慧",
+    "runes": [
+      "Pul",
+      "Ith",
+      "Eld"
+    ],
+    "sockets": 3,
+    "base_types": [
+      "Helms"
+    ],
+    "base_types_zh_tw": [
+      "頭盔"
+    ],
+    "level_req": 45,
+    "patch": "2.4",
+    "category": "patch_2_4",
+    "name_sc": "智慧",
+    "name_en": "Wisdom",
+    "name_tc": "智慧",
+    "base_types_sc": [
+      "头盔"
+    ],
+    "base_types_tc": [
+      "頭盔"
+    ]
+  },
+  {
+    "id": 85,
+    "name": "Mist",
+    "name_zh_tw": "迷霧",
+    "runes": [
+      "Cham",
+      "Shael",
+      "Gul",
+      "Thul",
+      "Ith"
+    ],
+    "sockets": 5,
+    "base_types": [
+      "Missile Weapons"
+    ],
+    "base_types_zh_tw": [
+      "遠程武器"
+    ],
+    "level_req": 67,
+    "patch": "2.4",
+    "category": "patch_2_4",
+    "name_sc": "迷雾",
+    "name_en": "Mist",
+    "name_tc": "迷霧",
+    "base_types_sc": [
+      "远程武器"
+    ],
+    "base_types_tc": [
+      "远程武器"
+    ]
+  },
+  {
+    "id": 86,
+    "name": "Bulwark",
+    "name_zh_tw": "壁壘",
+    "runes": [
+      "Shael",
+      "Io",
+      "Sol"
+    ],
+    "sockets": 3,
+    "base_types": [
+      "Helms"
+    ],
+    "base_types_zh_tw": [
+      "頭盔"
+    ],
+    "level_req": 35,
+    "patch": "2.6",
+    "category": "patch_2_6",
+    "name_sc": "壁垒",
+    "name_en": "Bulwark",
+    "name_tc": "防禦",
+    "base_types_sc": [
+      "头盔"
+    ],
+    "base_types_tc": [
+      "頭盔"
+    ]
+  },
+  {
+    "id": 87,
+    "name": "Cure",
+    "name_zh_tw": "治愈",
+    "runes": [
+      "Shael",
+      "Io",
+      "Tal"
+    ],
+    "sockets": 3,
+    "base_types": [
+      "Helms"
+    ],
+    "base_types_zh_tw": [
+      "頭盔"
+    ],
+    "level_req": 35,
+    "patch": "2.6",
+    "category": "patch_2_6",
+    "name_sc": "治愈",
+    "name_en": "Cure",
+    "name_tc": "治療",
+    "base_types_sc": [
+      "头盔"
+    ],
+    "base_types_tc": [
+      "頭盔"
+    ]
+  },
+  {
+    "id": 88,
+    "name": "Ground",
+    "name_zh_tw": "大地",
+    "runes": [
+      "Shael",
+      "Io",
+      "Ort"
+    ],
+    "sockets": 3,
+    "base_types": [
+      "Helms"
+    ],
+    "base_types_zh_tw": [
+      "頭盔"
+    ],
+    "level_req": 35,
+    "patch": "2.6",
+    "category": "patch_2_6",
+    "name_sc": "大地",
+    "name_en": "Ground",
+    "name_tc": "大地",
+    "base_types_sc": [
+      "头盔"
+    ],
+    "base_types_tc": [
+      "頭盔"
+    ]
+  },
+  {
+    "id": 89,
+    "name": "Hearth",
+    "name_zh_tw": "爐火",
+    "runes": [
+      "Shael",
+      "Io",
+      "Thul"
+    ],
+    "sockets": 3,
+    "base_types": [
+      "Helms"
+    ],
+    "base_types_zh_tw": [
+      "頭盔"
+    ],
+    "level_req": 35,
+    "patch": "2.6",
+    "category": "patch_2_6",
+    "name_sc": "炉火",
+    "name_en": "Hearth",
+    "name_tc": "爐火",
+    "base_types_sc": [
+      "头盔"
+    ],
+    "base_types_tc": [
+      "頭盔"
+    ]
+  },
+  {
+    "id": 90,
+    "name": "Temper",
+    "name_zh_tw": "淬煉",
+    "runes": [
+      "Shael",
+      "Io",
+      "Ral"
+    ],
+    "sockets": 3,
+    "base_types": [
+      "Helms"
+    ],
+    "base_types_zh_tw": [
+      "頭盔"
+    ],
+    "level_req": 35,
+    "patch": "2.6",
+    "category": "patch_2_6",
+    "name_sc": "淬炼",
+    "name_en": "Temper",
+    "name_tc": "脾氣",
+    "base_types_sc": [
+      "头盔"
+    ],
+    "base_types_tc": [
+      "頭盔"
+    ]
+  },
+  {
+    "id": 91,
+    "name": "Hustle",
+    "name_zh_tw": "奔忙",
+    "runes": [
+      "Shael",
+      "Ko",
+      "Eld"
+    ],
+    "sockets": 3,
+    "base_types": [
+      "Weapons",
+      "Body Armor"
+    ],
+    "base_types_zh_tw": [
+      "武器",
+      "盔甲"
+    ],
+    "level_req": 39,
+    "patch": "2.6",
+    "category": "patch_2_6",
+    "name_sc": "奔忙",
+    "name_en": "Hustle",
+    "name_tc": "疾速",
+    "base_types_sc": [
+      "武器",
+      "盔甲"
+    ],
+    "base_types_tc": [
+      "武器",
+      "鎧甲"
+    ]
+  },
+  {
+    "id": 92,
+    "name": "Metamorphosis",
+    "name_zh_tw": "蛻變",
+    "runes": [
+      "Io",
+      "Cham",
+      "Fal"
+    ],
+    "sockets": 3,
+    "base_types": [
+      "Helms"
+    ],
+    "base_types_zh_tw": [
+      "頭盔"
+    ],
+    "level_req": 67,
+    "patch": "2.6",
+    "category": "patch_2_6",
+    "name_sc": "蜕变",
+    "name_en": "Metamorphosis",
+    "name_tc": "變形",
+    "base_types_sc": [
+      "头盔"
+    ],
+    "base_types_tc": [
+      "頭盔"
+    ]
+  },
+  {
+    "id": 93,
+    "name": "Mosaic",
+    "name_zh_tw": "馬賽克",
+    "runes": [
+      "Mal",
+      "Gul",
+      "Amn"
+    ],
+    "sockets": 3,
+    "base_types": [
+      "Katars"
+    ],
+    "base_types_zh_tw": [
+      "拳刃"
+    ],
+    "level_req": 53,
+    "patch": "2.6",
+    "category": "patch_2_6",
+    "name_sc": "马赛克",
+    "name_en": "Mosaic",
+    "name_tc": "鑲嵌",
+    "base_types_sc": [
+      "拳刃"
+    ],
+    "base_types_tc": [
+      "拳刃"
+    ]
+  },
+  {
+    "id": 94,
+    "name": "Authority",
+    "name_zh_tw": "權威",
+    "runes": [
+      "Hel",
+      "Shael",
+      "Ral"
+    ],
+    "sockets": 3,
+    "base_types": [
+      "Body Armor"
+    ],
+    "base_types_zh_tw": [
+      "盔甲"
+    ],
+    "level_req": 29,
+    "patch": "3.0",
+    "category": "reign_of_warlock",
+    "name_sc": "权威",
+    "name_en": "Authority",
+    "name_tc": "權威",
+    "base_types_sc": [
+      "盔甲"
+    ],
+    "base_types_tc": [
+      "鎧甲"
+    ]
+  },
+  {
+    "id": 95,
+    "name": "Coven",
+    "name_zh_tw": "巫師會",
+    "runes": [
+      "Ist",
+      "Ral",
+      "Io"
+    ],
+    "sockets": 3,
+    "base_types": [
+      "Helms"
+    ],
+    "base_types_zh_tw": [
+      "頭盔"
+    ],
+    "level_req": 51,
+    "patch": "3.0",
+    "category": "reign_of_warlock",
+    "name_sc": "巫师会",
+    "name_en": "Coven",
+    "name_tc": "巫團",
+    "base_types_sc": [
+      "头盔"
+    ],
+    "base_types_tc": [
+      "頭盔"
+    ]
+  },
+  {
+    "id": 96,
+    "name": "Void",
+    "name_zh_tw": "虛無",
+    "runes": [
+      "Thul",
+      "Zod",
+      "Ist"
+    ],
+    "sockets": 3,
+    "base_types": [
+      "Daggers"
+    ],
+    "base_types_zh_tw": [
+      "匕首"
+    ],
+    "level_req": 69,
+    "patch": "3.0",
+    "category": "reign_of_warlock",
+    "name_sc": "虚无",
+    "name_en": "Void",
+    "name_tc": "虛空",
+    "base_types_sc": [
+      "匕首"
+    ],
+    "base_types_tc": [
+      "匕首"
+    ]
+  },
+  {
+    "id": 97,
+    "name": "Vigilance",
+    "name_zh_tw": "戒慎",
+    "runes": [
+      "Dol",
+      "Gul"
+    ],
+    "sockets": 2,
+    "base_types": [
+      "Shields",
+      "Grimoires",
+      "Shrunken Heads",
+      "Targes"
+    ],
+    "base_types_zh_tw": [
+      "盾牌",
+      "魔法書",
+      "乾縮頭顱",
+      "圓盾"
+    ],
+    "level_req": 53,
+    "patch": "3.0",
+    "category": "reign_of_warlock",
+    "name_sc": "戒慎",
+    "name_en": "Vigilance",
+    "name_tc": "警惕",
+    "base_types_sc": [
+      "盾牌",
+      "魔法书",
+      "干缩头颅",
+      "圆盾"
+    ],
+    "base_types_tc": [
+      "盾牌",
+      "魔法书",
+      "干缩头颅",
+      "圆盾"
+    ]
+  },
+  {
+    "id": 98,
+    "name": "Ritual",
+    "name_zh_tw": "儀式",
+    "runes": [
+      "Amn",
+      "Shael",
+      "Ohm"
+    ],
+    "sockets": 3,
+    "base_types": [
+      "Daggers"
+    ],
+    "base_types_zh_tw": [
+      "匕首"
+    ],
+    "level_req": 57,
+    "patch": "3.0",
+    "category": "reign_of_warlock",
+    "name_sc": "仪式",
+    "name_en": "Ritual",
+    "name_tc": "祭儀",
+    "base_types_sc": [
+      "匕首"
+    ],
+    "base_types_tc": [
+      "匕首"
+    ]
+  },
+  {
+    "id": 99,
+    "name": "Hysteria",
+    "name_zh_tw": "歇斯底里",
+    "runes": [
+      "Shael",
+      "Ko",
+      "Eld"
+    ],
+    "sockets": 3,
+    "base_types": [
+      "Body Armor"
+    ],
+    "base_types_zh_tw": [
+      "盔甲"
+    ],
+    "level_req": 39,
+    "patch": "3.0",
+    "category": "reign_of_warlock",
+    "name_sc": "歇斯底里",
+    "name_en": "Hysteria",
+    "name_tc": "歇斯底里",
+    "base_types_sc": [
+      "盔甲"
+    ],
+    "base_types_tc": [
+      "鎧甲"
+    ]
+  },
+  {
+    "id": 100,
+    "name": "Mania",
+    "name_zh_tw": "狂熱",
+    "runes": [
+      "Shael",
+      "Ko",
+      "Eld"
+    ],
+    "sockets": 3,
+    "base_types": [
+      "Weapons"
+    ],
+    "base_types_zh_tw": [
+      "武器"
+    ],
+    "level_req": 39,
+    "patch": "3.0",
+    "category": "reign_of_warlock",
+    "name_sc": "狂热",
+    "name_en": "Mania",
+    "name_tc": "狂躁",
+    "base_types_sc": [
+      "武器"
+    ],
+    "base_types_tc": [
+      "武器"
+    ]
+  }
+]
