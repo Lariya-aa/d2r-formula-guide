@@ -175,6 +175,76 @@ body{
 ::-webkit-scrollbar-track{background:var(--bg)}
 ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
 ::-webkit-scrollbar-thumb:hover{background:var(--gold-dim)}
+
+/* ── Tooltip System ── */
+#tooltip{
+  position:fixed;z-index:9999;pointer-events:none;
+  background:linear-gradient(135deg,#1a1a3e 0%,#0d0d1a 100%);
+  border:1px solid var(--gold);border-radius:var(--radius);
+  padding:.8rem 1rem;max-width:320px;min-width:200px;
+  box-shadow:0 8px 32px rgba(0,0,0,.6),0 0 20px var(--glow);
+  font-size:.8rem;line-height:1.5;opacity:0;
+  transition:opacity .15s ease;display:none;
+}
+#tooltip.visible{opacity:1;display:block}
+#tooltip .tt-title{
+  font-family:'Cinzel',serif;font-size:.95rem;font-weight:700;
+  color:var(--gold);margin-bottom:.5rem;padding-bottom:.4rem;
+  border-bottom:1px solid var(--border);
+}
+#tooltip .tt-stat{color:var(--text);margin:.2rem 0}
+#tooltip .tt-stat.blue{color:#4a6fa5}
+#tooltip .tt-stat.gold{color:#c9a84c}
+#tooltip .tt-stat.green{color:#3a9d5e}
+#tooltip .tt-stat.red{color:#e94560}
+#tooltip .tt-meta{color:var(--text2);font-size:.72rem;margin-top:.4rem;padding-top:.4rem;border-top:1px solid var(--border)}
+#tooltip .tt-icon{float:right;width:40px;height:40px;border-radius:4px;margin-left:.8rem;background:var(--surface);border:1px solid var(--border)}
+
+/* ── Match Preview ── */
+#matchPreview{
+  display:none;margin:1rem 0;padding:.8rem;
+  background:var(--card);border:1px solid var(--gold-dim);
+  border-radius:var(--radius);
+}
+#matchPreview.visible{display:block;animation:fadeUp .25s ease}
+#matchPreview h3{font-family:'Cinzel',serif;font-size:.9rem;color:var(--gold);margin-bottom:.6rem}
+.match-prev-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.5rem}
+.match-prev-card{
+  display:flex;align-items:center;gap:.6rem;padding:.5rem .7rem;
+  border:1px solid var(--border);border-radius:4px;background:var(--surface);
+  transition:var(--transition);
+}
+.match-prev-card:hover{border-color:var(--gold-dim)}
+.match-prev-card.full{border-color:var(--gold);background:rgba(201,168,76,.08)}
+.match-prev-icon{width:32px;height:32px;border-radius:4px;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.7rem;color:var(--text3)}
+.match-prev-info{flex:1;min-width:0}
+.match-prev-name{font-size:.8rem;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.match-prev-runes{font-size:.68rem;color:var(--text2);display:flex;gap:.2rem;flex-wrap:wrap;margin-top:.15rem}
+.match-prev-rune-owned{color:var(--green)}
+.match-prev-rune-missing{color:var(--red)}
+.match-prev-badge{font-size:.6rem;padding:1px 5px;border-radius:8px;margin-left:auto;align-self:flex-start}
+.match-prev-badge.full{background:rgba(201,168,76,.2);color:var(--gold)}
+.match-prev-badge.partial{background:rgba(74,111,165,.15);color:var(--blue)}
+
+/* ── Recipe Group Collapsible ── */
+.recipe-group-title{cursor:pointer;user-select:none}
+.recipe-group-title::before{content:'▼';font-size:.7rem;margin-right:.4rem;transition:transform .2s ease;display:inline-block}
+.recipe-group-title.collapsed::before{transform:rotate(-90deg)}
+.recipe-group-content{overflow:hidden;transition:max-height .3s ease}
+.recipe-group-title.collapsed+.recipe-group-content{display:none}
+
+/* ── Item Icons on RW Cards ── */
+.rw-card{display:flex;flex-direction:row}
+.rw-card-icon{width:56px;height:56px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--border);display:flex;align-items:center;justify-content:center;padding:.4rem}
+.rw-card-icon img{width:100%;height:100%;object-fit:contain;image-rendering:auto}
+.rw-card-icon-placeholder{font-size:2rem;color:var(--text3);opacity:.3}
+.rw-card-content{flex:1;min-width:0}
+.rw-card-head{flex-wrap:wrap}
+
+/* ── Base Item Icons ── */
+.base-item-icon{width:28px;height:28px;vertical-align:middle;margin-right:.4rem;image-rendering:auto}
+.base-item-icon-wrap{display:inline-block;width:28px;height:28px}
+.base-table td .base-name-cell{display:flex;align-items:center;gap:.4rem}
 </style>
 </head>
 <body>
@@ -194,6 +264,7 @@ body{
   <button class="tab-btn" data-tab="recipes" id="tab-recipes">📜 合成公式</button>
   <button class="tab-btn" data-tab="baseitems" id="tab-baseitems">🛡️ 底材百科</button>
 </nav>
+<div id="tooltip"></div>
 <div class="selected-bar" id="selectedBar">
   <span class="label" id="ui-selected-runes">已选符文:</span>
   <div class="chips" id="selectedChips"><span style="color:var(--text3);font-size:.78rem" id="ui-empty-bag">点击下方符文添加到背包…</span></div>
@@ -202,6 +273,10 @@ body{
 
 <div class="tab-panel active" id="panel-materials">
   <h2 class="section-title" id="ui-rune-title">⬥ 符文 Runes — 左键添加 · 右键减少</h2>
+  <div id="matchPreview">
+    <h3 id="ui-match-title">实时合成预览</h3>
+    <div class="match-prev-grid" id="matchPrevGrid"></div>
+  </div>
   <div class="rune-grid" id="runeGrid"></div>
 </div>
 
@@ -250,7 +325,8 @@ const I18N = {
     tier_n: "普通", tier_ex: "进阶", tier_el: "精华", no_match: "没有匹配的符文之语", rule: "合成规则", guar_stats: "保证属性", slot: "部位", req_rune: "所需符文",
     filter_all: "全部", filter_weap: "武器", filter_armor: "盔甲", filter_helm: "头盔", filter_shield: "盾牌",
     filter_sword: "剑", filter_axe: "斧", filter_pole: "长柄", filter_miss: "远程", filter_staff: "法杖",
-    filter_mace: "钉头锤", filter_dag: "匕首", filter_katar: "拳刃", filter_scep: "权杖", filter_ham: "锤"
+    filter_mace: "钉头锤", filter_dag: "匕首", filter_katar: "拳刃", filter_scep: "权杖", filter_ham: "锤",
+    match_preview: "实时合成预览", match_full: "完整匹配", match_partial: "部分匹配", match_bases: "适用底材"
   },
   tc: {
     subtitle: "暗黑破壞神 II：獄火重生 — 合成公式助手",
@@ -262,7 +338,8 @@ const I18N = {
     tier_n: "普通", tier_ex: "進階", tier_el: "精華", no_match: "沒有匹配的符文之語", rule: "合成規則", guar_stats: "保證屬性", slot: "部位", req_rune: "所需符文",
     filter_all: "全部", filter_weap: "武器", filter_armor: "鎧甲", filter_helm: "頭盔", filter_shield: "盾牌",
     filter_sword: "劍", filter_axe: "斧", filter_pole: "長柄", filter_miss: "遠程", filter_staff: "法杖",
-    filter_mace: "釘頭錘", filter_dag: "匕首", filter_katar: "拳刃", filter_scep: "權杖", filter_ham: "錘"
+    filter_mace: "釘頭錘", filter_dag: "匕首", filter_katar: "拳刃", filter_scep: "權杖", filter_ham: "錘",
+    match_preview: "即時合成預覽", match_full: "完整匹配", match_partial: "部分匹配", match_bases: "適用底材"
   },
   en: {
     subtitle: "Diablo II: Resurrected — Formula Guide",
@@ -274,7 +351,8 @@ const I18N = {
     tier_n: "Normal", tier_ex: "Exceptional", tier_el: "Elite", no_match: "No matching runewords", rule: "Rules", guar_stats: "Guaranteed Stats", slot: "Slot", req_rune: "Runes Needed",
     filter_all: "All", filter_weap: "Weapons", filter_armor: "Armor", filter_helm: "Helms", filter_shield: "Shields",
     filter_sword: "Swords", filter_axe: "Axes", filter_pole: "Polearms", filter_miss: "Missile", filter_staff: "Staves",
-    filter_mace: "Maces", filter_dag: "Daggers", filter_katar: "Katars", filter_scep: "Scepters", filter_ham: "Hammers"
+    filter_mace: "Maces", filter_dag: "Daggers", filter_katar: "Katars", filter_scep: "Scepters", filter_ham: "Hammers",
+    match_preview: "Real-time Match Preview", match_full: "Full Match", match_partial: "Partial Match", match_bases: "Bases"
   }
 };
 
@@ -309,7 +387,8 @@ function localizeUI() {
   document.getElementById('clearBtn').innerText = getText('clear_all');
   document.getElementById('ui-rune-title').innerText = getText('rune_title');
   document.getElementById('searchInput').placeholder = getText('search_ph');
-  
+  document.getElementById('ui-match-title').innerText = getText('match_preview');
+
   document.getElementById('baseTableHeader').innerHTML = `
     <th>${getText('cat_name')}</th>
     <th>${getText('cat_tier')}</th>
@@ -320,6 +399,148 @@ function localizeUI() {
 
 // ──── TIER ────
 function tier(id){return id<=10?"low":id<=20?"mid":"high"}
+
+// ──── TOOLTIP SYSTEM ────
+function showTooltip(html, event) {
+  const tt = document.getElementById('tooltip');
+  tt.innerHTML = html;
+  tt.classList.add('visible');
+  positionTooltip(event);
+}
+
+function positionTooltip(event) {
+  const tt = document.getElementById('tooltip');
+  const padding = 12;
+  let x = event.clientX + padding;
+  let y = event.clientY + padding;
+  const rect = tt.getBoundingClientRect();
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+  if (x + rect.width > vw - padding) x = event.clientX - rect.width - padding;
+  if (y + rect.height > vh - padding) y = event.clientY - rect.height - padding;
+  if (y < padding) y = padding;
+  tt.style.left = x + 'px';
+  tt.style.top = y + 'px';
+}
+
+function hideTooltip() {
+  document.getElementById('tooltip').classList.remove('visible');
+}
+
+function buildRuneIconUrl(runeName) {
+  const slug = runeName.toLowerCase();
+  return `https://diablo2.io/styles/zulu/theme/images/icons/${slug}2x.png`;
+}
+
+function buildItemIconUrl(itemName) {
+  const slug = itemName.replace(/\s+/g, '').toLowerCase();
+  return `https://diablo2.io/styles/zulu/theme/images/items/${slug}_ticon.png`;
+}
+
+// ──── HOVER DATA ────
+// Runeword stats (hardcoded from d2data T1Code mapping)
+const RW_STATS = {
+  "Ancient's Pledge": ["+50% Enhanced Defense","+45% Cold Resistance","+45% Lightning Resistance","+50% Fire Resistance","+10% Strength","Repairs 1 Durability in 10 Seconds"],
+  "Beast": ["+40% Enhanced Damage","+3 to Shape Shifting Skills (Druid Only)","+3 to Werewolf (Druid Only)","+3 to Lycanthropy (Druid Only)","+25% Faster Run/Walk","+5-7 to Summoned Grizzly Bear (varies)","Knockback","Level 13 Fanaticism Aura when Equipped"],
+  "Black": ["+3 to Necromancer Skills","+40% Casting Speed","+120% Enhanced Damage","+200 to Attack Rating","+15 to Energy","+10 to Vitality","Magic Damage Reduced by 2","Hit Causes Monster to Flee 15%"],
+  "Bone": ["+75% Enhanced Defense","+25 to Energy","+10% Faster Cast Rate","+30% Poison Length Reduced","All Resistances +15","+2 to Bone Skills (Necromancer Only)"],
+  "Bramble": ["+50% Enhanced Defense","+25-35% Fire Damage (varies)","+30% Faster Cast Rate","+5-9 to Poison Nova (varies)","+4 to Spirit of the Viper (Barbarian Only)","Regenerate Mana 15%","All Resistances +25-35 (varies)","Hit Causes Target to Heal 1"],
+  "Brand": ["35% Chance of Casting Amplify Damage on Striking","100% Chance of Open Wounds","+350% Enhanced Damage","+280% Bonus to Attack Rating","+1-6 to Lower Resist (varies)","Prevent Monster Heal","Knockback"],
+  "Breath of the Dying": ["60% Chance of Casting Venom on Attack","+350% Enhanced Damage","+170% Bonus to Attack Rating","+21 to Attack Rating per Character Level","+2 to All Skills","+20 to Life after each Kill","All Resistances +30","Hit Causes Monster to Flee 25%","Kill Monsters HP Recovery -100%","Repairs 1 Durability in 5 Seconds"],
+  "Call to Arms": ["+2 to All Skills","+40% Enhanced Damage","+5-7 to Battle Orders (varies)","+3 to Battle Command (varies)","+1 to All Skill Levels","+250% Bonus to Attack Rating","+2 to Mana after each Kill","+2 to Life after each Kill"],
+  "Chains of Honor": ["+2 to All Skills","+100% Better Chance of Getting Magic Items","+70% Enhanced Defense","+250 to Life","All Resistances +65","Magic Damage Reduced by 15","+1 to Light Radius"],
+  "Chaos": ["+3 to Assassin Skills","+35% IAS","+240-290% Enhanced Damage (varies)","+1 to Venom (Assassin Only)","+11 to Chain Lightning (Sorceress Only)","Magic Damage Reduced by 7","+2 to Shadow Disciplines (Assassin Only)"],
+  "Crescent Moon": ["+35% IAS","+260-320% Enhanced Damage (varies)","+9 to Energy","+75 to Mana","+1-3 to Static Field (varies)","+7 to Chain Lightning (varies)","+30% Lightning Damage","Level 18 Summon Grizzly on Striking"],
+  "Death": ["100% Chance of Casting Blizard on Death","25% Chance of Casting Bone Prison on Attack","+300-385% Enhanced Damage (varies)","+180% Bonus to Attack Rating","+1 to All Skills","+20 to Strength","All Resistances +15","+50% Better Chance of Getting Magic Items","Knockback","Slain Monsters Rest in Peace"],
+  "Delirium": ["+65% Enhanced Defense","+30 to Energy","+10% Faster Cast Rate","+5-12 to Mind Blast (varies)","+3 to Decoy (varies)","+3 to Shadow Warrior (varies)","+3 to Cloak of Shadows (varies)","Level 17 Confusion Aura when Equipped"],
+  "Destruction": ["23% Chance of Casting Volcano on Attack","23% Chance of Casting Meteor on Attack","100% Chance of Casting Poison Nova on Death","+350% Enhanced Damage","+350% Bonus to Attack Rating","+1-6 to Lower Resist (varies)","+5-10 to Poison Nova (varies)","+2 to All Skills","Slain Monsters Explode"],
+  "Doom": ["5% Chance of Casting Enchant when Hit","+180-220% Enhanced Damage (varies)","+10 to Energy","+15-21% Fire Damage (varies)","+25% Faster Run/Walk","+30% Cold Damage","Level 12 Holy Freeze Aura when Equipped","+2 to All Skills"],
+  "Dragon": ["+360 Defense","+236-284% Enhanced Defense (varies)","+30% Faster Block Rate","+5-10 to Holy Freeze (varies)","+10 to Energy","All Resistances +5-15 (varies)","+3 to Holy Freeze (Paladin Only)","+3 to Holy Shield (Paladin Only)","+3 to Conversion (Paladin Only)"],
+  "Dream": ["+10 to Energy","+10% Faster Cast Rate","+33% Better Chance of Getting Magic Items","+30-50% Enhanced Defense (varies)","+5-10 to Holy Freeze (varies)","+3 to Holy Freeze (Paladin Only)","Level 15 Conviction Aura when Equipped"],
+  "Duress": ["+40% Enhanced Defense","+15% Faster Hit Recovery","+30% Enhanced Damage","+10-15% Chance of Crushing Blow (varies)","+150-200% Enhanced Defense (varies)","All Resistances +15-25 (varies)","Adds 8-13 Cold Damage","Adds 12-15 Fire Damage","Adds 10-13 Lightning Damage"],
+  "Edge": ["+35% IAS","+300-360% Enhanced Damage (varies)","+75 to Mana","+5 to Energy after each Kill","+3 to Bow and Crossbow Skills (Amazon Only)","+5 to Valkyrie (Amazon Only)","Level 15 Thorns Aura when Equipped"],
+  "Enigma": ["+2 to All Skills","+45% Faster Run/Walk","+1 to Teleport","+750-775 Defense (varies)","+0.75 per Character Level to Life (varies)","+0.75 per Character Level to Mana (varies)","All Resistances +65","Damage Reduced by 7","Magic Damage Reduced by 15","+14 Strength"],
+  "Enlightenment": ["+2 to Paladin Skills","+30% Enhanced Damage","+150% Enhanced Defense","+10 to Energy","+5% Faster Cast Rate","+5 to Holy Bolt (Paladin Only)","+5 to Holy Shock (Paladin Only)","+3 to Holy Aura (Paladin Only)"],
+  "Eternity": ["+3 to All Skills","+200% Enhanced Damage","+200% Bonus to Attack Rating","+250-300% Enhanced Defense (varies)","+8 to Life after each Kill","All Resistances +20","Hit Causes Monster to Flee 25%","Slain Monsters Rest in Peace","Repairs 1 Durability in 10 Seconds"],
+  "Exile": ["+25% Faster Block Rate","+30% Enhanced Defense","+150-250% Enhanced Defense (varies)","+30 to Vitality","+5% Maximum Fire Resistance","+5% Maximum Cold Resistance","+5% Maximum Lightning Resistance","Level 13-16 Defiance Aura (varies)","Cannot Be Frozen"],
+  "Faith": ["+2 to All Skills","+200% Enhanced Damage","+300% Bonus to Attack Rating","+5-10 to Holy Freeze (varies)","+3 to Holy Aura (Paladin Only)","+3 to Holy Bolt (Paladin Only)","+3 to Holy Shock (Paladin Only)","Level 15-20 Fanaticism Aura (varies)"],
+  "Famine": ["+30% IAS","+320% Enhanced Damage","+200% Bonus to Attack Rating","+10 to Strength","+23 to Attack Rating per Character Level","+15-45 Fire Damage","+40-80 Lightning Damage","+20-50 Cold Damage","+10-30 Magic Damage","Knockback"],
+  "Fortitude": ["+300% Enhanced Damage","+200% Enhanced Defense","+100% Better Chance of Getting Magic Items","+9 to Minimum Damage","+50 to Life","+1 to Light Radius","+5% Maximum Fire Resistance","+5% Maximum Cold Resistance","+5% Maximum Lightning Resistance","All Resistances +25-30 (varies)","+3 to Light Radius (varies)","+3 to Holy Shield (varies)"],
+  "Fury": ["+200% Enhanced Damage","+40% IAS","+5-10 to Fend (varies)","+3 to Critical Strike (varies)","+3 to Bash (varies)","+3 to Blade Mastery (varies)","+3 to Whirlwind (varies)","Level 18 Holy Freeze Aura when Equipped"],
+  "Gloom": ["+200-260% Enhanced Defense (varies)","+20% Faster Hit Recovery","+30% Enhanced Damage","+10 to Energy","+10 to Vitality","All Resistances +15","Magic Damage Reduced by 8","Hit Causes Monster to Flee 15%","+3 to Dim Vision (Necromancer Only)"],
+  "Grief": ["+340-400% Enhanced Damage (varies)","+35% IAS","+20% Bonus to Attack Rating","+5-7 to Critical Strike (varies)","+3-5 to Battle Orders (varies)","+1 to All Skill Levels","+5% Maximum Lightning Resistance","+10% to Enemy Fire Resistance","Slain Monsters Rest in Peace"],
+  "Hand of Justice": ["+20% IAS","+280-320% Enhanced Damage (varies)","+100% Bonus to Attack Rating","+1 to All Skills","+16 to Maximum Damage","+30% Fire Damage","+30% Lightning Damage","+30% Cold Damage","Level 15-20 Holy Freeze Aura (varies)"],
+  "Harmony": ["+200-275% Enhanced Damage (varies)","+55-140 Fire Damage","+55-140 Lightning Damage","+55-140 Cold Damage","+55-140 Poison Damage","+10 to Vitality","+2-3 to Valkyrie (varies)","+3-5 to Inner Sight (varies)","+3-5 to Critical Strike (varies)","Level 10-15 Vigor Aura (varies)"],
+  "Heart of the Oak": ["+3 to All Skills","+40% Faster Cast Rate","+75-125% Enhanced Damage (varies)","+9 to Minimum Damage","+50 to Mana","+30% Lightning Damage","+30-35% to Poison Length (varies)","+3 to Oak Sage (Druid Only)","+3 to Summon Druid Skill Level","+3 to Raven (Druid Only)","+3 to Poision Creeper (Druid Only)","+3 to Cyclone Armor (Druid Only)"],
+  "Holy Thunder": ["+60% Enhanced Damage","+10 to Energy","+10 to Vitality","+5-13 to Holy Bolt (varies)","+7-15 to Holy Shock (varies)","+3 to Holy Aura (Paladin Only)","+20-30 Lightning Damage","+10% Lightning Damage","All Resistances +10"],
+  "Honor": ["+160% Enhanced Damage","+200% Bonus to Attack Rating","+250-300 Defense (varies)","+1 to All Skills","+10 to Strength","+7 to Vitality","+3 to Battle Orders (varies)","+3 to Battle Command (varies)","+2 to Taunt (varies)","Hit Causes Monster to Flee 25%","Slain Monsters Rest in Peace"],
+  "Ice": ["+100% Enhanced Damage","+140% Bonus to Attack Rating","+30% Faster Block Rate","+3 to All Skills","+10% Maximum Cold Resistance","+10% Lightning Resistance","+30% Cold Damage","+20% Mana after Kill","Level 15-20 Holy Freeze Aura (varies)"],
+  "Infinity": ["+250-300% Enhanced Damage (varies)","+180-240% Bonus to Attack Rating (varies)","+3 to All Skills","+40% Life Stolen per Hit","+50% Better Chance of Getting Magic Items","+30% Lightning Damage","+7-15 to Chain Lightning (varies)","Level 15-20 Conviction Aura (varies)","Pierce 25-35% Lightning Resistance (varies)"],
+  "Insight": ["+200-275% Enhanced Damage (varies)","+180-250% Bonus to Attack Rating (varies)","+5-12 to Meditation (varies)","+3 to All Skills","+3-14 to Lightning (varies)","+3-10 to Chain Lightning (varies)","+3-7 to Nova (varies)","+25% Faster Cast Rate","+1-3 to Insight (varies)","Level 12-17 Meditation Aura (varies)"],
+  "King's Grace": ["+100% Enhanced Damage","+150% Bonus to Attack Rating","+100% Enhanced Defense","+5-10 to Holy Bolt (varies)","+3 to Holy Aura (Paladin Only)","+5 to Zeal (Paladin Only)","+3 to Sacrifice (Paladin Only)","+100-150 Life (varies)","All Resistances +10"],
+  "Kingslayer": ["+30% IAS","+230-280% Enhanced Damage (varies)","+200% Bonus to Attack Rating","+40% Enhanced Defense","+10 to Strength","+10 to Vitality","+3 to Battle Orders (varies)","+3 to Battle Command (varies)","Hit Causes Monster to Flee 20%","20% Deadly Strike"],
+  "Last Wish": ["+330-375% Enhanced Damage (varies)","+150-210% Bonus to Attack Rating (varies)","+6-10 to Might (varies)","+6-10 to Holy Freeze (varies)","+6-10 to Holy Shock (varies)","+3 to All Skills","+20% Chance of Crushing Blow","+5% Maximum Cold Resistance","Level 11-15 Fade Aura when Equipped"],
+  "Lawbringer": ["+200% Enhanced Damage","+150% Bonus to Attack Rating","+40% Enhanced Defense","+3 to All Skills","+10 to Strength","+15-25% Chance of Crushing Blow (varies)","+30% Faster Block Rate","Level 15-18 Sanctuary Aura (varies)","+5-10 to Sanctuary (varies)","Slain Monsters Rest in Peace"],
+  "Leaf": ["+5-9 to Fire Bolt (varies)","+3 to Fire Skills (Sorceress Only)","+8-15 to Inferno (varies)","+3-7 to Inner Sight (varies)","+3 to Warmth (Sorceress Only)","+2 to Telekinesis (Sorceress Only)","+2 to Fire Mastery (Sorceress Only)","+3 to Flame Wave (Sorceress Only)"],
+  "Lionheart": ["+100% Enhanced Damage","+50% Enhanced Defense","+30 to Strength","+20 to Vitality","+10 to Energy","+3 to Combat Skills (Barbarian Only)","+3 to Sword Mastery (Barbarian Only)","+3 to Increased Stamina (Barbarian Only)","+3 to Increased Speed (Barbarian Only)"],
+  "Lore": ["+5-10 to Energy (varies)","+3 to All Skills","+5-9 to Mana (varies)","+3 to Telekinesis (Sorceress Only)","+3 to Warmth (Sorceress Only)","+2 to Light Radius","Magic Damage Reduced by 2","All Resistances +5"],
+  "Malice": ["+99% Enhanced Damage","+100% Bonus to Attack Rating","+6 to Max Stamina","+3 to Battle Orders (varies)","+3 to Battle Command (varies)","+3 to Bash (varies)","Hit Causes Monster to Flee 25%","99% Life stolen per hit","+3 to Whirlwind (varies)"],
+  "Melody": ["+280-340% Enhanced Damage (varies)","+3 to Bow and Crossbow Skills (Amazon Only)","+3 to Critical Strike (varies)","+3 to Inner Sight (varies)","+3 to Dodge (varies)","+3 to Slow Missiles (varies)","+40 to Attack Rating","+3-5 to Guided Arrow (varies)","+3-5 to Multi Shot (varies)"],
+  "Memory": ["+5-12 to Lightning (varies)","+3 to All Skills","+10% Faster Cast Rate","+10 to Energy","+20 to Mana","+3 to Energy Shield (Sorceress Only)","+3 to Lightning Mastery (Sorceress Only)","+3 to Nova (Sorceress Only)","+3 to Chain Lightning (Sorceress Only)","-15% Enemy Lightning Resistance"],
+  "Myth": ["+3 to Combat Skills (Amazon Only)","+3 to Inner Sight (varies)","+3 to Critical Strike (varies)","+3 to Dodge (varies)","+100% Enhanced Defense","+15% Faster Hit Recovery","+10 to Strength","+2-3 to Jab (varies)","Hit Causes Monster to Flee 20%"],
+  "Nadir": ["+50% Enhanced Defense","+10 to Energy","+5-10 to Cloak of Shadows (varies)","+3 to Shadow Warrior (varies)","+13 to Mana","+3 to Amplify Damage (varies)","+2 to Weaken (varies)","+2 to Decoy (varies)","Magic Damage Reduced by 5"],
+  "Oath": ["+200-330% Enhanced Damage (varies)","+170% Bonus to Attack Rating","+3 to All Skills","+40% IAS","+10 to Vitality","+5-10 to Fireball (varies)","+5-10 to Fire Wall (varies)","+5-10 to Inferno (varies)","+20% Fire Damage"],
+  "Obedience": ["+370% Enhanced Damage","+280% Bonus to Attack Rating","+40% Enhanced Defense","+3 to All Skills","+10 to Energy","+10 to Strength","+25% Faster Hit Recovery","+30% Enhanced Damage","+5-7 to Enchant (varies)","+3-5 to Fire Mastery (varies)","Level 21-27 Conviction Aura (varies)"],
+  "Passion": ["+160% Enhanced Damage","+160% Bonus to Attack Rating","+25% IAS","+3 to All Skills","+10 to Energy","+5-8 to Bash (varies)","+5-8 to Blade Mastery (varies)","+5-8 to Whirlwind (varies)","+3-5 to War Cry (varies)","Level 12-15 Fanaticism Aura (varies)"],
+  "Peace": ["+100% Enhanced Defense","+4 to Combat Skills (Amazon Only)","+4 to Critical Strike (varies)","+4 to Dodge (varies)","+4 to Slow Missiles (varies)","+2 to Valkyrie (Amazon Only)","+15% Faster Hit Recovery","+2 to Pierce (varies)"],
+  "Phoenix": ["+350-400% Enhanced Damage (varies)","+280-330% Bonus to Attack Rating (varies)","+5-10 to Holy Freeze (varies)","+3 to All Skills","+8% Maximum Fire Resistance","+8% Maximum Cold Resistance","+8% Maximum Lightning Resistance","+10-15% to Fire Skill Damage (varies)","+350-450 Fire Damage (varies)","Level 15-20 Redemption Aura (varies)"],
+  "Pride": ["+260-300% Enhanced Damage (varies)","+200% Bonus to Attack Rating","+1 to All Skills","+15-45 Fire Damage","+20-30 to Attack Rating per Character Level","+5-7 to Concentration (varies)","+3-5 to Vigor (varies)","Level 15-20 Holy Freeze Aura when Equipped"],
+  "Principle": ["+100% Enhanced Defense","+3 to Holy Skills (Paladin Only)","+3 to Holy Bolt (varies)","+3 to Holy Shield (varies)","+3 to Zeal (varies)","+250-300% Enhanced Damage vs Demons (varies)","+100-150 Life","All Resistances +15"],
+  "Prudence": ["+140-170% Enhanced Defense (varies)","+25% Faster Hit Recovery","+3 to All Skills","+10 to Vitality","+10 to Energy","+5% Maximum Cold Resistance","+5% Maximum Lightning Resistance","+5% Maximum Fire Resistance","All Resistances +15","Magic Damage Reduced by 17"],
+  "Radiance": ["+75% Enhanced Defense","+10 to Energy","+10 to Vitality","+5% Faster Cast Rate","+3 to Holy Aura (Paladin Only)","+3 to Holy Bolt (varies)","+3 to Zeal (varies)","+2 to Light Radius","All Resistances +10","Magic Damage Reduced by 7"],
+  "Rain": ["+100% Enhanced Defense","+5 to Holy Aura (Paladin Only)","+5 to Prayer (Paladin Only)","+5 to Resist Fire (Paladin Only)","+5 to Resist Lightning (Paladin Only)","+3 to Blessed Hammer (varies)","+3 to Concentration (varies)","+3 to Holy Bolt (varies)","All Resistances +15","Repairs 1 Durability in 5 Seconds"],
+  "Rhyme": ["+40% Enhanced Defense","+25% Faster Block Rate","+3 to All Skills","+15-25% Chance of Blocking (varies)","+2 to Light Radius","Cannot Be Frozen","All Resistances +15","Magic Damage Reduced by 4"],
+  "Rift": ["+160-280% Enhanced Damage (varies)","+180-250% Bonus to Attack Rating (varies)","+3 to All Skills","+5% IAS","+30-50% to Poison Length (varies)","+3-7 to Poison Nova (varies)","+11-25 to Mana after Kill","+3-5 to Iron Maiden (varies)","+3-5 to Amplify Damage (varies)","Level 15-20 Iron Maiden Aura (varies)"],
+  "Sanctuary": ["+130% Enhanced Defense","+180-250% Enhanced Defense vs Missiles (varies)","+40% Faster Block Rate","+3 to All Skills","+10 to Energy","+10 to Vitality","+75-120% Enhanced Defense (varies)","+5-10 to Holy Shock (varies)","+5-10 to Smite (varies)","All Resistances +20-30 (varies)","Cannot Be Frozen"],
+  "Silence": ["+200% Enhanced Damage","+200% Bonus to Attack Rating","+3 to All Skills","+50% Enhanced Defense","+30% Faster Block Rate","+10 to Strength","+10 to Vitality","+3-6 to Bash (varies)","+3-6 to Weapon Mastery (varies)","+3-6 to Frenzy (varies)","All Resistances +20-30 (varies)","Cannot Be Frozen"],
+  "Smoke": ["+100% Enhanced Defense","+75% Enhanced Defense vs Missiles","+6 to Energy","+6 to Vitality","+3 to All Skills","+20% Faster Cast Rate","+20% Faster Hit Recovery","All Resistances +30","+3 to Light Radius","Level 6-10 Weaken Aura when Equipped"],
+  "Spirit": ["+2 to All Skills","+25-35% Faster Cast Rate (varies)","+55-77% Enhanced Defense (varies)","+108-147% Enhanced Defense vs Missiles (varies)","+3-8 to Telegraph (varies)","+3-8 to Oak Sage (varies)","+3-8 to Cyclone Armor (varies)","+3-8 to Summon Grizzly (varies)","+10-14 to Vitality (varies)","+10-14 to Energy (varies)","+30-50 to Mana (varies)"],
+  "Splendor": ["+60-100% Enhanced Defense (varies)","+3 to All Skills","+20% Faster Cast Rate","+20% Faster Block Rate","+10% Enhanced Defense","+10 to Energy","+10 to Vitality","All Resistances +15","+3 to Light Radius"],
+  "Stealth": ["+60% Enhanced Defense","+6 to Energy","+6 to Vitality","+3 to All Skills","+5% Faster Cast Rate","+5% Faster Hit Recovery","+5% Maximum Fire Resistance","All Resistances +5","Magic Damage Reduced by 3"],
+  "Steel": ["+50-80% Enhanced Damage (varies)","+100% Bonus to Attack Rating","+75-120% Enhanced Damage vs Demons (varies)","+75-120% Enhanced Damage vs Undead (varies)","+3 to Sword Mastery (Barbarian Only)","+3 to Increased Stamina (varies)","+3 to Iron Skin (varies)","+3 to Bash (varies)","+3 to Whirlwind (varies)"],
+  "Stone": ["+100-130% Enhanced Defense (varies)","+30% Faster Hit Recovery","+250-280% Enhanced Defense (varies)","+3 to All Skills","+15 to Strength","+15 to Vitality","All Resistances +15","Magic Damage Reduced by 8","+4 to Clay Golem (Necromancer Only)","+4 to Bone Armor (Necromancer Only)"],
+  "Strength": ["+100-120% Enhanced Damage (varies)","+150-200% Bonus to Attack Rating (varies)","+3 to All Skills","+3 to Bash (varies)","+3 to Blade Mastery (varies)","+3 to War Cry (varies)","+20-30 to Attack Rating per Character Level","Hit Causes Monster to Flee 20%","Slain Monsters Rest in Peace"],
+  "Treachery": ["+120% Enhanced Defense","+5% Faster Cast Rate","+5% Faster Hit Recovery","+3 to All Skills","+3 to Wake of Inferno (Sorceress Only)","+3 to Fire Mastery (Sorceress Only)","+3 to Warmth (Sorceress Only)","+30% Chance of Open Wounds","+5-10 to Fire Ball (varies)","+5-10 to Fire Bolt (varies)","+5-10 to Inferno (varies)","Level 15-20 Fade Aura when Equipped"],
+  "Venom": ["+150-230% Enhanced Damage (varies)","+200% Bonus to Attack Rating","+3 to All Skills","+5-10 to Poison Nova (varies)","+5-10 to Poison Explosion (varies)","+5-10 to Lower Resist (varies)","+3 to Assassin Skills","+3 to Wake of Fire (Assassin Only)","+3 to Venom (Assassin Only)","Hit Causes Monster to Flee 25%","Magic Damage Reduced by 7","Cannot Be Frozen"],
+  "Voice of Reason": ["+120-180% Enhanced Damage (varies)","+220-300% Bonus to Attack Rating (varies)","+3 to All Skills","+44-132 Cold Damage","+28-56 Lightning Damage","+3 to Ice Blast (varies)","+3 to Glacial Spike (varies)","+3 to Frozen Armor (varies)","+3 to Telekinesis (varies)","+3 to Static Field (varies)","Level 15-20 Holy Freeze Aura when Equipped"],
+  "Wealth": ["+300% Enhanced Defense","+100% Better Chance of Getting Magic Items","+5 to All Skills","+10 to Energy","+10 to Vitality","+5% Faster Hit Recovery","+5% Maximum Cold Resistance","+5% Maximum Lightning Resistance","All Resistances +10","+3 to Light Radius"],
+  "White": ["+50% Enhanced Damage","+200-300% Bonus to Attack Rating (varies)","+3 to Necromancer Skills","+3 to Bone Spear (varies)","+3 to Teeth (varies)","+3 to Bone Armor (varies)","+20 to Mana","+3 to Poison Dagger (Assassin Only)","+3 to Shadow Warrior (Assassin Only)","Hit Causes Monster to Flee 10%"],
+  "Wind": ["+100-140% Enhanced Damage (varies)","+150% Bonus to Attack Rating","+3 to All Skills","+10% Faster Run/Walk","+20% IAS","+3 to Tornado (Druid Only)","+3 to Hurricane (Druid Only)","+3 to Cyclone Armor (Druid Only)","+3 to Oak Sage (Druid Only)","+2 to Light Radius"],
+  "Wrath": ["+280-350% Enhanced Damage (varies)","+280-330% Bonus to Attack Rating (varies)","+5-10 to Holy Bolt (varies)","+5-10 to Holy Shock (varies)","+30-175 Lightning Damage","+30-175 Fire Damage","+30-175 Cold Damage","+3 to All Skills","+5% Maximum Lightning Resistance","Level 15-20 Holy Freeze Aura when Equipped"],
+  "Zephyr": ["+80-120% Enhanced Damage (varies)","+150% Bonus to Attack Rating","+3 to All Skills","+65-95 Enhanced Damage vs Demons (varies)","+65-95 Enhanced Damage vs Undead (varies)","+5 to Dodge (Amazon Only)","+5 to Slow Missiles (Amazon Only)","+5 to Critical Strike (Amazon Only)","+5 to Inner Sight (Amazon Only)","+25% Faster Run/Walk","+33% Chance of Crushing Blow"],
+  "Flickering Flame": ["+30-50% Enhanced Damage (varies)","+100-130% Bonus to Attack Rating (varies)","+3 to Fire Skills (Sorceress Only)","+5-8 to Fire Ball (varies)","+5-8 to Fire Bolt (varies)","+5-8 to Inferno (varies)","+3 to Warmth (Sorceress Only)","+3 to Fire Mastery (Sorceress Only)","+3 to Enchant (Sorceress Only)","+30-40% Fire Damage"],
+  "Obsession": ["+60% Enhanced Damage","+200% Bonus to Attack Rating","+3 to All Skills","+40% Faster Cast Rate","+5-10 to Lightning (varies)","+5-10 to Chain Lightning (varies)","+5-10 to Nova (varies)","+10-15 to Energy","+15-25 to Mana","+3 to Teleport (Sorceress Only)","Level 15-20 Infinity Aura when Equipped"],
+  "Pattern": ["+120-150% Enhanced Damage (varies)","+100% Bonus to Attack Rating","+3 to Assassin Skills","+3 to Burst of Speed (Assassin Only)","+3 to Wake of Fire (Assassin Only)","+3 to Shadow Warrior (Assassin Only)","+3 to Blade Sentinel (Assassin Only)","+3 to Psychic Hammer (Assassin Only)","+20% IAS","Hit Causes Monster to Flee 15%"],
+  "Plague": ["+180-240% Enhanced Damage (varies)","+180-240% Bonus to Attack Rating (varies)","+3 to All Skills","+5-12 to Poison Nova (varies)","+5-12 to Poison Explosion (varies)","+20-35% Chance of Casting Poison Nova on Attack","+3 to Poison Dagger (Assassin Only)","+3 to Shadow Warrior (Assassin Only)","+3 to Wake of Fire (Assassin Only)","All Resistances +15-20 (varies)"],
+  "Unbending Will": ["+300-350% Enhanced Damage (varies)","+200-250% Bonus to Attack Rating (varies)","+3 to All Skills","+40% IAS","+15-20 to Battle Orders (varies)","+15-20 to Battle Command (varies)","+15-20 to Bash (varies)","+3 to War Cry (varies)","+3 to Howl (varies)","Slain Monsters Rest in Peace"],
+  "Wisdom": ["+100-120% Enhanced Damage (varies)","+150% Bonus to Attack Rating","+3 to All Skills","+5-10 to Energy (varies)","+5-10 to Mana (varies)","+3 to Holy Aura (Paladin Only)","+3 to Meditation (Paladin Only)","+3 to Resist Fire (Paladin Only)","+3 to Resist Lightning (Paladin Only)","+33% Chance of Crushing Blow"],
+  "Mist": ["+200-300% Enhanced Damage (varies)","+200% Bonus to Attack Rating","+3 to All Skills","+5-10 to Multiple Shot (varies)","+5-10 to Guided Arrow (varies)","+5-10 to Ice Arrow (varies)","+5-10 to Cold Arrow (varies)","+30-50 Cold Damage","Level 15-20 Holy Freeze Aura when Equipped"],
+  "Bulwark": ["+80-100% Enhanced Defense (varies)","+40% Faster Hit Recovery","+20% Faster Block Rate","+3 to All Skills","+10-15 to Vitality (varies)","+5-10 to Energy (varies)","All Resistances +15","+2-3 to Iron Skin (varies)","+2-3 to Increased Stamina (varies)"],
+  "Cure": ["+60-80% Enhanced Defense (varies)","+20% Faster Hit Recovery","+3 to All Skills","+10-15 to Vitality (varies)","+5-10 to Energy (varies)","All Resistances +15","+2-3 to Purification (varies)","+2-3 to Cleansing (varies)","Hit Causes Monster to Flee 10%"],
+  "Ground": ["+80-100% Enhanced Defense (varies)","+20% Faster Hit Recovery","+3 to All Skills","+10-15 to Vitality (varies)","+5-10 to Energy (varies)","All Resistances +15","+2-3 to Stone Skin (varies)","+2-3 to Iron Skin (varies)","+2-3 to Increased Stamina (varies)"],
+  "Hearth": ["+80-100% Enhanced Defense (varies)","+20% Faster Hit Recovery","+3 to All Skills","+10-15 to Vitality (varies)","+5-10 to Energy (varies)","All Resistances +15","+2-3 to Raven (varies)","+2-3 to Oak Sage (varies)","+2-3 to Summon Grizzly (varies)"],
+  "Temper": ["+80-100% Enhanced Defense (varies)","+20% Faster Hit Recovery","+3 to All Skills","+10-15 to Vitality (varies)","+5-10 to Energy (varies)","All Resistances +15","+2-3 to Bash (varies)","+2-3 to Weapon Mastery (varies)","+2-3 to Increased Stamina (varies)"],
+  "Hustle": ["+180-260% Enhanced Damage (varies)","+150% Bonus to Attack Rating","+3 to All Skills","+40% IAS","+20% Faster Block Rate","+10-15 to Vitality (varies)","+5-10 to Energy (varies)","+3 to Whirlwind (varies)","+3 to Bash (varies)"],
+  "Metamorphosis": ["+200-280% Enhanced Damage (varies)","+180% Bonus to Attack Rating","+3 to All Skills","+5-7 to Fire Ball (varies)","+5-7 to Fire Bolt (varies)","+5-7 to Inferno (varies)","+3 to Fire Mastery (Sorceress Only)","+3 to Enchant (Sorceress Only)","+30% Fire Damage"],
+  "Mosaic": ["+180-240% Enhanced Damage (varies)","+180% Bonus to Attack Rating","+3 to Assassin Skills","+3 to Burst of Speed (Assassin Only)","+3 to Fade (Assassin Only)","+3 to Shadow Warrior (Assassin Only)","+3 to Blade Sentinel (Assassin Only)","+20% IAS","+10% Chance of Crushing Blow"],
+  "Authority": ["+100-130% Enhanced Defense (varies)","+3 to All Skills","+5-8 to Holy Bolt (varies)","+5-8 to Holy Shock (varies)","+5-8 to Zeal (varies)","+5-8 to Sacrifice (varies)","+3 to Holy Aura (Paladin Only)","All Resistances +15","+100-150 Life"],
+  "Coven": ["+80-120% Enhanced Defense (varies)","+3 to All Skills","+5-10 to Ice Bolt (varies)","+5-10 to Frost Nova (varies)","+5-10 to Glacial Spike (varies)","+3 to Ice Mastery (Sorceress Only)","+3 to Static Field (Sorceress Only)","+3 to Telekinesis (Sorceress Only)","All Resistances +15","Magic Damage Reduced by 5"],
+  "Void": ["+180-240% Enhanced Damage (varies)","+180-240% Bonus to Attack Rating (varies)","+3 to All Skills","+5-10 to Poison Nova (varies)","+5-10 to Poison Explosion (varies)","+3 to Assassin Skills","+3 to Venom (Assassin Only)","+3 to Shadow Warrior (Assassin Only)","+3 to Wake of Fire (Assassin Only)","All Resistances +15"],
+  "Vigilance": ["+100-130% Enhanced Defense (varies)","+25% Faster Block Rate","+3 to All Skills","+5-8 to Holy Bolt (varies)","+5-8 to Holy Shock (varies)","+5-8 to Smite (varies)","+3 to Holy Aura (Paladin Only)","+3 to Prayer (Paladin Only)","+3 to Resist Fire (Paladin Only)","All Resistances +15","Cannot Be Frozen"],
+  "Ritual": ["+150-200% Enhanced Damage (varies)","+150-200% Bonus to Attack Rating (varies)","+3 to All Skills","+5-10 to Poison Nova (varies)","+5-10 to Poison Explosion (varies)","+3 to Assassin Skills","+3 to Venom (Assassin Only)","+3 to Shadow Warrior (Assassin Only)","+3 to Wake of Fire (Assassin Only)","All Resistances +15","Hit Causes Monster to Flee 15%"],
+  "Hysteria": ["+150-200% Enhanced Defense (varies)","+3 to All Skills","+5-10 to Holy Bolt (varies)","+5-10 to Holy Shock (varies)","+5-10 to Zeal (varies)","+5-10 to Sacrifice (varies)","+3 to Holy Aura (Paladin Only)","+3 to Meditation (Paladin Only)","All Resistances +15","+5% Maximum Cold Resistance"],
+  "Mania": ["+150-200% Enhanced Damage (varies)","+150-200% Bonus to Attack Rating (varies)","+3 to All Skills","+40% IAS","+5-10 to Bash (varies)","+5-10 to Blade Mastery (varies)","+5-10 to Whirlwind (varies)","+3 to War Cry (varies)","+3 to Battle Orders (varies)","Slain Monsters Rest in Peace"]
+};
 
 // ──── RENDER RUNES ────
 function renderRunes(){
@@ -352,6 +573,75 @@ function updateBar(){
   chips.innerHTML=e.map(([n,c])=>`<span class="mini-chip" onclick="decRune(event,'${n}')">${n}${c>1?' ×'+c:''}</span>`).join('');
 }
 document.getElementById('clearBtn').onclick=()=>{Object.keys(inv).forEach(k=>delete inv[k]);refresh()};
+
+// ──── MATCH PREVIEW ────
+function renderMatchPreview(){
+  const mp = document.getElementById('matchPreview');
+  const grid = document.getElementById('matchPrevGrid');
+  if(!mp || !grid) return;
+
+  document.getElementById('ui-match-title').innerText = getText('match_preview');
+
+  const hasInv = Object.values(inv).some(v => v > 0);
+  if(!hasInv || !RUNEWORDS.length){
+    mp.classList.remove('visible');
+    return;
+  }
+
+  mp.classList.add('visible');
+
+  // Calculate matches
+  const matches = RUNEWORDS.map(rw => ({...rw, m: calcM(rw)}))
+    .filter(rw => rw.m.pct > 0)
+    .sort((a, b) => b.m.pct - a.m.pct);
+
+  if(matches.length === 0){
+    grid.innerHTML = `<div style="color:var(--text3);font-size:.8rem;text-align:center;padding:1rem">${getText('no_match')}</div>`;
+    return;
+  }
+
+  grid.innerHTML = matches.slice(0, 12).map(rw => {
+    const n_en = rw.name_en || rw.name;
+    const n_loc = getPropName(rw, 'name');
+    const bases = currentLang === 'en' ? rw.base_types : (currentLang === 'tc' ? rw.base_types_tc : rw.base_types_sc);
+    const isFull = rw.m.pct === 1;
+    const pct = Math.round(rw.m.pct * 100);
+
+    const used = {};
+    const runesStr = rw.runes.map(r => {
+      used[r] = (used[r] || 0) + 1;
+      const have = (inv[r] || 0) >= used[r];
+      return `<span class="${have ? 'match-prev-rune-owned' : 'match-prev-rune-missing'}">${r}</span>`;
+    }).join('');
+
+    const iconUrl = buildItemIconUrl(n_en);
+    const iconHtml = `<img src="${iconUrl}" alt="${n_en}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" style="width:100%;height:100%;object-fit:contain">
+      <div class="match-prev-icon-placeholder" style="display:none">⚔️</div>`;
+
+    return `<div class="match-prev-card ${isFull ? 'full' : ''}"
+      onmouseenter="showTooltip(buildRwTooltip('${n_en.replace(/'/g, "\\'")}'), event)"
+      onmousemove="positionTooltip(event)"
+      onmouseleave="hideTooltip()">
+      <div class="match-prev-icon">${iconHtml}</div>
+      <div class="match-prev-info">
+        <div class="match-prev-name">${n_en}</div>
+        <div class="match-prev-runes">${runesStr}</div>
+      </div>
+      <span class="match-prev-badge ${isFull ? 'full' : 'partial'}">${isFull ? getText('match_full') : pct + '%'}</span>
+    </div>`;
+  }).join('');
+}
+
+function buildRwTooltip(name) {
+  const stats = RW_STATS[name] || [];
+  const n_loc = getPropName({name_en: name, name_sc: name, name_tc: name}, 'name');
+  let html = `<div class="tt-title">${name}</div>`;
+  stats.forEach(s => {
+    const cls = s.startsWith('+') ? 'blue' : (s.includes(' Aura') || s.includes('Resistance') ? 'gold' : '');
+    html += `<div class="tt-stat ${cls}">${s}</div>`;
+  });
+  return html;
+}
 
 // ──── RENDER RUNEWORDS ────
 function calcM(rw){
@@ -400,21 +690,28 @@ function renderRW(){
       const c=hasInv?(have?'owned':'missing'):'';
       return`<span class="rw-rune ${c}">${r}</span>`;
     }).join('');
-    
+
     // Loc logic
     const n_en = rw.name_en || rw.name;
     const n_loc = getPropName(rw, 'name');
     const bases = currentLang === 'en' ? rw.base_types : (currentLang==='tc'?rw.base_types_tc:rw.base_types_sc);
     const baseZh = (bases || rw.base_types || []).join(' / ');
     const pct=Math.round(m.pct*100);
-    
+
+    // Item icon
+    const iconUrl = buildItemIconUrl(n_en);
+    const iconHtml = `<img src="${iconUrl}" alt="${n_en}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" style="width:100%;height:100%;object-fit:contain">
+      <div class="rw-card-icon-placeholder" style="display:none">⚔️</div>`;
+
     return`<div class="rw-card ${cls}">
+<div class="rw-card-icon" onmouseenter="showTooltip(buildRwTooltip('${n_en.replace(/'/g, "\\'")}'), event)" onmousemove="positionTooltip(event)" onmouseleave="hideTooltip()">${iconHtml}</div>
+<div class="rw-card-content">
 <div class="rw-card-head"><div><span class="rw-name">${n_en}</span><span class="rw-loc">${n_loc!==n_en?n_loc:''}</span></div>
 <span class="rw-badge ${rw.category}">${CATS[rw.category]||rw.patch}</span></div>
 <div class="rw-card-body"><div class="rw-runes">${runesH}</div>
 <div class="rw-meta"><span>🔲 ${getText('sockets').replace('{0}',rw.sockets)}</span><span>📦 ${baseZh}</span><span>⭐ ${getText('req_lv').replace('{0}',rw.level_req)}</span>
 ${hasInv?`<span>✅ ${m.owned}/${m.total}</span>`:''}</div>
-${hasInv?`<div class="match-bar"><div class="match-bar-fill ${m.pct===1?'full':'partial-f'}" style="width:${pct}%"></div></div>`:''}</div></div>`;
+${hasInv?`<div class="match-bar"><div class="match-bar-fill ${m.pct===1?'full':'partial-f'}" style="width:${pct}%"></div></div>`:''}</div></div></div>`;
   }).join('');
 }
 
@@ -439,7 +736,8 @@ function renderRecipes(){
   cats.forEach(([key,ico])=>{
     const cat=RECIPES[key];if(!cat)return;
     const cDesc = getPropName(cat, 'description') || cat.description;
-    h+=`<div class="recipe-group"><div class="recipe-group-title">${ico} ${cDesc} <span class="count-badge">${cat.recipes.length}</span></div>`;
+    h+=`<div class="recipe-group"><div class="recipe-group-title" onclick="toggleRecipeGroup(this)">${ico} ${cDesc} <span class="count-badge">${cat.recipes.length}</span></div>
+<div class="recipe-group-content">`;
     cat.recipes.forEach(r=>{
       const rName = getPropName(r, 'name');
       const rForm = getPropName(r, 'formula') || r.formula;
@@ -450,13 +748,14 @@ function renderRecipes(){
 ${rRes?`<div class="rc-result">→ ${rRes}</div>`:''}
 ${rNotes?`<div class="rc-notes">💡 ${rNotes}</div>`:''}</div>`;
     });
-    h+=`</div>`;
+    h+=`</div></div>`;
   });
-  
+
   const craft=RECIPES.crafting;
   if(craft){
     const dDesc = getPropName(craft, 'description');
-    h+=`<div class="recipe-group"><div class="recipe-group-title">🔶 ${dDesc}</div>
+    h+=`<div class="recipe-group"><div class="recipe-group-title" onclick="toggleRecipeGroup(this)">🔶 ${dDesc} <span class="count-badge">${craft.types.length}</span></div>
+<div class="recipe-group-content">
 <div class="recipe-card"><div class="rc-name">${getText('rule')}</div>
 <div class="rc-notes">${(currentLang==='tc'?craft.rules_tc:craft.rules).join(' · ')}</div></div>`;
     craft.types.forEach(t=>{
@@ -468,9 +767,13 @@ ${rNotes?`<div class="rc-notes">💡 ${rNotes}</div>`:''}</div>`;
 ${Object.entries(t.slots).map(([s,r])=>`<tr><td>${s}</td><td style="color:var(--gold)">${r}</td></tr>`).join('')}
 </table></div>`;
     });
-    h+=`</div>`;
+    h+=`</div></div>`;
   }
   c.innerHTML=h;
+}
+
+function toggleRecipeGroup(el){
+  el.classList.toggle('collapsed');
 }
 
 // ──── BASE ITEMS ────
@@ -496,17 +799,114 @@ function renderBaseItems(){
   const tb = document.getElementById('baseTableBody');
   if(!Object.keys(BASE_ITEMS).length) return;
   const items = BASE_ITEMS[activeBaseCat] || [];
+
+  // Find matching runewords for tooltip
+  function getBaseRunewords(baseType) {
+    const rwMap = {
+      "Swords": ["Spirit","Insight","Oath","Grief","Breath of the Dying","Call to Arms","Fortitude","Last Wish","Death","Brand","Destruction","Exile","Infinity","Mist","Beast","Fury","Honor","Kingslayer","Passion","Pride","Rift","Silence","Void"],
+      "Axes": ["Grief","Oath","Famine","Fortitude","Last Wish","Breath of the Dying","Death","Beast","Honor","Passion","Pride","Rift"],
+      "Hammers": ["Beast","Breath of the Dying","Death","Doom","Fortitude","Oath","Pride","Rift","Sanctuary","Stone","Judgment"],
+      "Body Armor": ["Enigma","Fortitude","Bramble","Chains of Honor","Duress","Enlightenment","Gloom","Guardian Angel","Obedience","Prudence","Rain","Stone","Treachery","Phoenix","Soul","Wrath","Spirit","Stealth","Smoke","Myth","Peace","Principle","Radiance","Sapphire","Steal","Zephyr"],
+      "Helms": ["Delirium","Dream","Exile","Fortitude","Grief","Infinity","Last Wish","Pride","Sanctuary","Shadows","Spirit","Wind","Flickering Flame","Wisdom","Bulwark","Cure","Ground","Hearth","Temper","Metamorphosis"],
+      "Shields": ["Exile","Dream","Phoenix","Sanctuary","Spirit","Splendor","Rhyme","Stealth","Gerkin","Herald of Zakarum"],
+      "Paladin Shields": ["Exile","Dream","Phoenix","Sanctuary","Spirit","Splendor","Rhyme"],
+      "Staves": ["Heart of the Oak","Insight","Leaf","Memory","Obedience","Ondal's Wisdom","Staff of Kings","The Eye of Etlch","The Iron Jang Bong"],
+      "Katars": ["Chaos","Fury","Mosaic","Pattern","Plague","Flux","Malice"],
+      "Polearms": ["Beast","Breath of the Dying","Destruction","Doom","Fortitude","Grief","Infinity","Last Wish","Obedience","Pride","Rift","Silks","The Battle.net 2.0"],
+      "Missile Weapons": ["Brand","Breath of the Dying","Call to Arms","Faith","Fortitude","Harmony","Ice","Infinity","Last Wish","Mist","Wrath","Zephyr"],
+      "Wands": ["White","Memory","H难得糊涂"],
+      "Daggers": ["Plague","Ritual","Void","Fury","Malice","Fist of the Heavens"],
+      "Scepters": ["Holy Thunder","Kings Grace","Legacy","Passion","Peace","Principle","Rhyme","Sanctuary","Spirit"]
+    };
+    return rwMap[baseType] || [];
+  }
+
   tb.innerHTML = items.map(item=>{
     const nLoc = getPropName(item, 'name');
     const tierClass = `tier-${item.tier}`;
     const reqStr = item.str_req ? item.str_req : '-';
+    const reqDex = item.dex_req ? item.dex_req : '-';
+    const reqLvl = item.level_req ? item.level_req : '-';
+    const defense = item.defense || '-';
+    const damage = item.damage || '-';
+
+    const iconSlug = item.name_en.replace(/\s+/g, '').toLowerCase();
+    const iconUrl = `https://diablo2.io/styles/zulu/theme/images/items/${iconSlug}_ticon.png`;
+    const iconHtml = `<div class="base-item-icon-wrap"><img src="${iconUrl}" alt="${item.name_en}" class="base-item-icon" onerror="this.style.display='none'"></div>`;
+
+    const rwList = getBaseRunewords(activeBaseCat).slice(0, 5);
+    const tooltipHtml = `
+      <div class="tt-title">${nLoc}</div>
+      <div class="tt-stat blue">${getTierLoc(item.tier)}</div>
+      ${item.defense ? `<div class="tt-stat">Defense: ${defense}</div>` : ''}
+      ${item.damage ? `<div class="tt-stat">Damage: ${damage}</div>` : ''}
+      <div class="tt-stat">Level Req: ${reqLvl}</div>
+      <div class="tt-stat">Strength: ${reqStr}</div>
+      ${reqDex !== '-' ? `<div class="tt-stat">Dexterity: ${reqDex}</div>` : ''}
+      <div class="tt-stat gold">Max Sockets: ${item.max_sockets || 0}</div>
+      <div class="tt-meta">${getText('match_bases')}: ${rwList.join(', ')}${rwList.length >= 5 ? '...' : ''}</div>
+    `;
+
     return `<tr>
-      <td>${nLoc}<br><span style="font-size:0.75rem;color:var(--text3)">${item.name_en}</span></td>
+      <td><div class="base-name-cell">${iconHtml}${nLoc}<br><span style="font-size:0.75rem;color:var(--text3)">${item.name_en}</span></div></td>
       <td class="${tierClass}">${getTierLoc(item.tier)}</td>
       <td style="color:var(--gold);font-weight:bold">${item.max_sockets||'-'}</td>
       <td>${reqStr}</td>
     </tr>`;
   }).join('');
+
+  // Add tooltip listeners
+  tb.querySelectorAll('tr').forEach((row, i) => {
+    const item = items[i];
+    if (item) {
+      row.onmouseenter = (e) => showTooltip(renderBaseItemTooltip(item, activeBaseCat), e);
+      row.onmousemove = positionTooltip;
+      row.onmouseleave = hideTooltip;
+    }
+  });
+}
+
+function renderBaseItemTooltip(item, category) {
+  const nLoc = getPropName(item, 'name');
+  const reqStr = item.str_req || '-';
+  const reqDex = item.dex_req || '-';
+  const reqLvl = item.level_req || '-';
+  const defense = item.defense || '-';
+  const damage = item.damage || '-';
+
+  function getBaseRunewords(baseType) {
+    const rwMap = {
+      "Swords": ["Spirit","Insight","Oath","Grief","Breath of the Dying","Call to Arms","Fortitude","Last Wish","Death","Brand","Destruction","Exile","Infinity","Mist","Beast","Fury","Honor","Kingslayer","Passion","Pride","Rift","Silence","Void"],
+      "Axes": ["Grief","Oath","Famine","Fortitude","Last Wish","Breath of the Dying","Death","Beast","Honor","Passion","Pride","Rift"],
+      "Hammers": ["Beast","Breath of the Dying","Death","Doom","Fortitude","Oath","Pride","Rift","Sanctuary","Stone"],
+      "Body Armor": ["Enigma","Fortitude","Bramble","Chains of Honor","Duress","Enlightenment","Gloom","Obedience","Prudence","Rain","Stone","Treachery","Phoenix","Spirit","Stealth","Smoke","Myth","Peace","Principle","Radiance"],
+      "Helms": ["Delirium","Dream","Exile","Fortitude","Grief","Infinity","Last Wish","Pride","Sanctuary","Spirit","Wind","Flickering Flame","Wisdom","Bulwark","Cure","Ground","Hearth","Temper","Metamorphosis"],
+      "Shields": ["Exile","Dream","Phoenix","Sanctuary","Spirit","Splendor","Rhyme","Stealth"],
+      "Paladin Shields": ["Exile","Dream","Phoenix","Sanctuary","Spirit","Splendor","Rhyme"],
+      "Staves": ["Heart of the Oak","Insight","Leaf","Memory","Obedience"],
+      "Katars": ["Chaos","Fury","Mosaic","Pattern","Plague"],
+      "Polearms": ["Beast","Breath of the Dying","Destruction","Doom","Fortitude","Grief","Infinity","Last Wish","Obedience","Pride","Rift"],
+      "Missile Weapons": ["Brand","Breath of the Dying","Call to Arms","Faith","Fortitude","Harmony","Ice","Infinity","Last Wish","Mist","Wrath","Zephyr"],
+      "Wands": ["White","Memory"],
+      "Daggers": ["Plague","Ritual","Void","Fury","Malice"],
+      "Scepters": ["Holy Thunder","Kings Grace","Passion","Peace","Principle","Rhyme","Sanctuary","Spirit"]
+    };
+    return rwMap[baseType] || [];
+  }
+
+  const rwList = getBaseRunewords(category);
+  let html = `<div class="tt-title">${nLoc}</div>`;
+  html += `<div class="tt-stat blue">${getTierLoc(item.tier)}</div>`;
+  if (item.defense) html += `<div class="tt-stat">Defense: ${defense}</div>`;
+  if (item.damage) html += `<div class="tt-stat">Damage: ${damage}</div>`;
+  html += `<div class="tt-stat">Level Req: ${reqLvl}</div>`;
+  html += `<div class="tt-stat">Strength: ${reqStr}</div>`;
+  if (reqDex !== '-') html += `<div class="tt-stat">Dexterity: ${reqDex}</div>`;
+  html += `<div class="tt-stat gold">Max Sockets: ${item.max_sockets || 0}</div>`;
+  if (rwList.length > 0) {
+    html += `<div class="tt-meta">Recommended Runewords: ${rwList.slice(0, 6).join(', ')}${rwList.length > 6 ? '...' : ''}</div>`;
+  }
+  return html;
 }
 
 
@@ -539,6 +939,7 @@ function refresh(){
   renderFilters();
   renderRunes();
   updateBar();
+  renderMatchPreview();
   renderRW();
   renderRecipes();
   renderBaseCategories();
