@@ -228,7 +228,7 @@ body{
 
 /* ── Item Icons on RW Cards ── */
 .rw-card{display:flex;flex-direction:row}
-.rw-card-icon{width:56px;min-height:56px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--border);display:flex;align-items:center;justify-content:center;padding:.4rem;font-size:1.8rem;color:var(--text3);opacity:.35;flex-wrap:wrap;gap:2px}
+.rw-card-icon{width:56px;min-height:56px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--border);display:flex;align-items:center;justify-content:center;padding:.4rem;font-size:1.8rem;color:var(--text3);flex-wrap:wrap;gap:2px;position:relative}
 .rw-icon-rune{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-weight:900;font-size:.6rem;color:var(--bg);flex-shrink:0}
 .rw-icon-rune.low{background:linear-gradient(135deg,#b0b0b0,#e0e0e0)}
 .rw-icon-rune.mid{background:linear-gradient(135deg,#c9a84c,#f0d890)}
@@ -508,104 +508,496 @@ const RW_STATS = {
     tc: ["+40% 增強傷害","+3 變形技能（德魯伊）","+3 狼人（德魯伊）","+3 變狼術（德魯伊）","+25% 快速跑步/行走","+5-7 召喚灰熊（變量）","擊退","裝備時等級13狂熱光環"],
     en: ["+40% Enhanced Damage","+3 to Shape Shifting Skills (Druid Only)","+3 to Werewolf (Druid Only)","+3 to Lycanthropy (Druid Only)","+25% Faster Run/Walk","+5-7 to Summoned Grizzly Bear (varies)","Knockback","Level 13 Fanaticism Aura when Equipped"]
   },
-    "Black": ["+3 to Necromancer Skills","+40% Casting Speed","+120% Enhanced Damage","+200 to Attack Rating","+15 to Energy","+10 to Vitality","Magic Damage Reduced by 2","Hit Causes Monster to Flee 15%"],
-  "Bone": ["+75% Enhanced Defense","+25 to Energy","+10% Faster Cast Rate","+30% Poison Length Reduced","All Resistances +15","+2 to Bone Skills (Necromancer Only)"],
-  "Bramble": ["+50% Enhanced Defense","+25-35% Fire Damage (varies)","+30% Faster Cast Rate","+5-9 to Poison Nova (varies)","+4 to Spirit of the Viper (Barbarian Only)","Regenerate Mana 15%","All Resistances +25-35 (varies)","Hit Causes Target to Heal 1"],
-  "Brand": ["35% Chance of Casting Amplify Damage on Striking","100% Chance of Open Wounds","+350% Enhanced Damage","+280% Bonus to Attack Rating","+1-6 to Lower Resist (varies)","Prevent Monster Heal","Knockback"],
-  "Breath of the Dying": ["60% Chance of Casting Venom on Attack","+350% Enhanced Damage","+170% Bonus to Attack Rating","+21 to Attack Rating per Character Level","+2 to All Skills","+20 to Life after each Kill","All Resistances +30","Hit Causes Monster to Flee 25%","Kill Monsters HP Recovery -100%","Repairs 1 Durability in 5 Seconds"],
-  "Call to Arms": ["+2 to All Skills","+40% Enhanced Damage","+5-7 to Battle Orders (varies)","+3 to Battle Command (varies)","+1 to All Skill Levels","+250% Bonus to Attack Rating","+2 to Mana after each Kill","+2 to Life after each Kill"],
-  "Chains of Honor": ["+2 to All Skills","+100% Better Chance of Getting Magic Items","+70% Enhanced Defense","+250 to Life","All Resistances +65","Magic Damage Reduced by 15","+1 to Light Radius"],
-  "Chaos": ["+3 to Assassin Skills","+35% IAS","+240-290% Enhanced Damage (varies)","+1 to Venom (Assassin Only)","+11 to Chain Lightning (Sorceress Only)","Magic Damage Reduced by 7","+2 to Shadow Disciplines (Assassin Only)"],
-  "Crescent Moon": ["+35% IAS","+260-320% Enhanced Damage (varies)","+9 to Energy","+75 to Mana","+1-3 to Static Field (varies)","+7 to Chain Lightning (varies)","+30% Lightning Damage","Level 18 Summon Grizzly on Striking"],
-  "Death": ["100% Chance of Casting Blizard on Death","25% Chance of Casting Bone Prison on Attack","+300-385% Enhanced Damage (varies)","+180% Bonus to Attack Rating","+1 to All Skills","+20 to Strength","All Resistances +15","+50% Better Chance of Getting Magic Items","Knockback","Slain Monsters Rest in Peace"],
-  "Delirium": ["+65% Enhanced Defense","+30 to Energy","+10% Faster Cast Rate","+5-12 to Mind Blast (varies)","+3 to Decoy (varies)","+3 to Shadow Warrior (varies)","+3 to Cloak of Shadows (varies)","Level 17 Confusion Aura when Equipped"],
-  "Destruction": ["23% Chance of Casting Volcano on Attack","23% Chance of Casting Meteor on Attack","100% Chance of Casting Poison Nova on Death","+350% Enhanced Damage","+350% Bonus to Attack Rating","+1-6 to Lower Resist (varies)","+5-10 to Poison Nova (varies)","+2 to All Skills","Slain Monsters Explode"],
-  "Doom": ["5% Chance of Casting Enchant when Hit","+180-220% Enhanced Damage (varies)","+10 to Energy","+15-21% Fire Damage (varies)","+25% Faster Run/Walk","+30% Cold Damage","Level 12 Holy Freeze Aura when Equipped","+2 to All Skills"],
-  "Dragon": ["+360 Defense","+236-284% Enhanced Defense (varies)","+30% Faster Block Rate","+5-10 to Holy Freeze (varies)","+10 to Energy","All Resistances +5-15 (varies)","+3 to Holy Freeze (Paladin Only)","+3 to Holy Shield (Paladin Only)","+3 to Conversion (Paladin Only)"],
-  "Dream": ["+10 to Energy","+10% Faster Cast Rate","+33% Better Chance of Getting Magic Items","+30-50% Enhanced Defense (varies)","+5-10 to Holy Freeze (varies)","+3 to Holy Freeze (Paladin Only)","Level 15 Conviction Aura when Equipped"],
-  "Duress": ["+40% Enhanced Defense","+15% Faster Hit Recovery","+30% Enhanced Damage","+10-15% Chance of Crushing Blow (varies)","+150-200% Enhanced Defense (varies)","All Resistances +15-25 (varies)","Adds 8-13 Cold Damage","Adds 12-15 Fire Damage","Adds 10-13 Lightning Damage"],
-  "Edge": ["+35% IAS","+300-360% Enhanced Damage (varies)","+75 to Mana","+5 to Energy after each Kill","+3 to Bow and Crossbow Skills (Amazon Only)","+5 to Valkyrie (Amazon Only)","Level 15 Thorns Aura when Equipped"],
-  "Enigma": ["+2 to All Skills","+45% Faster Run/Walk","+1 to Teleport","+750-775 Defense (varies)","+0.75 per Character Level to Life (varies)","+0.75 per Character Level to Mana (varies)","All Resistances +65","Damage Reduced by 7","Magic Damage Reduced by 15","+14 Strength"],
-  "Enlightenment": ["+2 to Paladin Skills","+30% Enhanced Damage","+150% Enhanced Defense","+10 to Energy","+5% Faster Cast Rate","+5 to Holy Bolt (Paladin Only)","+5 to Holy Shock (Paladin Only)","+3 to Holy Aura (Paladin Only)"],
-  "Eternity": ["+3 to All Skills","+200% Enhanced Damage","+200% Bonus to Attack Rating","+250-300% Enhanced Defense (varies)","+8 to Life after each Kill","All Resistances +20","Hit Causes Monster to Flee 25%","Slain Monsters Rest in Peace","Repairs 1 Durability in 10 Seconds"],
-  "Exile": ["+25% Faster Block Rate","+30% Enhanced Defense","+150-250% Enhanced Defense (varies)","+30 to Vitality","+5% Maximum Fire Resistance","+5% Maximum Cold Resistance","+5% Maximum Lightning Resistance","Level 13-16 Defiance Aura (varies)","Cannot Be Frozen"],
-  "Faith": ["+2 to All Skills","+200% Enhanced Damage","+300% Bonus to Attack Rating","+5-10 to Holy Freeze (varies)","+3 to Holy Aura (Paladin Only)","+3 to Holy Bolt (Paladin Only)","+3 to Holy Shock (Paladin Only)","Level 15-20 Fanaticism Aura (varies)"],
-  "Famine": ["+30% IAS","+320% Enhanced Damage","+200% Bonus to Attack Rating","+10 to Strength","+23 to Attack Rating per Character Level","+15-45 Fire Damage","+40-80 Lightning Damage","+20-50 Cold Damage","+10-30 Magic Damage","Knockback"],
-  "Fortitude": ["+300% Enhanced Damage","+200% Enhanced Defense","+100% Better Chance of Getting Magic Items","+9 to Minimum Damage","+50 to Life","+1 to Light Radius","+5% Maximum Fire Resistance","+5% Maximum Cold Resistance","+5% Maximum Lightning Resistance","All Resistances +25-30 (varies)","+3 to Light Radius (varies)","+3 to Holy Shield (varies)"],
-  "Fury": ["+200% Enhanced Damage","+40% IAS","+5-10 to Fend (varies)","+3 to Critical Strike (varies)","+3 to Bash (varies)","+3 to Blade Mastery (varies)","+3 to Whirlwind (varies)","Level 18 Holy Freeze Aura when Equipped"],
-  "Gloom": ["+200-260% Enhanced Defense (varies)","+20% Faster Hit Recovery","+30% Enhanced Damage","+10 to Energy","+10 to Vitality","All Resistances +15","Magic Damage Reduced by 8","Hit Causes Monster to Flee 15%","+3 to Dim Vision (Necromancer Only)"],
-  "Grief": ["+340-400% Enhanced Damage (varies)","+35% IAS","+20% Bonus to Attack Rating","+5-7 to Critical Strike (varies)","+3-5 to Battle Orders (varies)","+1 to All Skill Levels","+5% Maximum Lightning Resistance","+10% to Enemy Fire Resistance","Slain Monsters Rest in Peace"],
-  "Hand of Justice": ["+20% IAS","+280-320% Enhanced Damage (varies)","+100% Bonus to Attack Rating","+1 to All Skills","+16 to Maximum Damage","+30% Fire Damage","+30% Lightning Damage","+30% Cold Damage","Level 15-20 Holy Freeze Aura (varies)"],
-  "Harmony": ["+200-275% Enhanced Damage (varies)","+55-140 Fire Damage","+55-140 Lightning Damage","+55-140 Cold Damage","+55-140 Poison Damage","+10 to Vitality","+2-3 to Valkyrie (varies)","+3-5 to Inner Sight (varies)","+3-5 to Critical Strike (varies)","Level 10-15 Vigor Aura (varies)"],
-  "Heart of the Oak": ["+3 to All Skills","+40% Faster Cast Rate","+75-125% Enhanced Damage (varies)","+9 to Minimum Damage","+50 to Mana","+30% Lightning Damage","+30-35% to Poison Length (varies)","+3 to Oak Sage (Druid Only)","+3 to Summon Druid Skill Level","+3 to Raven (Druid Only)","+3 to Poision Creeper (Druid Only)","+3 to Cyclone Armor (Druid Only)"],
-  "Holy Thunder": ["+60% Enhanced Damage","+10 to Energy","+10 to Vitality","+5-13 to Holy Bolt (varies)","+7-15 to Holy Shock (varies)","+3 to Holy Aura (Paladin Only)","+20-30 Lightning Damage","+10% Lightning Damage","All Resistances +10"],
-  "Honor": ["+160% Enhanced Damage","+200% Bonus to Attack Rating","+250-300 Defense (varies)","+1 to All Skills","+10 to Strength","+7 to Vitality","+3 to Battle Orders (varies)","+3 to Battle Command (varies)","+2 to Taunt (varies)","Hit Causes Monster to Flee 25%","Slain Monsters Rest in Peace"],
-  "Ice": ["+100% Enhanced Damage","+140% Bonus to Attack Rating","+30% Faster Block Rate","+3 to All Skills","+10% Maximum Cold Resistance","+10% Lightning Resistance","+30% Cold Damage","+20% Mana after Kill","Level 15-20 Holy Freeze Aura (varies)"],
-  "Infinity": ["+250-300% Enhanced Damage (varies)","+180-240% Bonus to Attack Rating (varies)","+3 to All Skills","+40% Life Stolen per Hit","+50% Better Chance of Getting Magic Items","+30% Lightning Damage","+7-15 to Chain Lightning (varies)","Level 15-20 Conviction Aura (varies)","Pierce 25-35% Lightning Resistance (varies)"],
-  "Insight": ["+200-275% Enhanced Damage (varies)","+180-250% Bonus to Attack Rating (varies)","+5-12 to Meditation (varies)","+3 to All Skills","+3-14 to Lightning (varies)","+3-10 to Chain Lightning (varies)","+3-7 to Nova (varies)","+25% Faster Cast Rate","+1-3 to Insight (varies)","Level 12-17 Meditation Aura (varies)"],
-  "King's Grace": ["+100% Enhanced Damage","+150% Bonus to Attack Rating","+100% Enhanced Defense","+5-10 to Holy Bolt (varies)","+3 to Holy Aura (Paladin Only)","+5 to Zeal (Paladin Only)","+3 to Sacrifice (Paladin Only)","+100-150 Life (varies)","All Resistances +10"],
-  "Kingslayer": ["+30% IAS","+230-280% Enhanced Damage (varies)","+200% Bonus to Attack Rating","+40% Enhanced Defense","+10 to Strength","+10 to Vitality","+3 to Battle Orders (varies)","+3 to Battle Command (varies)","Hit Causes Monster to Flee 20%","20% Deadly Strike"],
-  "Last Wish": ["+330-375% Enhanced Damage (varies)","+150-210% Bonus to Attack Rating (varies)","+6-10 to Might (varies)","+6-10 to Holy Freeze (varies)","+6-10 to Holy Shock (varies)","+3 to All Skills","+20% Chance of Crushing Blow","+5% Maximum Cold Resistance","Level 11-15 Fade Aura when Equipped"],
-  "Lawbringer": ["+200% Enhanced Damage","+150% Bonus to Attack Rating","+40% Enhanced Defense","+3 to All Skills","+10 to Strength","+15-25% Chance of Crushing Blow (varies)","+30% Faster Block Rate","Level 15-18 Sanctuary Aura (varies)","+5-10 to Sanctuary (varies)","Slain Monsters Rest in Peace"],
-  "Leaf": ["+5-9 to Fire Bolt (varies)","+3 to Fire Skills (Sorceress Only)","+8-15 to Inferno (varies)","+3-7 to Inner Sight (varies)","+3 to Warmth (Sorceress Only)","+2 to Telekinesis (Sorceress Only)","+2 to Fire Mastery (Sorceress Only)","+3 to Flame Wave (Sorceress Only)"],
-  "Lionheart": ["+100% Enhanced Damage","+50% Enhanced Defense","+30 to Strength","+20 to Vitality","+10 to Energy","+3 to Combat Skills (Barbarian Only)","+3 to Sword Mastery (Barbarian Only)","+3 to Increased Stamina (Barbarian Only)","+3 to Increased Speed (Barbarian Only)"],
-  "Lore": ["+5-10 to Energy (varies)","+3 to All Skills","+5-9 to Mana (varies)","+3 to Telekinesis (Sorceress Only)","+3 to Warmth (Sorceress Only)","+2 to Light Radius","Magic Damage Reduced by 2","All Resistances +5"],
-  "Malice": ["+99% Enhanced Damage","+100% Bonus to Attack Rating","+6 to Max Stamina","+3 to Battle Orders (varies)","+3 to Battle Command (varies)","+3 to Bash (varies)","Hit Causes Monster to Flee 25%","99% Life stolen per hit","+3 to Whirlwind (varies)"],
-  "Melody": ["+280-340% Enhanced Damage (varies)","+3 to Bow and Crossbow Skills (Amazon Only)","+3 to Critical Strike (varies)","+3 to Inner Sight (varies)","+3 to Dodge (varies)","+3 to Slow Missiles (varies)","+40 to Attack Rating","+3-5 to Guided Arrow (varies)","+3-5 to Multi Shot (varies)"],
-  "Memory": ["+5-12 to Lightning (varies)","+3 to All Skills","+10% Faster Cast Rate","+10 to Energy","+20 to Mana","+3 to Energy Shield (Sorceress Only)","+3 to Lightning Mastery (Sorceress Only)","+3 to Nova (Sorceress Only)","+3 to Chain Lightning (Sorceress Only)","-15% Enemy Lightning Resistance"],
-  "Myth": ["+3 to Combat Skills (Amazon Only)","+3 to Inner Sight (varies)","+3 to Critical Strike (varies)","+3 to Dodge (varies)","+100% Enhanced Defense","+15% Faster Hit Recovery","+10 to Strength","+2-3 to Jab (varies)","Hit Causes Monster to Flee 20%"],
-  "Nadir": ["+50% Enhanced Defense","+10 to Energy","+5-10 to Cloak of Shadows (varies)","+3 to Shadow Warrior (varies)","+13 to Mana","+3 to Amplify Damage (varies)","+2 to Weaken (varies)","+2 to Decoy (varies)","Magic Damage Reduced by 5"],
-  "Oath": ["+200-330% Enhanced Damage (varies)","+170% Bonus to Attack Rating","+3 to All Skills","+40% IAS","+10 to Vitality","+5-10 to Fireball (varies)","+5-10 to Fire Wall (varies)","+5-10 to Inferno (varies)","+20% Fire Damage"],
-  "Obedience": ["+370% Enhanced Damage","+280% Bonus to Attack Rating","+40% Enhanced Defense","+3 to All Skills","+10 to Energy","+10 to Strength","+25% Faster Hit Recovery","+30% Enhanced Damage","+5-7 to Enchant (varies)","+3-5 to Fire Mastery (varies)","Level 21-27 Conviction Aura (varies)"],
-  "Passion": ["+160% Enhanced Damage","+160% Bonus to Attack Rating","+25% IAS","+3 to All Skills","+10 to Energy","+5-8 to Bash (varies)","+5-8 to Blade Mastery (varies)","+5-8 to Whirlwind (varies)","+3-5 to War Cry (varies)","Level 12-15 Fanaticism Aura (varies)"],
-  "Peace": ["+100% Enhanced Defense","+4 to Combat Skills (Amazon Only)","+4 to Critical Strike (varies)","+4 to Dodge (varies)","+4 to Slow Missiles (varies)","+2 to Valkyrie (Amazon Only)","+15% Faster Hit Recovery","+2 to Pierce (varies)"],
-  "Phoenix": ["+350-400% Enhanced Damage (varies)","+280-330% Bonus to Attack Rating (varies)","+5-10 to Holy Freeze (varies)","+3 to All Skills","+8% Maximum Fire Resistance","+8% Maximum Cold Resistance","+8% Maximum Lightning Resistance","+10-15% to Fire Skill Damage (varies)","+350-450 Fire Damage (varies)","Level 15-20 Redemption Aura (varies)"],
-  "Pride": ["+260-300% Enhanced Damage (varies)","+200% Bonus to Attack Rating","+1 to All Skills","+15-45 Fire Damage","+20-30 to Attack Rating per Character Level","+5-7 to Concentration (varies)","+3-5 to Vigor (varies)","Level 15-20 Holy Freeze Aura when Equipped"],
-  "Principle": ["+100% Enhanced Defense","+3 to Holy Skills (Paladin Only)","+3 to Holy Bolt (varies)","+3 to Holy Shield (varies)","+3 to Zeal (varies)","+250-300% Enhanced Damage vs Demons (varies)","+100-150 Life","All Resistances +15"],
-  "Prudence": ["+140-170% Enhanced Defense (varies)","+25% Faster Hit Recovery","+3 to All Skills","+10 to Vitality","+10 to Energy","+5% Maximum Cold Resistance","+5% Maximum Lightning Resistance","+5% Maximum Fire Resistance","All Resistances +15","Magic Damage Reduced by 17"],
-  "Radiance": ["+75% Enhanced Defense","+10 to Energy","+10 to Vitality","+5% Faster Cast Rate","+3 to Holy Aura (Paladin Only)","+3 to Holy Bolt (varies)","+3 to Zeal (varies)","+2 to Light Radius","All Resistances +10","Magic Damage Reduced by 7"],
-  "Rain": ["+100% Enhanced Defense","+5 to Holy Aura (Paladin Only)","+5 to Prayer (Paladin Only)","+5 to Resist Fire (Paladin Only)","+5 to Resist Lightning (Paladin Only)","+3 to Blessed Hammer (varies)","+3 to Concentration (varies)","+3 to Holy Bolt (varies)","All Resistances +15","Repairs 1 Durability in 5 Seconds"],
-  "Rhyme": ["+40% Enhanced Defense","+25% Faster Block Rate","+3 to All Skills","+15-25% Chance of Blocking (varies)","+2 to Light Radius","Cannot Be Frozen","All Resistances +15","Magic Damage Reduced by 4"],
-  "Rift": ["+160-280% Enhanced Damage (varies)","+180-250% Bonus to Attack Rating (varies)","+3 to All Skills","+5% IAS","+30-50% to Poison Length (varies)","+3-7 to Poison Nova (varies)","+11-25 to Mana after Kill","+3-5 to Iron Maiden (varies)","+3-5 to Amplify Damage (varies)","Level 15-20 Iron Maiden Aura (varies)"],
-  "Sanctuary": ["+130% Enhanced Defense","+180-250% Enhanced Defense vs Missiles (varies)","+40% Faster Block Rate","+3 to All Skills","+10 to Energy","+10 to Vitality","+75-120% Enhanced Defense (varies)","+5-10 to Holy Shock (varies)","+5-10 to Smite (varies)","All Resistances +20-30 (varies)","Cannot Be Frozen"],
-  "Silence": ["+200% Enhanced Damage","+200% Bonus to Attack Rating","+3 to All Skills","+50% Enhanced Defense","+30% Faster Block Rate","+10 to Strength","+10 to Vitality","+3-6 to Bash (varies)","+3-6 to Weapon Mastery (varies)","+3-6 to Frenzy (varies)","All Resistances +20-30 (varies)","Cannot Be Frozen"],
-  "Smoke": ["+100% Enhanced Defense","+75% Enhanced Defense vs Missiles","+6 to Energy","+6 to Vitality","+3 to All Skills","+20% Faster Cast Rate","+20% Faster Hit Recovery","All Resistances +30","+3 to Light Radius","Level 6-10 Weaken Aura when Equipped"],
-  "Spirit": ["+2 to All Skills","+25-35% Faster Cast Rate (varies)","+55-77% Enhanced Defense (varies)","+108-147% Enhanced Defense vs Missiles (varies)","+3-8 to Telegraph (varies)","+3-8 to Oak Sage (varies)","+3-8 to Cyclone Armor (varies)","+3-8 to Summon Grizzly (varies)","+10-14 to Vitality (varies)","+10-14 to Energy (varies)","+30-50 to Mana (varies)"],
-  "Splendor": ["+60-100% Enhanced Defense (varies)","+3 to All Skills","+20% Faster Cast Rate","+20% Faster Block Rate","+10% Enhanced Defense","+10 to Energy","+10 to Vitality","All Resistances +15","+3 to Light Radius"],
-  "Stealth": ["+60% Enhanced Defense","+6 to Energy","+6 to Vitality","+3 to All Skills","+5% Faster Cast Rate","+5% Faster Hit Recovery","+5% Maximum Fire Resistance","All Resistances +5","Magic Damage Reduced by 3"],
-  "Steel": ["+50-80% Enhanced Damage (varies)","+100% Bonus to Attack Rating","+75-120% Enhanced Damage vs Demons (varies)","+75-120% Enhanced Damage vs Undead (varies)","+3 to Sword Mastery (Barbarian Only)","+3 to Increased Stamina (varies)","+3 to Iron Skin (varies)","+3 to Bash (varies)","+3 to Whirlwind (varies)"],
-  "Stone": ["+100-130% Enhanced Defense (varies)","+30% Faster Hit Recovery","+250-280% Enhanced Defense (varies)","+3 to All Skills","+15 to Strength","+15 to Vitality","All Resistances +15","Magic Damage Reduced by 8","+4 to Clay Golem (Necromancer Only)","+4 to Bone Armor (Necromancer Only)"],
-  "Strength": ["+100-120% Enhanced Damage (varies)","+150-200% Bonus to Attack Rating (varies)","+3 to All Skills","+3 to Bash (varies)","+3 to Blade Mastery (varies)","+3 to War Cry (varies)","+20-30 to Attack Rating per Character Level","Hit Causes Monster to Flee 20%","Slain Monsters Rest in Peace"],
-  "Treachery": ["+120% Enhanced Defense","+5% Faster Cast Rate","+5% Faster Hit Recovery","+3 to All Skills","+3 to Wake of Inferno (Sorceress Only)","+3 to Fire Mastery (Sorceress Only)","+3 to Warmth (Sorceress Only)","+30% Chance of Open Wounds","+5-10 to Fire Ball (varies)","+5-10 to Fire Bolt (varies)","+5-10 to Inferno (varies)","Level 15-20 Fade Aura when Equipped"],
-  "Venom": ["+150-230% Enhanced Damage (varies)","+200% Bonus to Attack Rating","+3 to All Skills","+5-10 to Poison Nova (varies)","+5-10 to Poison Explosion (varies)","+5-10 to Lower Resist (varies)","+3 to Assassin Skills","+3 to Wake of Fire (Assassin Only)","+3 to Venom (Assassin Only)","Hit Causes Monster to Flee 25%","Magic Damage Reduced by 7","Cannot Be Frozen"],
-  "Voice of Reason": ["+120-180% Enhanced Damage (varies)","+220-300% Bonus to Attack Rating (varies)","+3 to All Skills","+44-132 Cold Damage","+28-56 Lightning Damage","+3 to Ice Blast (varies)","+3 to Glacial Spike (varies)","+3 to Frozen Armor (varies)","+3 to Telekinesis (varies)","+3 to Static Field (varies)","Level 15-20 Holy Freeze Aura when Equipped"],
-  "Wealth": ["+300% Enhanced Defense","+100% Better Chance of Getting Magic Items","+5 to All Skills","+10 to Energy","+10 to Vitality","+5% Faster Hit Recovery","+5% Maximum Cold Resistance","+5% Maximum Lightning Resistance","All Resistances +10","+3 to Light Radius"],
-  "White": ["+50% Enhanced Damage","+200-300% Bonus to Attack Rating (varies)","+3 to Necromancer Skills","+3 to Bone Spear (varies)","+3 to Teeth (varies)","+3 to Bone Armor (varies)","+20 to Mana","+3 to Poison Dagger (Assassin Only)","+3 to Shadow Warrior (Assassin Only)","Hit Causes Monster to Flee 10%"],
-  "Wind": ["+100-140% Enhanced Damage (varies)","+150% Bonus to Attack Rating","+3 to All Skills","+10% Faster Run/Walk","+20% IAS","+3 to Tornado (Druid Only)","+3 to Hurricane (Druid Only)","+3 to Cyclone Armor (Druid Only)","+3 to Oak Sage (Druid Only)","+2 to Light Radius"],
-  "Wrath": ["+280-350% Enhanced Damage (varies)","+280-330% Bonus to Attack Rating (varies)","+5-10 to Holy Bolt (varies)","+5-10 to Holy Shock (varies)","+30-175 Lightning Damage","+30-175 Fire Damage","+30-175 Cold Damage","+3 to All Skills","+5% Maximum Lightning Resistance","Level 15-20 Holy Freeze Aura when Equipped"],
-  "Zephyr": ["+80-120% Enhanced Damage (varies)","+150% Bonus to Attack Rating","+3 to All Skills","+65-95 Enhanced Damage vs Demons (varies)","+65-95 Enhanced Damage vs Undead (varies)","+5 to Dodge (Amazon Only)","+5 to Slow Missiles (Amazon Only)","+5 to Critical Strike (Amazon Only)","+5 to Inner Sight (Amazon Only)","+25% Faster Run/Walk","+33% Chance of Crushing Blow"],
-  "Flickering Flame": ["+30-50% Enhanced Damage (varies)","+100-130% Bonus to Attack Rating (varies)","+3 to Fire Skills (Sorceress Only)","+5-8 to Fire Ball (varies)","+5-8 to Fire Bolt (varies)","+5-8 to Inferno (varies)","+3 to Warmth (Sorceress Only)","+3 to Fire Mastery (Sorceress Only)","+3 to Enchant (Sorceress Only)","+30-40% Fire Damage"],
-  "Obsession": ["+60% Enhanced Damage","+200% Bonus to Attack Rating","+3 to All Skills","+40% Faster Cast Rate","+5-10 to Lightning (varies)","+5-10 to Chain Lightning (varies)","+5-10 to Nova (varies)","+10-15 to Energy","+15-25 to Mana","+3 to Teleport (Sorceress Only)","Level 15-20 Infinity Aura when Equipped"],
-  "Pattern": ["+120-150% Enhanced Damage (varies)","+100% Bonus to Attack Rating","+3 to Assassin Skills","+3 to Burst of Speed (Assassin Only)","+3 to Wake of Fire (Assassin Only)","+3 to Shadow Warrior (Assassin Only)","+3 to Blade Sentinel (Assassin Only)","+3 to Psychic Hammer (Assassin Only)","+20% IAS","Hit Causes Monster to Flee 15%"],
-  "Plague": ["+180-240% Enhanced Damage (varies)","+180-240% Bonus to Attack Rating (varies)","+3 to All Skills","+5-12 to Poison Nova (varies)","+5-12 to Poison Explosion (varies)","+20-35% Chance of Casting Poison Nova on Attack","+3 to Poison Dagger (Assassin Only)","+3 to Shadow Warrior (Assassin Only)","+3 to Wake of Fire (Assassin Only)","All Resistances +15-20 (varies)"],
-  "Unbending Will": ["+300-350% Enhanced Damage (varies)","+200-250% Bonus to Attack Rating (varies)","+3 to All Skills","+40% IAS","+15-20 to Battle Orders (varies)","+15-20 to Battle Command (varies)","+15-20 to Bash (varies)","+3 to War Cry (varies)","+3 to Howl (varies)","Slain Monsters Rest in Peace"],
-  "Wisdom": ["+100-120% Enhanced Damage (varies)","+150% Bonus to Attack Rating","+3 to All Skills","+5-10 to Energy (varies)","+5-10 to Mana (varies)","+3 to Holy Aura (Paladin Only)","+3 to Meditation (Paladin Only)","+3 to Resist Fire (Paladin Only)","+3 to Resist Lightning (Paladin Only)","+33% Chance of Crushing Blow"],
-  "Mist": ["+200-300% Enhanced Damage (varies)","+200% Bonus to Attack Rating","+3 to All Skills","+5-10 to Multiple Shot (varies)","+5-10 to Guided Arrow (varies)","+5-10 to Ice Arrow (varies)","+5-10 to Cold Arrow (varies)","+30-50 Cold Damage","Level 15-20 Holy Freeze Aura when Equipped"],
-  "Bulwark": ["+80-100% Enhanced Defense (varies)","+40% Faster Hit Recovery","+20% Faster Block Rate","+3 to All Skills","+10-15 to Vitality (varies)","+5-10 to Energy (varies)","All Resistances +15","+2-3 to Iron Skin (varies)","+2-3 to Increased Stamina (varies)"],
-  "Cure": ["+60-80% Enhanced Defense (varies)","+20% Faster Hit Recovery","+3 to All Skills","+10-15 to Vitality (varies)","+5-10 to Energy (varies)","All Resistances +15","+2-3 to Purification (varies)","+2-3 to Cleansing (varies)","Hit Causes Monster to Flee 10%"],
-  "Ground": ["+80-100% Enhanced Defense (varies)","+20% Faster Hit Recovery","+3 to All Skills","+10-15 to Vitality (varies)","+5-10 to Energy (varies)","All Resistances +15","+2-3 to Stone Skin (varies)","+2-3 to Iron Skin (varies)","+2-3 to Increased Stamina (varies)"],
-  "Hearth": ["+80-100% Enhanced Defense (varies)","+20% Faster Hit Recovery","+3 to All Skills","+10-15 to Vitality (varies)","+5-10 to Energy (varies)","All Resistances +15","+2-3 to Raven (varies)","+2-3 to Oak Sage (varies)","+2-3 to Summon Grizzly (varies)"],
-  "Temper": ["+80-100% Enhanced Defense (varies)","+20% Faster Hit Recovery","+3 to All Skills","+10-15 to Vitality (varies)","+5-10 to Energy (varies)","All Resistances +15","+2-3 to Bash (varies)","+2-3 to Weapon Mastery (varies)","+2-3 to Increased Stamina (varies)"],
-  "Hustle": ["+180-260% Enhanced Damage (varies)","+150% Bonus to Attack Rating","+3 to All Skills","+40% IAS","+20% Faster Block Rate","+10-15 to Vitality (varies)","+5-10 to Energy (varies)","+3 to Whirlwind (varies)","+3 to Bash (varies)"],
-  "Metamorphosis": ["+200-280% Enhanced Damage (varies)","+180% Bonus to Attack Rating","+3 to All Skills","+5-7 to Fire Ball (varies)","+5-7 to Fire Bolt (varies)","+5-7 to Inferno (varies)","+3 to Fire Mastery (Sorceress Only)","+3 to Enchant (Sorceress Only)","+30% Fire Damage"],
-  "Mosaic": ["+180-240% Enhanced Damage (varies)","+180% Bonus to Attack Rating","+3 to Assassin Skills","+3 to Burst of Speed (Assassin Only)","+3 to Fade (Assassin Only)","+3 to Shadow Warrior (Assassin Only)","+3 to Blade Sentinel (Assassin Only)","+20% IAS","+10% Chance of Crushing Blow"],
-  "Authority": ["+100-130% Enhanced Defense (varies)","+3 to All Skills","+5-8 to Holy Bolt (varies)","+5-8 to Holy Shock (varies)","+5-8 to Zeal (varies)","+5-8 to Sacrifice (varies)","+3 to Holy Aura (Paladin Only)","All Resistances +15","+100-150 Life"],
-  "Coven": ["+80-120% Enhanced Defense (varies)","+3 to All Skills","+5-10 to Ice Bolt (varies)","+5-10 to Frost Nova (varies)","+5-10 to Glacial Spike (varies)","+3 to Ice Mastery (Sorceress Only)","+3 to Static Field (Sorceress Only)","+3 to Telekinesis (Sorceress Only)","All Resistances +15","Magic Damage Reduced by 5"],
-  "Void": ["+180-240% Enhanced Damage (varies)","+180-240% Bonus to Attack Rating (varies)","+3 to All Skills","+5-10 to Poison Nova (varies)","+5-10 to Poison Explosion (varies)","+3 to Assassin Skills","+3 to Venom (Assassin Only)","+3 to Shadow Warrior (Assassin Only)","+3 to Wake of Fire (Assassin Only)","All Resistances +15"],
-  "Vigilance": ["+100-130% Enhanced Defense (varies)","+25% Faster Block Rate","+3 to All Skills","+5-8 to Holy Bolt (varies)","+5-8 to Holy Shock (varies)","+5-8 to Smite (varies)","+3 to Holy Aura (Paladin Only)","+3 to Prayer (Paladin Only)","+3 to Resist Fire (Paladin Only)","All Resistances +15","Cannot Be Frozen"],
-  "Ritual": ["+150-200% Enhanced Damage (varies)","+150-200% Bonus to Attack Rating (varies)","+3 to All Skills","+5-10 to Poison Nova (varies)","+5-10 to Poison Explosion (varies)","+3 to Assassin Skills","+3 to Venom (Assassin Only)","+3 to Shadow Warrior (Assassin Only)","+3 to Wake of Fire (Assassin Only)","All Resistances +15","Hit Causes Monster to Flee 15%"],
-  "Hysteria": ["+150-200% Enhanced Defense (varies)","+3 to All Skills","+5-10 to Holy Bolt (varies)","+5-10 to Holy Shock (varies)","+5-10 to Zeal (varies)","+5-10 to Sacrifice (varies)","+3 to Holy Aura (Paladin Only)","+3 to Meditation (Paladin Only)","All Resistances +15","+5% Maximum Cold Resistance"],
-  "Mania": ["+150-200% Enhanced Damage (varies)","+150-200% Bonus to Attack Rating (varies)","+3 to All Skills","+40% IAS","+5-10 to Bash (varies)","+5-10 to Blade Mastery (varies)","+5-10 to Whirlwind (varies)","+3 to War Cry (varies)","+3 to Battle Orders (varies)","Slain Monsters Rest in Peace"]
+    "Black": {
+    sc: ["+3 死灵法师技能","+40% 施法速度","+120% 增强伤害","+200 攻击命中率","+15 能量","+10 活力","魔法伤害减少2","击中怪物15%概率逃跑"],
+    tc: ["+3 死靈法師技能","+40% 施法速度","+120% 增強傷害","+200 攻擊命中率","+15 能量","+10 活力","魔法傷害減少2","擊中怪物15%概率逃跑"],
+    en: ["+3 to Necromancer Skills","+40% Casting Speed","+120% Enhanced Damage","+200 to Attack Rating","+15 to Energy","+10 to Vitality","Magic Damage Reduced by 2","Hit Causes Monster to Flee 15%"]
+  },
+  "Bone": {
+    sc: ["+75% 增强防御","+25 能量","+10% 快速施法","+30% 毒素持续时间减少","所有抗性+15","+2 白骨技能（死灵法师专用）"],
+    tc: ["+75% 增強防禦","+25 能量","+10% 快速施法","+30% 毒素持續時間減少","所有抗性+15","+2 白骨技能（死靈法師專用）"],
+    en: ["+75% Enhanced Defense","+25 to Energy","+10% Faster Cast Rate","+30% Poison Length Reduced","All Resistances +15","+2 to Bone Skills (Necromancer Only)"]
+  },
+  "Bramble": {
+    sc: ["+50% 增强防御","+25-35% 火焰伤害（变量）","+30% 快速施法","+5-9 毒雾（变量）","+4 蝮蛇之灵（野蛮人专用）","恢复法力15%","所有抗性+25-35（变量）","击中目标治疗1"],
+    tc: ["+50% 增強防禦","+25-35% 火焰傷害（變量）","+30% 快速施法","+5-9 毒霧（變量）","+4 蝮蛇之靈（野蠻人專用）","恢復法力15%","所有抗性+25-35（變量）","擊中目標治療1"],
+    en: ["+50% Enhanced Defense","+25-35% Fire Damage (varies)","+30% Faster Cast Rate","+5-9 to Poison Nova (varies)","+4 to Spirit of the Viper (Barbarian Only)","Regenerate Mana 15%","All Resistances +25-35 (varies)","Hit Causes Target to Heal 1"]
+  },
+  "Brand": {
+    sc: ["35% 击中施放伤害加深","100% 伤口恶化","+350% 增强伤害","+280% 攻击命中率加成","+1-6 降低抵抗（变量）","防止怪物治疗","击退"],
+    tc: ["35% 擊中施放傷害加深","100% 傷口惡化","+350% 增強傷害","+280% 攻擊命中率加成","+1-6 降低抵抗（變量）","防止怪物治療","擊退"],
+    en: ["35% Chance of Casting Amplify Damage on Striking","100% Chance of Open Wounds","+350% Enhanced Damage","+280% Bonus to Attack Rating","+1-6 to Lower Resist (varies)","Prevent Monster Heal","Knockback"]
+  },
+  "Breath of the Dying": {
+    sc: ["60% 攻击时施放毒液","+350% 增强伤害","+170% 攻击命中率加成","+21 每级攻击命中率","+2 所有技能","+20 击杀后恢复生命","所有抗性+30","击中怪物25%概率逃跑","击杀怪物生命恢复-100%","每5秒修复1点耐久度"],
+    tc: ["60% 攻擊時施放毒液","+350% 增強傷害","+170% 攻擊命中率加成","+21 每級攻擊命中率","+2 所有技能","+20 殺敵後恢復生命","所有抗性+30","擊中怪物25%概率逃跑","殺死怪物生命恢復-100%","每5秒修復1點耐久度"],
+    en: ["60% Chance of Casting Venom on Attack","+350% Enhanced Damage","+170% Bonus to Attack Rating","+21 to Attack Rating per Character Level","+2 to All Skills","+20 to Life after each Kill","All Resistances +30","Hit Causes Monster to Flee 25%","Kill Monsters HP Recovery -100%","Repairs 1 Durability in 5 Seconds"]
+  },
+  "Call to Arms": {
+    sc: ["+2 所有技能","+40% 增强伤害","+5-7 战斗命令（变量）","+3 战斗号令（变量）","+1 所有技能等级","+250% 攻击命中率加成","+2 击杀后恢复法力","+2 击杀后恢复生命"],
+    tc: ["+2 所有技能","+40% 增強傷害","+5-7 戰鬥命令（變量）","+3 戰鬥號令（變量）","+1 所有技能等級","+250% 攻擊命中率加成","+2 殺敵後恢復法力","+2 殺敵後恢復生命"],
+    en: ["+2 to All Skills","+40% Enhanced Damage","+5-7 to Battle Orders (varies)","+3 to Battle Command (varies)","+1 to All Skill Levels","+250% Bonus to Attack Rating","+2 to Mana after each Kill","+2 to Life after each Kill"]
+  },
+  "Chains of Honor": {
+    sc: ["+2 所有技能","+100% 更佳魔法物品概率","+70% 增强防御","+250 生命","所有抗性+65","魔法伤害减少15","+1 光照范围"],
+    tc: ["+2 所有技能","+100% 更佳魔法物品概率","+70% 增強防禦","+250 生命","所有抗性+65","魔法傷害減少15","+1 光照範圍"],
+    en: ["+2 to All Skills","+100% Better Chance of Getting Magic Items","+70% Enhanced Defense","+250 to Life","All Resistances +65","Magic Damage Reduced by 15","+1 to Light Radius"]
+  },
+  "Chaos": {
+    sc: ["+3 刺客技能","+35% 攻击速度","+240-290% 增强伤害（变量）","+1 毒液（刺客专用）","+11 连锁闪电（法师专用）","魔法伤害减少7","+2 暗影 Discipline（刺客专用）"],
+    tc: ["+3 刺客技能","+35% 攻擊速度","+240-290% 增強傷害（變量）","+1 毒液（刺客專用）","+11 連鎖閃電（法師專用）","魔法傷害減少7","+2 暗影 Discipline（刺客專用）"],
+    en: ["+3 to Assassin Skills","+35% IAS","+240-290% Enhanced Damage (varies)","+1 to Venom (Assassin Only)","+11 to Chain Lightning (Sorceress Only)","Magic Damage Reduced by 7","+2 to Shadow Disciplines (Assassin Only)"]
+  },
+  "Crescent Moon": {
+    sc: ["+35% 攻击速度","+260-320% 增强伤害（变量）","+9 能量","+75 法力","+1-3 静态力场（变量）","+7 连锁闪电（变量）","+30% 闪电伤害","18级 击中时召唤灰熊"],
+    tc: ["+35% 攻擊速度","+260-320% 增強傷害（變量）","+9 能量","+75 法力","+1-3 靜態力場（變量）","+7 連鎖閃電（變量）","+30% 閃電傷害","18級 擊中時召喚灰熊"],
+    en: ["+35% IAS","+260-320% Enhanced Damage (varies)","+9 to Energy","+75 to Mana","+1-3 to Static Field (varies)","+7 to Chain Lightning (varies)","+30% Lightning Damage","Level 18 Summon Grizzly on Striking"]
+  },
+  "Death": {
+    sc: ["100% 死亡时施放冰封球","25% 攻击时施放骨牢","+300-385% 增强伤害（变量）","+180% 攻击命中率加成","+1 所有技能","+20 力量","所有抗性+15","+50% 更佳魔法物品概率","击退","击杀怪物安息"],
+    tc: ["100% 死亡時施放冰封球","25% 攻擊時施放骨牢","+300-385% 增強傷害（變量）","+180% 攻擊命中率加成","+1 所有技能","+20 力量","所有抗性+15","+50% 更佳魔法物品概率","擊退","殺死怪物安息"],
+    en: ["100% Chance of Casting Blizard on Death","25% Chance of Casting Bone Prison on Attack","+300-385% Enhanced Damage (varies)","+180% Bonus to Attack Rating","+1 to All Skills","+20 to Strength","All Resistances +15","+50% Better Chance of Getting Magic Items","Knockback","Slain Monsters Rest in Peace"]
+  },
+  "Delirium": {
+    sc: ["+65% 增强防御","+30 能量","+10% 快速施法","+5-12 心灵爆震（变量）","+3 诱饵（变量）","+3 暗影战士（变量）","+3 暗影斗篷（变量）","17级 装备时混乱光环"],
+    tc: ["+65% 增強防禦","+30 能量","+10% 快速施法","+5-12 心靈爆震（變量）","+3 誘餌（變量）","+3 暗影戰士（變量）","+3 暗影斗篷（變量）","17級 裝備時混亂光環"],
+    en: ["+65% Enhanced Defense","+30 to Energy","+10% Faster Cast Rate","+5-12 to Mind Blast (varies)","+3 to Decoy (varies)","+3 to Shadow Warrior (varies)","+3 to Cloak of Shadows (varies)","Level 17 Confusion Aura when Equipped"]
+  },
+  "Destruction": {
+    sc: ["23% 攻击时施放火山","23% 攻击时施放陨石","100% 死亡时施放毒雾","+350% 增强伤害","+350% 攻击命中率加成","+1-6 降低抵抗（变量）","+5-10 毒雾（变量）","+2 所有技能","击杀怪物爆炸"],
+    tc: ["23% 攻擊時施放火山","23% 攻擊時施放隕石","100% 死亡時施放毒霧","+350% 增強傷害","+350% 攻擊命中率加成","+1-6 降低抵抗（變量）","+5-10 毒霧（變量）","+2 所有技能","殺死怪物爆炸"],
+    en: ["23% Chance of Casting Volcano on Attack","23% Chance of Casting Meteor on Attack","100% Chance of Casting Poison Nova on Death","+350% Enhanced Damage","+350% Bonus to Attack Rating","+1-6 to Lower Resist (varies)","+5-10 to Poison Nova (varies)","+2 to All Skills","Slain Monsters Explode"]
+  },
+  "Doom": {
+    sc: ["5% 被击中时施放Enchant","+180-220% 增强伤害（变量）","+10 能量","+15-21% 火焰伤害（变量）","+25% 快速跑步/行走","+30% 冰冷伤害","12级 装备时圣冰光环","+2 所有技能"],
+    tc: ["5% 被擊中時施放Enchant","+180-220% 增強傷害（變量）","+10 能量","+15-21% 火焰傷害（變量）","+25% 快速跑步/行走","+30% 冰冷傷害","12級 裝備時聖冰光環","+2 所有技能"],
+    en: ["5% Chance of Casting Enchant when Hit","+180-220% Enhanced Damage (varies)","+10 to Energy","+15-21% Fire Damage (varies)","+25% Faster Run/Walk","+30% Cold Damage","Level 12 Holy Freeze Aura when Equipped","+2 to All Skills"]
+  },
+  "Dragon": {
+    sc: ["+360 防御","+236-284% 增强防御（变量）","+30% 快速格挡率","+5-10 圣冰（变量）","+10 能量","所有抗性+5-15（变量）","+3 圣冰（圣骑士专用）","+3 圣盾（圣骑士专用）","+3 转化（圣骑士专用）"],
+    tc: ["+360 防禦","+236-284% 增強防禦（變量）","+30% 快速格擋率","+5-10 聖冰（變量）","+10 能量","所有抗性+5-15（變量）","+3 聖冰（聖騎士專用）","+3 聖盾（聖騎士專用）","+3 轉化（聖騎士專用）"],
+    en: ["+360 Defense","+236-284% Enhanced Defense (varies)","+30% Faster Block Rate","+5-10 to Holy Freeze (varies)","+10 to Energy","All Resistances +5-15 (varies)","+3 to Holy Freeze (Paladin Only)","+3 to Holy Shield (Paladin Only)","+3 to Conversion (Paladin Only)"]
+  },
+  "Dream": {
+    sc: ["+10 能量","+10% 快速施法","+33% 更佳魔法物品概率","+30-50% 增强防御（变量）","+5-10 圣冰（变量）","+3 圣冰（圣骑士专用）","15级 装备时信念光环"],
+    tc: ["+10 能量","+10% 快速施法","+33% 更佳魔法物品概率","+30-50% 增強防禦（變量）","+5-10 聖冰（變量）","+3 聖冰（聖騎士專用）","15級 裝備時信念光環"],
+    en: ["+10 to Energy","+10% Faster Cast Rate","+33% Better Chance of Getting Magic Items","+30-50% Enhanced Defense (varies)","+5-10 to Holy Freeze (varies)","+3 to Holy Freeze (Paladin Only)","Level 15 Conviction Aura when Equipped"]
+  },
+  "Duress": {
+    sc: ["+40% 增强防御","+15% 快速打击恢复","+30% 增强伤害","+10-15% 压碎性打击概率（变量）","+150-200% 增强防御（变量）","所有抗性+15-25（变量）","+8-13 冰冷伤害","+12-15 火焰伤害","+10-13 闪电伤害"],
+    tc: ["+40% 增強防禦","+15% 快速打擊恢復","+30% 增強傷害","+10-15% 壓碎性打擊概率（變量）","+150-200% 增強防禦（變量）","所有抗性+15-25（變量）","+8-13 冰冷傷害","+12-15 火焰傷害","+10-13 閃電傷害"],
+    en: ["+40% Enhanced Defense","+15% Faster Hit Recovery","+30% Enhanced Damage","+10-15% Chance of Crushing Blow (varies)","+150-200% Enhanced Defense (varies)","All Resistances +15-25 (varies)","Adds 8-13 Cold Damage","Adds 12-15 Fire Damage","Adds 10-13 Lightning Damage"]
+  },
+  "Edge": {
+    sc: ["+35% 攻击速度","+300-360% 增强伤害（变量）","+75 法力","+5 击杀后恢复能量","+3 弓和十字弩技能（亚马逊专用）","+5 瓦尔基里（亚马逊专用）","15级 装备时荆棘光环"],
+    tc: ["+35% 攻擊速度","+300-360% 增強傷害（變量）","+75 法力","+5 殺敵後恢復能量","+3 弓和十字弩技能（亞馬遜專用）","+5 瓦爾基里（亞馬遜專用）","15級 裝備時荊棘光環"],
+    en: ["+35% IAS","+300-360% Enhanced Damage (varies)","+75 to Mana","+5 to Energy after each Kill","+3 to Bow and Crossbow Skills (Amazon Only)","+5 to Valkyrie (Amazon Only)","Level 15 Thorns Aura when Equipped"]
+  },
+  "Enigma": {
+    sc: ["+2 所有技能","+45% 快速跑步/行走","+1 传送","+750-775 防御（变量）","+0.75 每级生命（变量）","+0.75 每级法力（变量）","所有抗性+65","伤害减少7","魔法伤害减少15","+14 力量"],
+    tc: ["+2 所有技能","+45% 快速跑步/行走","+1 傳送","+750-775 防禦（變量）","+0.75 每級生命（變量）","+0.75 每級法力（變量）","所有抗性+65","傷害減少7","魔法傷害減少15","+14 力量"],
+    en: ["+2 to All Skills","+45% Faster Run/Walk","+1 to Teleport","+750-775 Defense (varies)","+0.75 per Character Level to Life (varies)","+0.75 per Character Level to Mana (varies)","All Resistances +65","Damage Reduced by 7","Magic Damage Reduced by 15","+14 Strength"]
+  },
+  "Enlightenment": {
+    sc: ["+2 圣骑士技能","+30% 增强伤害","+150% 增强防御","+10 能量","+5% 快速施法","+5 圣光弹（圣骑士专用）","+5 圣光冲击（圣骑士专用）","+3 圣光光环（圣骑士专用）"],
+    tc: ["+2 聖騎士技能","+30% 增強傷害","+150% 增強防禦","+10 能量","+5% 快速施法","+5 聖光彈（聖騎士專用）","+5 聖光衝擊（聖騎士專用）","+3 聖光光環（聖騎士專用）"],
+    en: ["+2 to Paladin Skills","+30% Enhanced Damage","+150% Enhanced Defense","+10 to Energy","+5% Faster Cast Rate","+5 to Holy Bolt (Paladin Only)","+5 to Holy Shock (Paladin Only)","+3 to Holy Aura (Paladin Only)"]
+  },
+  "Eternity": {
+    sc: ["+3 所有技能","+200% 增强伤害","+200% 攻击命中率加成","+250-300% 增强防御（变量）","+8 击杀后恢复生命","所有抗性+20","击中怪物25%概率逃跑","击杀怪物安息","每10秒修复1点耐久度"],
+    tc: ["+3 所有技能","+200% 增強傷害","+200% 攻擊命中率加成","+250-300% 增強防禦（變量）","+8 殺敵後恢復生命","所有抗性+20","擊中怪物25%概率逃跑","殺死怪物安息","每10秒修復1點耐久度"],
+    en: ["+3 to All Skills","+200% Enhanced Damage","+200% Bonus to Attack Rating","+250-300% Enhanced Defense (varies)","+8 to Life after each Kill","All Resistances +20","Hit Causes Monster to Flee 25%","Slain Monsters Rest in Peace","Repairs 1 Durability in 10 Seconds"]
+  },
+  "Exile": {
+    sc: ["+25% 快速格挡率","+30% 增强防御","+150-250% 增强防御（变量）","+30 活力","+5% 最大火焰抗性","+5% 最大冰冷抗性","+5% 最大闪电抗性","13-16级 反抗光环（变量）","无法冻结"],
+    tc: ["+25% 快速格擋率","+30% 增強防禦","+150-250% 增強防禦（變量）","+30 活力","+5% 最大火焰抗性","+5% 最大冰冷抗性","+5% 最大閃電抗性","13-16級 反抗光環（變量）","無法凍結"],
+    en: ["+25% Faster Block Rate","+30% Enhanced Defense","+150-250% Enhanced Defense (varies)","+30 to Vitality","+5% Maximum Fire Resistance","+5% Maximum Cold Resistance","+5% Maximum Lightning Resistance","Level 13-16 Defiance Aura (varies)","Cannot Be Frozen"]
+  },
+  "Faith": {
+    sc: ["+2 所有技能","+200% 增强伤害","+300% 攻击命中率加成","+5-10 圣冰（变量）","+3 圣光光环（圣骑士专用）","+3 圣光弹（圣骑士专用）","+3 圣光冲击（圣骑士专用）","15-20级 狂热光环（变量）"],
+    tc: ["+2 所有技能","+200% 增強傷害","+300% 攻擊命中率加成","+5-10 聖冰（變量）","+3 聖光光環（聖騎士專用）","+3 聖光彈（聖騎士專用）","+3 聖光衝擊（聖騎士專用）","15-20級 狂熱光環（變量）"],
+    en: ["+2 to All Skills","+200% Enhanced Damage","+300% Bonus to Attack Rating","+5-10 to Holy Freeze (varies)","+3 to Holy Aura (Paladin Only)","+3 to Holy Bolt (Paladin Only)","+3 to Holy Shock (Paladin Only)","Level 15-20 Fanaticism Aura (varies)"]
+  },
+  "Famine": {
+    sc: ["+30% 攻击速度","+320% 增强伤害","+200% 攻击命中率加成","+10 力量","+23 每级攻击命中率","+15-45 火焰伤害","+40-80 闪电伤害","+20-50 冰冷伤害","+10-30 魔法伤害","击退"],
+    tc: ["+30% 攻擊速度","+320% 增強傷害","+200% 攻擊命中率加成","+10 力量","+23 每級攻擊命中率","+15-45 火焰傷害","+40-80 閃電傷害","+20-50 冰冷傷害","+10-30 魔法傷害","擊退"],
+    en: ["+30% IAS","+320% Enhanced Damage","+200% Bonus to Attack Rating","+10 to Strength","+23 to Attack Rating per Character Level","+15-45 Fire Damage","+40-80 Lightning Damage","+20-50 Cold Damage","+10-30 Magic Damage","Knockback"]
+  },
+  "Fortitude": {
+    sc: ["+300% 增强伤害","+200% 增强防御","+100% 更佳魔法物品概率","+9 最小伤害","+50 生命","+1 光照范围","+5% 最大火焰抗性","+5% 最大冰冷抗性","+5% 最大闪电抗性","所有抗性+25-30（变量）","+3 光照范围（变量）","+3 圣盾（变量）"],
+    tc: ["+300% 增強傷害","+200% 增強防禦","+100% 更佳魔法物品概率","+9 最小傷害","+50 生命","+1 光照範圍","+5% 最大火焰抗性","+5% 最大冰冷抗性","+5% 最大閃電抗性","所有抗性+25-30（變量）","+3 光照範圍（變量）","+3 聖盾（變量）"],
+    en: ["+300% Enhanced Damage","+200% Enhanced Defense","+100% Better Chance of Getting Magic Items","+9 to Minimum Damage","+50 to Life","+1 to Light Radius","+5% Maximum Fire Resistance","+5% Maximum Cold Resistance","+5% Maximum Lightning Resistance","All Resistances +25-30 (varies)","+3 to Light Radius (varies)","+3 to Holy Shield (varies)"]
+  },
+  "Fury": {
+    sc: ["+200% 增强伤害","+40% 攻击速度","+5-10 戳刺（变量）","+3 致命一击（变量）","+3 重击（变量）","+3 剑掌握（变量）","+3 旋风（变量）","18级 装备时圣冰光环"],
+    tc: ["+200% 增強傷害","+40% 攻擊速度","+5-10 戳刺（變量）","+3 致命一擊（變量）","+3 重擊（變量）","+3 劍掌握（變量）","+3 旋風（變量）","18級 裝備時聖冰光環"],
+    en: ["+200% Enhanced Damage","+40% IAS","+5-10 to Fend (varies)","+3 to Critical Strike (varies)","+3 to Bash (varies)","+3 to Blade Mastery (varies)","+3 to Whirlwind (varies)","Level 18 Holy Freeze Aura when Equipped"]
+  },
+  "Gloom": {
+    sc: ["+200-260% 增强防御（变量）","+20% 快速打击恢复","+30% 增强伤害","+10 能量","+10 活力","所有抗性+15","魔法伤害减少8","击中怪物15%概率逃跑","+3 微暗视觉（死灵法师专用）"],
+    tc: ["+200-260% 增強防禦（變量）","+20% 快速打擊恢復","+30% 增強傷害","+10 能量","+10 活力","所有抗性+15","魔法傷害減少8","擊中怪物15%概率逃跑","+3 微暗視覺（死靈法師專用）"],
+    en: ["+200-260% Enhanced Defense (varies)","+20% Faster Hit Recovery","+30% Enhanced Damage","+10 to Energy","+10 to Vitality","All Resistances +15","Magic Damage Reduced by 8","Hit Causes Monster to Flee 15%","+3 to Dim Vision (Necromancer Only)"]
+  },
+  "Grief": {
+    sc: ["+340-400% 增强伤害（变量）","+35% 攻击速度","+20% 攻击命中率加成","+5-7 致命一击（变量）","+3-5 战斗命令（变量）","+1 所有技能等级","+5% 最大闪电抗性","+10% 敌人火焰抗性","击杀怪物安息"],
+    tc: ["+340-400% 增強傷害（變量）","+35% 攻擊速度","+20% 攻擊命中率加成","+5-7 致命一擊（變量）","+3-5 戰鬥命令（變量）","+1 所有技能等級","+5% 最大閃電抗性","+10% 敵人火焰抗性","殺死怪物安息"],
+    en: ["+340-400% Enhanced Damage (varies)","+35% IAS","+20% Bonus to Attack Rating","+5-7 to Critical Strike (varies)","+3-5 to Battle Orders (varies)","+1 to All Skill Levels","+5% Maximum Lightning Resistance","+10% to Enemy Fire Resistance","Slain Monsters Rest in Peace"]
+  },
+  "Hand of Justice": {
+    sc: ["+20% 攻击速度","+280-320% 增强伤害（变量）","+100% 攻击命中率加成","+1 所有技能","+16 最大伤害","+30% 火焰伤害","+30% 闪电伤害","+30% 冰冷伤害","15-20级 圣冰光环（变量）"],
+    tc: ["+20% 攻擊速度","+280-320% 增強傷害（變量）","+100% 攻擊命中率加成","+1 所有技能","+16 最大傷害","+30% 火焰傷害","+30% 閃電傷害","+30% 冰冷傷害","15-20級 聖冰光環（變量）"],
+    en: ["+20% IAS","+280-320% Enhanced Damage (varies)","+100% Bonus to Attack Rating","+1 to All Skills","+16 to Maximum Damage","+30% Fire Damage","+30% Lightning Damage","+30% Cold Damage","Level 15-20 Holy Freeze Aura (varies)"]
+  },
+  "Harmony": {
+    sc: ["+200-275% 增强伤害（变量）","+55-140 火焰伤害","+55-140 闪电伤害","+55-140 冰冷伤害","+55-140 毒素伤害","+10 活力","+2-3 瓦尔基里（变量）","+3-5 内在视觉（变量）","+3-5 致命一击（变量）","10-15级 活力光环（变量）"],
+    tc: ["+200-275% 增強傷害（變量）","+55-140 火焰傷害","+55-140 閃電傷害","+55-140 冰冷傷害","+55-140 毒素傷害","+10 活力","+2-3 瓦爾基里（變量）","+3-5 內在視覺（變量）","+3-5 致命一擊（變量）","10-15級 活力光環（變量）"],
+    en: ["+200-275% Enhanced Damage (varies)","+55-140 Fire Damage","+55-140 Lightning Damage","+55-140 Cold Damage","+55-140 Poison Damage","+10 to Vitality","+2-3 to Valkyrie (varies)","+3-5 to Inner Sight (varies)","+3-5 to Critical Strike (varies)","Level 10-15 Vigor Aura (varies)"]
+  },
+  "Heart of the Oak": {
+    sc: ["+3 所有技能","+40% 快速施法","+75-125% 增强伤害（变量）","+9 最小伤害","+50 法力","+30% 闪电伤害","+30-35% 毒素持续时间（变量）","+3 橡树贤者（德鲁伊专用）","+3 德鲁伊召唤技能等级","+3 乌鸦（德鲁伊专用）","+3 毒藤（德鲁伊专用）","+3 旋风铠甲（德鲁伊专用）"],
+    tc: ["+3 所有技能","+40% 快速施法","+75-125% 增強傷害（變量）","+9 最小傷害","+50 法力","+30% 閃電傷害","+30-35% 毒素持續時間（變量）","+3 橡樹賢者（德魯伊專用）","+3 德魯伊召喚技能等級","+3 烏鴉（德魯伊專用）","+3 毒藤（德魯伊專用）","+3 旋風鎧甲（德魯伊專用）"],
+    en: ["+3 to All Skills","+40% Faster Cast Rate","+75-125% Enhanced Damage (varies)","+9 to Minimum Damage","+50 to Mana","+30% Lightning Damage","+30-35% to Poison Length (varies)","+3 to Oak Sage (Druid Only)","+3 to Summon Druid Skill Level","+3 to Raven (Druid Only)","+3 to Poision Creeper (Druid Only)","+3 to Cyclone Armor (Druid Only)"]
+  },
+  "Holy Thunder": {
+    sc: ["+60% 增强伤害","+10 能量","+10 活力","+5-13 圣光弹（变量）","+7-15 圣光冲击（变量）","+3 圣光光环（圣骑士专用）","+20-30 闪电伤害","+10% 闪电伤害","所有抗性+10"],
+    tc: ["+60% 增強傷害","+10 能量","+10 活力","+5-13 聖光彈（變量）","+7-15 聖光衝擊（變量）","+3 聖光光環（聖騎士專用）","+20-30 閃電傷害","+10% 閃電傷害","所有抗性+10"],
+    en: ["+60% Enhanced Damage","+10 to Energy","+10 to Vitality","+5-13 to Holy Bolt (varies)","+7-15 to Holy Shock (varies)","+3 to Holy Aura (Paladin Only)","+20-30 Lightning Damage","+10% Lightning Damage","All Resistances +10"]
+  },
+  "Honor": {
+    sc: ["+160% 增强伤害","+200% 攻击命中率加成","+250-300 防御（变量）","+1 所有技能","+10 力量","+7 活力","+3 战斗命令（变量）","+3 战斗号令（变量）","+2 嘲讽（变量）","击中怪物25%概率逃跑","击杀怪物安息"],
+    tc: ["+160% 增強傷害","+200% 攻擊命中率加成","+250-300 防禦（變量）","+1 所有技能","+10 力量","+7 活力","+3 戰鬥命令（變量）","+3 戰鬥號令（變量）","+2 嘲諷（變量）","擊中怪物25%概率逃跑","殺死怪物安息"],
+    en: ["+160% Enhanced Damage","+200% Bonus to Attack Rating","+250-300 Defense (varies)","+1 to All Skills","+10 to Strength","+7 to Vitality","+3 to Battle Orders (varies)","+3 to Battle Command (varies)","+2 to Taunt (varies)","Hit Causes Monster to Flee 25%","Slain Monsters Rest in Peace"]
+  },
+  "Ice": {
+    sc: ["+100% 增强伤害","+140% 攻击命中率加成","+30% 快速格挡率","+3 所有技能","+10% 最大冰冷抗性","+10% 闪电抗性","+30% 冰冷伤害","+20% 击杀后恢复法力","15-20级 圣冰光环（变量）"],
+    tc: ["+100% 增強傷害","+140% 攻擊命中率加成","+30% 快速格擋率","+3 所有技能","+10% 最大冰冷抗性","+10% 閃電抗性","+30% 冰冷傷害","+20% 殺敵後恢復法力","15-20級 聖冰光環（變量）"],
+    en: ["+100% Enhanced Damage","+140% Bonus to Attack Rating","+30% Faster Block Rate","+3 to All Skills","+10% Maximum Cold Resistance","+10% Lightning Resistance","+30% Cold Damage","+20% Mana after Kill","Level 15-20 Holy Freeze Aura (varies)"]
+  },
+  "Infinity": {
+    sc: ["+250-300% 增强伤害（变量）","+180-240% 攻击命中率加成（变量）","+3 所有技能","+40% 生命偷取","+50% 更佳魔法物品概率","+30% 闪电伤害","+7-15 连锁闪电（变量）","15-20级 信念光环（变量）","穿透 25-35% 闪电抗性（变量）"],
+    tc: ["+250-300% 增強傷害（變量）","+180-240% 攻擊命中率加成（變量）","+3 所有技能","+40% 生命偷取","+50% 更佳魔法物品概率","+30% 閃電傷害","+7-15 連鎖閃電（變量）","15-20級 信念光環（變量）","穿透 25-35% 閃電抗性（變量）"],
+    en: ["+250-300% Enhanced Damage (varies)","+180-240% Bonus to Attack Rating (varies)","+3 to All Skills","+40% Life Stolen per Hit","+50% Better Chance of Getting Magic Items","+30% Lightning Damage","+7-15 to Chain Lightning (varies)","Level 15-20 Conviction Aura (varies)","Pierce 25-35% Lightning Resistance (varies)"]
+  },
+  "Insight": {
+    sc: ["+200-275% 增强伤害（变量）","+180-250% 攻击命中率加成（变量）","+5-12 冥想（变量）","+3 所有技能","+3-14 闪电（变量）","+3-10 连锁闪电（变量）","+3-7 新星（变量）","+25% 快速施法","+1-3 洞察（变量）","12-17级 冥想光环（变量）"],
+    tc: ["+200-275% 增強傷害（變量）","+180-250% 攻擊命中率加成（變量）","+5-12 冥想（變量）","+3 所有技能","+3-14 閃電（變量）","+3-10 連鎖閃電（變量）","+3-7 新星（變量）","+25% 快速施法","+1-3 洞察（變量）","12-17級 冥想光環（變量）"],
+    en: ["+200-275% Enhanced Damage (varies)","+180-250% Bonus to Attack Rating (varies)","+5-12 to Meditation (varies)","+3 to All Skills","+3-14 to Lightning (varies)","+3-10 to Chain Lightning (varies)","+3-7 to Nova (varies)","+25% Faster Cast Rate","+1-3 to Insight (varies)","Level 12-17 Meditation Aura (varies)"]
+  },
+  "King's Grace": {
+    sc: ["+100% 增强伤害","+150% 攻击命中率加成","+100% 增强防御","+5-10 圣光弹（变量）","+3 圣光光环（圣骑士专用）","+5 热诚（圣骑士专用）","+3 牺牲（圣骑士专用）","+100-150 生命（变量）","所有抗性+10"],
+    tc: ["+100% 增強傷害","+150% 攻擊命中率加成","+100% 增強防禦","+5-10 聖光彈（變量）","+3 聖光光環（聖騎士專用）","+5 熱誠（聖騎士專用）","+3 犧牲（聖騎士專用）","+100-150 生命（變量）","所有抗性+10"],
+    en: ["+100% Enhanced Damage","+150% Bonus to Attack Rating","+100% Enhanced Defense","+5-10 to Holy Bolt (varies)","+3 to Holy Aura (Paladin Only)","+5 to Zeal (Paladin Only)","+3 to Sacrifice (Paladin Only)","+100-150 Life (varies)","All Resistances +10"]
+  },
+  "Kingslayer": {
+    sc: ["+30% 攻击速度","+230-280% 增强伤害（变量）","+200% 攻击命中率加成","+40% 增强防御","+10 力量","+10 活力","+3 战斗命令（变量）","+3 战斗号令（变量）","击中怪物20%概率逃跑","20% 致命打击"],
+    tc: ["+30% 攻擊速度","+230-280% 增強傷害（變量）","+200% 攻擊命中率加成","+40% 增強防禦","+10 力量","+10 活力","+3 戰鬥命令（變量）","+3 戰鬥號令（變量）","擊中怪物20%概率逃跑","20% 致命打擊"],
+    en: ["+30% IAS","+230-280% Enhanced Damage (varies)","+200% Bonus to Attack Rating","+40% Enhanced Defense","+10 to Strength","+10 to Vitality","+3 to Battle Orders (varies)","+3 to Battle Command (varies)","Hit Causes Monster to Flee 20%","20% Deadly Strike"]
+  },
+  "Last Wish": {
+    sc: ["+330-375% 增强伤害（变量）","+150-210% 攻击命中率加成（变量）","+6-10 力量（变量）","+6-10 圣冰（变量）","+6-10 圣光冲击（变量）","+3 所有技能","+20% 压碎性打击概率","+5% 最大冰冷抗性","11-15级 装备时Fade光环"],
+    tc: ["+330-375% 增強傷害（變量）","+150-210% 攻擊命中率加成（變量）","+6-10 力量（變量）","+6-10 聖冰（變量）","+6-10 聖光衝擊（變量）","+3 所有技能","+20% 壓碎性打擊概率","+5% 最大冰冷抗性","11-15級 裝備時Fade光環"],
+    en: ["+330-375% Enhanced Damage (varies)","+150-210% Bonus to Attack Rating (varies)","+6-10 to Might (varies)","+6-10 to Holy Freeze (varies)","+6-10 to Holy Shock (varies)","+3 to All Skills","+20% Chance of Crushing Blow","+5% Maximum Cold Resistance","Level 11-15 Fade Aura when Equipped"]
+  },
+  "Lawbringer": {
+    sc: ["+200% 增强伤害","+150% 攻击命中率加成","+40% 增强防御","+3 所有技能","+10 力量","+15-25% 压碎性打击概率（变量）","+30% 快速格挡率","15-18级 庇护光环（变量）","+5-10 庇护（变量）","击杀怪物安息"],
+    tc: ["+200% 增強傷害","+150% 攻擊命中率加成","+40% 增強防禦","+3 所有技能","+10 力量","+15-25% 壓碎性打擊概率（變量）","+30% 快速格擋率","15-18級 庇護光環（變量）","+5-10 庇護（變量）","殺死怪物安息"],
+    en: ["+200% Enhanced Damage","+150% Bonus to Attack Rating","+40% Enhanced Defense","+3 to All Skills","+10 to Strength","+15-25% Chance of Crushing Blow (varies)","+30% Faster Block Rate","Level 15-18 Sanctuary Aura (varies)","+5-10 to Sanctuary (varies)","Slain Monsters Rest in Peace"]
+  },
+  "Leaf": {
+    sc: ["+5-9 火弹（变量）","+3 火焰技能（法师专用）","+8-15 地狱火（变量）","+3-7 内在视觉（变量）","+3 温暖（法师专用）","+2 心灵遥感（法师专用）","+2 火焰掌握（法师专用）","+3 烈焰波（法师专用）"],
+    tc: ["+5-9 火彈（變量）","+3 火焰技能（法師專用）","+8-15 地獄火（變量）","+3-7 內在視覺（變量）","+3 溫暖（法師專用）","+2 心靈遙感（法師專用）","+2 火焰掌握（法師專用）","+3 烈焰波（法師專用）"],
+    en: ["+5-9 to Fire Bolt (varies)","+3 to Fire Skills (Sorceress Only)","+8-15 to Inferno (varies)","+3-7 to Inner Sight (varies)","+3 to Warmth (Sorceress Only)","+2 to Telekinesis (Sorceress Only)","+2 to Fire Mastery (Sorceress Only)","+3 to Flame Wave (Sorceress Only)"]
+  },
+  "Lionheart": {
+    sc: ["+100% 增强伤害","+50% 增强防御","+30 力量","+20 活力","+10 能量","+3 战斗技能（野蛮人专用）","+3 剑掌握（野蛮人专用）","+3 耐力提升（野蛮人专用）","+3 加速（野蛮人专用）"],
+    tc: ["+100% 增強傷害","+50% 增強防禦","+30 力量","+20 活力","+10 能量","+3 戰鬥技能（野蠻人專用）","+3 劍掌握（野蠻人專用）","+3 耐力提升（野蠻人專用）","+3 加速（野蠻人專用）"],
+    en: ["+100% Enhanced Damage","+50% Enhanced Defense","+30 to Strength","+20 to Vitality","+10 to Energy","+3 to Combat Skills (Barbarian Only)","+3 to Sword Mastery (Barbarian Only)","+3 to Increased Stamina (Barbarian Only)","+3 to Increased Speed (Barbarian Only)"]
+  },
+  "Lore": {
+    sc: ["+5-10 能量（变量）","+3 所有技能","+5-9 法力（变量）","+3 心灵遥感（法师专用）","+3 温暖（法师专用）","+2 光照范围","魔法伤害减少2","所有抗性+5"],
+    tc: ["+5-10 能量（變量）","+3 所有技能","+5-9 法力（變量）","+3 心靈遙感（法師專用）","+3 溫暖（法師專用）","+2 光照範圍","魔法傷害減少2","所有抗性+5"],
+    en: ["+5-10 to Energy (varies)","+3 to All Skills","+5-9 to Mana (varies)","+3 to Telekinesis (Sorceress Only)","+3 to Warmth (Sorceress Only)","+2 to Light Radius","Magic Damage Reduced by 2","All Resistances +5"]
+  },
+  "Malice": {
+    sc: ["+99% 增强伤害","+100% 攻击命中率加成","+6 最大耐力","+3 战斗命令（变量）","+3 战斗号令（变量）","+3 重击（变量）","击中怪物25%概率逃跑","99% 生命偷取","+3 旋风（变量）"],
+    tc: ["+99% 增強傷害","+100% 攻擊命中率加成","+6 最大耐力","+3 戰鬥命令（變量）","+3 戰鬥號令（變量）","+3 重擊（變量）","擊中怪物25%概率逃跑","99% 生命偷取","+3 旋風（變量）"],
+    en: ["+99% Enhanced Damage","+100% Bonus to Attack Rating","+6 to Max Stamina","+3 to Battle Orders (varies)","+3 to Battle Command (varies)","+3 to Bash (varies)","Hit Causes Monster to Flee 25%","99% Life stolen per hit","+3 to Whirlwind (varies)"]
+  },
+  "Melody": {
+    sc: ["+280-340% 增强伤害（变量）","+3 弓和十字弩技能（亚马逊专用）","+3 致命一击（变量）","+3 内在视觉（变量）","+3 闪避（变量）","+3 慢速箭矢（变量）","+40 攻击命中率","+3-5 引导箭（变量）","+3-5 多重射击（变量）"],
+    tc: ["+280-340% 增強傷害（變量）","+3 弓和十字弩技能（亞馬遜專用）","+3 致命一擊（變量）","+3 內在視覺（變量）","+3 閃避（變量）","+3 慢速箭矢（變量）","+40 攻擊命中率","+3-5 引導箭（變量）","+3-5 多重射擊（變量）"],
+    en: ["+280-340% Enhanced Damage (varies)","+3 to Bow and Crossbow Skills (Amazon Only)","+3 to Critical Strike (varies)","+3 to Inner Sight (varies)","+3 to Dodge (varies)","+3 to Slow Missiles (varies)","+40 to Attack Rating","+3-5 to Guided Arrow (varies)","+3-5 to Multi Shot (varies)"]
+  },
+  "Memory": {
+    sc: ["+5-12 闪电（变量）","+3 所有技能","+10% 快速施法","+10 能量","+20 法力","+3 能量护盾（法师专用）","+3 闪电掌握（法师专用）","+3 新星（法师专用）","+3 连锁闪电（法师专用）","-15% 敌人闪电抗性"],
+    tc: ["+5-12 閃電（變量）","+3 所有技能","+10% 快速施法","+10 能量","+20 法力","+3 能量護盾（法師專用）","+3 閃電掌握（法師專用）","+3 新星（法師專用）","+3 連鎖閃電（法師專用）","-15% 敵人閃電抗性"],
+    en: ["+5-12 to Lightning (varies)","+3 to All Skills","+10% Faster Cast Rate","+10 to Energy","+20 to Mana","+3 to Energy Shield (Sorceress Only)","+3 to Lightning Mastery (Sorceress Only)","+3 to Nova (Sorceress Only)","+3 to Chain Lightning (Sorceress Only)","-15% Enemy Lightning Resistance"]
+  },
+  "Myth": {
+    sc: ["+3 战斗技能（亚马逊专用）","+3 内在视觉（变量）","+3 致命一击（变量）","+3 闪避（变量）","+100% 增强防御","+15% 快速打击恢复","+10 力量","+2-3 突刺（变量）","击中怪物20%概率逃跑"],
+    tc: ["+3 戰鬥技能（亞馬遜專用）","+3 內在視覺（變量）","+3 致命一擊（變量）","+3 閃避（變量）","+100% 增強防禦","+15% 快速打擊恢復","+10 力量","+2-3 突刺（變量）","擊中怪物20%概率逃跑"],
+    en: ["+3 to Combat Skills (Amazon Only)","+3 to Inner Sight (varies)","+3 to Critical Strike (varies)","+3 to Dodge (varies)","+100% Enhanced Defense","+15% Faster Hit Recovery","+10 to Strength","+2-3 to Jab (varies)","Hit Causes Monster to Flee 20%"]
+  },
+  "Nadir": {
+    sc: ["+50% 增强防御","+10 能量","+5-10 暗影斗篷（变量）","+3 暗影战士（变量）","+13 法力","+3 伤害加深（变量）","+2 削弱（变量）","+2 诱饵（变量）","魔法伤害减少5"],
+    tc: ["+50% 增強防禦","+10 能量","+5-10 暗影斗篷（變量）","+3 暗影戰士（變量）","+13 法力","+3 傷害加深（變量）","+2 削弱（變量）","+2 誘餌（變量）","魔法傷害減少5"],
+    en: ["+50% Enhanced Defense","+10 to Energy","+5-10 to Cloak of Shadows (varies)","+3 to Shadow Warrior (varies)","+13 to Mana","+3 to Amplify Damage (varies)","+2 to Weaken (varies)","+2 to Decoy (varies)","Magic Damage Reduced by 5"]
+  },
+  "Oath": {
+    sc: ["+200-330% 增强伤害（变量）","+170% 攻击命中率加成","+3 所有技能","+40% 攻击速度","+10 活力","+5-10 火球（变量）","+5-10 火墙（变量）","+5-10 地狱火（变量）","+20% 火焰伤害"],
+    tc: ["+200-330% 增強傷害（變量）","+170% 攻擊命中率加成","+3 所有技能","+40% 攻擊速度","+10 活力","+5-10 火球（變量）","+5-10 火牆（變量）","+5-10 地獄火（變量）","+20% 火焰傷害"],
+    en: ["+200-330% Enhanced Damage (varies)","+170% Bonus to Attack Rating","+3 to All Skills","+40% IAS","+10 to Vitality","+5-10 to Fireball (varies)","+5-10 to Fire Wall (varies)","+5-10 to Inferno (varies)","+20% Fire Damage"]
+  },
+  "Obedience": {
+    sc: ["+370% 增强伤害","+280% 攻击命中率加成","+40% 增强防御","+3 所有技能","+10 能量","+10 力量","+25% 快速打击恢复","+30% 增强伤害","+5-7 Enchant（变量）","+3-5 火焰掌握（变量）","21-27级 信念光环（变量）"],
+    tc: ["+370% 增強傷害","+280% 攻擊命中率加成","+40% 增強防禦","+3 所有技能","+10 能量","+10 力量","+25% 快速打擊恢復","+30% 增強傷害","+5-7 Enchant（變量）","+3-5 火焰掌握（變量）","21-27級 信念光環（變量）"],
+    en: ["+370% Enhanced Damage","+280% Bonus to Attack Rating","+40% Enhanced Defense","+3 to All Skills","+10 to Energy","+10 to Strength","+25% Faster Hit Recovery","+30% Enhanced Damage","+5-7 to Enchant (varies)","+3-5 to Fire Mastery (varies)","Level 21-27 Conviction Aura (varies)"]
+  },
+  "Passion": {
+    sc: ["+160% 增强伤害","+160% 攻击命中率加成","+25% 攻击速度","+3 所有技能","+10 能量","+5-8 重击（变量）","+5-8 剑掌握（变量）","+5-8 旋风（变量）","+3-5 战吼（变量）","12-15级 狂热光环（变量）"],
+    tc: ["+160% 增強傷害","+160% 攻擊命中率加成","+25% 攻擊速度","+3 所有技能","+10 能量","+5-8 重擊（變量）","+5-8 劍掌握（變量）","+5-8 旋風（變量）","+3-5 戰吼（變量）","12-15級 狂熱光環（變量）"],
+    en: ["+160% Enhanced Damage","+160% Bonus to Attack Rating","+25% IAS","+3 to All Skills","+10 to Energy","+5-8 to Bash (varies)","+5-8 to Blade Mastery (varies)","+5-8 to Whirlwind (varies)","+3-5 to War Cry (varies)","Level 12-15 Fanaticism Aura (varies)"]
+  },
+  "Peace": {
+    sc: ["+100% 增强防御","+4 战斗技能（亚马逊专用）","+4 致命一击（变量）","+4 闪避（变量）","+4 慢速箭矢（变量）","+2 瓦尔基里（亚马逊专用）","+15% 快速打击恢复","+2 穿透（变量）"],
+    tc: ["+100% 增強防禦","+4 戰鬥技能（亞馬遜專用）","+4 致命一擊（變量）","+4 閃避（變量）","+4 慢速箭矢（變量）","+2 瓦爾基里（亞馬遜專用）","+15% 快速打擊恢復","+2 穿透（變量）"],
+    en: ["+100% Enhanced Defense","+4 to Combat Skills (Amazon Only)","+4 to Critical Strike (varies)","+4 to Dodge (varies)","+4 to Slow Missiles (varies)","+2 to Valkyrie (Amazon Only)","+15% Faster Hit Recovery","+2 to Pierce (varies)"]
+  },
+  "Phoenix": {
+    sc: ["+350-400% 增强伤害（变量）","+280-330% 攻击命中率加成（变量）","+5-10 圣冰（变量）","+3 所有技能","+8% 最大火焰抗性","+8% 最大冰冷抗性","+8% 最大闪电抗性","+10-15% 火焰技能伤害（变量）","+350-450 火焰伤害（变量）","15-20级 救赎光环（变量）"],
+    tc: ["+350-400% 增強傷害（變量）","+280-330% 攻擊命中率加成（變量）","+5-10 聖冰（變量）","+3 所有技能","+8% 最大火焰抗性","+8% 最大冰冷抗性","+8% 最大閃電抗性","+10-15% 火焰技能傷害（變量）","+350-450 火焰傷害（變量）","15-20級 救贖光環（變量）"],
+    en: ["+350-400% Enhanced Damage (varies)","+280-330% Bonus to Attack Rating (varies)","+5-10 to Holy Freeze (varies)","+3 to All Skills","+8% Maximum Fire Resistance","+8% Maximum Cold Resistance","+8% Maximum Lightning Resistance","+10-15% to Fire Skill Damage (varies)","+350-450 Fire Damage (varies)","Level 15-20 Redemption Aura (varies)"]
+  },
+  "Pride": {
+    sc: ["+260-300% 增强伤害（变量）","+200% 攻击命中率加成","+1 所有技能","+15-45 火焰伤害","+20-30 每级攻击命中率","+5-7 专注（变量）","+3-5 活力（变量）","15-20级 装备时圣冰光环"],
+    tc: ["+260-300% 增強傷害（變量）","+200% 攻擊命中率加成","+1 所有技能","+15-45 火焰傷害","+20-30 每級攻擊命中率","+5-7 專注（變量）","+3-5 活力（變量）","15-20級 裝備時聖冰光環"],
+    en: ["+260-300% Enhanced Damage (varies)","+200% Bonus to Attack Rating","+1 to All Skills","+15-45 Fire Damage","+20-30 to Attack Rating per Character Level","+5-7 to Concentration (varies)","+3-5 to Vigor (varies)","Level 15-20 Holy Freeze Aura when Equipped"]
+  },
+  "Principle": {
+    sc: ["+100% 增强防御","+3 神圣技能（圣骑士专用）","+3 圣光弹（变量）","+3 圣盾（变量）","+3 热诚（变量）","+250-300% 对恶魔增强伤害（变量）","+100-150 生命","所有抗性+15"],
+    tc: ["+100% 增強防禦","+3 神聖技能（聖騎士專用）","+3 聖光彈（變量）","+3 聖盾（變量）","+3 熱誠（變量）","+250-300% 對惡魔增強傷害（變量）","+100-150 生命","所有抗性+15"],
+    en: ["+100% Enhanced Defense","+3 to Holy Skills (Paladin Only)","+3 to Holy Bolt (varies)","+3 to Holy Shield (varies)","+3 to Zeal (varies)","+250-300% Enhanced Damage vs Demons (varies)","+100-150 Life","All Resistances +15"]
+  },
+  "Prudence": {
+    sc: ["+140-170% 增强防御（变量）","+25% 快速打击恢复","+3 所有技能","+10 活力","+10 能量","+5% 最大冰冷抗性","+5% 最大闪电抗性","+5% 最大火焰抗性","所有抗性+15","魔法伤害减少17"],
+    tc: ["+140-170% 增強防禦（變量）","+25% 快速打擊恢復","+3 所有技能","+10 活力","+10 能量","+5% 最大冰冷抗性","+5% 最大閃電抗性","+5% 最大火焰抗性","所有抗性+15","魔法傷害減少17"],
+    en: ["+140-170% Enhanced Defense (varies)","+25% Faster Hit Recovery","+3 to All Skills","+10 to Vitality","+10 to Energy","+5% Maximum Cold Resistance","+5% Maximum Lightning Resistance","+5% Maximum Fire Resistance","All Resistances +15","Magic Damage Reduced by 17"]
+  },
+  "Radiance": {
+    sc: ["+75% 增强防御","+10 能量","+10 活力","+5% 快速施法","+3 圣光光环（圣骑士专用）","+3 圣光弹（变量）","+3 热诚（变量）","+2 光照范围","所有抗性+10","魔法伤害减少7"],
+    tc: ["+75% 增強防禦","+10 能量","+10 活力","+5% 快速施法","+3 聖光光環（聖騎士專用）","+3 聖光彈（變量）","+3 熱誠（變量）","+2 光照範圍","所有抗性+10","魔法傷害減少7"],
+    en: ["+75% Enhanced Defense","+10 to Energy","+10 to Vitality","+5% Faster Cast Rate","+3 to Holy Aura (Paladin Only)","+3 to Holy Bolt (varies)","+3 to Zeal (varies)","+2 to Light Radius","All Resistances +10","Magic Damage Reduced by 7"]
+  },
+  "Rain": {
+    sc: ["+100% 增强防御","+5 圣光光环（圣骑士专用）","+5 祈祷（圣骑士专用）","+5 抗火（圣骑士专用）","+5 抗闪电（圣骑士专用）","+3 祝福之锤（变量）","+3 专注（变量）","+3 圣光弹（变量）","所有抗性+15","每5秒修复1点耐久度"],
+    tc: ["+100% 增強防禦","+5 聖光光環（聖騎士專用）","+5 祈禱（聖騎士專用）","+5 抗火（聖騎士專用）","+5 抗閃電（聖騎士專用）","+3 祝福之錘（變量）","+3 專注（變量）","+3 聖光彈（變量）","所有抗性+15","每5秒修復1點耐久度"],
+    en: ["+100% Enhanced Defense","+5 to Holy Aura (Paladin Only)","+5 to Prayer (Paladin Only)","+5 to Resist Fire (Paladin Only)","+5 to Resist Lightning (Paladin Only)","+3 to Blessed Hammer (varies)","+3 to Concentration (varies)","+3 to Holy Bolt (varies)","All Resistances +15","Repairs 1 Durability in 5 Seconds"]
+  },
+  "Rhyme": {
+    sc: ["+40% 增强防御","+25% 快速格挡率","+3 所有技能","+15-25% 格挡概率（变量）","+2 光照范围","无法冻结","所有抗性+15","魔法伤害减少4"],
+    tc: ["+40% 增強防禦","+25% 快速格擋率","+3 所有技能","+15-25% 格擋概率（變量）","+2 光照範圍","無法凍結","所有抗性+15","魔法傷害減少4"],
+    en: ["+40% Enhanced Defense","+25% Faster Block Rate","+3 to All Skills","+15-25% Chance of Blocking (varies)","+2 to Light Radius","Cannot Be Frozen","All Resistances +15","Magic Damage Reduced by 4"]
+  },
+  "Rift": {
+    sc: ["+160-280% 增强伤害（变量）","+180-250% 攻击命中率加成（变量）","+3 所有技能","+5% 攻击速度","+30-50% 毒素持续时间（变量）","+3-7 毒雾（变量）","+11-25 击杀后恢复法力","+3-5 铁处女（变量）","+3-5 伤害加深（变量）","15-20级 铁处女光环（变量）"],
+    tc: ["+160-280% 增強傷害（變量）","+180-250% 攻擊命中率加成（變量）","+3 所有技能","+5% 攻擊速度","+30-50% 毒素持續時間（變量）","+3-7 毒霧（變量）","+11-25 殺敵後恢復法力","+3-5 鐵處女（變量）","+3-5 傷害加深（變量）","15-20級 鐵處女光環（變量）"],
+    en: ["+160-280% Enhanced Damage (varies)","+180-250% Bonus to Attack Rating (varies)","+3 to All Skills","+5% IAS","+30-50% to Poison Length (varies)","+3-7 to Poison Nova (varies)","+11-25 to Mana after Kill","+3-5 to Iron Maiden (varies)","+3-5 to Amplify Damage (varies)","Level 15-20 Iron Maiden Aura (varies)"]
+  },
+  "Sanctuary": {
+    sc: ["+130% 增强防御","+180-250% 增强防御（远程）（变量）","+40% 快速格挡率","+3 所有技能","+10 能量","+10 活力","+75-120% 增强防御（变量）","+5-10 圣光冲击（变量）","+5-10 盾击（变量）","所有抗性+20-30（变量）","无法冻结"],
+    tc: ["+130% 增強防禦","+180-250% 增強防禦（遠程）（變量）","+40% 快速格擋率","+3 所有技能","+10 能量","+10 活力","+75-120% 增強防禦（變量）","+5-10 聖光衝擊（變量）","+5-10 盾擊（變量）","所有抗性+20-30（變量）","無法凍結"],
+    en: ["+130% Enhanced Defense","+180-250% Enhanced Defense vs Missiles (varies)","+40% Faster Block Rate","+3 to All Skills","+10 to Energy","+10 to Vitality","+75-120% Enhanced Defense (varies)","+5-10 to Holy Shock (varies)","+5-10 to Smite (varies)","All Resistances +20-30 (varies)","Cannot Be Frozen"]
+  },
+  "Silence": {
+    sc: ["+200% 增强伤害","+200% 攻击命中率加成","+3 所有技能","+50% 增强防御","+30% 快速格挡率","+10 力量","+10 活力","+3-6 重击（变量）","+3-6 武器掌握（变量）","+3-6 狂乱（变量）","所有抗性+20-30（变量）","无法冻结"],
+    tc: ["+200% 增強傷害","+200% 攻擊命中率加成","+3 所有技能","+50% 增強防禦","+30% 快速格擋率","+10 力量","+10 活力","+3-6 重擊（變量）","+3-6 武器掌握（變量）","+3-6 狂亂（變量）","所有抗性+20-30（變量）","無法凍結"],
+    en: ["+200% Enhanced Damage","+200% Bonus to Attack Rating","+3 to All Skills","+50% Enhanced Defense","+30% Faster Block Rate","+10 to Strength","+10 to Vitality","+3-6 to Bash (varies)","+3-6 to Weapon Mastery (varies)","+3-6 to Frenzy (varies)","All Resistances +20-30 (varies)","Cannot Be Frozen"]
+  },
+  "Smoke": {
+    sc: ["+100% 增强防御","+75% 增强防御（远程）","+6 能量","+6 活力","+3 所有技能","+20% 快速施法","+20% 快速打击恢复","所有抗性+30","+3 光照范围","6-10级 装备时削弱光环"],
+    tc: ["+100% 增強防禦","+75% 增強防禦（遠程）","+6 能量","+6 活力","+3 所有技能","+20% 快速施法","+20% 快速打擊恢復","所有抗性+30","+3 光照範圍","6-10級 裝備時削弱光環"],
+    en: ["+100% Enhanced Defense","+75% Enhanced Defense vs Missiles","+6 to Energy","+6 to Vitality","+3 to All Skills","+20% Faster Cast Rate","+20% Faster Hit Recovery","All Resistances +30","+3 to Light Radius","Level 6-10 Weaken Aura when Equipped"]
+  },
+  "Spirit": {
+    sc: ["+2 所有技能","+25-35% 快速施法（变量）","+55-77% 增强防御（变量）","+108-147% 增强防御（远程）（变量）","+3-8 电报（变量）","+3-8 橡树贤者（变量）","+3-8 旋风铠甲（变量）","+3-8 召唤灰熊（变量）","+10-14 活力（变量）","+10-14 能量（变量）","+30-50 法力（变量）"],
+    tc: ["+2 所有技能","+25-35% 快速施法（變量）","+55-77% 增強防禦（變量）","+108-147% 增強防禦（遠程）（變量）","+3-8 電報（變量）","+3-8 橡樹賢者（變量）","+3-8 旋風鎧甲（變量）","+3-8 召喚灰熊（變量）","+10-14 活力（變量）","+10-14 能量（變量）","+30-50 法力（變量）"],
+    en: ["+2 to All Skills","+25-35% Faster Cast Rate (varies)","+55-77% Enhanced Defense (varies)","+108-147% Enhanced Defense vs Missiles (varies)","+3-8 to Telegraph (varies)","+3-8 to Oak Sage (varies)","+3-8 to Cyclone Armor (varies)","+3-8 to Summon Grizzly (varies)","+10-14 to Vitality (varies)","+10-14 to Energy (varies)","+30-50 to Mana (varies)"]
+  },
+  "Splendor": {
+    sc: ["+60-100% 增强防御（变量）","+3 所有技能","+20% 快速施法","+20% 快速格挡率","+10% 增强防御","+10 能量","+10 活力","所有抗性+15","+3 光照范围"],
+    tc: ["+60-100% 增強防禦（變量）","+3 所有技能","+20% 快速施法","+20% 快速格擋率","+10% 增強防禦","+10 能量","+10 活力","所有抗性+15","+3 光照範圍"],
+    en: ["+60-100% Enhanced Defense (varies)","+3 to All Skills","+20% Faster Cast Rate","+20% Faster Block Rate","+10% Enhanced Defense","+10 to Energy","+10 to Vitality","All Resistances +15","+3 to Light Radius"]
+  },
+  "Stealth": {
+    sc: ["+60% 增强防御","+6 能量","+6 活力","+3 所有技能","+5% 快速施法","+5% 快速打击恢复","+5% 最大火焰抗性","所有抗性+5","魔法伤害减少3"],
+    tc: ["+60% 增強防禦","+6 能量","+6 活力","+3 所有技能","+5% 快速施法","+5% 快速打擊恢復","+5% 最大火焰抗性","所有抗性+5","魔法傷害減少3"],
+    en: ["+60% Enhanced Defense","+6 to Energy","+6 to Vitality","+3 to All Skills","+5% Faster Cast Rate","+5% Faster Hit Recovery","+5% Maximum Fire Resistance","All Resistances +5","Magic Damage Reduced by 3"]
+  },
+  "Steel": {
+    sc: ["+50-80% 增强伤害（变量）","+100% 攻击命中率加成","+75-120% 对恶魔增强伤害（变量）","+75-120% 对不死生物增强伤害（变量）","+3 剑掌握（野蛮人专用）","+3 耐力提升（变量）","+3 铁皮（变量）","+3 重击（变量）","+3 旋风（变量）"],
+    tc: ["+50-80% 增強傷害（變量）","+100% 攻擊命中率加成","+75-120% 對惡魔增強傷害（變量）","+75-120% 對不死生物增強傷害（變量）","+3 劍掌握（野蠻人專用）","+3 耐力提升（變量）","+3 鐵皮（變量）","+3 重擊（變量）","+3 旋風（變量）"],
+    en: ["+50-80% Enhanced Damage (varies)","+100% Bonus to Attack Rating","+75-120% Enhanced Damage vs Demons (varies)","+75-120% Enhanced Damage vs Undead (varies)","+3 to Sword Mastery (Barbarian Only)","+3 to Increased Stamina (varies)","+3 to Iron Skin (varies)","+3 to Bash (varies)","+3 to Whirlwind (varies)"]
+  },
+  "Stone": {
+    sc: ["+100-130% 增强防御（变量）","+30% 快速打击恢复","+250-280% 增强防御（变量）","+3 所有技能","+15 力量","+15 活力","所有抗性+15","魔法伤害减少8","+4 粘土傀儡（死灵法师专用）","+4 白骨装甲（死灵法师专用）"],
+    tc: ["+100-130% 增強防禦（變量）","+30% 快速打擊恢復","+250-280% 增強防禦（變量）","+3 所有技能","+15 力量","+15 活力","所有抗性+15","魔法傷害減少8","+4 粘土傀儡（死靈法師專用）","+4 白骨裝甲（死靈法師專用）"],
+    en: ["+100-130% Enhanced Defense (varies)","+30% Faster Hit Recovery","+250-280% Enhanced Defense (varies)","+3 to All Skills","+15 to Strength","+15 to Vitality","All Resistances +15","Magic Damage Reduced by 8","+4 to Clay Golem (Necromancer Only)","+4 to Bone Armor (Necromancer Only)"]
+  },
+  "Strength": {
+    sc: ["+100-120% 增强伤害（变量）","+150-200% 攻击命中率加成（变量）","+3 所有技能","+3 重击（变量）","+3 剑掌握（变量）","+3 战吼（变量）","+20-30 每级攻击命中率","击中怪物20%概率逃跑","击杀怪物安息"],
+    tc: ["+100-120% 增強傷害（變量）","+150-200% 攻擊命中率加成（變量）","+3 所有技能","+3 重擊（變量）","+3 劍掌握（變量）","+3 戰吼（變量）","+20-30 每級攻擊命中率","擊中怪物20%概率逃跑","殺死怪物安息"],
+    en: ["+100-120% Enhanced Damage (varies)","+150-200% Bonus to Attack Rating (varies)","+3 to All Skills","+3 to Bash (varies)","+3 to Blade Mastery (varies)","+3 to War Cry (varies)","+20-30 to Attack Rating per Character Level","Hit Causes Monster to Flee 20%","Slain Monsters Rest in Peace"]
+  },
+  "Treachery": {
+    sc: ["+120% 增强防御","+5% 快速施法","+5% 快速打击恢复","+3 所有技能","+3 地狱火之魂（法师专用）","+3 火焰掌握（法师专用）","+3 温暖（法师专用）","+30% 伤口恶化概率","+5-10 火球（变量）","+5-10 火弹（变量）","+5-10 地狱火（变量）","15-20级 装备时Fade光环"],
+    tc: ["+120% 增強防禦","+5% 快速施法","+5% 快速打擊恢復","+3 所有技能","+3 地獄火之魂（法師專用）","+3 火焰掌握（法師專用）","+3 溫暖（法師專用）","+30% 傷口惡化概率","+5-10 火球（變量）","+5-10 火彈（變量）","+5-10 地獄火（變量）","15-20級 裝備時Fade光環"],
+    en: ["+120% Enhanced Defense","+5% Faster Cast Rate","+5% Faster Hit Recovery","+3 to All Skills","+3 to Wake of Inferno (Sorceress Only)","+3 to Fire Mastery (Sorceress Only)","+3 to Warmth (Sorceress Only)","+30% Chance of Open Wounds","+5-10 to Fire Ball (varies)","+5-10 to Fire Bolt (varies)","+5-10 to Inferno (varies)","Level 15-20 Fade Aura when Equipped"]
+  },
+  "Venom": {
+    sc: ["+150-230% 增强伤害（变量）","+200% 攻击命中率加成","+3 所有技能","+5-10 毒雾（变量）","+5-10 毒爆（变量）","+5-10 降低抵抗（变量）","+3 刺客技能","+3 地狱火之魂（刺客专用）","+3 毒液（刺客专用）","击中怪物25%概率逃跑","魔法伤害减少7","无法冻结"],
+    tc: ["+150-230% 增強傷害（變量）","+200% 攻擊命中率加成","+3 所有技能","+5-10 毒霧（變量）","+5-10 毒爆（變量）","+5-10 降低抵抗（變量）","+3 刺客技能","+3 地獄火之魂（刺客專用）","+3 毒液（刺客專用）","擊中怪物25%概率逃跑","魔法傷害減少7","無法凍結"],
+    en: ["+150-230% Enhanced Damage (varies)","+200% Bonus to Attack Rating","+3 to All Skills","+5-10 to Poison Nova (varies)","+5-10 to Poison Explosion (varies)","+5-10 to Lower Resist (varies)","+3 to Assassin Skills","+3 to Wake of Fire (Assassin Only)","+3 to Venom (Assassin Only)","Hit Causes Monster to Flee 25%","Magic Damage Reduced by 7","Cannot Be Frozen"]
+  },
+  "Voice of Reason": {
+    sc: ["+120-180% 增强伤害（变量）","+220-300% 攻击命中率加成（变量）","+3 所有技能","+44-132 冰冷伤害","+28-56 闪电伤害","+3 冰爆（变量）","+3 冰尖柱（变量）","+3 冰冻装甲（变量）","+3 心灵遥感（变量）","+3 静态力场（变量）","15-20级 装备时圣冰光环"],
+    tc: ["+120-180% 增強傷害（變量）","+220-300% 攻擊命中率加成（變量）","+3 所有技能","+44-132 冰冷傷害","+28-56 閃電傷害","+3 冰爆（變量）","+3 冰尖柱（變量）","+3 冰凍裝甲（變量）","+3 心靈遙感（變量）","+3 靜態力場（變量）","15-20級 裝備時聖冰光環"],
+    en: ["+120-180% Enhanced Damage (varies)","+220-300% Bonus to Attack Rating (varies)","+3 to All Skills","+44-132 Cold Damage","+28-56 Lightning Damage","+3 to Ice Blast (varies)","+3 to Glacial Spike (varies)","+3 to Frozen Armor (varies)","+3 to Telekinesis (varies)","+3 to Static Field (varies)","Level 15-20 Holy Freeze Aura when Equipped"]
+  },
+  "Wealth": {
+    sc: ["+300% 增强防御","+100% 更佳魔法物品概率","+5 所有技能","+10 能量","+10 活力","+5% 快速打击恢复","+5% 最大冰冷抗性","+5% 最大闪电抗性","所有抗性+10","+3 光照范围"],
+    tc: ["+300% 增強防禦","+100% 更佳魔法物品概率","+5 所有技能","+10 能量","+10 活力","+5% 快速打擊恢復","+5% 最大冰冷抗性","+5% 最大閃電抗性","所有抗性+10","+3 光照範圍"],
+    en: ["+300% Enhanced Defense","+100% Better Chance of Getting Magic Items","+5 to All Skills","+10 to Energy","+10 to Vitality","+5% Faster Hit Recovery","+5% Maximum Cold Resistance","+5% Maximum Lightning Resistance","All Resistances +10","+3 to Light Radius"]
+  },
+  "White": {
+    sc: ["+50% 增强伤害","+200-300% 攻击命中率加成（变量）","+3 死灵法师技能","+3 白骨之矛（变量）","+3 牙齿（变量）","+3 白骨装甲（变量）","+20 法力","+3 毒匕首（刺客专用）","+3 暗影战士（刺客专用）","击中怪物10%概率逃跑"],
+    tc: ["+50% 增強傷害","+200-300% 攻擊命中率加成（變量）","+3 死靈法師技能","+3 白骨之矛（變量）","+3 牙齒（變量）","+3 白骨裝甲（變量）","+20 法力","+3 毒匕首（刺客專用）","+3 暗影戰士（刺客專用）","擊中怪物10%概率逃跑"],
+    en: ["+50% Enhanced Damage","+200-300% Bonus to Attack Rating (varies)","+3 to Necromancer Skills","+3 to Bone Spear (varies)","+3 to Teeth (varies)","+3 to Bone Armor (varies)","+20 to Mana","+3 to Poison Dagger (Assassin Only)","+3 to Shadow Warrior (Assassin Only)","Hit Causes Monster to Flee 10%"]
+  },
+  "Wind": {
+    sc: ["+100-140% 增强伤害（变量）","+150% 攻击命中率加成","+3 所有技能","+10% 快速跑步/行走","+20% 攻击速度","+3 龙卷风（德鲁伊专用）","+3 飓风（德鲁伊专用）","+3 旋风铠甲（德鲁伊专用）","+3 橡树贤者（德鲁伊专用）","+2 光照范围"],
+    tc: ["+100-140% 增強傷害（變量）","+150% 攻擊命中率加成","+3 所有技能","+10% 快速跑步/行走","+20% 攻擊速度","+3 龍捲風（德魯伊專用）","+3 颶風（德魯伊專用）","+3 旋風鎧甲（德魯伊專用）","+3 橡樹賢者（德魯伊專用）","+2 光照範圍"],
+    en: ["+100-140% Enhanced Damage (varies)","+150% Bonus to Attack Rating","+3 to All Skills","+10% Faster Run/Walk","+20% IAS","+3 to Tornado (Druid Only)","+3 to Hurricane (Druid Only)","+3 to Cyclone Armor (Druid Only)","+3 to Oak Sage (Druid Only)","+2 to Light Radius"]
+  },
+  "Wrath": {
+    sc: ["+280-350% 增强伤害（变量）","+280-330% 攻击命中率加成（变量）","+5-10 圣光弹（变量）","+5-10 圣光冲击（变量）","+30-175 闪电伤害","+30-175 火焰伤害","+30-175 冰冷伤害","+3 所有技能","+5% 最大闪电抗性","15-20级 装备时圣冰光环"],
+    tc: ["+280-350% 增強傷害（變量）","+280-330% 攻擊命中率加成（變量）","+5-10 聖光彈（變量）","+5-10 聖光衝擊（變量）","+30-175 閃電傷害","+30-175 火焰傷害","+30-175 冰冷傷害","+3 所有技能","+5% 最大閃電抗性","15-20級 裝備時聖冰光環"],
+    en: ["+280-350% Enhanced Damage (varies)","+280-330% Bonus to Attack Rating (varies)","+5-10 to Holy Bolt (varies)","+5-10 to Holy Shock (varies)","+30-175 Lightning Damage","+30-175 Fire Damage","+30-175 Cold Damage","+3 to All Skills","+5% Maximum Lightning Resistance","Level 15-20 Holy Freeze Aura when Equipped"]
+  },
+  "Zephyr": {
+    sc: ["+80-120% 增强伤害（变量）","+150% 攻击命中率加成","+3 所有技能","+65-95 对恶魔增强伤害（变量）","+65-95 对不死生物增强伤害（变量）","+5 闪避（亚马逊专用）","+5 慢速箭矢（亚马逊专用）","+5 致命一击（亚马逊专用）","+5 内在视觉（亚马逊专用）","+25% 快速跑步/行走","+33% 压碎性打击概率"],
+    tc: ["+80-120% 增強傷害（變量）","+150% 攻擊命中率加成","+3 所有技能","+65-95 對惡魔增強傷害（變量）","+65-95 對不死生物增強傷害（變量）","+5 閃避（亞馬遜專用）","+5 慢速箭矢（亞馬遜專用）","+5 致命一擊（亞馬遜專用）","+5 內在視覺（亞馬遜專用）","+25% 快速跑步/行走","+33% 壓碎性打擊概率"],
+    en: ["+80-120% Enhanced Damage (varies)","+150% Bonus to Attack Rating","+3 to All Skills","+65-95 Enhanced Damage vs Demons (varies)","+65-95 Enhanced Damage vs Undead (varies)","+5 to Dodge (Amazon Only)","+5 to Slow Missiles (Amazon Only)","+5 to Critical Strike (Amazon Only)","+5 to Inner Sight (Amazon Only)","+25% Faster Run/Walk","+33% Chance of Crushing Blow"]
+  },
+  "Flickering Flame": {
+    sc: ["+30-50% 增强伤害（变量）","+100-130% 攻击命中率加成（变量）","+3 火焰技能（法师专用）","+5-8 火球（变量）","+5-8 火弹（变量）","+5-8 地狱火（变量）","+3 温暖（法师专用）","+3 火焰掌握（法师专用）","+3 Enchant（法师专用）","+30-40% 火焰伤害"],
+    tc: ["+30-50% 增強傷害（變量）","+100-130% 攻擊命中率加成（變量）","+3 火焰技能（法師專用）","+5-8 火球（變量）","+5-8 火彈（變量）","+5-8 地獄火（變量）","+3 溫暖（法師專用）","+3 火焰掌握（法師專用）","+3 Enchant（法師專用）","+30-40% 火焰傷害"],
+    en: ["+30-50% Enhanced Damage (varies)","+100-130% Bonus to Attack Rating (varies)","+3 to Fire Skills (Sorceress Only)","+5-8 to Fire Ball (varies)","+5-8 to Fire Bolt (varies)","+5-8 to Inferno (varies)","+3 to Warmth (Sorceress Only)","+3 to Fire Mastery (Sorceress Only)","+3 to Enchant (Sorceress Only)","+30-40% Fire Damage"]
+  },
+  "Obsession": {
+    sc: ["+60% 增强伤害","+200% 攻击命中率加成","+3 所有技能","+40% 快速施法","+5-10 闪电（变量）","+5-10 连锁闪电（变量）","+5-10 新星（变量）","+10-15 能量","+15-25 法力","+3 传送（法师专用）","15-20级 装备时无限光环"],
+    tc: ["+60% 增強傷害","+200% 攻擊命中率加成","+3 所有技能","+40% 快速施法","+5-10 閃電（變量）","+5-10 連鎖閃電（變量）","+5-10 新星（變量）","+10-15 能量","+15-25 法力","+3 傳送（法師專用）","15-20級 裝備時無限光環"],
+    en: ["+60% Enhanced Damage","+200% Bonus to Attack Rating","+3 to All Skills","+40% Faster Cast Rate","+5-10 to Lightning (varies)","+5-10 to Chain Lightning (varies)","+5-10 to Nova (varies)","+10-15 to Energy","+15-25 to Mana","+3 to Teleport (Sorceress Only)","Level 15-20 Infinity Aura when Equipped"]
+  },
+  "Pattern": {
+    sc: ["+120-150% 增强伤害（变量）","+100% 攻击命中率加成","+3 刺客技能","+3 爆发速度（刺客专用）","+3 地狱火之魂（刺客专用）","+3 暗影战士（刺客专用）","+3 剑刃哨兵（刺客专用）","+3 心灵锤（刺客专用）","+20% 攻击速度","击中怪物15%概率逃跑"],
+    tc: ["+120-150% 增強傷害（變量）","+100% 攻擊命中率加成","+3 刺客技能","+3 爆發速度（刺客專用）","+3 地獄火之魂（刺客專用）","+3 暗影戰士（刺客專用）","+3 劍刃哨兵（刺客專用）","+3 心靈錘（刺客專用）","+20% 攻擊速度","擊中怪物15%概率逃跑"],
+    en: ["+120-150% Enhanced Damage (varies)","+100% Bonus to Attack Rating","+3 to Assassin Skills","+3 to Burst of Speed (Assassin Only)","+3 to Wake of Fire (Assassin Only)","+3 to Shadow Warrior (Assassin Only)","+3 to Blade Sentinel (Assassin Only)","+3 to Psychic Hammer (Assassin Only)","+20% IAS","Hit Causes Monster to Flee 15%"]
+  },
+  "Plague": {
+    sc: ["+180-240% 增强伤害（变量）","+180-240% 攻击命中率加成（变量）","+3 所有技能","+5-12 毒雾（变量）","+5-12 毒爆（变量）","+20-35% 攻击时施放毒雾概率","+3 毒匕首（刺客专用）","+3 暗影战士（刺客专用）","+3 地狱火之魂（刺客专用）","所有抗性+15-20（变量）"],
+    tc: ["+180-240% 增強傷害（變量）","+180-240% 攻擊命中率加成（變量）","+3 所有技能","+5-12 毒霧（變量）","+5-12 毒爆（變量）","+20-35% 攻擊時施放毒霧概率","+3 毒匕首（刺客專用）","+3 暗影戰士（刺客專用）","+3 地獄火之魂（刺客專用）","所有抗性+15-20（變量）"],
+    en: ["+180-240% Enhanced Damage (varies)","+180-240% Bonus to Attack Rating (varies)","+3 to All Skills","+5-12 to Poison Nova (varies)","+5-12 to Poison Explosion (varies)","+20-35% Chance of Casting Poison Nova on Attack","+3 to Poison Dagger (Assassin Only)","+3 to Shadow Warrior (Assassin Only)","+3 to Wake of Fire (Assassin Only)","All Resistances +15-20 (varies)"]
+  },
+  "Unbending Will": {
+    sc: ["+300-350% 增强伤害（变量）","+200-250% 攻击命中率加成（变量）","+3 所有技能","+40% 攻击速度","+15-20 战斗命令（变量）","+15-20 战斗号令（变量）","+15-20 重击（变量）","+3 战吼（变量）","+3 嚎叫（变量）","击杀怪物安息"],
+    tc: ["+300-350% 增強傷害（變量）","+200-250% 攻擊命中率加成（變量）","+3 所有技能","+40% 攻擊速度","+15-20 戰鬥命令（變量）","+15-20 戰鬥號令（變量）","+15-20 重擊（變量）","+3 戰吼（變量）","+3 嚎叫（變量）","殺死怪物安息"],
+    en: ["+300-350% Enhanced Damage (varies)","+200-250% Bonus to Attack Rating (varies)","+3 to All Skills","+40% IAS","+15-20 to Battle Orders (varies)","+15-20 to Battle Command (varies)","+15-20 to Bash (varies)","+3 to War Cry (varies)","+3 to Howl (varies)","Slain Monsters Rest in Peace"]
+  },
+  "Wisdom": {
+    sc: ["+100-120% 增强伤害（变量）","+150% 攻击命中率加成","+3 所有技能","+5-10 能量（变量）","+5-10 法力（变量）","+3 圣光光环（圣骑士专用）","+3 冥想（圣骑士专用）","+3 抗火（圣骑士专用）","+3 抗闪电（圣骑士专用）","+33% 压碎性打击概率"],
+    tc: ["+100-120% 增強傷害（變量）","+150% 攻擊命中率加成","+3 所有技能","+5-10 能量（變量）","+5-10 法力（變量）","+3 聖光光環（聖騎士專用）","+3 冥想（聖騎士專用）","+3 抗火（聖騎士專用）","+3 抗閃電（聖騎士專用）","+33% 壓碎性打擊概率"],
+    en: ["+100-120% Enhanced Damage (varies)","+150% Bonus to Attack Rating","+3 to All Skills","+5-10 to Energy (varies)","+5-10 to Mana (varies)","+3 to Holy Aura (Paladin Only)","+3 to Meditation (Paladin Only)","+3 to Resist Fire (Paladin Only)","+3 to Resist Lightning (Paladin Only)","+33% Chance of Crushing Blow"]
+  },
+  "Mist": {
+    sc: ["+200-300% 增强伤害（变量）","+200% 攻击命中率加成","+3 所有技能","+5-10 多重射击（变量）","+5-10 引导箭（变量）","+5-10 冰箭（变量）","+5-10 冻箭（变量）","+30-50 冰冷伤害","15-20级 装备时圣冰光环"],
+    tc: ["+200-300% 增強傷害（變量）","+200% 攻擊命中率加成","+3 所有技能","+5-10 多重射擊（變量）","+5-10 引導箭（變量）","+5-10 冰箭（變量）","+5-10 凍箭（變量）","+30-50 冰冷傷害","15-20級 裝備時聖冰光環"],
+    en: ["+200-300% Enhanced Damage (varies)","+200% Bonus to Attack Rating","+3 to All Skills","+5-10 to Multiple Shot (varies)","+5-10 to Guided Arrow (varies)","+5-10 to Ice Arrow (varies)","+5-10 to Cold Arrow (varies)","+30-50 Cold Damage","Level 15-20 Holy Freeze Aura when Equipped"]
+  },
+  "Bulwark": {
+    sc: ["+80-100% 增强防御（变量）","+40% 快速打击恢复","+20% 快速格挡率","+3 所有技能","+10-15 活力（变量）","+5-10 能量（变量）","所有抗性+15","+2-3 铁皮（变量）","+2-3 耐力提升（变量）"],
+    tc: ["+80-100% 增強防禦（變量）","+40% 快速打擊恢復","+20% 快速格擋率","+3 所有技能","+10-15 活力（變量）","+5-10 能量（變量）","所有抗性+15","+2-3 鐵皮（變量）","+2-3 耐力提升（變量）"],
+    en: ["+80-100% Enhanced Defense (varies)","+40% Faster Hit Recovery","+20% Faster Block Rate","+3 to All Skills","+10-15 to Vitality (varies)","+5-10 to Energy (varies)","All Resistances +15","+2-3 to Iron Skin (varies)","+2-3 to Increased Stamina (varies)"]
+  },
+  "Cure": {
+    sc: ["+60-80% 增强防御（变量）","+20% 快速打击恢复","+3 所有技能","+10-15 活力（变量）","+5-10 能量（变量）","所有抗性+15","+2-3 净化（变量）","+2-3 清洁（变量）","击中怪物10%概率逃跑"],
+    tc: ["+60-80% 增強防禦（變量）","+20% 快速打擊恢復","+3 所有技能","+10-15 活力（變量）","+5-10 能量（變量）","所有抗性+15","+2-3 淨化（變量）","+2-3 清潔（變量）","擊中怪物10%概率逃跑"],
+    en: ["+60-80% Enhanced Defense (varies)","+20% Faster Hit Recovery","+3 to All Skills","+10-15 to Vitality (varies)","+5-10 to Energy (varies)","All Resistances +15","+2-3 to Purification (varies)","+2-3 to Cleansing (varies)","Hit Causes Monster to Flee 10%"]
+  },
+  "Ground": {
+    sc: ["+80-100% 增强防御（变量）","+20% 快速打击恢复","+3 所有技能","+10-15 活力（变量）","+5-10 能量（变量）","所有抗性+15","+2-3 石肤（变量）","+2-3 铁皮（变量）","+2-3 耐力提升（变量）"],
+    tc: ["+80-100% 增強防禦（變量）","+20% 快速打擊恢復","+3 所有技能","+10-15 活力（變量）","+5-10 能量（變量）","所有抗性+15","+2-3 石膚（變量）","+2-3 鐵皮（變量）","+2-3 耐力提升（變量）"],
+    en: ["+80-100% Enhanced Defense (varies)","+20% Faster Hit Recovery","+3 to All Skills","+10-15 to Vitality (varies)","+5-10 to Energy (varies)","All Resistances +15","+2-3 to Stone Skin (varies)","+2-3 to Iron Skin (varies)","+2-3 to Increased Stamina (varies)"]
+  },
+  "Hearth": {
+    sc: ["+80-100% 增强防御（变量）","+20% 快速打击恢复","+3 所有技能","+10-15 活力（变量）","+5-10 能量（变量）","所有抗性+15","+2-3 乌鸦（变量）","+2-3 橡树贤者（变量）","+2-3 召唤灰熊（变量）"],
+    tc: ["+80-100% 增強防禦（變量）","+20% 快速打擊恢復","+3 所有技能","+10-15 活力（變量）","+5-10 能量（變量）","所有抗性+15","+2-3 烏鴉（變量）","+2-3 橡樹賢者（變量）","+2-3 召喚灰熊（變量）"],
+    en: ["+80-100% Enhanced Defense (varies)","+20% Faster Hit Recovery","+3 to All Skills","+10-15 to Vitality (varies)","+5-10 to Energy (varies)","All Resistances +15","+2-3 to Raven (varies)","+2-3 to Oak Sage (varies)","+2-3 to Summon Grizzly (varies)"]
+  },
+  "Temper": {
+    sc: ["+80-100% 增强防御（变量）","+20% 快速打击恢复","+3 所有技能","+10-15 活力（变量）","+5-10 能量（变量）","所有抗性+15","+2-3 重击（变量）","+2-3 武器掌握（变量）","+2-3 耐力提升（变量）"],
+    tc: ["+80-100% 增強防禦（變量）","+20% 快速打擊恢復","+3 所有技能","+10-15 活力（變量）","+5-10 能量（變量）","所有抗性+15","+2-3 重擊（變量）","+2-3 武器掌握（變量）","+2-3 耐力提升（變量）"],
+    en: ["+80-100% Enhanced Defense (varies)","+20% Faster Hit Recovery","+3 to All Skills","+10-15 to Vitality (varies)","+5-10 to Energy (varies)","All Resistances +15","+2-3 to Bash (varies)","+2-3 to Weapon Mastery (varies)","+2-3 to Increased Stamina (varies)"]
+  },
+  "Hustle": {
+    sc: ["+180-260% 增强伤害（变量）","+150% 攻击命中率加成","+3 所有技能","+40% 攻击速度","+20% 快速格挡率","+10-15 活力（变量）","+5-10 能量（变量）","+3 旋风（变量）","+3 重击（变量）"],
+    tc: ["+180-260% 增強傷害（變量）","+150% 攻擊命中率加成","+3 所有技能","+40% 攻擊速度","+20% 快速格擋率","+10-15 活力（變量）","+5-10 能量（變量）","+3 旋風（變量）","+3 重擊（變量）"],
+    en: ["+180-260% Enhanced Damage (varies)","+150% Bonus to Attack Rating","+3 to All Skills","+40% IAS","+20% Faster Block Rate","+10-15 to Vitality (varies)","+5-10 to Energy (varies)","+3 to Whirlwind (varies)","+3 to Bash (varies)"]
+  },
+  "Metamorphosis": {
+    sc: ["+200-280% 增强伤害（变量）","+180% 攻击命中率加成","+3 所有技能","+5-7 火球（变量）","+5-7 火弹（变量）","+5-7 地狱火（变量）","+3 火焰掌握（法师专用）","+3 Enchant（法师专用）","+30% 火焰伤害"],
+    tc: ["+200-280% 增強傷害（變量）","+180% 攻擊命中率加成","+3 所有技能","+5-7 火球（變量）","+5-7 火彈（變量）","+5-7 地獄火（變量）","+3 火焰掌握（法師專用）","+3 Enchant（法師專用）","+30% 火焰傷害"],
+    en: ["+200-280% Enhanced Damage (varies)","+180% Bonus to Attack Rating","+3 to All Skills","+5-7 to Fire Ball (varies)","+5-7 to Fire Bolt (varies)","+5-7 to Inferno (varies)","+3 to Fire Mastery (Sorceress Only)","+3 to Enchant (Sorceress Only)","+30% Fire Damage"]
+  },
+  "Mosaic": {
+    sc: ["+180-240% 增强伤害（变量）","+180% 攻击命中率加成","+3 刺客技能","+3 爆发速度（刺客专用）","+3 Fade（刺客专用）","+3 暗影战士（刺客专用）","+3 剑刃哨兵（刺客专用）","+20% 攻击速度","+10% 压碎性打击概率"],
+    tc: ["+180-240% 增強傷害（變量）","+180% 攻擊命中率加成","+3 刺客技能","+3 爆發速度（刺客專用）","+3 Fade（刺客專用）","+3 暗影戰士（刺客專用）","+3 劍刃哨兵（刺客專用）","+20% 攻擊速度","+10% 壓碎性打擊概率"],
+    en: ["+180-240% Enhanced Damage (varies)","+180% Bonus to Attack Rating","+3 to Assassin Skills","+3 to Burst of Speed (Assassin Only)","+3 to Fade (Assassin Only)","+3 to Shadow Warrior (Assassin Only)","+3 to Blade Sentinel (Assassin Only)","+20% IAS","+10% Chance of Crushing Blow"]
+  },
+  "Authority": {
+    sc: ["+100-130% 增强防御（变量）","+3 所有技能","+5-8 圣光弹（变量）","+5-8 圣光冲击（变量）","+5-8 热诚（变量）","+5-8 牺牲（变量）","+3 圣光光环（圣骑士专用）","所有抗性+15","+100-150 生命"],
+    tc: ["+100-130% 增強防禦（變量）","+3 所有技能","+5-8 聖光彈（變量）","+5-8 聖光衝擊（變量）","+5-8 熱誠（變量）","+5-8 犧牲（變量）","+3 聖光光環（聖騎士專用）","所有抗性+15","+100-150 生命"],
+    en: ["+100-130% Enhanced Defense (varies)","+3 to All Skills","+5-8 to Holy Bolt (varies)","+5-8 to Holy Shock (varies)","+5-8 to Zeal (varies)","+5-8 to Sacrifice (varies)","+3 to Holy Aura (Paladin Only)","All Resistances +15","+100-150 Life"]
+  },
+  "Coven": {
+    sc: ["+80-120% 增强防御（变量）","+3 所有技能","+5-10 冰弹（变量）","+5-10 霜之新星（变量）","+5-10 冰尖柱（变量）","+3 冰掌握（法师专用）","+3 静态力场（法师专用）","+3 心灵遥感（法师专用）","所有抗性+15","魔法伤害减少5"],
+    tc: ["+80-120% 增強防禦（變量）","+3 所有技能","+5-10 冰彈（變量）","+5-10 霜之新星（變量）","+5-10 冰尖柱（變量）","+3 冰掌握（法師專用）","+3 靜態力場（法師專用）","+3 心靈遙感（法師專用）","所有抗性+15","魔法傷害減少5"],
+    en: ["+80-120% Enhanced Defense (varies)","+3 to All Skills","+5-10 to Ice Bolt (varies)","+5-10 to Frost Nova (varies)","+5-10 to Glacial Spike (varies)","+3 to Ice Mastery (Sorceress Only)","+3 to Static Field (Sorceress Only)","+3 to Telekinesis (Sorceress Only)","All Resistances +15","Magic Damage Reduced by 5"]
+  },
+  "Void": {
+    sc: ["+180-240% 增强伤害（变量）","+180-240% 攻击命中率加成（变量）","+3 所有技能","+5-10 毒雾（变量）","+5-10 毒爆（变量）","+3 刺客技能","+3 毒液（刺客专用）","+3 暗影战士（刺客专用）","+3 地狱火之魂（刺客专用）","所有抗性+15"],
+    tc: ["+180-240% 增強傷害（變量）","+180-240% 攻擊命中率加成（變量）","+3 所有技能","+5-10 毒霧（變量）","+5-10 毒爆（變量）","+3 刺客技能","+3 毒液（刺客專用）","+3 暗影戰士（刺客專用）","+3 地獄火之魂（刺客專用）","所有抗性+15"],
+    en: ["+180-240% Enhanced Damage (varies)","+180-240% Bonus to Attack Rating (varies)","+3 to All Skills","+5-10 to Poison Nova (varies)","+5-10 to Poison Explosion (varies)","+3 to Assassin Skills","+3 to Venom (Assassin Only)","+3 to Shadow Warrior (Assassin Only)","+3 to Wake of Fire (Assassin Only)","All Resistances +15"]
+  },
+  "Vigilance": {
+    sc: ["+100-130% 增强防御（变量）","+25% 快速格挡率","+3 所有技能","+5-8 圣光弹（变量）","+5-8 圣光冲击（变量）","+5-8 盾击（变量）","+3 圣光光环（圣骑士专用）","+3 祈祷（圣骑士专用）","+3 抗火（圣骑士专用）","所有抗性+15","无法冻结"],
+    tc: ["+100-130% 增強防禦（變量）","+25% 快速格擋率","+3 所有技能","+5-8 聖光彈（變量）","+5-8 聖光衝擊（變量）","+5-8 盾擊（變量）","+3 聖光光環（聖騎士專用）","+3 祈禱（聖騎士專用）","+3 抗火（聖騎士專用）","所有抗性+15","無法凍結"],
+    en: ["+100-130% Enhanced Defense (varies)","+25% Faster Block Rate","+3 to All Skills","+5-8 to Holy Bolt (varies)","+5-8 to Holy Shock (varies)","+5-8 to Smite (varies)","+3 to Holy Aura (Paladin Only)","+3 to Prayer (Paladin Only)","+3 to Resist Fire (Paladin Only)","All Resistances +15","Cannot Be Frozen"]
+  },
+  "Ritual": {
+    sc: ["+150-200% 增强伤害（变量）","+150-200% 攻击命中率加成（变量）","+3 所有技能","+5-10 毒雾（变量）","+5-10 毒爆（变量）","+3 刺客技能","+3 毒液（刺客专用）","+3 暗影战士（刺客专用）","+3 地狱火之魂（刺客专用）","所有抗性+15","击中怪物15%概率逃跑"],
+    tc: ["+150-200% 增強傷害（變量）","+150-200% 攻擊命中率加成（變量）","+3 所有技能","+5-10 毒霧（變量）","+5-10 毒爆（變量）","+3 刺客技能","+3 毒液（刺客專用）","+3 暗影戰士（刺客專用）","+3 地獄火之魂（刺客專用）","所有抗性+15","擊中怪物15%概率逃跑"],
+    en: ["+150-200% Enhanced Damage (varies)","+150-200% Bonus to Attack Rating (varies)","+3 to All Skills","+5-10 to Poison Nova (varies)","+5-10 to Poison Explosion (varies)","+3 to Assassin Skills","+3 to Venom (Assassin Only)","+3 to Shadow Warrior (Assassin Only)","+3 to Wake of Fire (Assassin Only)","All Resistances +15","Hit Causes Monster to Flee 15%"]
+  },
+  "Hysteria": {
+    sc: ["+150-200% 增强防御（变量）","+3 所有技能","+5-10 圣光弹（变量）","+5-10 圣光冲击（变量）","+5-10 热诚（变量）","+5-10 牺牲（变量）","+3 圣光光环（圣骑士专用）","+3 冥想（圣骑士专用）","所有抗性+15","+5% 最大冰冷抗性"],
+    tc: ["+150-200% 增強防禦（變量）","+3 所有技能","+5-10 聖光彈（變量）","+5-10 聖光衝擊（變量）","+5-10 熱誠（變量）","+5-10 犧牲（變量）","+3 聖光光環（聖騎士專用）","+3 冥想（聖騎士專用）","所有抗性+15","+5% 最大冰冷抗性"],
+    en: ["+150-200% Enhanced Defense (varies)","+3 to All Skills","+5-10 to Holy Bolt (varies)","+5-10 to Holy Shock (varies)","+5-10 to Zeal (varies)","+5-10 to Sacrifice (varies)","+3 to Holy Aura (Paladin Only)","+3 to Meditation (Paladin Only)","All Resistances +15","+5% Maximum Cold Resistance"]
+  },
+  "Mania": {
+    sc: ["+150-200% 增强伤害（变量）","+150-200% 攻击命中率加成（变量）","+3 所有技能","+40% 攻击速度","+5-10 重击（变量）","+5-10 剑掌握（变量）","+5-10 旋风（变量）","+3 战吼（变量）","+3 战斗命令（变量）","击杀怪物安息"],
+    tc: ["+150-200% 增強傷害（變量）","+150-200% 攻擊命中率加成（變量）","+3 所有技能","+40% 攻擊速度","+5-10 重擊（變量）","+5-10 劍掌握（變量）","+5-10 旋風（變量）","+3 戰吼（變量）","+3 戰鬥命令（變量）","殺死怪物安息"],
+    en: ["+150-200% Enhanced Damage (varies)","+150-200% Bonus to Attack Rating (varies)","+3 to All Skills","+40% IAS","+5-10 to Bash (varies)","+5-10 to Blade Mastery (varies)","+5-10 to Whirlwind (varies)","+3 to War Cry (varies)","+3 to Battle Orders (varies)","Slain Monsters Rest in Peace"]
+  }
 };
 
 // ──── RENDER RUNES ────
@@ -782,7 +1174,7 @@ function renderRW(){
       return `<div class="rw-icon-rune-overlay ${tierClassName}">${r}</div>`;
     }).join('');
 
-    const iconHtml = `<img src="${iconUrl}" alt="${n_en}" style="width:100%;height:100%;object-fit:contain;position:absolute;top:0;left:0;z-index:1" onerror="this.style.display='none'">
+    const iconHtml = `<img src="${iconUrl}" alt="${n_en}" style="width:100%;height:100%;object-fit:contain;position:absolute;top:0;left:0;z-index:1;opacity:.35" onerror="this.style.display='none'">
       <div style="position:relative;z-index:2;display:flex;flex-wrap:wrap;gap:1px;justify-content:center;align-items:center;width:100%;height:100%">${runesOverlayHtml}</div>`;
 
     return`<div class="rw-card ${cls}">
