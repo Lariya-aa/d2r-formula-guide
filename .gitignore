@@ -1,5 +1,6 @@
 # Gitignore for D2R WebUI Project
 web-ui/
+.claude/
 
 # macOS
 .DS_Store
