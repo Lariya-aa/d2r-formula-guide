@@ -273,11 +273,12 @@ body{
 }
 #matchPreview.visible{display:block;animation:fadeUp .25s ease}
 #matchPreview h3{font-family:'Cinzel',serif;font-size:.85rem;color:var(--gold);margin-bottom:.4rem}
-.match-prev-grid{display:grid;grid-template-columns:1fr;gap:.4rem}
+.match-prev-grid{display:flex;flex-direction:column;gap:.4rem;overflow-x:hidden}
 .match-prev-card{
-  display:flex;align-items:center;gap:.5rem;padding:.4rem .5rem;
+  display:flex;align-items:center;gap:.4rem;padding:.35rem .4rem;
   border:1px solid var(--border);border-radius:4px;background:var(--surface);
   transition:var(--transition);
+  overflow:hidden;
 }
 .match-prev-card:hover{border-color:var(--gold-dim)}
 .match-prev-card.full{border-color:var(--gold);background:rgba(201,168,76,.08)}
@@ -391,6 +392,8 @@ body{
     <div class="search-box"><input type="text" id="searchInput" placeholder="搜索名称 / Search…"></div>
   </div>
   <div class="filter-row" id="filterRow"></div>
+  <div class="filter-row" id="filterRowClasses"></div>
+  <div class="filter-row" id="filterRowRunes"></div>
   <div class="rw-list" id="rwList"></div>
 </div>
 
@@ -474,10 +477,24 @@ const BZH = {
 };
 const FILTERS = Object.keys(BZH);
 
+// ──── CLASS & RUNE FILTERS ────
+const CLASS_FILTERS = {
+  sc: ['全部', '亚马逊', '刺客', '野蛮人', '德鲁伊', '死灵法师', '圣骑士', '法师', '术士'],
+  tc: ['全部', '亞馬遜', '刺客', '野蠻人', '德魯伊', '死靈法師', '聖騎士', '法師', '術士'],
+  en: ['All', 'Amazon', 'Assassin', 'Barbarian', 'Druid', 'Necromancer', 'Paladin', 'Sorceress', 'Warlock']
+};
+
+// Class keywords WITHOUT "Only" suffix for runeword filtering
+const CLASS_KEYWORDS_FILTER = {
+  sc: ['亚马逊', '刺客', '野蛮人', '德鲁伊', '死灵法师', '圣骑士', '法师', '术士'],
+  tc: ['亞馬遜', '刺客', '野蠻人', '德魯伊', '死靈法師', '聖騎士', '法師', '術士'],
+  en: ['Amazon', 'Assassin', 'Barbarian', 'Druid', 'Necromancer', 'Paladin', 'Sorceress', 'Warlock']
+};
+
 // ──── STATE ────
 let RUNES=[], RUNEWORDS=[], RECIPES={}, BASE_ITEMS={}, ICON_ALIASES={};
 const inv={};
-let activeFilter="全部", searchQ="", currentLang="sc", activeBaseCat="Armor";
+let activeFilter="全部", activeClassFilter="全部", activeRuneFilter="全部", searchQ="", currentLang="sc", activeBaseCat="Armor";
 const CATS={classic:"Classic",patch_2_4:"2.4",patch_2_6:"2.6",reign_of_warlock:"RotW"};
 
 function getText(key) { return I18N[currentLang][key] || key; }
@@ -1437,9 +1454,22 @@ function renderRW(){
     const n_en = (rw.name_en || rw.name || "").toLowerCase();
     const n_loc = getPropName(rw, 'name');
     if(q && !n_en.includes(q) && !n_loc.includes(q)) return false;
-    if(activeFilter!=="全部"){
+    if(activeFilter!=="全部" && activeFilter!=="All"){
       const bt = rw.base_types || [];
       if(!bt.some(t=>t===activeFilter||t.includes(activeFilter))) return false;
+    }
+    // Class filter
+    if(activeClassFilter!=="全部" && activeClassFilter!=="All"){
+      const stats = RW_STATS[n_en];
+      const statsArr = Array.isArray(stats) ? stats : (stats ? (stats[currentLang] || stats.en || []) : []);
+      const statsText = statsArr.join(' ');
+      const classKeywords = CLASS_KEYWORDS_FILTER[currentLang] || CLASS_KEYWORDS_FILTER.sc;
+      const found = classKeywords.some(k => statsText.includes(k));
+      if(!found) return false;
+    }
+    // Rune filter
+    if(activeRuneFilter!=="全部" && activeRuneFilter!=="All"){
+      if(!rw.runes.includes(activeRuneFilter)) return false;
     }
     return true;
   }).map(rw=>({...rw,m:calcM(rw)}));
@@ -1498,17 +1528,39 @@ ${hasInv?`<div class="match-bar"><div class="match-bar-fill ${m.pct===1?'full':'
 
 // ──── FILTERS ────
 function renderFilters(){
+  // Item type filters
   document.getElementById('filterRow').innerHTML=FILTERS.map(f=>{
     const disp = getText(BZH[f]);
-    return `<button class="filter-chip${f===activeFilter?' active':''}" onclick="setF('${f}')">${disp}</button>`
+    return `<button class="filter-chip${f===activeFilter?' active':''}" onclick="setFilter('type','${f}')">${disp}</button>`
+  }).join('');
+
+  // Class filters
+  const classFilters = CLASS_FILTERS[currentLang] || CLASS_FILTERS.sc;
+  document.getElementById('filterRowClasses').innerHTML=classFilters.map(c=>{
+    const key = c === '全部' || c === 'All' ? '全部' : c;
+    return `<button class="filter-chip${c===activeClassFilter?' active':''}" onclick="setFilter('class','${c}')">${c}</button>`
+  }).join('');
+
+  // Rune name filters
+  const runeFilters = ['全部', ...RUNES.map(r => r.name_en).sort()];
+  document.getElementById('filterRowRunes').innerHTML=runeFilters.map(r=>{
+    return `<button class="filter-chip${r===activeRuneFilter?' active':''}" onclick="setFilter('rune','${r}')">${r}</button>`
   }).join('');
 }
-function setF(f){activeFilter=f;renderFilters();renderRW()}
+
+function setFilter(type, value){
+  if(type === 'type') activeFilter = value;
+  else if(type === 'class') activeClassFilter = value;
+  else if(type === 'rune') activeRuneFilter = value;
+  renderFilters();
+  renderRW();
+}
 
 // ──── RECIPES ────
 // ──── RECIPE CATEGORIES ────
 const RECIPE_CATS = [
   { key: 'rune_upgrade', icon: '🔼', i18n_key: 'cat_rune_upgrade' },
+  { key: 'rune_info', icon: '📍', i18n_key: 'cat_rune_info' },
   { key: 'socketing', icon: '🔲', i18n_key: 'cat_socketing' },
   { key: 'upgrade_equipment', icon: '⬆️', i18n_key: 'cat_upgrade_equipment' },
   { key: 'crafting', icon: '🔶', i18n_key: 'cat_crafting' },
@@ -1518,9 +1570,9 @@ const RECIPE_CATS = [
 ];
 
 const RECIPE_CAT_NAMES = {
-  sc: { rune_upgrade: '符文升级', socketing: '打孔', upgrade_equipment: '装备升级', crafting: '合成橙装', special: '特殊', gem_upgrade: '宝石', potion: '药水' },
-  tc: { rune_upgrade: '符文升級', socketing: '打孔', upgrade_equipment: '裝備升級', crafting: '合成橙裝', special: '特殊', gem_upgrade: '寶石', potion: '藥水' },
-  en: { rune_upgrade: 'Rune Upgrade', socketing: 'Socketing', upgrade_equipment: 'Upgrade', crafting: 'Crafting', special: 'Special', gem_upgrade: 'Gems', potion: 'Potions' }
+  sc: { rune_upgrade: '符文升级', rune_info: '符文掉落', socketing: '打孔', upgrade_equipment: '装备升级', crafting: '合成橙装', special: '特殊', gem_upgrade: '宝石', potion: '药水' },
+  tc: { rune_upgrade: '符文升級', rune_info: '符文掉落', socketing: '打孔', upgrade_equipment: '裝備升級', crafting: '合成橙裝', special: '特殊', gem_upgrade: '寶石', potion: '藥水' },
+  en: { rune_upgrade: 'Rune Upgrade', rune_info: 'Rune Drops', socketing: 'Socketing', upgrade_equipment: 'Upgrade', crafting: 'Crafting', special: 'Special', gem_upgrade: 'Gems', potion: 'Potions' }
 };
 
 function getRecipeCatName(key) {
@@ -1530,9 +1582,15 @@ function getRecipeCatName(key) {
 function renderRecipeSidebar() {
   const sidebar = document.getElementById('recipeSidebar');
   if (!sidebar) return;
-  if (!Object.keys(RECIPES).length) return;
 
   sidebar.innerHTML = RECIPE_CATS.map(cat => {
+    // rune_info is special - doesn't come from RECIPES
+    if (cat.key === 'rune_info') {
+      const count = RUNES.length;
+      const isActive = activeRecipeCat === cat.key;
+      return `<button class="base-cat-btn ${isActive ? 'active' : ''}" onclick="setActiveRecipeCat('${cat.key}')">${cat.icon} ${getRecipeCatName(cat.key)} <span class="count-badge">${count}</span></button>`;
+    }
+    if (!Object.keys(RECIPES).length) return '';
     const data = RECIPES[cat.key];
     if (!data) return '';
     const count = data.recipes?.length || data.types?.length || 0;
@@ -1547,9 +1605,107 @@ function setActiveRecipeCat(cat) {
   renderRecipeContent();
 }
 
+function renderRuneInfo(container) {
+  const sc = currentLang === 'sc';
+  const tc = currentLang === 'tc';
+
+  // Sort runes by level
+  const sortedRunes = [...RUNES].sort((a, b) => (a.level || 0) - (b.level || 0));
+
+  let html = `<div style="margin-bottom:1rem;padding:.6rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);font-size:.82rem;color:var(--text2);line-height:1.6">
+    <div style="color:var(--gold);margin-bottom:.3rem;font-weight:600">${sc ? '符文掉落说明' : tc ? '符文掉落說明' : 'Rune Drop Information'}</div>
+    ${sc ? '• 低级符文(El-Amn): Act1 痛苦平原 - Act3 群鸦峡谷 怪物掉落<br>• 中级符文(Sol-Thul): Act3 群鸦峡谷 - Act5 世界之石要塞 怪物掉落<br>• 高级符文(Ort-Zod): Act5 世界之石要塞 怪物掉落，赌博也有机会获得' : tc ? '• 低級符文(El-Amn): Act1 痛苦平原 - Act3 群鴉峽谷 怪物掉落<br>• 中級符文(Sol-Thul): Act3 群鴉峽谷 - Act5 世界之石要塞 怪物掉落<br>• 高級符文(Ort-Zod): Act5 世界之石要塞 怪物掉落，賭博也有機會獲得' : '• Low Runes (El-Amn): Act1 - Act3 monsters<br>• Mid Runes (Sol-Thul): Act3 - Act5 monsters<br>• High Runes (Ort-Zod): Act5 monsters, gambling'}
+  </div>`;
+
+  html += `<div class="rw-list" style="grid-template-columns:repeat(auto-fill,minmax(280px,1fr))">`;
+
+  sortedRunes.forEach(rune => {
+    const name = tc ? rune.name_tc : (sc ? rune.name_sc : rune.name_en);
+    const runeIconUrl = buildRuneIconUrl(rune.name_en);
+    const level = rune.level || 0;
+    const tier = level <= 23 ? 'low' : (level <= 47 ? 'mid' : 'high');
+    const tierText = tier === 'low' ? (sc ? '低级' : tc ? '低級' : 'Low') : (tier === 'mid' ? (sc ? '中级' : tc ? '中級' : 'Mid') : (sc ? '高级' : tc ? '高級' : 'High'));
+
+    // Get drop info based on rune tier
+    let dropInfo = '';
+    if (tier === 'low') {
+      dropInfo = sc ? 'Act1-3 怪物' : tc ? 'Act1-3 怪物' : 'Act 1-3 Monsters';
+    } else if (tier === 'mid') {
+      dropInfo = sc ? 'Act3-5 怪物' : tc ? 'Act3-5 怪物' : 'Act 3-5 Monsters';
+    } else {
+      dropInfo = sc ? 'Act5 世界之石要塞 / 赌博' : tc ? 'Act5 世界之石要塞 / 賭博' : 'Act5 Worldstone Keep / Gambling';
+    }
+
+    // Get upgrade recipe (if any)
+    const upgrade = getRuneUpgrade(rune.name_en);
+
+    html += `<div class="rw-card">
+<div class="rw-card-icon" style="position:relative;overflow:hidden;width:50px;height:50px">
+  <img src="${runeIconUrl}" alt="${rune.name_en}" style="width:100%;height:100%;object-fit:contain" onerror="this.style.display='none'">
+</div>
+<div class="rw-card-content">
+<div class="rw-card-head"><div><span class="rw-name">${name}</span><span class="rw-loc">${rune.name_en}</span></div></div>
+<div class="rw-card-body">
+<div class="rw-meta" style="margin-bottom:.3rem">
+  <span>⭐ Lv.${level}</span>
+  <span style="color:${tier === 'low' ? '#b0b0b0' : (tier === 'mid' ? '#c9a84c' : '#d4763a')}">${tierText}</span>
+</div>
+<div class="rc-notes" style="margin-bottom:.2rem">📍 ${dropInfo}</div>
+${upgrade ? `<div class="rc-formula">${upgrade}</div>` : ''}
+</div></div></div>`;
+  });
+
+  html += '</div>';
+  container.innerHTML = html;
+}
+
+function getRuneUpgrade(runeName) {
+  const upgrades = {
+    'El': '3 El = 1 Eld',
+    'Eld': '3 Eld = 1 Tir',
+    'Tir': '3 Tir = 1 Nef',
+    'Nef': '3 Nef = 1 Eth',
+    'Eth': '3 Eth = 1 Ith',
+    'Ith': '3 Ith = 1 Tal',
+    'Tal': '3 Tal = 1 Ral',
+    'Ral': '3 Ral = 1 Ort',
+    'Ort': '3 Ort = 1 Thul',
+    'Thul': '3 Thul = 1 Amn',
+    'Amn': '3 Amn = 1 Sol',
+    'Sol': '3 Sol = 1 Shael',
+    'Shael': '3 Shael = 1 Dol',
+    'Dol': '3 Dol = 1 Hel',
+    'Hel': '3 Hel = 1 Io',
+    'Io': '3 Io = 1 Lum',
+    'Lum': '3 Lum = 1 Ko',
+    'Ko': '3 Ko = 1 Fal',
+    'Fal': '3 Fal = 1 Lem',
+    'Lem': '3 Lem = 1 Pul',
+    'Pul': '2 Pul = 1 Um',
+    'Um': '2 Um = 1 Mal',
+    'Mal': '2 Mal = 1 Ist',
+    'Ist': '2 Ist = 1 Gul',
+    'Gul': '2 Gul = 1 Vex',
+    'Vex': '2 Vex = 1 Ohm',
+    'Ohm': '2 Ohm = 1 Lo',
+    'Lo': '2 Lo = 1 Sur',
+    'Sur': '2 Sur = 1 Ber',
+    'Ber': '2 Ber = 1 Jah',
+    'Jah': '2 Jah = 1 Cham',
+    'Cham': '2 Cham = 1 Zod'
+  };
+  return upgrades[runeName] || null;
+}
+
 function renderRecipeContent() {
   const content = document.getElementById('recipeContent');
   if (!content) return;
+
+  // Special handling for rune_info
+  if (activeRecipeCat === 'rune_info') {
+    renderRuneInfo(content);
+    return;
+  }
 
   if (!activeRecipeCat || !RECIPES[activeRecipeCat]) {
     content.innerHTML = `<div class="empty-state"><div class="icon">📜</div><p>${getText('no_match')}</p></div>`;
