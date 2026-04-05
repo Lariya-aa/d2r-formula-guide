@@ -1,7 +1,8 @@
 {
   "version": 2,
-  "buildCommand": null,
+  "buildCommand": "npm install",
   "outputDirectory": ".",
+  "installCommand": "npm install",
   "routes": [
     {
       "src": "/(.*)",
