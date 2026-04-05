@@ -1519,7 +1519,7 @@ function renderRW(){
       <div style="position:relative;z-index:2;display:flex;flex-wrap:wrap;gap:1px;justify-content:center;align-items:center;width:100%;height:100%">${runesOverlayHtml}</div>`;
 
     return`<div class="rw-card ${cls}" onclick="openRwModal('${n_en.replace(/'/g, "\\'")}')" style="cursor:pointer">
-<div class="rw-card-icon" style="position:relative;overflow:hidden">${iconHtml}</div>
+<div class="rw-card-icon" style="position:relative;overflow:hidden" onmouseenter="showTooltip(buildRwTooltip('${n_en.replace(/'/g, "\\'")}'), event)" onmousemove="positionTooltip(event)" onmouseleave="hideTooltip()">${iconHtml}</div>
 <div class="rw-card-content">
 <div class="rw-card-head"><div><span class="rw-name">${n_en}</span><span class="rw-loc">${n_loc!==n_en?n_loc:''}</span></div>
 <span class="rw-badge ${rw.category}">${CATS[rw.category]||rw.patch}</span></div>
