@@ -540,15 +540,15 @@ function hideTooltip() {
 
 // ──── RUNEWORD MODAL ────
 const CLASS_KEYWORDS = {
-  sc: ['亚马逊专用', '刺客专用', '野蛮人专用', '德鲁伊专用', '死灵法师专用', '圣骑士专用', '法师专用'],
-  tc: ['亞馬遜專用', '刺客專用', '野蠻人專用', '德魯伊專用', '死靈法師專用', '聖騎士專用', '法師專用'],
-  en: ['Amazon Only', 'Assassin Only', 'Barbarian Only', 'Druid Only', 'Necromancer Only', 'Paladin Only', 'Sorceress Only']
+  sc: ['亚马逊专用', '刺客专用', '野蛮人专用', '德鲁伊专用', '死灵法师专用', '圣骑士专用', '法师专用', '术士专用'],
+  tc: ['亞馬遜專用', '刺客專用', '野蠻人專用', '德魯伊專用', '死靈法師專用', '聖騎士專用', '法師專用', '術士專用'],
+  en: ['Amazon Only', 'Assassin Only', 'Barbarian Only', 'Druid Only', 'Necromancer Only', 'Paladin Only', 'Sorceress Only', 'Warlock Only']
 };
 
 const CLASS_NAMES = {
-  sc: { amazon: '亚马逊', assassin: '刺客', barbarian: '野蛮人', druid: '德鲁伊', necromancer: '死灵法师', paladin: '圣骑士', sorceress: '法师' },
-  tc: { amazon: '亞馬遜', assassin: '刺客', barbarian: '野蠻人', druid: '德魯伊', necromancer: '死靈法師', paladin: '聖騎士', sorceress: '法師' },
-  en: { amazon: 'Amazon', assassin: 'Assassin', barbarian: 'Barbarian', druid: 'Druid', necromancer: 'Necromancer', paladin: 'Paladin', sorceress: 'Sorceress' }
+  sc: { amazon: '亚马逊', assassin: '刺客', barbarian: '野蛮人', druid: '德鲁伊', necromancer: '死灵法师', paladin: '圣骑士', sorceress: '法师', warlock: '术士' },
+  tc: { amazon: '亞馬遜', assassin: '刺客', barbarian: '野蠻人', druid: '德魯伊', necromancer: '死靈法師', paladin: '聖騎士', sorceress: '法師', warlock: '術士' },
+  en: { amazon: 'Amazon', assassin: 'Assassin', barbarian: 'Barbarian', druid: 'Druid', necromancer: 'Necromancer', paladin: 'Paladin', sorceress: 'Sorceress', warlock: 'Warlock' }
 };
 
 function detectClasses(stats) {
