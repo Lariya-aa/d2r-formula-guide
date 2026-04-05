@@ -1775,39 +1775,45 @@ ${upgrade ? `<div class="rc-formula">${upgrade}</div>` : ''}
 }
 
 function getRuneUpgrade(runeName) {
+  // D2R Rune Upgrade Recipes with specific gems
+  const sc = currentLang === 'sc';
   const upgrades = {
-    'El': '3 El = 1 Eld',
-    'Eld': '3 Eld = 1 Tir',
-    'Tir': '3 Tir = 1 Nef',
-    'Nef': '3 Nef = 1 Eth',
-    'Eth': '3 Eth = 1 Ith',
-    'Ith': '3 Ith = 1 Tal',
-    'Tal': '3 Tal = 1 Ral',
-    'Ral': '3 Ral = 1 Ort',
-    'Ort': '3 Ort = 1 Thul',
-    'Thul': '3 Thul = 1 Amn',
-    'Amn': '3 Amn = 1 Sol',
-    'Sol': '3 Sol = 1 Shael',
-    'Shael': '3 Shael = 1 Dol',
-    'Dol': '3 Dol = 1 Hel',
-    'Hel': '3 Hel = 1 Io',
-    'Io': '3 Io = 1 Lum',
-    'Lum': '3 Lum = 1 Ko',
-    'Ko': '3 Ko = 1 Fal',
-    'Fal': '3 Fal = 1 Lem',
-    'Lem': '3 Lem = 1 Pul',
-    'Pul': '2 Pul = 1 Um',
-    'Um': '2 Um = 1 Mal',
-    'Mal': '2 Mal = 1 Ist',
-    'Ist': '2 Ist = 1 Gul',
-    'Gul': '2 Gul = 1 Vex',
-    'Vex': '2 Vex = 1 Ohm',
-    'Ohm': '2 Ohm = 1 Lo',
-    'Lo': '2 Lo = 1 Sur',
-    'Sur': '2 Sur = 1 Ber',
-    'Ber': '2 Ber = 1 Jah',
-    'Jah': '2 Jah = 1 Cham',
-    'Cham': '2 Cham = 1 Zod'
+    // Low runes (1-10): 3 runes, no gem
+    'El': sc ? '3 El → 1 Eld' : '3 El → 1 Eld',
+    'Eld': sc ? '3 Eld → 1 Tir' : '3 Eld → 1 Tir',
+    'Tir': sc ? '3 Tir → 1 Nef' : '3 Tir → 1 Nef',
+    'Nef': sc ? '3 Nef → 1 Eth' : '3 Nef → 1 Eth',
+    'Eth': sc ? '3 Eth → 1 Ith' : '3 Eth → 1 Ith',
+    'Ith': sc ? '3 Ith → 1 Tal' : '3 Ith → 1 Tal',
+    'Tal': sc ? '3 Tal → 1 Ral' : '3 Tal → 1 Ral',
+    'Ral': sc ? '3 Ral → 1 Ort' : '3 Ral → 1 Ort',
+    'Ort': sc ? '3 Ort → 1 Thul' : '3 Ort → 1 Thul',
+    'Thul': sc ? '3 Thul + 1碎裂紫宝石 → 1 Amn' : '3 Thul + 1 Chipped Amethyst → 1 Amn',
+    // Mid runes (11-19): 3 runes + chipped gem (gem type varies)
+    'Amn': sc ? '3 Amn + 1碎裂紫宝石 → 1 Sol' : '3 Amn + 1 Chipped Amethyst → 1 Sol',
+    'Sol': sc ? '3 Sol + 1碎裂蓝宝石 → 1 Shael' : '3 Sol + 1 Chipped Sapphire → 1 Shael',
+    'Shael': sc ? '3 Shael + 1碎裂蓝宝石 → 1 Dol' : '3 Shael + 1 Chipped Sapphire → 1 Dol',
+    'Dol': sc ? '3 Dol + 1碎裂红宝石 → 1 Hel' : '3 Dol + 1 Chipped Ruby → 1 Hel',
+    'Hel': sc ? '3 Hel + 1碎裂红宝石 → 1 Io' : '3 Hel + 1 Chipped Ruby → 1 Io',
+    'Io': sc ? '3 Io + 1碎裂绿宝石 → 1 Lum' : '3 Io + 1 Chipped Emerald → 1 Lum',
+    'Lum': sc ? '3 Lum + 1碎裂绿宝石 → 1 Ko' : '3 Lum + 1 Chipped Emerald → 1 Ko',
+    'Ko': sc ? '3 Ko + 1碎裂黄宝石 → 1 Fal' : '3 Ko + 1 Chipped Topaz → 1 Fal',
+    'Fal': sc ? '3 Fal + 1碎裂黄宝石 → 1 Lem' : '3 Fal + 1 Chipped Topaz → 1 Lem',
+    'Lem': sc ? '3 Lem + 1裂开紫宝石 → 1 Pul' : '3 Lem + 1 Flawed Amethyst → 1 Pul',
+    // High runes (20+): 2 runes + gem
+    'Pul': sc ? '2 Pul + 1无瑕蓝宝石 → 1 Um' : '2 Pul + 1 Flawless Sapphire → 1 Um',
+    'Um': sc ? '2 Um + 1无瑕蓝宝石 → 1 Mal' : '2 Um + 1 Flawless Sapphire → 1 Mal',
+    'Mal': sc ? '2 Mal + 1无瑕红宝石 → 1 Ist' : '2 Mal + 1 Flawless Ruby → 1 Ist',
+    'Ist': sc ? '2 Ist + 1无瑕红宝石 → 1 Gul' : '2 Ist + 1 Flawless Ruby → 1 Gul',
+    'Gul': sc ? '2 Gul + 1无瑕绿宝石 → 1 Vex' : '2 Gul + 1 Flawless Emerald → 1 Vex',
+    'Vex': sc ? '2 Vex + 1无瑕绿宝石 → 1 Ohm' : '2 Vex + 1 Flawless Emerald → 1 Ohm',
+    'Ohm': sc ? '2 Ohm + 1无瑕黄宝石 → 1 Lo' : '2 Ohm + 1 Flawless Topaz → 1 Lo',
+    'Lo': sc ? '2 Lo + 1无瑕黄宝石 → 1 Sur' : '2 Lo + 1 Flawless Topaz → 1 Sur',
+    'Sur': sc ? '2 Sur + 1完美紫宝石 → 1 Ber' : '2 Sur + 1 Perfect Amethyst → 1 Ber',
+    'Ber': sc ? '2 Ber + 1完美蓝宝石 → 1 Jah' : '2 Ber + 1 Perfect Sapphire → 1 Jah',
+    'Jah': sc ? '2 Jah + 1完美红宝石 → 1 Cham' : '2 Jah + 1 Perfect Ruby → 1 Cham',
+    'Cham': sc ? '2 Cham + 1完美绿宝石 → 1 Zod' : '2 Cham + 1 Perfect Emerald → 1 Zod',
+    'Zod': null // Zod is the highest, cannot upgrade
   };
   return upgrades[runeName] || null;
 }
