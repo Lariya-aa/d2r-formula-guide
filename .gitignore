@@ -7,3 +7,10 @@ web-ui/
 ._*
 
 exported-assets
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
