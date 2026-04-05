@@ -116,6 +116,15 @@ body{
 .rw-badge.patch_2_4{background:rgba(78,205,196,.1);color:#4ecdc4;border:1px solid #4ecdc4}
 .rw-badge.patch_2_6{background:rgba(69,183,209,.1);color:#45b7d1;border:1px solid #45b7d1}
 .rw-badge.reign_of_warlock{background:rgba(233,69,96,.1);color:#e94560;border:1px solid #e94560}
+/* Class badges */
+.rw-badge.amazon,.rw-badge.亞馬遜,.rw-badge.Amazon{background:rgba(219,68,68,.15);color:#db4444;border:1px solid #db4444}
+.rw-badge.assassin,.rw-badge.刺客,.rw-badge.Assassin{background:rgba(156,39,176,.15);color:#9c27b0;border:1px solid #9c27b0}
+.rw-badge.barbarian,.rw-badge.野蠻人,.rw-badge.Barbarian{background:rgba(244,67,53,.15);color:#f44336;border:1px solid #f44336}
+.rw-badge.druid,.rw-badge.德魯伊,.rw-badge.Druid{background:rgba(76,175,80,.15);color:#4caf50;border:1px solid #4caf50}
+.rw-badge.necromancer,.rw-badge.死靈法師,.rw-badge.Necromancer{background:rgba(121,85,72,.15);color:#795548;border:1px solid #795548}
+.rw-badge.paladin,.rw-badge.聖騎士,.rw-badge.Paladin{background:rgba(255,193,7,.15);color:#ffc107;border:1px solid #ffc107}
+.rw-badge.sorceress,.rw-badge.法師,.rw-badge.Sorceress{background:rgba(33,150,243,.15);color:#2196f3;border:1px solid #2196f3}
+.rw-badge.warlock,.rw-badge.術士,.rw-badge.Warlock{background:rgba(233,30,99,.15);color:#e91e63;border:1px solid #e91e63}
 .rw-card-body{padding:.7rem .9rem}
 .rw-runes{display:flex;gap:.3rem;flex-wrap:wrap;margin-bottom:.5rem}
 .rw-rune{padding:3px 8px;border-radius:4px;font-size:.75rem;font-weight:600;
@@ -1535,6 +1544,27 @@ function renderRW(){
       return `<img src="${runeIconUrl}" alt="${r}" class="rw-icon-rune-overlay ${tierClassName}" style="width:18px;height:18px;object-fit:contain;border-radius:2px;" onerror="this.style.display='none'">`;
     }).join('');
 
+    // Detect class from stats
+    const stats = RW_STATS[n_en];
+    const statsArr = Array.isArray(stats) ? stats : (stats ? (stats[currentLang] || stats.en || []) : []);
+    const statsText = statsArr.join(' ');
+    const classKeywords = {
+      sc: ['亚马逊', '刺客', '野蛮人', '德鲁伊', '死灵法师', '圣骑士', '法师', '术士'],
+      tc: ['亞馬遜', '刺客', '野蠻人', '德魯伊', '死靈法師', '聖騎士', '法師', '術士'],
+      en: ['Amazon', 'Assassin', 'Barbarian', 'Druid', 'Necromancer', 'Paladin', 'Sorceress', 'Warlock']
+    };
+    const keywords = classKeywords[currentLang] || classKeywords.sc;
+    let classBadge = '';
+    for (let i = 0; i < keywords.length; i++) {
+      if (statsText.includes(keywords[i])) {
+        const className = (CLASS_FILTERS[currentLang] || CLASS_FILTERS.sc)[i + 1];
+        if (className) {
+          classBadge = `<span class="rw-badge class-${keywords[i]}">${className}</span>`;
+          break;
+        }
+      }
+    }
+
     const iconHtml = `<img src="${iconUrl}" alt="${n_en}" style="width:100%;height:100%;object-fit:contain;position:absolute;top:0;left:0;z-index:1;opacity:.35" onerror="this.style.display='none'">
       <div style="position:relative;z-index:2;display:flex;flex-wrap:wrap;gap:1px;justify-content:center;align-items:center;width:100%;height:100%">${runesOverlayHtml}</div>`;
 
@@ -1542,7 +1572,7 @@ function renderRW(){
 <div class="rw-card-icon" style="position:relative;overflow:hidden" onmouseenter="showTooltip(buildRwTooltip('${n_en.replace(/'/g, "\\'")}'), event)" onmousemove="positionTooltip(event)" onmouseleave="hideTooltip()">${iconHtml}</div>
 <div class="rw-card-content">
 <div class="rw-card-head"><div><span class="rw-name">${n_en}</span><span class="rw-loc">${n_loc!==n_en?n_loc:''}</span></div>
-<span class="rw-badge ${rw.category}">${CATS[rw.category]||rw.patch}</span></div>
+${classBadge || `<span class="rw-badge ${rw.category}">${CATS[rw.category]||rw.patch}</span>`}</div>
 <div class="rw-card-body"><div class="rw-runes">${runesH}</div>
 <div class="rw-meta"><span>🔲 ${getText('sockets').replace('{0}',rw.sockets)}</span><span>📦 ${baseZh}</span><span>⭐ ${getText('req_lv').replace('{0}',rw.level_req)}</span>
 ${hasInv?`<span>✅ ${m.owned}/${m.total}</span>`:''}</div>
