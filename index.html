@@ -570,9 +570,9 @@ function hideTooltip() {
 
 // ──── RUNEWORD MODAL ────
 const CLASS_KEYWORDS = {
-  sc: ['亚马逊专用', '刺客专用', '野蛮人专用', '德鲁伊专用', '死灵法师专用', '圣骑士专用', '法师专用', '术士专用'],
-  tc: ['亞馬遜專用', '刺客專用', '野蠻人專用', '德魯伊專用', '死靈法師專用', '聖騎士專用', '法師專用', '術士專用'],
-  en: ['Amazon Only', 'Assassin Only', 'Barbarian Only', 'Druid Only', 'Necromancer Only', 'Paladin Only', 'Sorceress Only', 'Warlock Only']
+  sc: ['亚马逊', '刺客', '野蛮人', '德鲁伊', '死灵法师', '圣骑士', '法师', '术士'],
+  tc: ['亞馬遜', '刺客', '野蠻人', '德魯伊', '死靈法師', '聖騎士', '法師', '術士'],
+  en: ['Amazon', 'Assassin', 'Barbarian', 'Druid', 'Necromancer', 'Paladin', 'Sorceress', 'Warlock']
 };
 
 const CLASS_NAMES = {
@@ -1544,27 +1544,6 @@ function renderRW(){
       return `<img src="${runeIconUrl}" alt="${r}" class="rw-icon-rune-overlay ${tierClassName}" style="width:18px;height:18px;object-fit:contain;border-radius:2px;" onerror="this.style.display='none'">`;
     }).join('');
 
-    // Detect class from stats
-    const stats = RW_STATS[n_en];
-    const statsArr = Array.isArray(stats) ? stats : (stats ? (stats[currentLang] || stats.en || []) : []);
-    const statsText = statsArr.join(' ');
-    const classKeywords = {
-      sc: ['亚马逊', '刺客', '野蛮人', '德鲁伊', '死灵法师', '圣骑士', '法师', '术士'],
-      tc: ['亞馬遜', '刺客', '野蠻人', '德魯伊', '死靈法師', '聖騎士', '法師', '術士'],
-      en: ['Amazon', 'Assassin', 'Barbarian', 'Druid', 'Necromancer', 'Paladin', 'Sorceress', 'Warlock']
-    };
-    const keywords = classKeywords[currentLang] || classKeywords.sc;
-    let classBadge = '';
-    for (let i = 0; i < keywords.length; i++) {
-      if (statsText.includes(keywords[i])) {
-        const className = (CLASS_FILTERS[currentLang] || CLASS_FILTERS.sc)[i + 1];
-        if (className) {
-          classBadge = `<span class="rw-badge class-${keywords[i]}">${className}</span>`;
-          break;
-        }
-      }
-    }
-
     const iconHtml = `<img src="${iconUrl}" alt="${n_en}" style="width:100%;height:100%;object-fit:contain;position:absolute;top:0;left:0;z-index:1;opacity:.35" onerror="this.style.display='none'">
       <div style="position:relative;z-index:2;display:flex;flex-wrap:wrap;gap:1px;justify-content:center;align-items:center;width:100%;height:100%">${runesOverlayHtml}</div>`;
 
@@ -1572,7 +1551,7 @@ function renderRW(){
 <div class="rw-card-icon" style="position:relative;overflow:hidden" onmouseenter="showTooltip(buildRwTooltip('${n_en.replace(/'/g, "\\'")}'), event)" onmousemove="positionTooltip(event)" onmouseleave="hideTooltip()">${iconHtml}</div>
 <div class="rw-card-content">
 <div class="rw-card-head"><div><span class="rw-name">${n_en}</span><span class="rw-loc">${n_loc!==n_en?n_loc:''}</span></div>
-${classBadge || `<span class="rw-badge ${rw.category}">${CATS[rw.category]||rw.patch}</span>`}</div>
+<span class="rw-badge ${rw.category}">${CATS[rw.category]||rw.patch}</span></div>
 <div class="rw-card-body"><div class="rw-runes">${runesH}</div>
 <div class="rw-meta"><span>🔲 ${getText('sockets').replace('{0}',rw.sockets)}</span><span>📦 ${baseZh}</span><span>⭐ ${getText('req_lv').replace('{0}',rw.level_req)}</span>
 ${hasInv?`<span>✅ ${m.owned}/${m.total}</span>`:''}</div>
