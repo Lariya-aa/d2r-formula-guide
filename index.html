@@ -1468,7 +1468,8 @@ function renderRW(){
   if(!RUNEWORDS.length) return;
 
   let items=RUNEWORDS.filter(rw=>{
-    const n_en = (rw.name_en || rw.name || "").toLowerCase();
+    const n_en_orig = rw.name_en || rw.name || "";
+    const n_en = n_en_orig.toLowerCase();
     const n_loc = getPropName(rw, 'name');
     if(q && !n_en.includes(q) && !n_loc.includes(q)) return false;
     if(activeFilter!=="全部" && activeFilter!=="All"){
@@ -1477,7 +1478,7 @@ function renderRW(){
     }
     // Class filter
     if(activeClassFilter!=="全部" && activeClassFilter!=="All"){
-      const stats = RW_STATS[n_en];
+      const stats = RW_STATS[n_en_orig];
       const statsArr = Array.isArray(stats) ? stats : (stats ? (stats[currentLang] || stats.en || []) : []);
       const statsText = statsArr.join(' ');
       // Match class name with or without "专用" suffix
@@ -1486,14 +1487,62 @@ function renderRW(){
         tc: ['亞馬遜', '刺客', '野蠻人', '德魯伊', '死靈法師', '聖騎士', '法師', '術士'],
         en: ['Amazon', 'Assassin', 'Barbarian', 'Druid', 'Necromancer', 'Paladin', 'Sorceress', 'Warlock']
       };
+      
+      const classBaseMap = {
+        '亚马逊': ['亚马逊', '亞馬遜', 'Amazon', 'Bow'],
+        '刺客': ['拳刃', 'Katars', 'Katar'],
+        '野蛮人': ['野蛮人头盔', '野蠻人頭盔', 'Barbarian Helms'],
+        '德鲁伊': ['德鲁伊头皮', '德魯伊頭皮', 'Druid Pelts', 'Pelts'],
+        '死灵法师': ['死灵法师盾', '死靈法師盾', 'Necromancer Shrunken Heads', 'Shrunken Heads', '法杖', 'Wands'],
+        '圣骑士': ['圣骑士盾', '聖騎士盾', 'Paladin Shields'],
+        '法师': ['法珠', 'Sorceress Orbs', 'Orbs'],
+        '术士': ['术士', '術士', 'Warlock']
+      };
+
+      // Patch 1.11 class armors & common class-specific RWs
+      const manualClassMap = {
+        '亚马逊': ['Peace', 'Melody'],
+        '刺客': ['Treachery', 'Chaos'],
+        '野蛮人': ['Myth'],
+        '德鲁伊': ['Rain'],
+        '死灵法师': ['Bone', 'White'],
+        '圣骑士': ['Principle', 'Holy Thunder'],
+        '法师': ['Enlightenment', 'Memory'],
+        '术士': []
+      };
+
       const keywords = classKeywords[currentLang] || classKeywords.sc;
       // Find the index of selected class
       const classFiltersAll = CLASS_FILTERS[currentLang] || CLASS_FILTERS.sc;
       const selIdx = classFiltersAll.indexOf(activeClassFilter);
       if(selIdx > 0){ // skip "全部"/"All"
-        const keyword = keywords[selIdx - 1];
-        // Check if stats contain the selected class keyword
-        const hasSelectedClass = statsText.includes(keyword);
+        const keyword = keywords[selIdx - 1]; // Current lang keyword (e.g., 'Amazon')
+        const scKeyword = classKeywords.sc[selIdx - 1]; // Simplified Chinese key for mappings
+        
+        let hasSelectedClass = statsText.includes(keyword);
+        
+        if(!hasSelectedClass){
+            // Check base types
+            const baseMatchers = classBaseMap[scKeyword] || [];
+            const bt_sc = rw.base_types_sc || [];
+            const bt_en = rw.base_types || [];
+            
+            for(let matcher of baseMatchers){
+                if(bt_sc.some(b => b.includes(matcher)) || bt_en.some(b => b.includes(matcher))){
+                    hasSelectedClass = true;
+                    break;
+                }
+            }
+        }
+        
+        // Check manual mappings
+        if(!hasSelectedClass){
+            const manualRWs = manualClassMap[scKeyword] || [];
+            if(manualRWs.includes(n_en_orig)){
+                hasSelectedClass = true;
+            }
+        }
+
         // Show ONLY runewords that have the selected class keyword
         if(!hasSelectedClass) return false;
       }
