@@ -1483,9 +1483,12 @@ function renderRW(){
       const selIdx = classFiltersAll.indexOf(activeClassFilter);
       if(selIdx > 0){ // skip "全部"/"All"
         const keyword = keywords[selIdx - 1];
-        // Check if stats contain this keyword (with or without "专用"/"Only" suffix)
-        const found = statsText.includes(keyword);
-        if(!found) return false;
+        // Check if stats contain ANY class keyword
+        const hasAnyClass = keywords.some(k => statsText.includes(k));
+        // Check if stats contain the selected class keyword
+        const hasSelectedClass = statsText.includes(keyword);
+        // Show if: has selected class OR has no class at all (universal runeword)
+        if(!hasSelectedClass && hasAnyClass) return false;
       }
     }
     // Rune filter
