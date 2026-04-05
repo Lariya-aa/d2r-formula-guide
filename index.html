@@ -169,14 +169,18 @@ body{
   .base-sidebar{width:100%;flex-direction:row;overflow-x:auto;padding-bottom:0.5rem}
   .base-cat-btn{white-space:nowrap}
   .materials-layout{flex-direction:column}
-  .materials-left{flex:0 0 auto}
-  .materials-right{flex:0 0 auto}
+  .materials-left{flex:0 0 auto;width:100%}
+  .materials-right{flex:0 0 auto;width:100%;max-width:none}
 }
 @media(max-width:640px){
-  .rune-grid{grid-template-columns:repeat(4,1fr)}
+  .rune-grid{grid-template-columns:repeat(4,1fr);gap:.3rem}
   .rw-list{grid-template-columns:1fr}
-  .tab-nav{gap:.3rem}.tab-btn{padding:.4rem .7rem;font-size:.78rem}
+  .tab-nav{gap:.3rem;overflow-x:auto;flex-wrap:nowrap}.tab-btn{padding:.4rem .7rem;font-size:.78rem;white-space:nowrap}
   .header h1{font-size:1.4rem}
+  .filter-row{overflow-x:auto;flex-wrap:nowrap;padding-bottom:.3rem}
+  .filter-chip{white-space:nowrap;flex-shrink:0}
+  .selected-bar{min-height:60px}
+  #tooltip{max-width:280px;min-width:180px}
 }
 ::-webkit-scrollbar{width:6px;height:6px;}
 ::-webkit-scrollbar-track{background:var(--bg)}
@@ -267,7 +271,7 @@ body{
 
 /* ── Match Preview ── */
 #matchPreview{
-  display:none;margin:1rem 0;padding:.6rem;
+  display:none;margin:0;padding:.5rem;
   background:var(--card);border:1px solid var(--gold-dim);
   border-radius:var(--radius);
 }
@@ -605,12 +609,13 @@ function openRwModal(name) {
   const runesHtml = rw.runes.map(r => {
     const rData = RUNES.find(rn => rn.name_en === r);
     const rLevel = rData ? rData.level : '?';
+    const rId = rData ? rData.id : '?';
     const rName = rData ? getPropName(rData, 'name') : r;
     const rIconUrl = buildRuneIconUrl(r);
     const tClass = rData ? tier(rData.id) : 'low';
     return `<div class="rw-modal-rune">
       <img src="${rIconUrl}" alt="${r}" class="rune-img ${tClass}" onerror="this.style.display='none'">
-      <span class="rune-name">${r}</span>
+      <span class="rune-name">#${rId} ${r}</span>
       <span class="rune-lv">Lv.${rLevel}</span>
     </div>`;
   }).join('');
@@ -1326,7 +1331,7 @@ function renderRunes(){
     return`<div class="rune-chip${c?' selected':''}" oncontextmenu="decRune(event,'${r.name_en}')" onclick="addRune('${r.name_en}')">
 <div class="rune-count">${c}</div>
 <div class="rune-icon ${tier(r.id)}"><img src="${runeIconUrl}" alt="${r.name_en}" style="width:26px;height:26px;object-fit:contain;border-radius:4px;" onerror="this.style.display='none'"></div>
-<div class="rune-name">${r.name_en}</div>
+<div class="rune-name">#${r.id} ${r.name_en}</div>
 <div class="rune-zh">Lv.${r.level} ${dispName}</div></div>`;
   }).join('');
 }
@@ -1385,7 +1390,9 @@ function renderMatchPreview(){
     const runesStr = rw.runes.map(r => {
       used[r] = (used[r] || 0) + 1;
       const have = (inv[r] || 0) >= used[r];
-      return `<span class="${have ? 'match-prev-rune-owned' : 'match-prev-rune-missing'}">${r}</span>`;
+      const rData = RUNES.find(rn => rn.name_en === r);
+      const rId = rData ? rData.id : '';
+      return `<span class="${have ? 'match-prev-rune-owned' : 'match-prev-rune-missing'}">#${rId} ${r}</span>`;
     }).join('');
 
     // Show base item icon with runes overlay
@@ -1463,13 +1470,22 @@ function renderRW(){
       const stats = RW_STATS[n_en];
       const statsArr = Array.isArray(stats) ? stats : (stats ? (stats[currentLang] || stats.en || []) : []);
       const statsText = statsArr.join(' ');
-      // Build keywords with "Only" suffix for matching
-      const classKeywordsSc = ['亚马逊专用', '刺客专用', '野蛮人专用', '德鲁伊专用', '死灵法师专用', '圣骑士专用', '法师专用', '术士专用'];
-      const classKeywordsTc = ['亞馬遜專用', '刺客專用', '野蠻人專用', '德魯伊專用', '死靈法師專用', '聖騎士專用', '法師專用', '術士專用'];
-      const classKeywordsEn = ['Amazon Only', 'Assassin Only', 'Barbarian Only', 'Druid Only', 'Necromancer Only', 'Paladin Only', 'Sorceress Only', 'Warlock Only'];
-      const classKeywords = currentLang === 'tc' ? classKeywordsTc : (currentLang === 'en' ? classKeywordsEn : classKeywordsSc);
-      const found = classKeywords.some(k => statsText.includes(k));
-      if(!found) return false;
+      // Match class name with or without "专用" suffix
+      const classKeywords = {
+        sc: ['亚马逊', '刺客', '野蛮人', '德鲁伊', '死灵法师', '圣骑士', '法师', '术士'],
+        tc: ['亞馬遜', '刺客', '野蠻人', '德魯伊', '死靈法師', '聖騎士', '法師', '術士'],
+        en: ['Amazon', 'Assassin', 'Barbarian', 'Druid', 'Necromancer', 'Paladin', 'Sorceress', 'Warlock']
+      };
+      const keywords = classKeywords[currentLang] || classKeywords.sc;
+      // Find the index of selected class
+      const classFiltersAll = CLASS_FILTERS[currentLang] || CLASS_FILTERS.sc;
+      const selIdx = classFiltersAll.indexOf(activeClassFilter);
+      if(selIdx > 0){ // skip "全部"/"All"
+        const keyword = keywords[selIdx - 1];
+        // Check if stats contain this keyword (with or without "专用"/"Only" suffix)
+        const found = statsText.includes(keyword);
+        if(!found) return false;
+      }
     }
     // Rune filter
     if(activeRuneFilter!=="全部" && activeRuneFilter!=="All"){
@@ -1495,7 +1511,9 @@ function renderRW(){
       used[r]=(used[r]||0)+1;
       const have=(inv[r]||0)>=used[r];
       const c=hasInv?(have?'owned':'missing'):'';
-      return`<span class="rw-rune ${c}">${r}</span>`;
+      const rData = RUNES.find(rn => rn.name_en === r);
+      const rId = rData ? rData.id : '';
+      return`<span class="rw-rune ${c}">#${rId} ${r}</span>`;
     }).join('');
 
     // Loc logic
