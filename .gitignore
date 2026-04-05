@@ -1,3 +1,6 @@
 # Gitignore for D2R WebUI Project
 web-ui/
-data/assets/
+
+# macOS
+.DS_Store
+._*

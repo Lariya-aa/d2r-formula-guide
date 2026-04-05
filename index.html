@@ -404,7 +404,7 @@ const BZH = {
 const FILTERS = Object.keys(BZH);
 
 // ──── STATE ────
-let RUNES=[], RUNEWORDS=[], RECIPES={}, BASE_ITEMS={};
+let RUNES=[], RUNEWORDS=[], RECIPES={}, BASE_ITEMS={}, ICON_ALIASES={};
 const inv={};
 let activeFilter="全部", searchQ="", currentLang="sc", activeBaseCat="Armor";
 const CATS={classic:"Classic",patch_2_4:"2.4",patch_2_6:"2.6",reign_of_warlock:"RotW"};
@@ -580,8 +580,12 @@ function buildItemIconUrl(itemName, baseType) {
   if (RW_ICONS_D2R[itemName]) {
     return `data/assets/items/base/${RW_ICONS_D2R[itemName]}`;
   }
+  // Check icon aliases for base items
+  if (ICON_ALIASES[itemName]) {
+    return `data/assets/items/base/${ICON_ALIASES[itemName]}`;
+  }
   // For base items, use name to build slug
-  const slug = itemName.replace(/\s+/g, '').toLowerCase();
+  const slug = itemName.replace(/\s+/g, '_').toLowerCase();
   return `data/assets/items/base/${slug}.jpg`;
 }
 
@@ -1701,14 +1705,17 @@ function refresh(){
 async function boot(){
   localizeUI();
   try{
-    const[rwRes, rcRes, rRes, biRes]=await Promise.all([
+    const[rwRes, rcRes, rRes, biRes, iaRes]=await Promise.all([
       fetch('data/runewords.json'), fetch('data/cube_recipes.json'),
-      fetch('data/runes.json'), fetch('data/base_items.json')
+      fetch('data/runes.json'), fetch('data/base_items.json'),
+      fetch('data/icon_aliases.json')
     ]);
     RUNEWORDS = await rwRes.json();
     RECIPES = await rcRes.json();
     RUNES = await rRes.json();
     BASE_ITEMS = await biRes.json();
+    const iaData = await iaRes.json();
+    ICON_ALIASES = iaData.itemIconAliases || {};
   }catch(e){
     console.warn('Fetch failed, check if running via HTTP server:',e);
   }
