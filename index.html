@@ -602,7 +602,7 @@ function openRwModal(name) {
   const baseStr = (bases || rw.base_types || []).join(' / ');
 
   // Base item icon
-  const iconCode = RW_ICONS_D2R[n_en] || 'inv';
+  const iconCode = RW_ICONS_D2R[n_en] || 'short_sword.jpg';
   const baseIconUrl = `data/assets/items/base/${iconCode}`;
 
   // Build runes HTML
@@ -1397,7 +1397,7 @@ function renderMatchPreview(){
     }).join('');
 
     // Show base item icon with runes overlay
-    const iconCode = RW_ICONS_D2R[n_en] || 'inv';
+    const iconCode = RW_ICONS_D2R[n_en] || 'short_sword.jpg';
     const baseIconUrl = `data/assets/items/base/${iconCode}`;
     const runesOverlayHtml = rw.runes.slice(0, 4).map(r => {
       const tierClass = RUNES.find(rn => rn.name_en === r);
@@ -1528,7 +1528,7 @@ function renderRW(){
     const pct=Math.round(m.pct*100);
 
     // Show base item icon with runes overlay
-    const iconCode = RW_ICONS_D2R[n_en] || 'inv';
+    const iconCode = RW_ICONS_D2R[n_en] || 'short_sword.jpg';
     const iconUrl = `data/assets/items/base/${iconCode}`;
     const runesOverlayHtml = rw.runes.slice(0, 4).map(r => {
       const tierClass = RUNES.find(rn => rn.name_en === r);
