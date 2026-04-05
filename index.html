@@ -49,24 +49,24 @@ body{
 
 .section-title{font-family:'Cinzel',serif;font-size:1.1rem;color:var(--gold);
   margin:1.2rem 0 .6rem;padding-bottom:.4rem;border-bottom:1px solid var(--border);letter-spacing:1px}
-.rune-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:.5rem}
-.materials-layout{display:flex;gap:1.5rem;align-items:flex-start}
+.rune-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.4rem}
+.materials-layout{display:flex;gap:1rem;align-items:flex-start}
 .materials-left{flex:0 0 320px}
-.materials-right{flex:1;min-width:0}
+.materials-right{flex:0 0 160px;min-width:0}
 .subsection-title{font-family:'Cinzel',serif;font-size:.95rem;color:var(--gold);margin:.8rem 0 .4rem;letter-spacing:1px}
-.rune-chip{position:relative;display:flex;flex-direction:column;align-items:center;gap:.25rem;
-  padding:.6rem .3rem;border:1px solid var(--border);border-radius:var(--radius);cursor:pointer;
+.rune-chip{position:relative;display:flex;flex-direction:column;align-items:center;gap:.15rem;
+  padding:.4rem .2rem;border:1px solid var(--border);border-radius:var(--radius);cursor:pointer;
   background:var(--surface);transition:var(--transition);user-select:none}
 .rune-chip:hover{border-color:var(--gold-dim);transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,.4)}
 .rune-chip.selected{border-color:var(--gold);
   background:linear-gradient(135deg,rgba(201,168,76,.2),rgba(201,168,76,.05));box-shadow:0 0 16px var(--glow)}
-.rune-icon{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-  font-family:'Cinzel',serif;font-weight:900;font-size:.75rem;color:var(--bg);overflow:hidden}
+.rune-icon{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-family:'Cinzel',serif;font-weight:900;font-size:.65rem;color:var(--bg);overflow:hidden}
 .rune-icon.low{background:linear-gradient(135deg,#b0b0b0,#e0e0e0)}
 .rune-icon.mid{background:linear-gradient(135deg,#c9a84c,#f0d890)}
 .rune-icon.high{background:linear-gradient(135deg,#d4763a,#ff9a56)}
-.rune-chip .rune-name{font-size:.78rem;color:var(--text);font-weight:500}
-.rune-chip .rune-zh{font-size:.65rem;color:var(--text2)}
+.rune-chip .rune-name{font-size:.7rem;color:var(--text);font-weight:500}
+.rune-chip .rune-zh{font-size:.6rem;color:var(--text2)}
 .rune-count{position:absolute;top:-6px;right:-6px;width:22px;height:22px;border-radius:50%;
   background:var(--red);color:#fff;font-size:.7rem;display:flex;align-items:center;justify-content:center;
   font-weight:700;box-shadow:0 2px 8px rgba(233,69,96,.5);opacity:0;transform:scale(0);transition:var(--transition)}
@@ -168,9 +168,12 @@ body{
   .base-layout{flex-direction:column}
   .base-sidebar{width:100%;flex-direction:row;overflow-x:auto;padding-bottom:0.5rem}
   .base-cat-btn{white-space:nowrap}
+  .materials-layout{flex-direction:column}
+  .materials-left{flex:0 0 auto}
+  .materials-right{flex:0 0 auto}
 }
 @media(max-width:640px){
-  .rune-grid{grid-template-columns:repeat(auto-fill,minmax(72px,1fr))}
+  .rune-grid{grid-template-columns:repeat(4,1fr)}
   .rw-list{grid-template-columns:1fr}
   .tab-nav{gap:.3rem}.tab-btn{padding:.4rem .7rem;font-size:.78rem}
   .header h1{font-size:1.4rem}
@@ -204,29 +207,85 @@ body{
 #tooltip .tt-meta{color:var(--text2);font-size:.72rem;margin-top:.4rem;padding-top:.4rem;border-top:1px solid var(--border)}
 #tooltip .tt-icon{float:right;width:40px;height:40px;border-radius:4px;margin-left:.8rem;background:var(--surface);border:1px solid var(--border)}
 
+/* ── Runeword Detail Modal ── */
+#rw-modal-overlay{
+  display:none;position:fixed;inset:0;z-index:1000;
+  background:rgba(0,0,0,.7);backdrop-filter:blur(4px);
+  justify-content:center;align-items:center;
+}
+#rw-modal-overlay.visible{display:flex;animation:fadeUp .2s ease}
+#rw-modal{
+  background:var(--bg2);border:1px solid var(--gold);border-radius:var(--radius);
+  max-width:480px;width:90%;max-height:85vh;overflow-y:auto;
+  box-shadow:0 12px 48px rgba(0,0,0,.7),0 0 30px var(--glow);
+}
+#rw-modal-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.8rem 1rem;border-bottom:1px solid var(--border);
+  background:linear-gradient(90deg,rgba(201,168,76,.1),transparent);
+}
+#rw-modal-title{font-family:'Cinzel',serif;font-size:1.1rem;font-weight:700;color:var(--gold)}
+#rw-modal-close{
+  width:28px;height:28px;border-radius:50%;border:1px solid var(--border);
+  background:var(--surface);color:var(--text2);cursor:pointer;font-size:1rem;
+  display:flex;align-items:center;justify-content:center;transition:var(--transition);
+}
+#rw-modal-close:hover{border-color:var(--red);color:var(--red)}
+#rw-modal-body{padding:1rem}
+.rw-modal-section{margin-bottom:1rem}
+.rw-modal-section-title{
+  font-family:'Cinzel',serif;font-size:.85rem;color:var(--gold);
+  margin-bottom:.5rem;padding-bottom:.3rem;border-bottom:1px solid var(--border);
+}
+.rw-modal-base{display:flex;align-items:center;gap:.8rem;padding:.6rem;
+  background:var(--surface);border:1px solid var(--border);border-radius:4px;}
+.rw-modal-base-icon{width:56px;height:56px;background:var(--card);border:1px solid var(--border);
+  border-radius:4px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.rw-modal-base-icon img{width:100%;height:100%;object-fit:contain}
+.rw-modal-base-name{flex:1}
+.rw-modal-base-name .name{font-weight:600;color:var(--text);font-size:.9rem}
+.rw-modal-base-name .type{color:var(--text2);font-size:.78rem}
+.rw-modal-runes{display:flex;gap:.5rem;flex-wrap:wrap}
+.rw-modal-rune{
+  display:flex;flex-direction:column;align-items:center;gap:.2rem;
+  padding:.5rem;border:1px solid var(--border);border-radius:4px;
+  background:var(--surface);min-width:60px;
+}
+.rw-modal-rune .rune-img{width:32px;height:32px;border-radius:4px}
+.rw-modal-rune .rune-name{font-size:.72rem;color:var(--text)}
+.rw-modal-rune .rune-lv{font-size:.65rem;color:var(--text3)}
+.rw-modal-stats{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:.6rem}
+.rw-modal-stat{color:var(--text);font-size:.82rem;margin:.25rem 0;padding-left:.8rem;position:relative}
+.rw-modal-stat::before{content:'•';position:absolute;left:0;color:var(--gold)}
+.rw-modal-stat.blue{color:#4a6fa5}
+.rw-modal-stat.gold{color:#c9a84c}
+.rw-modal-meta{display:flex;gap:1rem;flex-wrap:wrap;font-size:.78rem;color:var(--text2);margin-top:.5rem}
+.rw-modal-meta span{display:flex;align-items:center;gap:.2rem}
+
 /* ── Match Preview ── */
 #matchPreview{
-  display:none;margin:1rem 0;padding:.8rem;
+  display:none;margin:1rem 0;padding:.6rem;
   background:var(--card);border:1px solid var(--gold-dim);
   border-radius:var(--radius);
 }
 #matchPreview.visible{display:block;animation:fadeUp .25s ease}
-#matchPreview h3{font-family:'Cinzel',serif;font-size:.9rem;color:var(--gold);margin-bottom:.6rem}
-.match-prev-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.5rem}
+#matchPreview h3{font-family:'Cinzel',serif;font-size:.85rem;color:var(--gold);margin-bottom:.4rem}
+.match-prev-grid{display:grid;grid-template-columns:1fr;gap:.4rem}
 .match-prev-card{
-  display:flex;align-items:center;gap:.6rem;padding:.5rem .7rem;
+  display:flex;align-items:center;gap:.5rem;padding:.4rem .5rem;
   border:1px solid var(--border);border-radius:4px;background:var(--surface);
   transition:var(--transition);
 }
 .match-prev-card:hover{border-color:var(--gold-dim)}
 .match-prev-card.full{border-color:var(--gold);background:rgba(201,168,76,.08)}
-.match-prev-icon{width:32px;height:32px;border-radius:4px;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.7rem;color:var(--text3)}
+.match-prev-icon{width:36px;height:36px;border-radius:4px;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.7rem;color:var(--text3);flex-shrink:0}
+.match-prev-icon img{width:100%;height:100%;object-fit:contain}
 .match-prev-info{flex:1;min-width:0}
-.match-prev-name{font-size:.8rem;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.match-prev-runes{font-size:.68rem;color:var(--text2);display:flex;gap:.2rem;flex-wrap:wrap;margin-top:.15rem}
+.match-prev-name{font-size:.75rem;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.match-prev-runes{font-size:.62rem;color:var(--text2);display:flex;gap:.15rem;flex-wrap:wrap;margin-top:.1rem}
 .match-prev-rune-owned{color:var(--green)}
 .match-prev-rune-missing{color:var(--red)}
-.match-prev-badge{font-size:.6rem;padding:1px 5px;border-radius:8px;margin-left:auto;align-self:flex-start}
+.match-prev-badge{font-size:.58rem;padding:1px 4px;border-radius:6px;margin-left:auto;align-self:flex-start}
 .match-prev-badge.full{background:rgba(201,168,76,.2);color:var(--gold)}
 .match-prev-badge.partial{background:rgba(74,111,165,.15);color:var(--blue)}
 
@@ -294,6 +353,15 @@ body{
   <button class="tab-btn" id="globalSearchBtn" style="margin-left:auto;padding:.5rem .8rem">🔍</button>
 </nav>
 <div id="tooltip"></div>
+<div id="rw-modal-overlay" onclick="closeRwModal(event)">
+  <div id="rw-modal" onclick="event.stopPropagation()">
+    <div id="rw-modal-header">
+      <div id="rw-modal-title"></div>
+      <button id="rw-modal-close" onclick="closeRwModal()">×</button>
+    </div>
+    <div id="rw-modal-body"></div>
+  </div>
+</div>
 <div class="selected-bar" id="selectedBar">
   <span class="label" id="ui-selected-runes">已选符文:</span>
   <div class="chips" id="selectedChips"><span style="color:var(--text3);font-size:.78rem" id="ui-empty-bag">点击下方符文添加到背包…</span></div>
@@ -359,7 +427,7 @@ const I18N = {
     rune_title: "⬥ 符文 Runes — 左键添加 · 右键减少", search_ph: "搜索名称 / Search…",
     all: "全部", total_rw: "共 {0} 条符文之语", full_match: " · {0} 可完整合成",
     sockets: "{0}孔", req_lv: "Lv.{0}", req_str: "力量", cat_name: "名称", cat_tier: "类型", cat_max_sock: "最大孔数",
-    tier_n: "普通", tier_ex: "进阶", tier_el: "精华", no_match: "没有匹配的符文之语", rule: "合成规则", guar_stats: "保证属性", slot: "部位", req_rune: "所需符文",
+    tier_n: "普通", tier_ex: "进阶", tier_el: "精华", no_match: "没有匹配的符文之语", rule: "合成规则", guar_stats: "保证属性", slot: "部位", req_rune: "所需符文", no_stats: "暂无属性数据", base_item: "底材", runes: "符文", properties: "属性",
     filter_all: "全部", filter_weap: "武器", filter_armor: "盔甲", filter_helm: "头盔", filter_shield: "盾牌",
     filter_sword: "剑", filter_axe: "斧", filter_pole: "长柄", filter_miss: "远程", filter_staff: "法杖",
     filter_mace: "钉头锤", filter_dag: "匕首", filter_katar: "拳刃", filter_scep: "权杖", filter_ham: "锤",
@@ -373,7 +441,7 @@ const I18N = {
     rune_title: "⬥ 符文 Runes — 左鍵添加 · 右鍵減少", search_ph: "搜索名稱 / Search…",
     all: "全部", total_rw: "共 {0} 條符文之語", full_match: " · {0} 可完整合成",
     sockets: "{0}孔", req_lv: "Lv.{0}", req_str: "力量", cat_name: "名稱", cat_tier: "類型", cat_max_sock: "最大孔數",
-    tier_n: "普通", tier_ex: "進階", tier_el: "精華", no_match: "沒有匹配的符文之語", rule: "合成規則", guar_stats: "保證屬性", slot: "部位", req_rune: "所需符文",
+    tier_n: "普通", tier_ex: "進階", tier_el: "精華", no_match: "沒有匹配的符文之語", rule: "合成規則", guar_stats: "保證屬性", slot: "部位", req_rune: "所需符文", no_stats: "暫無屬性數據", base_item: "底材", runes: "符文", properties: "屬性",
     filter_all: "全部", filter_weap: "武器", filter_armor: "鎧甲", filter_helm: "頭盔", filter_shield: "盾牌",
     filter_sword: "劍", filter_axe: "斧", filter_pole: "長柄", filter_miss: "遠程", filter_staff: "法杖",
     filter_mace: "釘頭錘", filter_dag: "匕首", filter_katar: "拳刃", filter_scep: "權杖", filter_ham: "錘",
@@ -387,7 +455,7 @@ const I18N = {
     rune_title: "⬥ Runes — Left Click to Add · Right Click to Remove", search_ph: "Search Name...",
     all: "All", total_rw: "{0} Runewords", full_match: " · {0} Fully Matched",
     sockets: "{0} Sockets", req_lv: "Lv.{0}", req_str: "Str", cat_name: "Name", cat_tier: "Tier", cat_max_sock: "Max Sockets",
-    tier_n: "Normal", tier_ex: "Exceptional", tier_el: "Elite", no_match: "No matching runewords", rule: "Rules", guar_stats: "Guaranteed Stats", slot: "Slot", req_rune: "Runes Needed",
+    tier_n: "Normal", tier_ex: "Exceptional", tier_el: "Elite", no_match: "No matching runewords", rule: "Rules", guar_stats: "Guaranteed Stats", slot: "Slot", req_rune: "Runes Needed", no_stats: "No stats available", base_item: "Base Item", runes: "Runes", properties: "Properties",
     filter_all: "All", filter_weap: "Weapons", filter_armor: "Armor", filter_helm: "Helms", filter_shield: "Shields",
     filter_sword: "Swords", filter_axe: "Axes", filter_pole: "Polearms", filter_miss: "Missile", filter_staff: "Staves",
     filter_mace: "Maces", filter_dag: "Daggers", filter_katar: "Katars", filter_scep: "Scepters", filter_ham: "Hammers",
@@ -466,6 +534,94 @@ function positionTooltip(event) {
 function hideTooltip() {
   document.getElementById('tooltip').classList.remove('visible');
 }
+
+// ──── RUNEWORD MODAL ────
+function openRwModal(name) {
+  const rw = RUNEWORDS.find(r => (r.name_en || r.name) === name);
+  if (!rw) return;
+
+  const n_en = rw.name_en || rw.name;
+  const n_loc = getPropName(rw, 'name');
+  const bases = currentLang === 'en' ? rw.base_types : (currentLang === 'tc' ? rw.base_types_tc : rw.base_types_sc);
+  const baseStr = (bases || rw.base_types || []).join(' / ');
+
+  // Base item icon
+  const iconCode = RW_ICONS_D2R[n_en] || 'inv';
+  const baseIconUrl = `data/assets/items/base/${iconCode}`;
+
+  // Build runes HTML
+  const runesHtml = rw.runes.map(r => {
+    const rData = RUNES.find(rn => rn.name_en === r);
+    const rLevel = rData ? rData.level : '?';
+    const rName = rData ? getPropName(rData, 'name') : r;
+    const rIconUrl = buildRuneIconUrl(r);
+    const tClass = rData ? tier(rData.id) : 'low';
+    return `<div class="rw-modal-rune">
+      <img src="${rIconUrl}" alt="${r}" class="rune-img ${tClass}" onerror="this.style.display='none'">
+      <span class="rune-name">${r}</span>
+      <span class="rune-lv">Lv.${rLevel}</span>
+    </div>`;
+  }).join('');
+
+  // Build stats HTML
+  const rwData = RW_STATS[n_en];
+  let statsHtml = '';
+  if (Array.isArray(rwData)) {
+    statsHtml = rwData.map(s => {
+      const cls = s.startsWith('+') ? 'blue' : (s.includes('Aura') || s.includes('Resistance') || s.includes('抗性') || s.includes('光環') ? 'gold' : '');
+      return `<div class="rw-modal-stat ${cls}">${s}</div>`;
+    }).join('');
+  } else if (rwData && typeof rwData === 'object') {
+    const langStats = rwData[currentLang] || rwData.en || [];
+    statsHtml = langStats.map(s => {
+      const cls = s.startsWith('+') ? 'blue' : (s.includes('Aura') || s.includes('Resistance') || s.includes('抗性') || s.includes('光環') ? 'gold' : '');
+      return `<div class="rw-modal-stat ${cls}">${s}</div>`;
+    }).join('');
+  }
+  if (!statsHtml) {
+    statsHtml = `<div class="rw-modal-stat">${getText('no_stats')}</div>`;
+  }
+
+  document.getElementById('rw-modal-title').textContent = n_loc;
+  document.getElementById('rw-modal-body').innerHTML = `
+    <div class="rw-modal-section">
+      <div class="rw-modal-section-title">${getText('base_item')}</div>
+      <div class="rw-modal-base">
+        <div class="rw-modal-base-icon">
+          <img src="${baseIconUrl}" alt="${n_en}" onerror="this.style.display='none'">
+        </div>
+        <div class="rw-modal-base-name">
+          <div class="name">${baseStr}</div>
+          <div class="type">${getText('sockets').replace('{0}', rw.sockets)} · ${getText('req_lv').replace('{0}', rw.level_req)}</div>
+        </div>
+      </div>
+    </div>
+    <div class="rw-modal-section">
+      <div class="rw-modal-section-title">${getText('runes')}</div>
+      <div class="rw-modal-runes">${runesHtml}</div>
+    </div>
+    <div class="rw-modal-section">
+      <div class="rw-modal-section-title">${getText('properties')}</div>
+      <div class="rw-modal-stats">${statsHtml}</div>
+    </div>
+    <div class="rw-modal-meta">
+      <span>🔲 ${getText('sockets').replace('{0}', rw.sockets)}</span>
+      <span>⭐ ${getText('req_lv').replace('{0}', rw.level_req)}</span>
+      <span>📦 ${baseStr}</span>
+    </div>
+  `;
+
+  document.getElementById('rw-modal-overlay').classList.add('visible');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeRwModal(e) {
+  if (e && e.target !== e.currentTarget) return;
+  document.getElementById('rw-modal-overlay').classList.remove('visible');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeRwModal(); });
 
 function buildRuneIconUrl(runeName) {
   const slug = runeName.toLowerCase();
@@ -1172,21 +1328,27 @@ function renderMatchPreview(){
       return `<span class="${have ? 'match-prev-rune-owned' : 'match-prev-rune-missing'}">${r}</span>`;
     }).join('');
 
-    // Show first 3 runes as icon
-    const runesIconHtml = rw.runes.slice(0, 3).map(r => {
+    // Show base item icon with runes overlay
+    const iconCode = RW_ICONS_D2R[n_en] || 'inv';
+    const baseIconUrl = `data/assets/items/base/${iconCode}`;
+    const runesOverlayHtml = rw.runes.slice(0, 4).map(r => {
       const tierClass = RUNES.find(rn => rn.name_en === r);
       const tierClassName = tierClass ? tier(tierClass.id) : 'low';
       const runeIconUrl = buildRuneIconUrl(r);
-      return `<img src="${runeIconUrl}" alt="${r}" class="rw-icon-rune ${tierClassName}" style="width:28px;height:28px;object-fit:contain;" onerror="this.style.display='none'">`;
+      return `<img src="${runeIconUrl}" alt="${r}" class="rw-icon-rune ${tierClassName}" style="width:14px;height:14px;object-fit:contain;border-radius:2px;" onerror="this.style.display='none'">`;
     }).join('');
 
+    const iconHtml = `<img src="${baseIconUrl}" alt="${n_en}" style="width:100%;height:100%;object-fit:contain;position:absolute;top:0;left:0;z-index:1;opacity:.4" onerror="this.style.display='none'">
+      <div style="position:relative;z-index:2;display:flex;flex-wrap:wrap;gap:1px;justify-content:center;align-items:center;width:100%;height:100%">${runesOverlayHtml}</div>`;
+
     return `<div class="match-prev-card ${isFull ? 'full' : ''}"
+      onclick="openRwModal('${n_en.replace(/'/g, "\\'")}')" style="cursor:pointer"
       onmouseenter="showTooltip(buildRwTooltip('${n_en.replace(/'/g, "\\'")}'), event)"
       onmousemove="positionTooltip(event)"
       onmouseleave="hideTooltip()">
-      <div class="match-prev-icon" style="flex-wrap:wrap;gap:2px">${runesIconHtml}</div>
+      <div class="match-prev-icon" style="position:relative;overflow:hidden">${iconHtml}</div>
       <div class="match-prev-info">
-        <div class="match-prev-name">${n_en}</div>
+        <div class="match-prev-name">${n_loc !== n_en ? n_loc + ' ' + n_en : n_en}</div>
         <div class="match-prev-runes">${runesStr}</div>
       </div>
       <span class="match-prev-badge ${isFull ? 'full' : 'partial'}">${isFull ? getText('match_full') : pct + '%'}</span>
@@ -1279,8 +1441,8 @@ function renderRW(){
     const iconHtml = `<img src="${iconUrl}" alt="${n_en}" style="width:100%;height:100%;object-fit:contain;position:absolute;top:0;left:0;z-index:1;opacity:.35" onerror="this.style.display='none'">
       <div style="position:relative;z-index:2;display:flex;flex-wrap:wrap;gap:1px;justify-content:center;align-items:center;width:100%;height:100%">${runesOverlayHtml}</div>`;
 
-    return`<div class="rw-card ${cls}">
-<div class="rw-card-icon" style="position:relative;overflow:hidden" onmouseenter="showTooltip(buildRwTooltip('${n_en.replace(/'/g, "\\'")}'), event)" onmousemove="positionTooltip(event)" onmouseleave="hideTooltip()">${iconHtml}</div>
+    return`<div class="rw-card ${cls}" onclick="openRwModal('${n_en.replace(/'/g, "\\'")}')" style="cursor:pointer">
+<div class="rw-card-icon" style="position:relative;overflow:hidden">${iconHtml}</div>
 <div class="rw-card-content">
 <div class="rw-card-head"><div><span class="rw-name">${n_en}</span><span class="rw-loc">${n_loc!==n_en?n_loc:''}</span></div>
 <span class="rw-badge ${rw.category}">${CATS[rw.category]||rw.patch}</span></div>
